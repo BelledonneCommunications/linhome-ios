@@ -1,0 +1,13 @@
+[app]
+debug=1
+
+[rtp]
+audio_rtp_port=-1
+video_rtp_port=-1
+
+[sound]
+usage_hint=0
+
+[misc]
+max_calls=1
+

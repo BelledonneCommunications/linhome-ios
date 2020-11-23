@@ -1,0 +1,177 @@
+//
+//  MainView.swift
+//  Linhome
+//
+//  Created by Christophe Deschamps on 18/06/2020.
+//  Copyright © 2020 Belledonne communications. All rights reserved.
+//
+
+import UIKit
+
+class MainView: ViewWithModel, UIDynamicAnimatorDelegate {
+	
+	@IBOutlet weak var topBar: UIView!
+	@IBOutlet weak var bottomBar: UIView!
+	@IBOutlet weak var content: UIView!
+	@IBOutlet weak var burger: UIButton!
+	@IBOutlet weak var back: UIButton!
+	@IBOutlet weak var left: UIButton!
+	@IBOutlet weak var right: UIButton!
+	@IBOutlet weak var devicesTab: UIView!
+	@IBOutlet weak var devicesLabel: UILabel!
+	@IBOutlet weak var devicesIcon: UIImageView!
+	@IBOutlet weak var historyTab: UIView!
+	@IBOutlet weak var historyLabel: UILabel!
+	@IBOutlet weak var historyIcon: UIImageView!
+	@IBOutlet weak var navigationTitle: UILabel!
+	@IBOutlet weak var unreadCount: UILabel!
+	
+	var toolbarViewModel = ToolbarViewModel()
+	var tabbarViewModel = TabbarViewModel()
+	var toobarButtonClickedListener: ToobarButtonClickedListener? = nil
+	
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		NavigationManager.it.mainView  = self
+		
+		topBar.snp.makeConstraints { (make) in
+			make.size.height.equalTo(UIDevice.hasNotch() ? 104 : 70)
+			make.left.right.top.equalToSuperview()
+			
+		}
+		
+		bottomBar.snp.makeConstraints { (make) in
+			make.size.height.equalTo(UIDevice.hasNotch() ? 94 : 60)
+			make.left.right.bottom.equalToSuperview()
+		}
+		
+		content.snp.makeConstraints { (make) in
+			make.top.equalTo(topBar.snp.bottom)
+			make.bottom.equalTo(bottomBar.snp.top)
+			make.left.right.equalToSuperview()
+		}
+		
+		// Top / Status bar
+		
+		topBar.backgroundColor = Theme.getColor("color_a")
+		
+		burger.prepare(iconName: "icons/burger_menu",effectKey: "primary_color",tintColor: "color_c")
+		back.prepare(iconName: "icons/back",effectKey: "primary_color",tintColor: "color_c")
+		
+		burger.onClick {
+			NavigationManager.it.navigateTo(childClass: SideMenu.self)
+		}
+		
+		back.onClick {
+			NavigationManager.it.navigateUp()
+		}
+		
+		toolbarViewModel.burgerButtonVisible.observe { (visible) in
+			self.burger.isHidden = !visible!
+		}
+		toolbarViewModel.leftButtonVisible.observe { (visible) in
+			self.left.isHidden = !visible!
+			self.burger.isHidden = !self.left.isHidden
+		}
+		toolbarViewModel.backButtonVisible.observe { (visible) in
+			self.back.isHidden = !visible!
+		}
+		toolbarViewModel.rightButtonVisible.observe { (visible) in
+			self.right.isHidden = !visible!
+		}
+		
+		left.onClick {
+			self.toobarButtonClickedListener.map{$0.onToolbarLeftButtonClicked()}
+		}
+		
+		right.onClick {
+			self.toobarButtonClickedListener.map{$0.onToolbarRightButtonClicked()}
+		}
+		
+		
+		navigationTitle.prepare(styleKey: "toolbar_title")
+		
+		
+		// Bottom/Tab bar
+		
+		bottomBar.backgroundColor = Theme.getColor("color_j")
+		
+		devicesLabel.prepare(styleKey: "tabbar_option",textKey: "devices")
+		devicesIcon.prepare(iconName: "icons/footer_devices.png",fillColor: "color_c",bgColor: "color_j") //  the Linhome stock SVG does not render well, added png fallback
+		
+		historyLabel.prepare(styleKey: "tabbar_option",textKey: "history")
+		historyIcon.prepare(iconName: "icons/footer_history",fillColor: "color_c",bgColor: "color_j")
+		unreadCount.prepare(styleKey: "tabbar_unread_count")
+		
+		unreadCount.backgroundColor = Theme.getColor("color_a")
+		unreadCount.layer.masksToBounds = true
+		unreadCount.layer.cornerRadius = 10.0
+		
+		
+		manageModel(tabbarViewModel)
+		tabbarViewModel.unreadCount.readCurrentAndObserve{ (unread) in
+			if (unread! > 0) {
+				self.unreadCount.isHidden = false
+				self.unreadCount.text = unread! < 100 ? String(unread!) : "99+"
+				self.unreadCount.startBouncing(offset: 7)
+				
+			} else {
+				self.unreadCount.isHidden = true
+				self.unreadCount.stopAnimations()
+			}
+		}
+		
+		
+		devicesTab.onClick {
+			self.bottomBarButtonClicked(self.devicesTab,self.historyTab)
+			NavigationManager.it.navigateTo(childClass: DevicesView.self)
+		}
+		historyTab.onClick {
+			self.bottomBarButtonClicked(self.historyTab,self.devicesTab)
+			NavigationManager.it.navigateTo(childClass: HistoryView.self)
+		}
+		
+		bottomBarButtonClicked(devicesTab,historyTab)
+		
+		
+		// Content
+		
+		self.content.backgroundColor = Theme.getColor("color_c")
+	
+		
+	}
+	
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		NavigationManager.it.navigateTo(childClass: DevicesView.self)
+		
+		if (!Account.it.configured()) {
+			DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(20)) {
+				NavigationManager.it.navigateTo(childClass: AssistantRoot.self)
+			}
+		}
+		
+
+		
+	}
+	
+	func bottomBarButtonClicked(_ clicked: UIView, _ unClicked:UIView) {
+		if (unClicked.alpha == 0.3) {
+			return
+		}
+		UIView.animate(withDuration: 0.2) {
+			clicked.alpha = 1.0
+			unClicked.alpha = 0.3
+		}
+	}
+	
+	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+		super.viewWillTransition(to: size, with: coordinator)
+	}
+	
+	
+}

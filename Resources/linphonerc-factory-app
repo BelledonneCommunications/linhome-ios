@@ -1,0 +1,58 @@
+###### Factory file for the application (as opposed to app extensions who have there own factory)
+
+[app]
+debug=1
+
+## App group name : Set the same name in App Group (capabilities in both targets - app & extension)
+app_group_name=group.org.linhome
+
+## Apple team ID (used for push notifications)
+team_id=Z2V957B3D6
+
+
+## Category name as set inside the content extension plist file, used in setNotificationCategories inside app delegate and used in ServiceExtension to route the notif (bestAttemptContent.categoryIdentifier)
+extension_category=earlymedia_video_content_extension
+
+
+
+##### Below sections used directly by the core itself
+
+[sip]
+auto_net_state_mon=1
+sip_random_port=1
+store_ha1_passwd=0
+sip_port=-1
+sip_tcp_port=-1
+
+[net]
+mtu=1300
+force_ice_disablement=1
+firewall_policy=ice
+stun_server=stun.linphone.org
+push_notifications_type=remote
+
+
+[video]
+auto_resize_preview_to_keep_ratio=1
+automatically_accept=1
+capture=1
+display=1
+enabled=1
+
+
+[assistant]
+xmlrpc_url=https://subscribe.linhome.org/flexisip-account-manager/linhome/xmlrpc.php
+; MD5 / SHA-256
+password_algo=MD5
+domain=sip.linhome.org
+freesip_url=https://subscribe.linhome.org
+
+[misc]
+version_check_url_root=https://www.linphone.org/releases
+log_collection_upload_server_url=https://www.linphone.org:444/lft.php
+max_calls=1
+history_max_size=100
+
+[rtp]
+audio_rtp_port=-1
+video_rtp_port=-1
