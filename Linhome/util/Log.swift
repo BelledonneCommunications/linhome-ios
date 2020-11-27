@@ -100,9 +100,6 @@ class Log: LoggingServiceDelegate {
 		} else {
 			NSLog(log)
 		}
-#if !targetEnvironment(simulator)
-		Crashlytics.crashlytics().log(log)
-#endif
 	}
 		
 	
