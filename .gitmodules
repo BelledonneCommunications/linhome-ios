@@ -1,4 +1,4 @@
 
 [submodule "linhome-shared-themes"]
 	path = linhome-shared-themes
-	url = https://gitlab.linphone.org/BC/private/linhome-shared-themes
+	url = ../linhome-shared-themes
