@@ -35,7 +35,7 @@ class MainViewContentWithScrollableForm : MainViewContent {
 		scrollView = UIScrollView()
 		contentView = UIView()
 		viewTitle = UILabel()
-		viewTitle.numberOfLines = 2
+		viewTitle.numberOfLines = 4
 		viewSubtitle = UILabel()
 		viewSubtitle.numberOfLines = 3
 		form = UIStackView()
