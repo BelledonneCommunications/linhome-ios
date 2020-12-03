@@ -73,7 +73,7 @@ class AccountView: MainViewContentWithScrollableForm {
 	
 	func gotoFreeSip() {
 		  DialogUtil.confirm(titleTextKey: "account_manage_on_freesip_title", messageTextKey: "account_manage_on_freesip_message", confirmAction: {
-			if let url = URL(string: Config.get().getString(section: "assistant", key: "freesip_url", defaultString: "https://subscribe.linhome.org")) {
+			if let url = URL(string: Config.get().getString(section: "assistant", key: "freesip_url", defaultString: "https://subscribe.linhome.org/login")) {
 				   UIApplication.shared.open(url)
 			   }
 		   })
