@@ -122,21 +122,30 @@ class CallInProgressView : GenericCallView {
 			}
 		}
 		
+		let addHangUp = {
+			let _ = CallButton.addOne(targetVC: self, iconName: "icons/decline", textKey: "call_button_hangup", effectKey: "decline_call_button", tintColor: "color_c", action: {
+				self.callViewModel?.terminate()
+			}, toStackView:self.controlButtonsRow)
+		}
 		
-		let _ = CallButton.addOne(targetVC: self, iconName: "icons/decline", textKey: "call_button_hangup", effectKey: "decline_call_button", tintColor: "color_c", action: {
-			self.callViewModel?.terminate()
-		}, toStackView:controlButtonsRow)
+		let addMute = {
+			let _ = CallButton.addOne(targetVC: self, off : self.callViewModel?.microphoneMuted, iconName: "icons/mic", textKey: "call_button_mute", textOffKey: "call_button_unmute", effectKey: "incall_call_button", tintColor: "color_c",  outLine: true, action: {
+				self.callViewModel?.toggleMute()
+			}, toStackView:self.controlButtonsRow)
+		}
 		
-		let _ = CallButton.addOne(targetVC: self, off : self.callViewModel?.microphoneMuted, iconName: "icons/mic", textKey: "call_button_mute", textOffKey: "call_button_unmute", effectKey: "incall_call_button", tintColor: "color_c",  outLine: true, action: {
-			self.callViewModel?.toggleMute()
-		}, toStackView:controlButtonsRow)
-		
-		if (!UIDevice.ipad()) {
+		if (UIDevice.ipad()) {
+			addHangUp()
+			addMute()
 			let _ = CallButton.addOne(targetVC: self, off : self.callViewModel?.speakerDisabled, iconName: "icons/speaker", textKey: "call_button_disable_speaker", textOffKey: "call_button_enable_speaker", effectKey: "incall_call_button", tintColor: "color_c",  outLine: true, action: {
 				self.callViewModel?.toggleSpeaker()
 			}, toStackView:controlButtonsRow)
+		} else {
+			addMute()
+			addHangUp()
 		}
 	
+
 		// Touch on full screen video
 		
 		fullScreenVideo.view.onClick {
