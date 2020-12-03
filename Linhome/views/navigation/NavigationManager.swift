@@ -35,13 +35,24 @@ class NavigationManager {
 	var nextViewArgument:Any?
 	
 	
+	func nibName<T>(className: T.Type) -> String? {
+		if (UIDevice.is5SorSEGen1() && Bundle.main.path(forResource: "iPhone5-SE-"+String(describing: className), ofType: "nib") != nil) {
+			return "iPhone5-SE-"+String(describing: className)
+		} else if (Bundle.main.path(forResource: String(describing: className), ofType: "nib") != nil) {
+			return String(describing: className)
+		} else {
+			return nil
+		}
+	}
+	
 	func hasNib(className:String) -> Bool {
 		return Bundle.main.path(forResource: className, ofType: "nib") != nil
 	}
 	
 	func navigateTo<T>(childClass: T.Type, asRoot:Bool = false, argument:Any? = nil) where T: ViewWithModel {
 		self.nextViewArgument = argument
-		let child = hasNib(className: String(describing: childClass)) ? childClass.init(nibName: String(describing: childClass) , bundle: nil) : childClass.init()
+		let nib = nibName(className: childClass)
+		let child = nib != nil ? childClass.init(nibName: nib, bundle: nil) : childClass.init()
 		child.view.frame = child.isCallView() ? UIScreen.main.bounds : mainView!.content.frame
 		mainView!.addChild(child)
 		if (child.isCallView()) {

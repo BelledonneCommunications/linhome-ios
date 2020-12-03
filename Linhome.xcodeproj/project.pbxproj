@@ -259,6 +259,7 @@
 		C6FB3829249CFDEE007A6E7B /* TapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB3828249CFDEE007A6E7B /* TapGestureRecognizer.swift */; };
 		C6FB382D24A0684A007A6E7B /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB382B24A0684A007A6E7B /* SideMenu.swift */; };
 		C6FB382E24A0684A007A6E7B /* SideMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6FB382C24A0684A007A6E7B /* SideMenu.xib */; };
+		C6FE4BC1257949B500F31F38 /* iPhone5-SE-About.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6FE4BC0257949B500F31F38 /* iPhone5-SE-About.xib */; };
 		E0825F3CA912424D1449C31F /* Pods_Linhome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B0741591215C66D8CE89E8 /* Pods_Linhome.framework */; };
 /* End PBXBuildFile section */
 
@@ -507,6 +508,7 @@
 		C6FB3828249CFDEE007A6E7B /* TapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapGestureRecognizer.swift; sourceTree = "<group>"; };
 		C6FB382B24A0684A007A6E7B /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		C6FB382C24A0684A007A6E7B /* SideMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenu.xib; sourceTree = "<group>"; };
+		C6FE4BC0257949B500F31F38 /* iPhone5-SE-About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "iPhone5-SE-About.xib"; sourceTree = "<group>"; };
 		CD61466774713A7E5BE0FF55 /* Pods-VideoNotifDemoContentExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoNotifDemoContentExtension.debug.xcconfig"; path = "Target Support Files/Pods-VideoNotifDemoContentExtension/Pods-VideoNotifDemoContentExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		D0B0741591215C66D8CE89E8 /* Pods_Linhome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Linhome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA3C26D34769C89FA82926C7 /* Pods-LindoorServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LindoorServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-LindoorServiceExtension/Pods-LindoorServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -773,6 +775,7 @@
 			children = (
 				C648F9F024A123E700D9B92D /* About.swift */,
 				C648F9F124A123E700D9B92D /* About.xib */,
+				C6FE4BC0257949B500F31F38 /* iPhone5-SE-About.xib */,
 			);
 			path = about;
 			sourceTree = "<group>";
@@ -1260,6 +1263,7 @@
 				C6933F56254C355D00E12D1B /* HistoryCellLand~ipad.xib in Resources */,
 				C646853924A634880045AA4D /* RemoteUrlView.xib in Resources */,
 				C648FA4924A260CE00D9B92D /* assistant_sip_account_default_values in Resources */,
+				C6FE4BC1257949B500F31F38 /* iPhone5-SE-About.xib in Resources */,
 				C6EDB7322513B0B600690F07 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

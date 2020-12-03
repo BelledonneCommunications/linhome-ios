@@ -42,4 +42,8 @@ extension UIDevice {
 		UserDefaults.standard.setValue(true, forKey: "hasNotch")
 		return true
 	}
+	
+	static func is5SorSEGen1() -> Bool {
+		return UIScreen.main.nativeBounds.height == 1136
+	}
 }
