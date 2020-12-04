@@ -162,7 +162,7 @@ class DeviceInfoViewIpad: MainViewContent  {
 					make.centerX.equalToSuperview()
 				}
 				actions.forEach { action in
-					let actionButton = CallButton.addOne(targetVC: self, iconName: action.iconName()!, text: action.actionText(), effectKey: "incall_call_button", tintColor: "color_b",  outLine: true, action: {}, toStackView:actionsButtonRow!, outLineColorKey: "color_b")
+					let actionButton = CallButton.addOne(targetVC: self, iconName: action.iconName()!, text: action.actionText(), effectKey: "incall_call_button", tintColor: "color_b",  outLine: false, action: {}, toStackView:actionsButtonRow!, outLineColorKey: "color_b")
 					actionButton.view.isUserInteractionEnabled = false
 					actionButton.labelOn.textColor = Theme.getColor("color_b")
 				}
