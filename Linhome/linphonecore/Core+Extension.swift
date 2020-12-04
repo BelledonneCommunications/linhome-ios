@@ -78,7 +78,7 @@ extension Core {
 				}
 				result.setDefaultCodecs()
 			}
-			Log.debug("Created core with config:\n\(config.dump())")
+			Log.debug("Created core \(Core.getVersion) with config:\n\(config.dump())")
 			return result
 		} catch  {
 			Log.error("Unable to create core \(error)")
