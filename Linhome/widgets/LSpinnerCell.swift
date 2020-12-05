@@ -35,14 +35,16 @@ class LSpinnerCell: DropDownCell {
 			icon.prepareSwiftSVG(iconName:item.iconFile!, fillColor: nil, bgColor: "nil")
 			icon.isHidden = false
 			optionLabel.snp.updateConstraints { (make) in
-				make.left.equalTo(contentView.snp.left).offset(60)
+				make.left.equalTo(contentView.snp.left).offset(UIDevice.is5SorSEGen1() ? 45 :  60)
 				make.centerY.equalTo(contentView.snp.centerY)
+				make.right.equalToSuperview().offset(-35)
 			}
 		} else {
 			icon.isHidden = true
 			optionLabel.snp.updateConstraints { (make) in
-				make.left.equalTo(contentView.snp.left).offset(20)
+				make.left.equalTo(contentView.snp.left).offset(UIDevice.is5SorSEGen1() ? 10 :20)
 				make.centerY.equalTo(contentView.snp.centerY)
+				make.right.equalToSuperview().offset(-35)
 			}
 		}
 		
