@@ -20,12 +20,13 @@
 
 
 import UIKit
+import MarqueeLabel
 
 class CallButton: UIViewController {
 
 	@IBOutlet var button: UIButton!
-	@IBOutlet var labelOn: UILabel!
-	@IBOutlet var labelOff: UILabel!
+	@IBOutlet var labelOn: MarqueeLabel!
+	@IBOutlet var labelOff: MarqueeLabel!
 	@IBOutlet var strikeThrough: UIView!
 
 	var off  : MutableLiveData<Bool>?
@@ -33,8 +34,8 @@ class CallButton: UIViewController {
 	override func viewDidLoad() {
 		
 		button = UIButton(frame: CGRect(x: 30,y: 0,width: 60,height: 60))
-		labelOn = UILabel(frame: CGRect(x: 0,y: 66,width: 120,height: 34))
-		labelOff = UILabel(frame: CGRect(x: 0,y: 66,width: 120,height: 34))
+		labelOn = MarqueeLabel(frame: CGRect(x: 0,y: 66,width: 120,height: 34))
+		labelOff = MarqueeLabel(frame: CGRect(x: 0,y: 66,width: 120,height: 34))
 		
 		self.view.addSubview(button)
 		self.view.addSubview(labelOn)
@@ -42,10 +43,17 @@ class CallButton: UIViewController {
 
 		labelOn.prepare(styleKey: "call_action_button")
 		labelOff.prepare(styleKey: "call_action_button")
-			
+		
+		prepareMarquee(label: labelOn)
+		prepareMarquee(label: labelOff)
+
         super.viewDidLoad()
     }
 	
+	private func prepareMarquee(label:MarqueeLabel) {
+		label.leadingBuffer = 10.0
+		label.trailingBuffer = 10.0
+	}
 	
 	class func addOne(targetVC:UIViewController,off:MutableLiveData<Bool>? = nil, iconName:String, textKey:String? = nil, text:String? = nil, textOffKey:String? = nil, effectKey: String, tintColor:String, outLine:Bool = false, action : @escaping ()->Void, toStackView:UIStackView? = nil, outLineColorKey: String = "color_c") -> CallButton {
 		
@@ -99,6 +107,7 @@ class CallButton: UIViewController {
 		child.labelOn.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview()
 			make.bottom.equalToSuperview()
+			make.width.equalTo(120)
 		}
 		child.button.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview()

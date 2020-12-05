@@ -21,6 +21,7 @@ def app_pods
 	pod 'SnapKit'
 	pod 'Firebase/Analytics'
 	pod 'Firebase/Crashlytics'
+	pod 'MarqueeLabel'
 end
 
 target 'Linhome' do

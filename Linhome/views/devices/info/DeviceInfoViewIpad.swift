@@ -152,6 +152,7 @@ class DeviceInfoViewIpad: MainViewContent  {
 		device.actions.map { actions in
 			if (actions.count > 0) {
 				actionsButtonRow = UIStackView()
+				actionsButtonRow?.spacing = 10
 				actionsButtonRow!.axis = .horizontal
 				actionsButtonRow!.distribution = .fillEqually
 				actionsButtonRow?.alignment = .center
@@ -162,7 +163,7 @@ class DeviceInfoViewIpad: MainViewContent  {
 					make.centerX.equalToSuperview()
 				}
 				actions.forEach { action in
-					let actionButton = CallButton.addOne(targetVC: self, iconName: action.iconName()!, text: action.actionText(), effectKey: "incall_call_button", tintColor: "color_b",  outLine: false, action: {}, toStackView:actionsButtonRow!, outLineColorKey: "color_b")
+					let actionButton = CallButton.addOne(targetVC: self, iconName: action.iconName()!, text: "\(action.actionText()!) - \(action.code!)", effectKey: "incall_call_button", tintColor: "color_b",  outLine: false, action: {}, toStackView:actionsButtonRow!, outLineColorKey: "color_b")
 					actionButton.view.isUserInteractionEnabled = false
 					actionButton.labelOn.textColor = Theme.getColor("color_b")
 				}
