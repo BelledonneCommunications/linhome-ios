@@ -113,13 +113,16 @@ class DeviceEditorView: MainViewContentWithScrollableForm {
 		newAction.isEnabled = self.model.actionsViewModels.count <= 2
 		model.refreshActions.observe { (_) in
 			newAction.isEnabled = self.model.actionsViewModels.count <= 2
+			for (index, actionViewModel) in self.model.actionsViewModels.enumerated() {
+				actionViewModel.displayIndex.value = index+1
+			}
 		}
 				
 				
 	}
 	
 	private func doAddAction(action: Action?, model: DeviceEditorViewModel, form:UIStackView) {
-		let actionViewModel = DeviceEditorActionViewModel(owningViewModel: model, displayIndex: model.actionsViewModels.count + 1)
+		let actionViewModel = DeviceEditorActionViewModel(owningViewModel: model, displayIndex: MutableLiveData(model.actionsViewModels.count + 1))
 		if (action != nil) {
 			actionViewModel.code.first.value = action!.code
 			actionViewModel.type.value = model.availableActionTypes.firstIndex{$0.backingKey == action!.type}

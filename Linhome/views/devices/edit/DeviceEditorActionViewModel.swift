@@ -20,12 +20,12 @@
 
 class DeviceEditorActionViewModel : ViewModel {
 	var owningViewModel: DeviceEditorViewModel
-	var displayIndex: Int
+	var displayIndex =  MutableLiveData<Int>(0)
     var type = MutableLiveData<Int>(0)
     var code = Pair(MutableLiveData<String>(), MutableLiveData<Bool>(false))
 	var actionRow : ActionRow?
 	
-	init (owningViewModel: DeviceEditorViewModel,displayIndex: Int) {
+	init (owningViewModel: DeviceEditorViewModel,displayIndex: MutableLiveData<Int>) {
 		self.owningViewModel = owningViewModel
 		self.displayIndex = displayIndex
 	}

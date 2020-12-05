@@ -959,7 +959,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
             endingLineNumber = "81"
-            landmarkName = "configurePushNotifications(_:)"
+            landmarkName = "getNewOne(autoIterate:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1007,7 +1007,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "199"
             endingLineNumber = "199"
-            landmarkName = "applicationDidBecomeActive()"
+            landmarkName = "viewWillTransition(to:with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

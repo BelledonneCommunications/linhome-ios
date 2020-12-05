@@ -45,7 +45,7 @@ class ActionRow: UIViewController {
 		
 		child.actionViewModel = actionViewModel
 
-		let spinner = LSpinner.addOne(titleText: "\(Texts.get("action")) \(actionViewModel.displayIndex)", targetVC: child, options: actionViewModel.owningViewModel.availableActionTypes, liveIndex: actionViewModel.type, form: child.actionForm)
+		let spinner = LSpinner.addOne(titleText: "\(Texts.get("action")) \(actionViewModel.displayIndex.value!)", targetVC: child, options: actionViewModel.owningViewModel.availableActionTypes, liveIndex: actionViewModel.type, form: child.actionForm)
 		child.code = LTextInput.addOne(titleKey: "action_code", targetVC: child, keyboardType: UIKeyboardType.numberPad, validator: ValidatorFactory.actionCode, liveInfo: actionViewModel.code, inForm: child.actionForm)
 		let delete = UIButton()
 		delete.frame = CGRect(x: 0,y: 0,width: 20,height: 20)
@@ -56,6 +56,10 @@ class ActionRow: UIViewController {
 			actionViewModel.owningViewModel.removeActionViewModel(viewModel: actionViewModel)
 			form.removeArrangedSubview(child.view)
 			child.view.removeFromSuperview()
+		}
+		
+		actionViewModel.displayIndex.observe { value in
+			spinner.inputTitle.text = "\(Texts.get("action")) \(actionViewModel.displayIndex.value!)".uppercased()
 		}
 	
 		// Layout constraints
