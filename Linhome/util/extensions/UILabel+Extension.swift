@@ -56,7 +56,7 @@ extension UILabel {
 				self.textAlignment = .right
 			}
 		}
-		let fontSizeMultiplier: Float = (UIDevice.ipad() ? 1.25 : UIDevice.is5SorSEGen1() ? 0.8 : 1.0)
+		let fontSizeMultiplier: Float = (UIDevice.ipad() ? 1.25 : UIDevice.is5SorSEGen1() ? 0.9 : 1.0)
 		if let fontName = config?.getString(section: section, key: "font"), let fontSize = config?.getFloat(section: section, key: "size", defaultValue: 12.0), let font = Theme.getFont(fontName, fontSize*fontSizeMultiplier) {
 			self.font = font
 		}
