@@ -28,7 +28,7 @@ class DeviceEditorView: MainViewContentWithScrollableForm {
 	var nameInput : LTextInput?
 	var addressInput : LTextInput?
 	var model = DeviceEditorViewModel()
-
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -36,11 +36,23 @@ class DeviceEditorView: MainViewContentWithScrollableForm {
 		onTopOfBottomBar = true
 		titleTextKey = "devices"
 		hideSubtitle()
-
+		
+		let landScapeIpad = UIDevice.ipad() && UIScreen.isLandscape
 		
 		manageModel(model)
 		model.device = NavigationManager.it.nextViewArgument as! Device?
-			
+		
+		if (UIDevice.ipad()) {
+			let yourDevice = UILabel()
+			form.addArrangedSubview(yourDevice)
+			yourDevice.prepare(styleKey: "section_title",textKey:"your_device")
+			if (!landScapeIpad) {
+				yourDevice.snp.makeConstraints { (make) in
+					make.height.equalTo(40)
+				}
+			}
+		}
+		
 		nameInput = LTextInput.addOne(titleKey: "device_name", targetVC: self, keyboardType: UIKeyboardType.default, validator: ValidatorFactory.nonEmptyStringValidator, liveInfo: model.name, inForm: form)
 		addressInput = LTextInput.addOne(titleKey: "device_address", targetVC: self, keyboardType: UIKeyboardType.default, validator: ValidatorFactory.sipUri, liveInfo: model.address, inForm: form, hintKey: "device_address_hint")
 		
@@ -54,7 +66,6 @@ class DeviceEditorView: MainViewContentWithScrollableForm {
 		let deviceSpinner = LSpinner.addOne(titleKey: nil, targetVC: self, options:model.availableDeviceTypes, liveIndex: model.deviceType, form:form)
 		
 		
-		let landScapeIpad = UIDevice.ipad() && UIScreen.isLandscape
 		
 		if (landScapeIpad) {
 			addSecondColumn()
@@ -117,8 +128,8 @@ class DeviceEditorView: MainViewContentWithScrollableForm {
 				actionViewModel.displayIndex.value = index+1
 			}
 		}
-				
-				
+		
+		
 	}
 	
 	private func doAddAction(action: Action?, model: DeviceEditorViewModel, form:UIStackView) {
