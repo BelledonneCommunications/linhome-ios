@@ -192,5 +192,10 @@ class DeviceEditorView: MainViewContentWithScrollableForm {
 	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 		super.viewWillTransition(to: size, with: coordinator)
 		NavigationManager.it.mainView?.toolbarViewModel.rightButtonVisible.value = true
+		
+		NavigationManager.it.navigateUp()
+		NavigationManager.it.navigateTo(childClass: DeviceEditorView.self, asRoot: false, argument: model.device)
+
+		
 	}
 }
