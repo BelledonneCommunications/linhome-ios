@@ -137,12 +137,12 @@ class CallInProgressView : GenericCallView {
 		if (UIDevice.ipad()) {
 			addHangUp()
 			addMute()
-			let _ = CallButton.addOne(targetVC: self, off : self.callViewModel?.speakerDisabled, iconName: "icons/speaker", textKey: "call_button_disable_speaker", textOffKey: "call_button_enable_speaker", effectKey: "incall_call_button", tintColor: "color_c",  outLine: true, action: {
-				self.callViewModel?.toggleSpeaker()
-			}, toStackView:controlButtonsRow)
 		} else {
 			addMute()
 			addHangUp()
+			let _ = CallButton.addOne(targetVC: self, off : self.callViewModel?.speakerDisabled, iconName: "icons/speaker", textKey: "call_button_disable_speaker", textOffKey: "call_button_enable_speaker", effectKey: "incall_call_button", tintColor: "color_c",  outLine: true, action: {
+				self.callViewModel?.toggleSpeaker()
+			}, toStackView:controlButtonsRow)
 		}
 	
 

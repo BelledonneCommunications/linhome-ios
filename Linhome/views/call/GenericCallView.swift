@@ -63,7 +63,7 @@ class GenericCallView : ViewWithModel {
 		chunkTop = ChunkCallTop()
 		self.view.addSubview(chunkTop!.view)
 		chunkTop!.view.snp.makeConstraints { (make) in
-			make.topMargin.equalTo(20)
+			make.topMargin.equalTo(UIDevice.is5SorSEGen1() ? 5 : 20)
 			make.left.right.equalToSuperview()
 		}
 		
