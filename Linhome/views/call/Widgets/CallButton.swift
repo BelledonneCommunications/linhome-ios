@@ -92,20 +92,20 @@ class CallButton: UIViewController {
 		}
 		
 		child.view.snp.makeConstraints{ (make) in
-			make.width.equalTo(120)
+			make.width.equalTo(UIDevice.is5SorSEGen1() ? 100 : 120)
 			make.height.equalTo(UIDevice.is5SorSEGen1() ? 80 : 100)
 		}
 		
 		child.labelOn.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview()
 			make.bottom.equalToSuperview()
-			make.width.equalTo(120)
+			make.width.equalTo(UIDevice.is5SorSEGen1() ? 100 : 120)
 		}
 		
 		child.labelOff.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview()
 			make.bottom.equalToSuperview()
-			make.width.equalTo(120)
+			make.width.equalTo(UIDevice.is5SorSEGen1() ? 100 : 120)
 		}
 		
 		child.button.snp.makeConstraints { (make) in

@@ -88,7 +88,7 @@ class CallInProgressView : GenericCallView {
 				actionsButtonRow!.axis = .horizontal
 				actionsButtonRow!.distribution = .equalCentering
 				actionsButtonRow!.alignment = .center
-				actionsButtonRow!.spacing = 20
+				actionsButtonRow!.spacing = 10
 				self.view.addSubview(actionsButtonRow!)
 				actionsButtonRow!.snp.makeConstraints { (make) in
 					if (UIDevice.ipad()) {
@@ -96,7 +96,7 @@ class CallInProgressView : GenericCallView {
 						make.bottom.equalToSuperview().offset( -30)
 					} else {
 						make.centerX.equalToSuperview()
-						make.bottom.equalToSuperview().offset( -120)
+						make.bottom.equalToSuperview().offset( UIDevice.is5SorSEGen1() ? -100 : -120)
 					}
 				}
 				actions.forEach { action in
@@ -111,6 +111,7 @@ class CallInProgressView : GenericCallView {
 		controlButtonsRow!.axis = .horizontal
 		controlButtonsRow!.distribution = .equalCentering
 		controlButtonsRow!.alignment = .center
+		controlButtonsRow!.spacing = 10
 		self.view.addSubview(controlButtonsRow!)
 		controlButtonsRow!.snp.makeConstraints { (make) in
 			if (UIDevice.ipad()) {
