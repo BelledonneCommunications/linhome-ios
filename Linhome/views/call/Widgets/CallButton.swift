@@ -43,17 +43,9 @@ class CallButton: UIViewController {
 
 		labelOn.prepare(styleKey: "call_action_button")
 		labelOff.prepare(styleKey: "call_action_button")
-		
-		prepareMarquee(label: labelOn)
-		prepareMarquee(label: labelOff)
 
         super.viewDidLoad()
     }
-	
-	private func prepareMarquee(label:MarqueeLabel) {
-		label.leadingBuffer = 10.0
-		label.trailingBuffer = 10.0
-	}
 	
 	class func addOne(targetVC:UIViewController,off:MutableLiveData<Bool>? = nil, iconName:String, textKey:String? = nil, text:String? = nil, textOffKey:String? = nil, effectKey: String, tintColor:String, outLine:Bool = false, action : @escaping ()->Void, toStackView:UIStackView? = nil, outLineColorKey: String = "color_c") -> CallButton {
 		
@@ -92,8 +84,8 @@ class CallButton: UIViewController {
 		}
 		
 		child.button.prepareRoundIcon(effectKey: effectKey, tintColor: tintColor, iconName: iconName, padding: 12, outLine:outLine, outLineColorKey: outLineColorKey)
-		child.labelOn.text = textKey != nil ? Texts.get(textKey!) : text
-		textOffKey.map{child.labelOff.text = Texts.get($0)}
+		child.labelOn.text = " " + (textKey != nil ? Texts.get(textKey!) : text!) + " " // Spaces for Marquee
+		textOffKey.map{child.labelOff.text = " " + Texts.get($0) + " "}
 		
 		child.button.onClick {
 			action()
@@ -101,7 +93,7 @@ class CallButton: UIViewController {
 		
 		child.view.snp.makeConstraints{ (make) in
 			make.width.equalTo(120)
-			make.height.equalTo(100)
+			make.height.equalTo(UIDevice.is5SorSEGen1() ? 80 : 100)
 		}
 		
 		child.labelOn.snp.makeConstraints { (make) in
@@ -109,6 +101,13 @@ class CallButton: UIViewController {
 			make.bottom.equalToSuperview()
 			make.width.equalTo(120)
 		}
+		
+		child.labelOff.snp.makeConstraints { (make) in
+			make.centerX.equalToSuperview()
+			make.bottom.equalToSuperview()
+			make.width.equalTo(120)
+		}
+		
 		child.button.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview()
 			make.width.height.equalTo(60)
