@@ -89,7 +89,7 @@ class LSpinner : UIViewController, UITableViewDataSource, UITableViewDelegate {
 			cell.setContent(item: child.optionsWithoutHint[index])
 		}
 		
-		child.dropDown?.selectRow(liveIndex.value!)
+		child.dropDown?.selectRow(liveIndex.value!-1)
 		child.dropDown?.backgroundColor = Theme.getColor("color_d")
 		child.dropDown?.selectionBackgroundColor = Theme.getColor("color_i")
 
