@@ -7,9 +7,9 @@ source "https://github.com/CocoaPods/Specs.git"
 # App
 def app_pods
 	if ENV['PODFILE_PATH'].nil?
-		pod 'linphone-sdk', '~> 4.5.0-alpha.266+0b55767'
+		pod 'linphone-sdk', '~> 4.5.0-alpha.271+eed258c'
 	else
-		pod 'linphone-sdk', :path => ENV['PODFILE_PATH']  # loacl sdk
+		pod 'linphone-sdk', :path => ENV['PODFILE_PATH']  # loacl sdk : PODFILE_PATH=<Path to>/linphone-sdk.podspec  pod install
 	end
 	#pod 'linphone-sdk/basic-frameworks', :path => 'linphone-sdk'
 	pod 'IQKeyboardManager'
@@ -32,7 +32,7 @@ end
 # Extensions
 def ext_pods
 	if ENV['PODFILE_PATH'].nil?
-		pod 'linphone-sdk', '~> 4.5.0-alpha.266+0b55767'
+		pod 'linphone-sdk', '~> 4.5.0-alpha.271+eed258c'
 	else
 		pod 'linphone-sdk', :path => ENV['PODFILE_PATH']  # loacl sdk
 	end
@@ -53,7 +53,12 @@ target 'LinhomeServiceExtension' do
 end
 
 post_install do |installer|
-	# strip bitcode fom linphone-sdk
-	#system('find Pods/linphone-sdk -name "*.framework" -exec echo -n "{}/" \; -exec basename {} .framework  \;  > libs && while read lib; do  xcrun bitcode_strip -r $lib  -o $lib; done < libs && rm libs')
+	installer.pods_project.targets.each do |target|
+		if target.name == 'SwiftSVG'
+			target.build_configurations.each do |config|
+				config.build_settings['SWIFT_INSTALL_OBJC_HEADER'] = 'NO'
+			end
+		end
+	end
 end
 
