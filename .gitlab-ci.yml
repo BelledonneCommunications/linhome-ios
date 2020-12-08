@@ -14,15 +14,12 @@ variables:
    - if ! [ -z ${LINDOOR_USER_KEY+x} ]; then echo "$LINDOOR_USER_KEY" | tr -d '\r' | ssh-add - > /dev/null; fi
    - if ! [ -z ${SCP_PRIVATE_KEY+x} ]; then echo "$SCP_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null; fi
 
- after_script:
-   - if ! [ -z ${LINDOOR_USER_KEY+x} ]; then rm -rf ~/.ssh || true; fi
-
 job-ios:
 
   extends: .linux-prepare
 
   stage: build
-  tags: [ "macosx-xcode11" ]
+  tags: [ "macosx-xcode12" ]
 
   script:
     - pod install --repo-update --verbose
