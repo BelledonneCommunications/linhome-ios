@@ -133,7 +133,9 @@ class NavigationManager {
 			
 			if (type(of: current) == DevicesView.self || type(of: current) == HistoryView.self ) {
 				enterRootFragment()
-				current.viewWillAppear(false)
+				if (UIDevice.ipad()) {
+					current.viewWillAppear(false)
+				}
 			} else {
 				enterNonRootFragment()
 			}

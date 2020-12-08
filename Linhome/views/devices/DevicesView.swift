@@ -96,7 +96,9 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		noDevices.isHidden = DeviceStore.it.devices.count > 0
-		devices.reloadData()
+		DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50)) {
+			self.devices.reloadData()
+		}
 		
 		DeviceStore.it.updatedSnapshotDeviceId.observe { (deviceId) in
 			DeviceStore.it.devices.forEach {
