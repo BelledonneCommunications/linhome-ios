@@ -80,8 +80,7 @@ class NotificationService: UNNotificationServiceExtension {
 					call.stopRecording()
 					HistoryEventStore.it.sync()
 				}
-				Log.info("CoreDelegateStub - Call ended here - removing notification")
-				UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [request.identifier])
+				Log.info("CoreDelegateStub - Call ended here ")
 			}
 		})
 		
