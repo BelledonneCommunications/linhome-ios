@@ -19,7 +19,7 @@ job-ios:
   extends: .linux-prepare
 
   stage: build
-  tags: [ "macosx-xcode12" ]
+  tags: [ "macosx-xcode11" ]
 
   script:
     - pod install --repo-update --verbose
