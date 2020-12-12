@@ -148,7 +148,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	func requestMirophonePermission() {
 		AVAudioSession.sharedInstance().requestRecordPermission { granted in
 			if !granted {
-				DialogUtil.info("record_audio_permission_denied_dont_ask_again")
+				DispatchQueue.main.async {
+					DialogUtil.info("record_audio_permission_denied_dont_ask_again")
+				}
 			}
 		}
 	}
