@@ -124,7 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		UNUserNotificationCenter.current().requestAuthorization(options: options) {
 			(didAllow, error) in
 			if !didAllow {
-				DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(Customisation.it.themeConfig.getInt(section: "arbitrary-values", key: "splash_display_duration_ms", defaultValue: 2000))) {
+				DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500+Customisation.it.themeConfig.getInt(section: "arbitrary-values", key: "splash_display_duration_ms", defaultValue: 2000))) {
 					DialogUtil.info("service_description")
 				}
 			} else {
@@ -148,7 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	func requestMirophonePermission() {
 		AVAudioSession.sharedInstance().requestRecordPermission { granted in
 			if !granted {
-				DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(Customisation.it.themeConfig.getInt(section: "arbitrary-values", key: "splash_display_duration_ms", defaultValue: 2000))) {
+				DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500+Customisation.it.themeConfig.getInt(section: "arbitrary-values", key: "splash_display_duration_ms", defaultValue: 2000))) {
 					DialogUtil.info("record_audio_permission_denied_dont_ask_again")
 				}
 			}
