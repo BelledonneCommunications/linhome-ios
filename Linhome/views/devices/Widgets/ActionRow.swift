@@ -46,7 +46,7 @@ class ActionRow: UIViewController {
 		child.actionViewModel = actionViewModel
 
 		let spinner = LSpinner.addOne(titleText: "\(Texts.get("action")) \(actionViewModel.displayIndex.value!)", targetVC: child, options: actionViewModel.owningViewModel.availableActionTypes, liveIndex: actionViewModel.type, form: child.actionForm)
-		child.code = LTextInput.addOne(titleKey: "action_code", targetVC: child, keyboardType: UIKeyboardType.numberPad, validator: ValidatorFactory.actionCode, liveInfo: actionViewModel.code, inForm: child.actionForm)
+		child.code = LTextInput.addOne(titleKey: "action_code", targetVC: child, keyboardType: UIKeyboardType.phonePad, validator: ValidatorFactory.actionCode, liveInfo: actionViewModel.code, inForm: child.actionForm)
 		let delete = UIButton()
 		delete.frame = CGRect(x: 0,y: 0,width: 20,height: 20)
 		delete.prepare(iconName:"icons/delete",effectKey:"primary_color", effectIsFg: true, tintColor:"color_c", padding: 0)
