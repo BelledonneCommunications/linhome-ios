@@ -4,14 +4,17 @@ platform :ios, '12.4'
 source "https://gitlab.linphone.org/BC/public/podspec.git"
 source "https://github.com/CocoaPods/Specs.git"
 
-# App
-def app_pods
+def linpod
 	if ENV['PODFILE_PATH'].nil?
-		pod 'linphone-sdk', '4.5.0-beta.19+bd59c3b'
+		pod 'linphone-sdk', '4.5.0-beta.74+4a6f55d'
 	else
 		pod 'linphone-sdk', :path => ENV['PODFILE_PATH']  # loacl sdk : PODFILE_PATH=<Path to>/linphone-sdk.podspec  pod install
 	end
-	#pod 'linphone-sdk/basic-frameworks', :path => 'linphone-sdk'
+end
+
+# App
+def app_pods
+	linpod
 	pod 'IQKeyboardManager'
 	pod 'PocketSVG'
 	pod 'Zip'
@@ -31,11 +34,7 @@ end
 
 # Extensions
 def ext_pods
-	if ENV['PODFILE_PATH'].nil?
-		pod 'linphone-sdk', '4.5.0-beta.19+bd59c3b'
-	else
-		pod 'linphone-sdk', :path => ENV['PODFILE_PATH']  # loacl sdk
-	end
+	linpod
 	pod 'Zip'
 	pod 'PocketSVG'
 	pod 'Firebase/Analytics'
