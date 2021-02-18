@@ -56,3 +56,10 @@ history_max_size=100
 [rtp]
 audio_rtp_port=-1
 video_rtp_port=-1
+
+[sound]
+dtmf_player_amp=0.007
+echocancellation=0
+eq_gains=50:2:50 100:2:50
+eq_location=mic
+ringer_dev_id=AU Speaker: Speaker

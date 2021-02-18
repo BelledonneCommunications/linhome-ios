@@ -22,11 +22,14 @@
 import UIKit
 import Foundation
 import SnapKit
+import AVFoundation
+
 
 class CallIncomingView: GenericCallView {
 	
 	
 	var chunkVideoOrIcon: ChunkCallVideoOrIcon?
+	var currentAudioRoute: AVAudioSessionRouteDescription?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -82,6 +85,10 @@ class CallIncomingView: GenericCallView {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		VibratorHelper.vibrate(true)
+		if (AudioHelper.speakerAllowed()){
+			try?AVAudioSession.sharedInstance().overrideOutputAudioPort(.speaker)
+			UIDevice.current.isProximityMonitoringEnabled = false
+		}
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {

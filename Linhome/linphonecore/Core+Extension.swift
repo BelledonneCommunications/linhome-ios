@@ -56,26 +56,13 @@ extension Core {
 	public static func getNewOne(autoIterate:Bool = true) -> Core? { // Singleton initiatlisation
 		do {
 			let config = Config.get()
+			config.setString(section: "sound", key: "local_ring", value: FileUtil.bundleFilePath("bell.caf"))
 			let result = try Factory.Instance.createSharedCoreWithConfig(config: config, systemContext: nil, appGroupId: Config.appGroupName, mainCore: !runsInsideExtension() ) // Shared core makes use of the shared space in AppGroup.
 			result.autoIterateEnabled = autoIterate
 			result.disableChat(denyReason: .NotImplemented)
 			try result.setStaticpicture(newValue: FileUtil.bundleFilePath("nowebcamCIF.jpg")!)
 			if (!runsInsideExtension()) {
-				result.ring = FileUtil.bundleFilePath("bell.caf")!
-				result.nativeRingingEnabled = false
 				result.ringDuringIncomingEarlyMedia = true
-				result.audioDevices.forEach { device in
-					if (device.hasCapability(capability: .CapabilityPlay)) {
-						if (device.type == .Speaker) {
-							do {
-								try result.setRingerdevice(newValue: device.id)
-								Log.info("Ringer device set to \(result.ringerDevice)")
-							} catch {
-								Log.error("Unable to set ringer device \(error)")
-							}
-						}
-					}
-				}
 				result.setDefaultCodecs()
 			}
 			Log.debug("Created core \(Core.getVersion) with config:\n\(config.dump())")

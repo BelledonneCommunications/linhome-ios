@@ -25,22 +25,19 @@ import UIKit
 
 class VibratorHelper {
 	
-	static var vibrating = false
+	static var shouldVibrate = false
 	
 	static func vibrate(_ force:Bool? = nil) {
 		if (force != nil) {
-			vibrating = force!
+			shouldVibrate = force!
 		}
-		if (!vibrating) {
+		if (!shouldVibrate) {
 			return
 		}
-		
-		try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: .mixWithOthers)
-		try? AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
-		
+				
 		AudioServicesPlaySystemSoundWithCompletion(kSystemSoundID_Vibrate) {
 			DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-				if (vibrating) {
+				if (shouldVibrate) {
 					vibrate()
 				}
 			}
