@@ -80,6 +80,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 				}
 			}
 			
+			if (call.state == Call.State.IncomingReceived && lc.callsNb > 1) {
+				try?call.decline(reason: .Busy)
+				return
+			}
+			
 			if ([Call.State.IncomingReceived, Call.State.IncomingEarlyMedia].contains(call.state)) {
 				if let log = call.callLog, let userDefaults = UserDefaults(suiteName: Config.appGroupName), userDefaults.bool(forKey: "accepted_calls_via_notif_\(log.callId)") {
 					Log.info("Accepting call Id in app (accept button pressed on notif) : \(log.callId)")
