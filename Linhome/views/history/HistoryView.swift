@@ -112,6 +112,7 @@ class HistoryView: MainViewContent, UITableViewDataSource, UITableViewDelegate {
 											   selector: #selector(applicationDidBecomeActive),
 											   name: UIApplication.didBecomeActiveNotification,
 											   object: nil)
+		eventsTable.reloadData()
 	}
 	
 	func enterEdition() {
@@ -129,7 +130,6 @@ class HistoryView: MainViewContent, UITableViewDataSource, UITableViewDelegate {
 	
 	
 	override func viewWillDisappear(_ animated: Bool) {
-		HistoryEventStore.it.markAllAsRead()
 		NavigationManager.it.mainView!.tabbarViewModel.updateUnreadCount()
 		NavigationManager.it.mainView?.toolbarViewModel.rightButtonVisible.value = false
 		NotificationCenter.default.removeObserver(self,

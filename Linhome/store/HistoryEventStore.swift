@@ -113,14 +113,11 @@ class HistoryEventStore {
 		return historyEvents[callId]
 	}
 	
-	func markAllAsRead() {
-		Core.get().callLogs.forEach { log in
-			log.getHistoryEvent().viewedByUser = true			
-		}
-		for event in historyEvents {
-				event.value.viewedByUser = true
-		}
-		sync()
-	}
 	
+	func markAsRead(historyEventId: String) {
+		historyEvents.filter { $0.value.id ==  historyEventId }.forEach { event in
+			event.value.viewedByUser = true
+			persistHistoryEvent(entry: event.value)
+		}
+	}
 }

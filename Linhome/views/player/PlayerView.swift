@@ -49,6 +49,8 @@ class PlayerView : ViewWithModel {
 				return
 		}
 		
+		HistoryEventStore.it.markAsRead(historyEventId: event.id)
+		
 		self.view.backgroundColor = Theme.getColor("color_j")
 		
 		playerViewModel = PlayerViewModel(callId: callId, player: player)
