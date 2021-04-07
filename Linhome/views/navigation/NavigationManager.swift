@@ -161,9 +161,6 @@ class NavigationManager {
 		mainView!.toolbarViewModel.backButtonVisible.value = false
 		mainView!.toolbarViewModel.burgerButtonVisible.value = true
 		mainView!.toolbarViewModel.leftButtonVisible.value = false
-		mainView!.toolbarViewModel.rightButtonVisible.value = false
 	}
-	
-	
-	
+		
 }

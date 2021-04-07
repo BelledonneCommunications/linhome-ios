@@ -126,6 +126,9 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 			}
 			placeNewDeviceButtonOnIpad(remake: true)
 		}
+		
+		NavigationManager.it.mainView?.toolbarViewModel.rightButtonVisible.value = false
+
 	}
 	
 	
