@@ -32,4 +32,18 @@ extension UIDevice {
 			AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
 		}
 	}
+	static func hasNotch() -> Bool {
+		if (UserDefaults.standard.bool(forKey: "hasNotch")) {
+			return true
+		}
+		guard #available(iOS 11.0, *), let topPadding = UIApplication.shared.keyWindow?.safeAreaInsets.top, topPadding > 24 else {
+			return false
+		}
+		UserDefaults.standard.setValue(true, forKey: "hasNotch")
+		return true
+	}
+	
+	static func is5SorSEGen1() -> Bool {
+		return UIScreen.main.nativeBounds.height == 1136
+	}
 }

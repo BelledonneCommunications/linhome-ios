@@ -62,37 +62,6 @@ class Device  {
 	}
 	
 	
-	func call() {
-		
-		if (Core.get().callsNb > 0) {
-			return
-		}
-		
-		
-		let params = try!Core.get().createCallParams(call: nil)
-		if (type != nil) {
-			params.videoEnabled = DeviceTypes.it.supportsVideo(typeKey: type!)
-			params.audioEnabled = DeviceTypes.it.supportsAudio(typeKey: type!)
-		}
-		let historyEvent = HistoryEvent()
-		params.recordFile = historyEvent.mediaFileName
-		guard let lpAddress = try?Core.get().createAddress(address: address) else {
-			DialogUtil.error("unable_to_call_device")
-			return
-		}
-		
-		Core.get().useRfc2833ForDtmf = actionsMethodType == "method_dtmf_rfc_4733"
-		Core.get().useInfoForDtmf = actionsMethodType == "method_dtmf_sip_info"
-
-		let call = Core.get().inviteAddressWithParams(addr: lpAddress, params: params)
-		if (call != nil) {
-			call!.cameraEnabled = false
-			call!.callLog?.userData = UnsafeMutableRawPointer(Unmanaged.passRetained(historyEvent).toOpaque())  // Retrieved in CallViewModel and bound with call ID when available
-		} else {
-			DialogUtil.error("unable_to_call_device")
-		}
-	}
-	
 	func typeName()-> String? {
 		return DeviceTypes.it.typeNameForDeviceType(typeKey: type ?? "")
 	}

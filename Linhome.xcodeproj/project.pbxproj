@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		032878AFA3F23C3B07F7415E /* Pods_LinhomeServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A478361A57A39E8DB3C7EE9B /* Pods_LinhomeServiceExtension.framework */; };
-		3E1581AF1CF0EBDEDF0E40EA /* Pods_LinhomeContentExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50EE438C5C35AE49F77A5EEE /* Pods_LinhomeContentExtension.framework */; };
+		048B72562D4C4029A8CB3A1D /* Pods_Linhome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EA89B1D47E1A7BDAD3FF016 /* Pods_Linhome.framework */; };
+		6604FFE4FD40A89B8139B2B5 /* Pods_LinhomeServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1B322A539C3506E85CCBD4 /* Pods_LinhomeServiceExtension.framework */; };
+		86D965D66B6B645E3FFF3374 /* Pods_LinhomeContentExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7987D25B744897F264A0FB /* Pods_LinhomeContentExtension.framework */; };
 		C627098124ADE889000E43D2 /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627097F24ADE889000E43D2 /* DeviceCell.swift */; };
 		C627098224ADE889000E43D2 /* DeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C627098024ADE889000E43D2 /* DeviceCell.xib */; };
 		C627098824AE4910000E43D2 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627098724AE4910000E43D2 /* NavigationManager.swift */; };
@@ -53,6 +54,8 @@
 		C641ECC6249C937100672832 /* UIButton+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C641ECC5249C937100672832 /* UIButton+extension.swift */; };
 		C641ECCA249CA44800672832 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C641ECC9249CA44800672832 /* Assets.xcassets */; };
 		C641ECCD249CAD3F00672832 /* linhome_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C641ECCC249CAD3F00672832 /* linhome_icon.png */; };
+		C644D5272640601400EF86C2 /* UIDevice+ExtensionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C644D5262640601400EF86C2 /* UIDevice+ExtensionApp.swift */; };
+		C644D52B264080FC00EF86C2 /* Device+ExtensionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C644D52A264080FC00EF86C2 /* Device+ExtensionApp.swift */; };
 		C646850C24A4A0200045AA4D /* LoginLindoorAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646850924A4A0200045AA4D /* LoginLindoorAccountView.swift */; };
 		C646850D24A4A0200045AA4D /* LoginLindoorAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646850A24A4A0200045AA4D /* LoginLindoorAccountViewModel.swift */; };
 		C646851024A4C3690045AA4D /* XmlRpcRequestDelegateStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646850F24A4C3690045AA4D /* XmlRpcRequestDelegateStub.swift */; };
@@ -152,8 +155,6 @@
 		C68978C624D1612900FB8235 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FD2241357A600149217 /* FileUtil.swift */; };
 		C68978C724D1614600FB8235 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FB42413574000149217 /* Log.swift */; };
 		C68978C824D1614700FB8235 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FB42413574000149217 /* Log.swift */; };
-		C68978C924D162EC00FB8235 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648FA0824A1F70500D9B92D /* UILabel+Extension.swift */; };
-		C68978CA24D162ED00FB8235 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648FA0824A1F70500D9B92D /* UILabel+Extension.swift */; };
 		C68978CB24D1638C00FB8235 /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9F9B24AB324C00F08AA9 /* DeviceStore.swift */; };
 		C68978CC24D1638D00FB8235 /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9F9B24AB324C00F08AA9 /* DeviceStore.swift */; };
 		C68978CD24D1639E00FB8235 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9FA624AB36F800F08AA9 /* Device.swift */; };
@@ -174,10 +175,6 @@
 		C68978DC24D1640800FB8235 /* HistoryEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9FA724AB36F800F08AA9 /* HistoryEvent.swift */; };
 		C68978DD24D1641000FB8235 /* HistoryEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9F9C24AB324C00F08AA9 /* HistoryEventStore.swift */; };
 		C68978DE24D1641000FB8235 /* HistoryEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9F9C24AB324C00F08AA9 /* HistoryEventStore.swift */; };
-		C68978DF24D1641C00FB8235 /* DialogUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FB22413574000149217 /* DialogUtil.swift */; };
-		C68978E024D1641C00FB8235 /* DialogUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FB22413574000149217 /* DialogUtil.swift */; };
-		C68978E124D1642900FB8235 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648FA5424A3602D00D9B92D /* UIApplication+Extension.swift */; };
-		C68978E224D1642900FB8235 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648FA5424A3602D00D9B92D /* UIApplication+Extension.swift */; };
 		C68978E324D1643300FB8235 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C641EC16249B2C7300672832 /* Theme.swift */; };
 		C68978E424D1643400FB8235 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C641EC16249B2C7300672832 /* Theme.swift */; };
 		C68978E524D1646B00FB8235 /* UIColor+hexparser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C641EC18249B2E6C00672832 /* UIColor+hexparser.swift */; };
@@ -202,7 +199,6 @@
 		C6DA26A2240FA94400CDF3D7 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA26A1240FA94400CDF3D7 /* NotificationService.swift */; };
 		C6DA26A6240FA94400CDF3D7 /* LinhomeServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C6DA269F240FA94400CDF3D7 /* LinhomeServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C6DBA148250FB81A00C2CFBD /* RegistrationState+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBA147250FB81A00C2CFBD /* RegistrationState+Extension.swift */; };
-		C6DBA14D250FEF4D00C2CFBD /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBA14C250FEF4D00C2CFBD /* UIDevice+Extension.swift */; };
 		C6DBA14F25100B8300C2CFBD /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBA14E25100B8300C2CFBD /* UIScreen+Extension.swift */; };
 		C6DBA15125101C6E00C2CFBD /* DevicesView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6DBA15025101C6E00C2CFBD /* DevicesView~ipad.xib */; };
 		C6DBA153251091A100C2CFBD /* DeviceCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6DBA152251091A100C2CFBD /* DeviceCell~ipad.xib */; };
@@ -260,7 +256,6 @@
 		C6FB382D24A0684A007A6E7B /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB382B24A0684A007A6E7B /* SideMenu.swift */; };
 		C6FB382E24A0684A007A6E7B /* SideMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6FB382C24A0684A007A6E7B /* SideMenu.xib */; };
 		C6FE4BC1257949B500F31F38 /* iPhone5-SE-About.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6FE4BC0257949B500F31F38 /* iPhone5-SE-About.xib */; };
-		E0825F3CA912424D1449C31F /* Pods_Linhome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B0741591215C66D8CE89E8 /* Pods_Linhome.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -296,24 +291,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0D834692C511E2AAEE47C61A /* Pods-VideoNotifDemoNotifExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoNotifDemoNotifExtension.debug.xcconfig"; path = "Target Support Files/Pods-VideoNotifDemoNotifExtension/Pods-VideoNotifDemoNotifExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		1023DA89AC10E9F3986C6F69 /* Pods-VideoNotifDemoContentExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoNotifDemoContentExtension.release.xcconfig"; path = "Target Support Files/Pods-VideoNotifDemoContentExtension/Pods-VideoNotifDemoContentExtension.release.xcconfig"; sourceTree = "<group>"; };
-		2B034CB222352DC56C7AB29A /* Pods-LindoorServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LindoorServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-LindoorServiceExtension/Pods-LindoorServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
-		3252458227BB3E13C4AE72FD /* Pods-LinhomeServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
-		350526ED86874AF8F1FAEA3C /* Pods-VideoNotifDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoNotifDemo.debug.xcconfig"; path = "Target Support Files/Pods-VideoNotifDemo/Pods-VideoNotifDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		352E18954A9DC2DCC6EDE602 /* Pods-LinhomeServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		3E412A87A0C5161134263DAE /* Pods-Lindoor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lindoor.debug.xcconfig"; path = "Target Support Files/Pods-Lindoor/Pods-Lindoor.debug.xcconfig"; sourceTree = "<group>"; };
-		50EE438C5C35AE49F77A5EEE /* Pods_LinhomeContentExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinhomeContentExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		61FFE1F33757EB0DA7D7D9E1 /* Pods-Linhome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.debug.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.debug.xcconfig"; sourceTree = "<group>"; };
-		63EDD35D6B5892D0FD8DDB1E /* Pods-LinhomeContentExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.release.xcconfig"; sourceTree = "<group>"; };
-		7A34A5DF343208F351D3E76C /* Pods-Linhome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.release.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.release.xcconfig"; sourceTree = "<group>"; };
-		8D81FDEE1D77B5A81F111F43 /* Pods-LindoorContentExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LindoorContentExtension.release.xcconfig"; path = "Target Support Files/Pods-LindoorContentExtension/Pods-LindoorContentExtension.release.xcconfig"; sourceTree = "<group>"; };
-		8FAEA696F49A201216E5833B /* Pods-VideoNotifDemoNotifExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoNotifDemoNotifExtension.release.xcconfig"; path = "Target Support Files/Pods-VideoNotifDemoNotifExtension/Pods-VideoNotifDemoNotifExtension.release.xcconfig"; sourceTree = "<group>"; };
-		91ED397645AC4F5E360987A2 /* Pods-VideoNotifDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoNotifDemo.release.xcconfig"; path = "Target Support Files/Pods-VideoNotifDemo/Pods-VideoNotifDemo.release.xcconfig"; sourceTree = "<group>"; };
-		986F8984A0043433E1BA80E9 /* Pods-VideoNotifDemoServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoNotifDemoServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-VideoNotifDemoServiceExtension/Pods-VideoNotifDemoServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
-		A478361A57A39E8DB3C7EE9B /* Pods_LinhomeServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinhomeServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4321B36BFB32FB9E3E40184 /* Pods-Lindoor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lindoor.release.xcconfig"; path = "Target Support Files/Pods-Lindoor/Pods-Lindoor.release.xcconfig"; sourceTree = "<group>"; };
-		BC03021A62952DA0F0FF99E2 /* Pods-LindoorContentExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LindoorContentExtension.debug.xcconfig"; path = "Target Support Files/Pods-LindoorContentExtension/Pods-LindoorContentExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		1EA89B1D47E1A7BDAD3FF016 /* Pods_Linhome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Linhome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		32357A316FE34FC8C527C101 /* Pods-LinhomeServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		37515FEA13D85D71A9CED310 /* Pods-LinhomeServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		5E7987D25B744897F264A0FB /* Pods_LinhomeContentExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinhomeContentExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E1B322A539C3506E85CCBD4 /* Pods_LinhomeServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinhomeServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4EBDC370DE2F60211A053EC /* Pods-LinhomeContentExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		C623DC01241167930049C646 /* LinhomeServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LinhomeServiceExtension.entitlements; sourceTree = "<group>"; };
 		C627097F24ADE889000E43D2 /* DeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
 		C627098024ADE889000E43D2 /* DeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceCell.xib; sourceTree = "<group>"; };
@@ -362,6 +345,8 @@
 		C641ECC5249C937100672832 /* UIButton+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+extension.swift"; sourceTree = "<group>"; };
 		C641ECC9249CA44800672832 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C641ECCC249CAD3F00672832 /* linhome_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linhome_icon.png; sourceTree = "<group>"; };
+		C644D5262640601400EF86C2 /* UIDevice+ExtensionApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+ExtensionApp.swift"; sourceTree = "<group>"; };
+		C644D52A264080FC00EF86C2 /* Device+ExtensionApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Device+ExtensionApp.swift"; sourceTree = "<group>"; };
 		C646850924A4A0200045AA4D /* LoginLindoorAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginLindoorAccountView.swift; sourceTree = "<group>"; };
 		C646850A24A4A0200045AA4D /* LoginLindoorAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginLindoorAccountViewModel.swift; sourceTree = "<group>"; };
 		C646850F24A4C3690045AA4D /* XmlRpcRequestDelegateStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmlRpcRequestDelegateStub.swift; sourceTree = "<group>"; };
@@ -509,11 +494,9 @@
 		C6FB382B24A0684A007A6E7B /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		C6FB382C24A0684A007A6E7B /* SideMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenu.xib; sourceTree = "<group>"; };
 		C6FE4BC0257949B500F31F38 /* iPhone5-SE-About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "iPhone5-SE-About.xib"; sourceTree = "<group>"; };
-		CD61466774713A7E5BE0FF55 /* Pods-VideoNotifDemoContentExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoNotifDemoContentExtension.debug.xcconfig"; path = "Target Support Files/Pods-VideoNotifDemoContentExtension/Pods-VideoNotifDemoContentExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		D0B0741591215C66D8CE89E8 /* Pods_Linhome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Linhome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA3C26D34769C89FA82926C7 /* Pods-LindoorServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LindoorServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-LindoorServiceExtension/Pods-LindoorServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		E42693E71AA182F305C8593C /* Pods-VideoNotifDemoServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoNotifDemoServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-VideoNotifDemoServiceExtension/Pods-VideoNotifDemoServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		E78F547BF54D950048C31A63 /* Pods-LinhomeContentExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		CCAB1C83F6766E841FBA6002 /* Pods-Linhome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.debug.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.debug.xcconfig"; sourceTree = "<group>"; };
+		DD4EBBFF2052D4A2A689A385 /* Pods-LinhomeContentExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.release.xcconfig"; sourceTree = "<group>"; };
+		E2EFD39725F5158614039757 /* Pods-Linhome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.release.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -523,7 +506,7 @@
 			files = (
 				C62D3DF124067A1800328486 /* UserNotificationsUI.framework in Frameworks */,
 				C62D3DEF24067A1800328486 /* UserNotifications.framework in Frameworks */,
-				3E1581AF1CF0EBDEDF0E40EA /* Pods_LinhomeContentExtension.framework in Frameworks */,
+				86D965D66B6B645E3FFF3374 /* Pods_LinhomeContentExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,7 +514,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0825F3CA912424D1449C31F /* Pods_Linhome.framework in Frameworks */,
+				048B72562D4C4029A8CB3A1D /* Pods_Linhome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,7 +522,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				032878AFA3F23C3B07F7415E /* Pods_LinhomeServiceExtension.framework in Frameworks */,
+				6604FFE4FD40A89B8139B2B5 /* Pods_LinhomeServiceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,9 +534,9 @@
 			children = (
 				C62D3DEE24067A1800328486 /* UserNotifications.framework */,
 				C62D3DF024067A1800328486 /* UserNotificationsUI.framework */,
-				D0B0741591215C66D8CE89E8 /* Pods_Linhome.framework */,
-				50EE438C5C35AE49F77A5EEE /* Pods_LinhomeContentExtension.framework */,
-				A478361A57A39E8DB3C7EE9B /* Pods_LinhomeServiceExtension.framework */,
+				1EA89B1D47E1A7BDAD3FF016 /* Pods_Linhome.framework */,
+				5E7987D25B744897F264A0FB /* Pods_LinhomeContentExtension.framework */,
+				7E1B322A539C3506E85CCBD4 /* Pods_LinhomeServiceExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -561,26 +544,12 @@
 		72AE357133F0AFC024E5F893 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				350526ED86874AF8F1FAEA3C /* Pods-VideoNotifDemo.debug.xcconfig */,
-				91ED397645AC4F5E360987A2 /* Pods-VideoNotifDemo.release.xcconfig */,
-				0D834692C511E2AAEE47C61A /* Pods-VideoNotifDemoNotifExtension.debug.xcconfig */,
-				8FAEA696F49A201216E5833B /* Pods-VideoNotifDemoNotifExtension.release.xcconfig */,
-				CD61466774713A7E5BE0FF55 /* Pods-VideoNotifDemoContentExtension.debug.xcconfig */,
-				1023DA89AC10E9F3986C6F69 /* Pods-VideoNotifDemoContentExtension.release.xcconfig */,
-				E42693E71AA182F305C8593C /* Pods-VideoNotifDemoServiceExtension.debug.xcconfig */,
-				986F8984A0043433E1BA80E9 /* Pods-VideoNotifDemoServiceExtension.release.xcconfig */,
-				3E412A87A0C5161134263DAE /* Pods-Lindoor.debug.xcconfig */,
-				B4321B36BFB32FB9E3E40184 /* Pods-Lindoor.release.xcconfig */,
-				BC03021A62952DA0F0FF99E2 /* Pods-LindoorContentExtension.debug.xcconfig */,
-				8D81FDEE1D77B5A81F111F43 /* Pods-LindoorContentExtension.release.xcconfig */,
-				DA3C26D34769C89FA82926C7 /* Pods-LindoorServiceExtension.debug.xcconfig */,
-				2B034CB222352DC56C7AB29A /* Pods-LindoorServiceExtension.release.xcconfig */,
-				61FFE1F33757EB0DA7D7D9E1 /* Pods-Linhome.debug.xcconfig */,
-				7A34A5DF343208F351D3E76C /* Pods-Linhome.release.xcconfig */,
-				E78F547BF54D950048C31A63 /* Pods-LinhomeContentExtension.debug.xcconfig */,
-				63EDD35D6B5892D0FD8DDB1E /* Pods-LinhomeContentExtension.release.xcconfig */,
-				352E18954A9DC2DCC6EDE602 /* Pods-LinhomeServiceExtension.debug.xcconfig */,
-				3252458227BB3E13C4AE72FD /* Pods-LinhomeServiceExtension.release.xcconfig */,
+				CCAB1C83F6766E841FBA6002 /* Pods-Linhome.debug.xcconfig */,
+				E2EFD39725F5158614039757 /* Pods-Linhome.release.xcconfig */,
+				B4EBDC370DE2F60211A053EC /* Pods-LinhomeContentExtension.debug.xcconfig */,
+				DD4EBBFF2052D4A2A689A385 /* Pods-LinhomeContentExtension.release.xcconfig */,
+				37515FEA13D85D71A9CED310 /* Pods-LinhomeServiceExtension.debug.xcconfig */,
+				32357A316FE34FC8C527C101 /* Pods-LinhomeServiceExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -764,6 +733,7 @@
 			children = (
 				C6EC9FA824AB36F800F08AA9 /* Action.swift */,
 				C6EC9FA624AB36F800F08AA9 /* Device.swift */,
+				C644D52A264080FC00EF86C2 /* Device+ExtensionApp.swift */,
 				C6EC9FA724AB36F800F08AA9 /* HistoryEvent.swift */,
 				C648F9ED24A10DCB00D9B92D /* Account.swift */,
 			);
@@ -812,6 +782,7 @@
 				C641ECC5249C937100672832 /* UIButton+extension.swift */,
 				C648F9EA24A10CA500D9B92D /* UIAlertController+extension.swift */,
 				C6DBA14C250FEF4D00C2CFBD /* UIDevice+Extension.swift */,
+				C644D5262640601400EF86C2 /* UIDevice+ExtensionApp.swift */,
 				C6DBA14E25100B8300C2CFBD /* UIScreen+Extension.swift */,
 			);
 			path = extensions;
@@ -1089,7 +1060,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C62D3DFC24067A1800328486 /* Build configuration list for PBXNativeTarget "LinhomeContentExtension" */;
 			buildPhases = (
-				5FE023C53A9C7390EBA23C2B /* [CP] Check Pods Manifest.lock */,
+				CD87BC7C24ED5400BFD292E0 /* [CP] Check Pods Manifest.lock */,
 				C62D3DE924067A1800328486 /* Sources */,
 				C62D3DEA24067A1800328486 /* Frameworks */,
 				C62D3DEB24067A1800328486 /* Resources */,
@@ -1107,13 +1078,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C676AD8624040F6E0048C504 /* Build configuration list for PBXNativeTarget "Linhome" */;
 			buildPhases = (
-				7EDD522D98B018D894722932 /* [CP] Check Pods Manifest.lock */,
+				E3C0A18774671D3EE9A13D3D /* [CP] Check Pods Manifest.lock */,
 				C676AD7024040F6C0048C504 /* Sources */,
 				C676AD7124040F6C0048C504 /* Frameworks */,
 				C676AD7224040F6C0048C504 /* Resources */,
-				AF6875B4C03A93739BCA3240 /* [CP] Embed Pods Frameworks */,
 				C6ECA09C240C7BCE0033EF78 /* Embed App Extensions */,
 				C6EDB7332513B2B600690F07 /* ShellScript */,
+				DA71CD4D624BE4282097529D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1130,7 +1101,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C6DA26A7240FA94400CDF3D7 /* Build configuration list for PBXNativeTarget "LinhomeServiceExtension" */;
 			buildPhases = (
-				A82EF8F408743AEB901CB9C8 /* [CP] Check Pods Manifest.lock */,
+				BD3C12C9310A3C7260C618A2 /* [CP] Check Pods Manifest.lock */,
 				C6DA269B240FA94400CDF3D7 /* Sources */,
 				C6DA269C240FA94400CDF3D7 /* Frameworks */,
 				C6DA269D240FA94400CDF3D7 /* Resources */,
@@ -1283,51 +1254,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5FE023C53A9C7390EBA23C2B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LinhomeContentExtension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7EDD522D98B018D894722932 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Linhome-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A82EF8F408743AEB901CB9C8 /* [CP] Check Pods Manifest.lock */ = {
+		BD3C12C9310A3C7260C618A2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1349,23 +1276,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AF6875B4C03A93739BCA3240 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C6EDB7332513B2B600690F07 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1385,6 +1295,67 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
+		CD87BC7C24ED5400BFD292E0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LinhomeContentExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA71CD4D624BE4282097529D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3C0A18774671D3EE9A13D3D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Linhome-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1401,14 +1372,11 @@
 				C68978DE24D1641000FB8235 /* HistoryEventStore.swift in Sources */,
 				C64A4FCD2413574000149217 /* Core+Extension.swift in Sources */,
 				C68978C424D15EF500FB8235 /* Customisation.swift in Sources */,
-				C68978CA24D162ED00FB8235 /* UILabel+Extension.swift in Sources */,
 				C68978CE24D1639F00FB8235 /* Device.swift in Sources */,
-				C68978E224D1642900FB8235 /* UIApplication+Extension.swift in Sources */,
 				C68978C824D1614700FB8235 /* Log.swift in Sources */,
 				C664BD0224D9556100EDE72D /* CallLog+extension.swift in Sources */,
 				C64A4FCA2413574000149217 /* Config+Extension.swift in Sources */,
 				C68978E624D1646B00FB8235 /* UIColor+hexparser.swift in Sources */,
-				C68978E024D1641C00FB8235 /* DialogUtil.swift in Sources */,
 				C68978C224D15EE300FB8235 /* Texts.swift in Sources */,
 				C655FDEC24B6F78B0058EE2C /* CorePreferences.swift in Sources */,
 				C6E7B46F24E92AEA00D7D8E2 /* Call+Extension.swift in Sources */,
@@ -1454,6 +1422,7 @@
 				C6EC9FDC24ABB5A000F08AA9 /* ToobarButtonClickedListener.swift in Sources */,
 				C6EC9FEB24AC8A4000F08AA9 /* LSpinner.swift in Sources */,
 				C648FA2924A2282300D9B92D /* ValidityResult.swift in Sources */,
+				C644D5272640601400EF86C2 /* UIDevice+ExtensionApp.swift in Sources */,
 				C646852624A5E9460045AA4D /* UISegmentedControl+Extension.swift in Sources */,
 				C648FA2C24A2282300D9B92D /* NonEmptyStringValidator.swift in Sources */,
 				C648F9D124A0B7CB00D9B92D /* DevicesView.swift in Sources */,
@@ -1470,6 +1439,7 @@
 				C648FA2B24A2282300D9B92D /* RegExpFormatValidator.swift in Sources */,
 				C6EC9F8A24A9D91100F08AA9 /* CodecDescriptor.swift in Sources */,
 				C6406F8724E562B3007E6334 /* PlayerDelegateStub.swift in Sources */,
+				C644D52B264080FC00EF86C2 /* Device+ExtensionApp.swift in Sources */,
 				C648FA1D24A21A8000D9B92D /* TextUtils.swift in Sources */,
 				C641EC17249B2C7300672832 /* Theme.swift in Sources */,
 				C627099924AF1FF8000E43D2 /* UIRoundRectButton.swift in Sources */,
@@ -1536,7 +1506,6 @@
 				C6864A61255C14F7005F65A2 /* VibratorHelper.swift in Sources */,
 				C6C2BD792523D0B60035857B /* HistoryCell.swift in Sources */,
 				C648FA5324A32EA200D9B92D /* CreateLindoorAccountViewModel.swift in Sources */,
-				C6DBA14D250FEF4D00C2CFBD /* UIDevice+Extension.swift in Sources */,
 				C6E7B46124E6C62200D7D8E2 /* PlayerControls.swift in Sources */,
 				C68992BF2511E51000B62F70 /* GitVersion.swift in Sources */,
 				C648F9D624A0E5E400D9B92D /* SideMenuCell.swift in Sources */,
@@ -1576,15 +1545,12 @@
 				C68978DD24D1641000FB8235 /* HistoryEventStore.swift in Sources */,
 				C64A4FCC2413574000149217 /* Core+Extension.swift in Sources */,
 				C68978C324D15EF500FB8235 /* Customisation.swift in Sources */,
-				C68978C924D162EC00FB8235 /* UILabel+Extension.swift in Sources */,
 				C68978CD24D1639E00FB8235 /* Device.swift in Sources */,
-				C68978E124D1642900FB8235 /* UIApplication+Extension.swift in Sources */,
 				C68978C724D1614600FB8235 /* Log.swift in Sources */,
 				C664BD0124D9556000EDE72D /* CallLog+extension.swift in Sources */,
 				C64A4FC92413574000149217 /* Config+Extension.swift in Sources */,
 				C68978E524D1646B00FB8235 /* UIColor+hexparser.swift in Sources */,
 				C686439A2551611300658FD4 /* Call+Extension.swift in Sources */,
-				C68978DF24D1641C00FB8235 /* DialogUtil.swift in Sources */,
 				C68978C124D15EE200FB8235 /* Texts.swift in Sources */,
 				C655FDEB24B6F78B0058EE2C /* CorePreferences.swift in Sources */,
 				C68978D524D163E000FB8235 /* SpinnerItem.swift in Sources */,
@@ -1636,10 +1602,10 @@
 /* Begin XCBuildConfiguration section */
 		C62D3DFD24067A1800328486 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E78F547BF54D950048C31A63 /* Pods-LinhomeContentExtension.debug.xcconfig */;
+			baseConfigurationReference = B4EBDC370DE2F60211A053EC /* Pods-LinhomeContentExtension.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				APPLICATION_EXTENSION_API_ONLY = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeContentExtension/LinhomeNotifContentExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -1663,10 +1629,10 @@
 		};
 		C62D3DFE24067A1800328486 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63EDD35D6B5892D0FD8DDB1E /* Pods-LinhomeContentExtension.release.xcconfig */;
+			baseConfigurationReference = DD4EBBFF2052D4A2A689A385 /* Pods-LinhomeContentExtension.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				APPLICATION_EXTENSION_API_ONLY = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeContentExtension/LinhomeNotifContentExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -1808,9 +1774,10 @@
 		};
 		C676AD8724040F6E0048C504 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 61FFE1F33757EB0DA7D7D9E1 /* Pods-Linhome.debug.xcconfig */;
+			baseConfigurationReference = CCAB1C83F6766E841FBA6002 /* Pods-Linhome.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Linhome/Linhome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -1833,9 +1800,10 @@
 		};
 		C676AD8824040F6E0048C504 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7A34A5DF343208F351D3E76C /* Pods-Linhome.release.xcconfig */;
+			baseConfigurationReference = E2EFD39725F5158614039757 /* Pods-Linhome.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Linhome/Linhome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -1858,9 +1826,9 @@
 		};
 		C6DA26A8240FA94400CDF3D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 352E18954A9DC2DCC6EDE602 /* Pods-LinhomeServiceExtension.debug.xcconfig */;
+			baseConfigurationReference = 37515FEA13D85D71A9CED310 /* Pods-LinhomeServiceExtension.debug.xcconfig */;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeServiceExtension/LinhomeServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
@@ -1882,9 +1850,9 @@
 		};
 		C6DA26A9240FA94400CDF3D7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3252458227BB3E13C4AE72FD /* Pods-LinhomeServiceExtension.release.xcconfig */;
+			baseConfigurationReference = 32357A316FE34FC8C527C101 /* Pods-LinhomeServiceExtension.release.xcconfig */;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeServiceExtension/LinhomeServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
