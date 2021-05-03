@@ -162,7 +162,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
 		}
 		try?call?.decline(reason: declined ? .Declined : .IOError)
 		Call.releaseOwnerShip()
-		core?.stop()
+		core?.extendedStop()
 		core = nil
 		call = nil
 	}

@@ -38,13 +38,10 @@ struct CoreError: Error {
 
 extension Core {
 	
-	
-
 	private static var _instance : Core?
-	private static var _iterateTimer:Timer?
+	public static var iterateTimers:[String:Timer] = [:]
 	public static var pushToken : String?
-	
-	
+		
 	
 	public static func get(autoIterate:Bool = true) -> Core { // Singleton initiatlisation
 		if (_instance == nil) {
@@ -66,6 +63,11 @@ extension Core {
 				result.setDefaultCodecs()
 			}
 			Log.debug("Created core \(Core.getVersion) with config:\n\(config.dump())")
+			if (autoIterate && runsInsideExtension()) { // Core not working yet with autoiterate in extensions
+				Log.warn("Manually iterating inside contenet app extension")
+				iterateTimers["\(result)"] = Timer.scheduledTimer(timeInterval: 0.20, target: result, selector: #selector(myIterate), userInfo: nil, repeats: true)
+			}
+			
 			return result
 		} catch  {
 			Log.error("Unable to create core \(error)")
@@ -73,6 +75,9 @@ extension Core {
 		}
 	}
 	
+	@objc func myIterate() {
+		self.iterate()
+	}
 	
 	public func configurePushNotifications(_ deviceToken:Data) { // Should be called by the app when a push token is made abvailable. It adds it to the default proxy config.
 		Core.pushToken = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
@@ -137,6 +142,12 @@ extension Core {
 	func extendedStart() throws {
 		try start()
 		callLogsDatabasePath = FileUtil.sharedContainerUrl().path + "/call_logs.db" // Needed here to refresh cache of existing core after un update from another core
+	}
+	
+	func extendedStop() {
+		stop()
+		Core.iterateTimers["\(self)"]?.invalidate()
+		Core.iterateTimers["\(self)"] = nil
 	}
 	
 	func disableVP8() {
