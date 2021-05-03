@@ -2,10 +2,11 @@ Podfile.lock
 Pods/
 binaries/
 builds/
-Resources/lindoor.zip
 Lindoor.xcworkspace/xcuserdata
 lindoor.xcarchive
 lindoor-adhoc-ipa
 zip-theme.log
 git-version.log
 Linhome.xcworkspace
+Linhome/GitVersion.swift
+Resources/linhome.zip
