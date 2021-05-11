@@ -25,6 +25,7 @@ def app_pods
 	pod 'Firebase/Analytics'
 	pod 'Firebase/Crashlytics'
 	pod 'MarqueeLabel'
+	pod 'DeviceGuru'
 end
 
 target 'Linhome' do
@@ -39,6 +40,7 @@ def ext_pods
 	pod 'PocketSVG'
 	pod 'Firebase/Analytics'
 	pod 'Firebase/Crashlytics'
+	pod 'DeviceGuru'
 end
 
 target 'LinhomeContentExtension' do

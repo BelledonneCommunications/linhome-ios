@@ -25,6 +25,7 @@
 
 import UIKit
 import linphonesw
+import DeviceGuru
 
 struct CoreError: Error {
 	let message: String
@@ -41,7 +42,7 @@ extension Core {
 	private static var _instance : Core?
 	public static var iterateTimers:[String:Timer] = [:]
 	public static var pushToken : String?
-		
+	
 	
 	public static func get(autoIterate:Bool = true) -> Core { // Singleton initiatlisation
 		if (_instance == nil) {
@@ -67,7 +68,7 @@ extension Core {
 				Log.warn("Manually iterating inside contenet app extension")
 				iterateTimers["\(result)"] = Timer.scheduledTimer(timeInterval: 0.20, target: result, selector: #selector(myIterate), userInfo: nil, repeats: true)
 			}
-			
+			result.computeUserAgent()
 			return result
 		} catch  {
 			Log.error("Unable to create core \(error)")
@@ -98,16 +99,16 @@ extension Core {
 		let services = "remote"
 		let token = pushToken+":"+services
 		#if DEBUG
-			let pushEnvironment = ".dev"
+		let pushEnvironment = ".dev"
 		#else
-			let pushEnvironment = ""
+		let pushEnvironment = ""
 		#endif
 		proxyConfig.contactUriParameters = "pn-provider=apns"+pushEnvironment+";pn-prid="+token+";pn-param="+Config.teamID+"."+Bundle.main.bundleIdentifier!+"."+services+";pn-silent=1;pn-msg-str=IM_MSG;pn-call-str=IC_MSG;"
 		proxyConfig.contactParameters = ""
 		try?proxyConfig.done()
 	}
 	
-
+	
 	public static func runsInsideExtension() -> Bool { // Tells wether it is run inside app extension or the main app. 
 		let bundleUrl: URL = Bundle.main.bundleURL
 		let bundlePathExtension: String = bundleUrl.pathExtension
@@ -119,7 +120,7 @@ extension Core {
 			callLog.callId != nil && callLog.callId.count > 0 // CallID can be null in early stage of call.
 		}.reversed()
 	}
-
+	
 	
 	
 	func missedCount() -> Int {
@@ -170,5 +171,20 @@ extension Core {
 		userDefaults.setValue(true, forKey: "default_codec_set")
 		
 	}
+	
+	//User-Agent: Linhome/14.5.1 (iphone_x) LinphoneSDK/4.5.0
+
+	
+	func computeUserAgent() {
+		let deviceName: String =  "\(DeviceGuru().hardware())"
+		let appName: String = Bundle.main.appName()
+		let iosVersion = UIDevice.current.systemVersion
+		let userAgent = "\(appName) \(Bundle.main.desc())/\(deviceName) (\(iosVersion)) LinphoneSDK"
+		let sdkVersion = Core.getVersion
+		setUserAgent(name: userAgent, version: sdkVersion)
+	}
+	
+	//User-Agent: Linhome (1.1 (2) / 14.5.1 (iphone_x) LinphoneSDK/4.5.0
+
 }
 

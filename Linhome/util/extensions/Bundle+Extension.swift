@@ -37,4 +37,9 @@ extension Bundle {
 		return "\(releaseVersionNumber ?? "") (\(buildVersionNumber ?? ""))"
 	}
 	
+	func appName() -> String {
+		return infoDictionary?["CFBundleName"] as! String
+	}
+	
+	
 }
