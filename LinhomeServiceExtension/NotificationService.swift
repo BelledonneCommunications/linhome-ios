@@ -33,7 +33,7 @@ class NotificationService: UNNotificationServiceExtension {
 	var callManagingComponentObserver: NSKeyValueObservation?
 	let userDefaults = UserDefaults(suiteName: Config.appGroupName)!
 	private var callDelegate :  CallDelegateStub?
-	private let extensionCutoffTimeSec = 29
+	private let extensionCutoffTimeSec = 20
 	
 	override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
 		
