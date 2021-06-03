@@ -58,6 +58,7 @@ extension Core {
 			let result = try Factory.Instance.createSharedCoreWithConfig(config: config, systemContext: nil, appGroupId: Config.appGroupName, mainCore: !runsInsideExtension() ) // Shared core makes use of the shared space in AppGroup.
 			result.autoIterateEnabled = autoIterate
 			result.disableChat(denyReason: .NotImplemented)
+			result.nativeRingingEnabled = false
 			try result.setStaticpicture(newValue: FileUtil.bundleFilePath("nowebcamCIF.jpg")!)
 			if (!runsInsideExtension()) {
 				result.ringDuringIncomingEarlyMedia = true
