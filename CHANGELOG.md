@@ -10,5 +10,13 @@ Group changes to describe their impact on the project, as follows:
     Fixed for any bug fixes.
     Security to invite users to upgrade in case of vulnerabilities.
 
+## [1.1.0] 
+- Update to Linphone SDK 5.0.0
+- German translation
+- Fix delete button not showing on recent iOS in history view
+- Fix history events marked as read only if played
+- Fix Decline incoming call if already on a call
+- Fix ring with app opened and interaction with vibrator
+- Set keyboard type to phonePad for action digits so it supports # and *
 
 ## [1.0.0] Release candidate

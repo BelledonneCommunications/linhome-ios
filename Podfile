@@ -6,7 +6,7 @@ source "https://github.com/CocoaPods/Specs.git"
 
 def linpod
 	if ENV['PODFILE_PATH'].nil?
-		pod 'linphone-sdk', '4.5.0'
+		pod 'linphone-sdk', '~> 5.0.0-alpha'
 	else
 		pod 'linphone-sdk', :path => ENV['PODFILE_PATH']  # loacl sdk : PODFILE_PATH=<Path to>/linphone-sdk.podspec  pod install
 	end
@@ -25,6 +25,7 @@ def app_pods
 	pod 'Firebase/Analytics'
 	pod 'Firebase/Crashlytics'
 	pod 'MarqueeLabel'
+	pod 'DeviceGuru'
 end
 
 target 'Linhome' do
@@ -39,6 +40,7 @@ def ext_pods
 	pod 'PocketSVG'
 	pod 'Firebase/Analytics'
 	pod 'Firebase/Crashlytics'
+	pod 'DeviceGuru'
 end
 
 target 'LinhomeContentExtension' do
