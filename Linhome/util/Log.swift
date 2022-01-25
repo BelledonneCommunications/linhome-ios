@@ -71,25 +71,18 @@ class Log: LoggingServiceDelegate {
 
 	
 	public class func debug(_ message:String) {
-		if (instance.debugEnabled) {
-			instance.output(message,Int(LinphoneLogLevelDebug.rawValue))
-		}
 		instance.service.debug(message: message)
 	}
 	public class func info(_ message:String) {
-		instance.output(message,Int(LinphoneLogLevelMessage.rawValue))
 		instance.service.message(message: message)
 	}
 	public class func warn(_ message:String) {
-		instance.output(message,Int(LinphoneLogLevelWarning.rawValue))
 		instance.service.warning(message: message)
 	}
 	public class func error(_ message:String) {
-		instance.output(message,Int(LinphoneLogLevelError.rawValue))
 		instance.service.error(message: message)
 	}
 	public class func fatal(_ message:String) {
-		instance.output(message,Int(LinphoneLogLevelFatal.rawValue))
 		instance.service.fatal(message: message)
 	}
 	
