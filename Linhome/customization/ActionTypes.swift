@@ -39,5 +39,9 @@ class ActionTypes {
     func iconNameForActionType(typeKey: String)-> String {
         		return Texts.get(Customisation.it.actionTypesConfig.getString(section: typeKey, key: "icon",defaultString: ""))
     }
+	
+	func isValid(typeKey: String)-> Bool {
+		return Customisation.it.actionTypesConfig.getString(section: typeKey, key: "textkey", defaultString: "-") != "-"
+	}
 
 }

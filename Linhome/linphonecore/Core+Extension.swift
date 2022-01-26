@@ -143,7 +143,7 @@ extension Core {
 	
 	func extendedStart() throws {
 		try start()
-		callLogsDatabasePath = FileUtil.sharedContainerUrl().path + "/call_logs.db" // Needed here to refresh cache of existing core after un update from another core
+		friendsDatabasePath = FileUtil.sharedContainerUrl().path + "/devices.db"
 	}
 	
 	func extendedStop() {

@@ -22,12 +22,39 @@ import linphonesw
 
 class Device  {
 	
+	static let vcard_device_type_header = "X-LINPHONE-ACCOUNT-TYPE"
+	static let vcard_actions_list_header = "X-LINPHONE-ACCOUNT-ACTION"
+	static let vcard_action_method_type_header = "X-LINPHONE-ACCOUNT-DTMF-PROTOCOL"
+	static let serverActionMethodsToLocalMethods = [ "sipinfo":"method_dtmf_sip_info","rfc2833":"method_dtmf_rfc_4733","sipmessage":"method_sip_message"] // Server side method names to local app names
+	
 	var id: String = xDigitsUUID()
 	var type: String?
 	var name: String
 	var address: String
 	var actionsMethodType: String?
 	var actions: [Action]?
+	var isRemotelyProvisionned: Bool = false
+
+	
+	var friend: Friend? {
+		get {
+			do {
+				let friend = try Core.get().createFriend()
+				let _ = try friend.createVcard(name: name)
+				friend.vcard?.addExtendedProperty(name: Device.vcard_device_type_header, value: type!)
+				friend.vcard?.addSipAddress(sipAddress: address)
+				friend.vcard?.addExtendedProperty(name: Device.vcard_action_method_type_header,value: actionsMethodType!)
+				actions?.forEach { it in
+					friend.vcard?.addExtendedProperty(name: Device.vcard_actions_list_header,value:it.type! + ";" + it.code!)
+				}
+				Log.info("[Device] created vCard for device: \(name) \(friend.vcard?.asVcard4String() ?? "nil")")
+				return friend
+			} catch {
+				Log.error("[Device] unable to create associated vcard  : \(name) \(error)")
+				return nil
+			}
+		}
+	}
 	
 	
 	init(
@@ -36,13 +63,62 @@ class Device  {
 		name: String,
 		address: String,
 		actionsMethodType: String?,
-		actions: [Action]?
+		actions: [Action]?,
+		isRemotelyProvisionned:Bool
 	) {
 		self.id = id
 		self.type = type
 		self.name = name
 		self.address = address
 		self.actionsMethodType = actionsMethodType
+		self.actions = actions
+		self.isRemotelyProvisionned = isRemotelyProvisionned
+	}
+	
+	
+	static func remoteVcardValid(card:Vcard) -> Bool {
+		guard let type = card.getExtendedPropertiesValuesByName(name: vcard_device_type_header).first, DeviceTypes.it.deviceTypeSupported(typeKey:type) else {
+			Log.error("[Device] vCard validation : invalid type \(card.getExtendedPropertiesValuesByName(name: vcard_device_type_header).first)")
+			return false
+		}
+		guard let remoteDtmfMethod = card.getExtendedPropertiesValuesByName(name: vcard_action_method_type_header).first,
+				let localDtmfMethod = Device.serverActionMethodsToLocalMethods[remoteDtmfMethod],
+				ActionsMethodTypes.it.methodTypeIsSupported(typeKey: localDtmfMethod) else {
+					Log.error("[Device] vCard validation : invalid dtmf sending method \(card.getExtendedPropertiesValuesByName(name: vcard_action_method_type_header).first)")
+			return false
+		}
+		var validActions = true
+		card.getExtendedPropertiesValuesByName(name: Device.vcard_actions_list_header).forEach { action in
+			let components = action.components(separatedBy: ";")
+			if (components.count == 2) {
+				validActions = validActions && ActionTypes.it.isValid(typeKey: components.first!)
+			} else {
+				validActions = false
+			}
+			if (!validActions) {
+				Log.error("[Device] vCard validation : invalid action \(action)")
+			}
+		}
+		
+		return validActions
+	}
+	
+	init(card:Vcard, isRemotelyProvisionned:Bool) {
+		self.isRemotelyProvisionned = isRemotelyProvisionned
+		self.id = card.uid
+		self.type =  card.getExtendedPropertiesValuesByName(name: Device.vcard_device_type_header).first
+		self.name = card.fullName
+		self.address = isRemotelyProvisionned ? (card.sipAddresses.first?.asStringUriOnly())! : (card.sipAddresses.first?.asString())!
+		self.actionsMethodType = isRemotelyProvisionned ? Device.serverActionMethodsToLocalMethods[card.getExtendedPropertiesValuesByName(name: Device.vcard_action_method_type_header).first!] : card.getExtendedPropertiesValuesByName(name: Device.vcard_action_method_type_header).first!
+		var actions = [Action]()
+		card.getExtendedPropertiesValuesByName(name: Device.vcard_actions_list_header).forEach { action in
+			let components = action.components(separatedBy: ";")
+			guard components.count == 2 else {
+				Log.error("Unable to create action from VCard \(action)")
+				return
+			}
+			actions.append(Action(type: components.first!, code: components.last))
+		}
 		self.actions = actions
 	}
 	

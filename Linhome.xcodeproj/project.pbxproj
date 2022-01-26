@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		048B72562D4C4029A8CB3A1D /* Pods_Linhome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EA89B1D47E1A7BDAD3FF016 /* Pods_Linhome.framework */; };
-		6604FFE4FD40A89B8139B2B5 /* Pods_LinhomeServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1B322A539C3506E85CCBD4 /* Pods_LinhomeServiceExtension.framework */; };
-		86D965D66B6B645E3FFF3374 /* Pods_LinhomeContentExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7987D25B744897F264A0FB /* Pods_LinhomeContentExtension.framework */; };
+		09FDB7CD8D9BEBE1F8C934F1 /* Pods_Linhome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6E16E3C31DC402B0F1BE51 /* Pods_Linhome.framework */; };
+		74008B01D41C0E286D3FAE65 /* Pods_LinhomeContentExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B48B65927F9F8B4A0F6E12AB /* Pods_LinhomeContentExtension.framework */; };
 		C627098124ADE889000E43D2 /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627097F24ADE889000E43D2 /* DeviceCell.swift */; };
 		C627098224ADE889000E43D2 /* DeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C627098024ADE889000E43D2 /* DeviceCell.xib */; };
 		C627098824AE4910000E43D2 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627098724AE4910000E43D2 /* NavigationManager.swift */; };
@@ -68,9 +67,6 @@
 		C646852624A5E9460045AA4D /* UISegmentedControl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646852524A5E9460045AA4D /* UISegmentedControl+Extension.swift */; };
 		C646852A24A5FE6D0045AA4D /* StringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646852924A5FE6D0045AA4D /* StringUtil.swift */; };
 		C646852C24A60B9F0045AA4D /* AccountCreatorDelegateStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646852B24A60B9F0045AA4D /* AccountCreatorDelegateStub.swift */; };
-		C646852E24A62C420045AA4D /* CoreDelegateStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646852D24A62C420045AA4D /* CoreDelegateStub.swift */; };
-		C646852F24A62FD60045AA4D /* CoreDelegateStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646852D24A62C420045AA4D /* CoreDelegateStub.swift */; };
-		C646853024A62FD60045AA4D /* CoreDelegateStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646852D24A62C420045AA4D /* CoreDelegateStub.swift */; };
 		C646853424A632C30045AA4D /* RemoteRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646853224A632C30045AA4D /* RemoteRoot.swift */; };
 		C646853824A634880045AA4D /* RemoteUrlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646853624A634880045AA4D /* RemoteUrlView.swift */; };
 		C646853924A634880045AA4D /* RemoteUrlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C646853724A634880045AA4D /* RemoteUrlView.xib */; };
@@ -204,6 +200,8 @@
 		C6DBA14F25100B8300C2CFBD /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBA14E25100B8300C2CFBD /* UIScreen+Extension.swift */; };
 		C6DBA15125101C6E00C2CFBD /* DevicesView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6DBA15025101C6E00C2CFBD /* DevicesView~ipad.xib */; };
 		C6DBA153251091A100C2CFBD /* DeviceCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6DBA152251091A100C2CFBD /* DeviceCell~ipad.xib */; };
+		C6DC0C2227A03BB3008F950B /* ActionsMethodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9FB224AB3A9000F08AA9 /* ActionsMethodTypes.swift */; };
+		C6DC0C2327A03BB4008F950B /* ActionsMethodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9FB224AB3A9000F08AA9 /* ActionsMethodTypes.swift */; };
 		C6E7B46124E6C62200D7D8E2 /* PlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7B45F24E6C62200D7D8E2 /* PlayerControls.swift */; };
 		C6E7B46224E6C62200D7D8E2 /* PlayerControls.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E7B46024E6C62200D7D8E2 /* PlayerControls.xib */; };
 		C6E7B46424E6EBD700D7D8E2 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7B46324E6EBD600D7D8E2 /* PlayerView.swift */; };
@@ -258,6 +256,7 @@
 		C6FB382D24A0684A007A6E7B /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB382B24A0684A007A6E7B /* SideMenu.swift */; };
 		C6FB382E24A0684A007A6E7B /* SideMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6FB382C24A0684A007A6E7B /* SideMenu.xib */; };
 		C6FE4BC1257949B500F31F38 /* iPhone5-SE-About.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6FE4BC0257949B500F31F38 /* iPhone5-SE-About.xib */; };
+		DD634BE99BD08D6A85A466FA /* Pods_LinhomeServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56CC3E45058C723BDD233611 /* Pods_LinhomeServiceExtension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -293,12 +292,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1EA89B1D47E1A7BDAD3FF016 /* Pods_Linhome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Linhome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		32357A316FE34FC8C527C101 /* Pods-LinhomeServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
-		37515FEA13D85D71A9CED310 /* Pods-LinhomeServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		5E7987D25B744897F264A0FB /* Pods_LinhomeContentExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinhomeContentExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E1B322A539C3506E85CCBD4 /* Pods_LinhomeServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinhomeServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4EBDC370DE2F60211A053EC /* Pods-LinhomeContentExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		1FB3053507F9E8D16D8D0514 /* Pods-LinhomeContentExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.release.xcconfig"; sourceTree = "<group>"; };
+		56CC3E45058C723BDD233611 /* Pods_LinhomeServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinhomeServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58ED029F4D69CEC22AD00D1A /* Pods-Linhome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.debug.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.debug.xcconfig"; sourceTree = "<group>"; };
+		60D6F424BCFB2DFB61093049 /* Pods-LinhomeContentExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		72074F17E0556CB43B77AE96 /* Pods-LinhomeServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		B48B65927F9F8B4A0F6E12AB /* Pods_LinhomeContentExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinhomeContentExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C623DC01241167930049C646 /* LinhomeServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LinhomeServiceExtension.entitlements; sourceTree = "<group>"; };
 		C627097F24ADE889000E43D2 /* DeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
 		C627098024ADE889000E43D2 /* DeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceCell.xib; sourceTree = "<group>"; };
@@ -361,7 +360,6 @@
 		C646852524A5E9460045AA4D /* UISegmentedControl+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Extension.swift"; sourceTree = "<group>"; };
 		C646852924A5FE6D0045AA4D /* StringUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtil.swift; sourceTree = "<group>"; };
 		C646852B24A60B9F0045AA4D /* AccountCreatorDelegateStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreatorDelegateStub.swift; sourceTree = "<group>"; };
-		C646852D24A62C420045AA4D /* CoreDelegateStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDelegateStub.swift; sourceTree = "<group>"; };
 		C646853224A632C30045AA4D /* RemoteRoot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRoot.swift; sourceTree = "<group>"; };
 		C646853624A634880045AA4D /* RemoteUrlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteUrlView.swift; sourceTree = "<group>"; };
 		C646853724A634880045AA4D /* RemoteUrlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemoteUrlView.xib; sourceTree = "<group>"; };
@@ -496,9 +494,9 @@
 		C6FB382B24A0684A007A6E7B /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		C6FB382C24A0684A007A6E7B /* SideMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenu.xib; sourceTree = "<group>"; };
 		C6FE4BC0257949B500F31F38 /* iPhone5-SE-About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "iPhone5-SE-About.xib"; sourceTree = "<group>"; };
-		CCAB1C83F6766E841FBA6002 /* Pods-Linhome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.debug.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.debug.xcconfig"; sourceTree = "<group>"; };
-		DD4EBBFF2052D4A2A689A385 /* Pods-LinhomeContentExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.release.xcconfig"; sourceTree = "<group>"; };
-		E2EFD39725F5158614039757 /* Pods-Linhome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.release.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.release.xcconfig"; sourceTree = "<group>"; };
+		CE6E16E3C31DC402B0F1BE51 /* Pods_Linhome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Linhome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CED92529D090BEB1B6B1E360 /* Pods-LinhomeServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		DB9F21F80336072AAABB7DF0 /* Pods-Linhome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.release.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -508,7 +506,7 @@
 			files = (
 				C62D3DF124067A1800328486 /* UserNotificationsUI.framework in Frameworks */,
 				C62D3DEF24067A1800328486 /* UserNotifications.framework in Frameworks */,
-				86D965D66B6B645E3FFF3374 /* Pods_LinhomeContentExtension.framework in Frameworks */,
+				74008B01D41C0E286D3FAE65 /* Pods_LinhomeContentExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,7 +514,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				048B72562D4C4029A8CB3A1D /* Pods_Linhome.framework in Frameworks */,
+				09FDB7CD8D9BEBE1F8C934F1 /* Pods_Linhome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,7 +522,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6604FFE4FD40A89B8139B2B5 /* Pods_LinhomeServiceExtension.framework in Frameworks */,
+				DD634BE99BD08D6A85A466FA /* Pods_LinhomeServiceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,9 +534,9 @@
 			children = (
 				C62D3DEE24067A1800328486 /* UserNotifications.framework */,
 				C62D3DF024067A1800328486 /* UserNotificationsUI.framework */,
-				1EA89B1D47E1A7BDAD3FF016 /* Pods_Linhome.framework */,
-				5E7987D25B744897F264A0FB /* Pods_LinhomeContentExtension.framework */,
-				7E1B322A539C3506E85CCBD4 /* Pods_LinhomeServiceExtension.framework */,
+				CE6E16E3C31DC402B0F1BE51 /* Pods_Linhome.framework */,
+				B48B65927F9F8B4A0F6E12AB /* Pods_LinhomeContentExtension.framework */,
+				56CC3E45058C723BDD233611 /* Pods_LinhomeServiceExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -546,12 +544,12 @@
 		72AE357133F0AFC024E5F893 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CCAB1C83F6766E841FBA6002 /* Pods-Linhome.debug.xcconfig */,
-				E2EFD39725F5158614039757 /* Pods-Linhome.release.xcconfig */,
-				B4EBDC370DE2F60211A053EC /* Pods-LinhomeContentExtension.debug.xcconfig */,
-				DD4EBBFF2052D4A2A689A385 /* Pods-LinhomeContentExtension.release.xcconfig */,
-				37515FEA13D85D71A9CED310 /* Pods-LinhomeServiceExtension.debug.xcconfig */,
-				32357A316FE34FC8C527C101 /* Pods-LinhomeServiceExtension.release.xcconfig */,
+				58ED029F4D69CEC22AD00D1A /* Pods-Linhome.debug.xcconfig */,
+				DB9F21F80336072AAABB7DF0 /* Pods-Linhome.release.xcconfig */,
+				60D6F424BCFB2DFB61093049 /* Pods-LinhomeContentExtension.debug.xcconfig */,
+				1FB3053507F9E8D16D8D0514 /* Pods-LinhomeContentExtension.release.xcconfig */,
+				CED92529D090BEB1B6B1E360 /* Pods-LinhomeServiceExtension.debug.xcconfig */,
+				72074F17E0556CB43B77AE96 /* Pods-LinhomeServiceExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -852,7 +850,6 @@
 				C646850F24A4C3690045AA4D /* XmlRpcRequestDelegateStub.swift */,
 				C62709B124B052C6000E43D2 /* CallDelegateStub.swift */,
 				C6406F8624E562B3007E6334 /* PlayerDelegateStub.swift */,
-				C646852D24A62C420045AA4D /* CoreDelegateStub.swift */,
 				C6DBA147250FB81A00C2CFBD /* RegistrationState+Extension.swift */,
 			);
 			path = linphonecore;
@@ -1062,7 +1059,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C62D3DFC24067A1800328486 /* Build configuration list for PBXNativeTarget "LinhomeContentExtension" */;
 			buildPhases = (
-				CD87BC7C24ED5400BFD292E0 /* [CP] Check Pods Manifest.lock */,
+				FB839C2D86B3D9D8E58E5F89 /* [CP] Check Pods Manifest.lock */,
 				C62D3DE924067A1800328486 /* Sources */,
 				C62D3DEA24067A1800328486 /* Frameworks */,
 				C62D3DEB24067A1800328486 /* Resources */,
@@ -1080,13 +1077,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C676AD8624040F6E0048C504 /* Build configuration list for PBXNativeTarget "Linhome" */;
 			buildPhases = (
-				E3C0A18774671D3EE9A13D3D /* [CP] Check Pods Manifest.lock */,
+				DF008428A6D35E8AF21EE5F8 /* [CP] Check Pods Manifest.lock */,
 				C676AD7024040F6C0048C504 /* Sources */,
 				C676AD7124040F6C0048C504 /* Frameworks */,
 				C676AD7224040F6C0048C504 /* Resources */,
 				C6ECA09C240C7BCE0033EF78 /* Embed App Extensions */,
 				C6EDB7332513B2B600690F07 /* ShellScript */,
-				DA71CD4D624BE4282097529D /* [CP] Embed Pods Frameworks */,
+				7CB299E12F355055326B3384 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1103,7 +1100,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C6DA26A7240FA94400CDF3D7 /* Build configuration list for PBXNativeTarget "LinhomeServiceExtension" */;
 			buildPhases = (
-				BD3C12C9310A3C7260C618A2 /* [CP] Check Pods Manifest.lock */,
+				8A5A4EF5066B2785F49F8F14 /* [CP] Check Pods Manifest.lock */,
 				C6DA269B240FA94400CDF3D7 /* Sources */,
 				C6DA269C240FA94400CDF3D7 /* Frameworks */,
 				C6DA269D240FA94400CDF3D7 /* Resources */,
@@ -1256,7 +1253,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BD3C12C9310A3C7260C618A2 /* [CP] Check Pods Manifest.lock */ = {
+		7CB299E12F355055326B3384 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A5A4EF5066B2785F49F8F14 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1297,46 +1311,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
-		CD87BC7C24ED5400BFD292E0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LinhomeContentExtension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DA71CD4D624BE4282097529D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E3C0A18774671D3EE9A13D3D /* [CP] Check Pods Manifest.lock */ = {
+		DF008428A6D35E8AF21EE5F8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1352,6 +1327,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Linhome-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB839C2D86B3D9D8E58E5F89 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LinhomeContentExtension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1383,8 +1380,8 @@
 				C68978C224D15EE300FB8235 /* Texts.swift in Sources */,
 				C655FDEC24B6F78B0058EE2C /* CorePreferences.swift in Sources */,
 				C6E7B46F24E92AEA00D7D8E2 /* Call+Extension.swift in Sources */,
+				C6DC0C2327A03BB4008F950B /* ActionsMethodTypes.swift in Sources */,
 				C68978D624D163E100FB8235 /* SpinnerItem.swift in Sources */,
-				C646853024A62FD60045AA4D /* CoreDelegateStub.swift in Sources */,
 				C68978CC24D1638D00FB8235 /* DeviceStore.swift in Sources */,
 				C68978D224D163CE00FB8235 /* Action.swift in Sources */,
 				C68978DC24D1640800FB8235 /* HistoryEvent.swift in Sources */,
@@ -1492,7 +1489,6 @@
 				C6EC9FC124AB652600F08AA9 /* DeviceEditorViewModel.swift in Sources */,
 				C6EC9F9F24AB324C00F08AA9 /* HistoryEventStore.swift in Sources */,
 				C648F9F224A123E700D9B92D /* About.swift in Sources */,
-				C646852E24A62C420045AA4D /* CoreDelegateStub.swift in Sources */,
 				C627099724AF1AD9000E43D2 /* MainViewContentWithScrollableForm.swift in Sources */,
 				C641EC9E249B710D00672832 /* UIView+Extensions.swift in Sources */,
 				C62709C524B4C968000E43D2 /* AudioHelper.swift in Sources */,
@@ -1558,7 +1554,7 @@
 				C68978C124D15EE200FB8235 /* Texts.swift in Sources */,
 				C655FDEB24B6F78B0058EE2C /* CorePreferences.swift in Sources */,
 				C68978D524D163E000FB8235 /* SpinnerItem.swift in Sources */,
-				C646852F24A62FD60045AA4D /* CoreDelegateStub.swift in Sources */,
+				C6DC0C2227A03BB3008F950B /* ActionsMethodTypes.swift in Sources */,
 				C68978CB24D1638C00FB8235 /* DeviceStore.swift in Sources */,
 				C68978D124D163CD00FB8235 /* Action.swift in Sources */,
 				C68992C325124E0200B62F70 /* UIDevice+Extension.swift in Sources */,
@@ -1606,7 +1602,7 @@
 /* Begin XCBuildConfiguration section */
 		C62D3DFD24067A1800328486 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4EBDC370DE2F60211A053EC /* Pods-LinhomeContentExtension.debug.xcconfig */;
+			baseConfigurationReference = 60D6F424BCFB2DFB61093049 /* Pods-LinhomeContentExtension.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -1633,7 +1629,7 @@
 		};
 		C62D3DFE24067A1800328486 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD4EBBFF2052D4A2A689A385 /* Pods-LinhomeContentExtension.release.xcconfig */;
+			baseConfigurationReference = 1FB3053507F9E8D16D8D0514 /* Pods-LinhomeContentExtension.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -1778,7 +1774,7 @@
 		};
 		C676AD8724040F6E0048C504 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CCAB1C83F6766E841FBA6002 /* Pods-Linhome.debug.xcconfig */;
+			baseConfigurationReference = 58ED029F4D69CEC22AD00D1A /* Pods-Linhome.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = NO;
@@ -1804,7 +1800,7 @@
 		};
 		C676AD8824040F6E0048C504 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E2EFD39725F5158614039757 /* Pods-Linhome.release.xcconfig */;
+			baseConfigurationReference = DB9F21F80336072AAABB7DF0 /* Pods-Linhome.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = NO;
@@ -1830,7 +1826,7 @@
 		};
 		C6DA26A8240FA94400CDF3D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 37515FEA13D85D71A9CED310 /* Pods-LinhomeServiceExtension.debug.xcconfig */;
+			baseConfigurationReference = CED92529D090BEB1B6B1E360 /* Pods-LinhomeServiceExtension.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeServiceExtension/LinhomeServiceExtension.entitlements;
@@ -1854,7 +1850,7 @@
 		};
 		C6DA26A9240FA94400CDF3D7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 32357A316FE34FC8C527C101 /* Pods-LinhomeServiceExtension.release.xcconfig */;
+			baseConfigurationReference = 72074F17E0556CB43B77AE96 /* Pods-LinhomeServiceExtension.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeServiceExtension/LinhomeServiceExtension.entitlements;

@@ -33,5 +33,9 @@ class ActionsMethodTypes {
 			}
 		}
     }
+	
+	func methodTypeIsSupported(typeKey: String)-> Bool {
+		return Customisation.it.actionsMethodTypesConfig.getString(section: typeKey, key: "textkey", defaultString:"-") != "-"
+	}
 
 }
