@@ -10,4 +10,6 @@ usage_hint=0
 
 [misc]
 max_calls=1
+call_logs_search_limit=0
+
 

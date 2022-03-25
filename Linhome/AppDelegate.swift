@@ -34,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	var notificationAction : String?
 	var hasBeenConnected : [String?] = []
 	
+	var callReceivedWithAppOpened = false
+	
 	var coreState = MutableLiveData(linphonesw.GlobalState.Off)
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -76,6 +78,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 					self.applicationWillResignActive(UIApplication.shared)
 				}
 			}
+			
+			if (cstate == linphonesw.Call.State.End) {
+				if (!self.callReceivedWithAppOpened) {
+					UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+				}
+				self.callReceivedWithAppOpened = false
+			}
+			
 			
 			if (cstate == linphonesw.Call.State.Error && call.callLog?.dir == Call.Dir.Outgoing) {
 				DispatchQueue.main.async {
@@ -207,17 +217,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 			Call.releaseOwnerShip()
 			Core.get().removeDelegate(delegate: self.coreDelegate!)
 		}
+		self.callReceivedWithAppOpened = false
 	}
 	
 	// UNUserNotificationCenterDelegate functions
 	
 	func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 		Log.info("willPresentnotification")
+		callReceivedWithAppOpened = true
 	}
 	
 	
 	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
 		Log.info("didReceiveRemoteNotification")
+		callReceivedWithAppOpened = true
 	}
 	
 	// Actions on the notification here. If the user press too quick on the actions it comes directly here.
