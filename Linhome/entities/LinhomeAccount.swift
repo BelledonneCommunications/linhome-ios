@@ -20,9 +20,9 @@
 import UIKit
 import linphonesw
 
-class Account {
+class LinhomeAccount {
 	
-	static let it = Account()
+	static let it = LinhomeAccount()
 	
 	static let PUSH_GW_ID_KEY = "linhome_pushgateway"
 	private static let PUSH_GW_USER_PREFIX = "linhome_generated"
@@ -39,7 +39,7 @@ class Account {
 	}
 	
 	func get() -> ProxyConfig? {
-		return Core.get().proxyConfigList.filter{$0.idkey != Account.PUSH_GW_ID_KEY}.first
+		return Core.get().proxyConfigList.filter{$0.idkey != LinhomeAccount.PUSH_GW_ID_KEY}.first
 	}
 	
 	func linhomeAccountCreateProxyConfig(accountCreator: AccountCreator) {
@@ -55,9 +55,14 @@ class Account {
 		expiration: String,
 		pushReady: MutableLiveData<Bool>
 	) {
-		let proxyConfig: ProxyConfig? = try!accountCreator.createProxyConfig()
-		proxyConfig?.expires = Int(expiration)!
-		try!proxyConfig?.setServeraddr(newValue: (!TextUtils.isEmpty(proxy) ? proxy :  accountCreator.domain)!)
+		let transports = ["udp","tcp","tls"]
+		let _  = try!accountCreator.createProxyConfig()
+		let account = Core.get().accountList.first
+		account?.params?.expires = Int(expiration)!
+		if (!TextUtils.isEmpty(proxy) ) {
+			let address = (accountCreator.transport == .Tls ? "sips:" : "sip:") + proxy! + ";transport="+transports[accountCreator.transport.rawValue]
+			try?account?.params?.setServeraddr(newValue: address)
+		}
 		if (pushGateway() != nil) {
 			linkProxiesWithPushGateway(pushReady: pushReady)
 		} else {
@@ -66,7 +71,7 @@ class Account {
 	}
 	
 	func pushGateway() -> ProxyConfig? {
-		return Core.get().getProxyConfigByIdkey(idkey: Account.PUSH_GW_ID_KEY)
+		return Core.get().getProxyConfigByIdkey(idkey: LinhomeAccount.PUSH_GW_ID_KEY)
 	}
 	
 	func createPushGateway(pushReady: MutableLiveData<Bool>) {
@@ -80,7 +85,7 @@ class Account {
 					Log.error("Unable to create push gateway proxy config")
 					return
 				}
-				pushGw.idkey = Account.PUSH_GW_ID_KEY
+				pushGw.idkey = LinhomeAccount.PUSH_GW_ID_KEY
 				pushGw.registerEnabled = true
 				pushGw.publishEnabled = false
 				pushGw.expires = 31536000
@@ -110,7 +115,7 @@ class Account {
 	func linkProxiesWithPushGateway(pushReady: MutableLiveData<Bool>) {
 		pushGateway().map { pgw in
 			Core.get().proxyConfigList.forEach { it in
-				if (it.idkey != Account.PUSH_GW_ID_KEY) {
+				if (it.idkey != LinhomeAccount.PUSH_GW_ID_KEY) {
 					it.dependency = pgw
 				}
 			}

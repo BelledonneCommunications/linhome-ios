@@ -162,7 +162,7 @@ class MainView: ViewWithModel, UIDynamicAnimatorDelegate {
 		
 		NavigationManager.it.navigateTo(childClass: DevicesView.self)
 		
-		if (!Account.it.configured()) {
+		if (!LinhomeAccount.it.configured()) {
 			DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(20)) {
 				NavigationManager.it.navigateTo(childClass: AssistantRoot.self)
 			}

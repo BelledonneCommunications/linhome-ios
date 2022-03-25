@@ -85,7 +85,7 @@
 		C648F9D724A0E5E400D9B92D /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C648F9D524A0E5E400D9B92D /* SideMenuCell.xib */; };
 		C648F9D924A0EA1100D9B92D /* MenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648F9D824A0EA1100D9B92D /* MenuOption.swift */; };
 		C648F9EB24A10CA500D9B92D /* UIAlertController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648F9EA24A10CA500D9B92D /* UIAlertController+extension.swift */; };
-		C648F9EE24A10DCB00D9B92D /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648F9ED24A10DCB00D9B92D /* Account.swift */; };
+		C648F9EE24A10DCB00D9B92D /* LinhomeAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648F9ED24A10DCB00D9B92D /* LinhomeAccount.swift */; };
 		C648F9F224A123E700D9B92D /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648F9F024A123E700D9B92D /* About.swift */; };
 		C648F9F324A123E700D9B92D /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = C648F9F124A123E700D9B92D /* About.xib */; };
 		C648F9F524A124F200D9B92D /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648F9F424A124F200D9B92D /* Splash.swift */; };
@@ -378,7 +378,7 @@
 		C648F9D524A0E5E400D9B92D /* SideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
 		C648F9D824A0EA1100D9B92D /* MenuOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOption.swift; sourceTree = "<group>"; };
 		C648F9EA24A10CA500D9B92D /* UIAlertController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+extension.swift"; sourceTree = "<group>"; };
-		C648F9ED24A10DCB00D9B92D /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		C648F9ED24A10DCB00D9B92D /* LinhomeAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinhomeAccount.swift; sourceTree = "<group>"; };
 		C648F9F024A123E700D9B92D /* About.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
 		C648F9F124A123E700D9B92D /* About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
 		C648F9F424A124F200D9B92D /* Splash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
@@ -735,7 +735,7 @@
 				C6EC9FA624AB36F800F08AA9 /* Device.swift */,
 				C644D52A264080FC00EF86C2 /* Device+ExtensionApp.swift */,
 				C6EC9FA724AB36F800F08AA9 /* HistoryEvent.swift */,
-				C648F9ED24A10DCB00D9B92D /* Account.swift */,
+				C648F9ED24A10DCB00D9B92D /* LinhomeAccount.swift */,
 			);
 			path = entities;
 			sourceTree = "<group>";
@@ -1409,7 +1409,7 @@
 				C627098824AE4910000E43D2 /* NavigationManager.swift in Sources */,
 				C646850D24A4A0200045AA4D /* LoginLindoorAccountViewModel.swift in Sources */,
 				C646851E24A5BF7B0045AA4D /* ViewModel.swift in Sources */,
-				C648F9EE24A10DCB00D9B92D /* Account.swift in Sources */,
+				C648F9EE24A10DCB00D9B92D /* LinhomeAccount.swift in Sources */,
 				C648F7D624B8531600F3E346 /* ChunkCallTop.swift in Sources */,
 				C627099B24AF3489000E43D2 /* UIRoundRectButtonWithIcon.swift in Sources */,
 				C648FA0624A1F09500D9B92D /* LTextInput.swift in Sources */,

@@ -54,7 +54,7 @@ class SideMenu: MainViewContent, UITableViewDataSource, UITableViewDelegate {
 		
 		disconnectOption = MenuOption(iconName: "icons/disconnect",textKey: "menu_disconnect",action: {
 			DialogUtil.confirm(titleTextKey: "menu_disconnect", messageTextKey: "disconnect_confirm_message", confirmAction: {
-				Account.it.disconnect()
+				LinhomeAccount.it.disconnect()
 				NavigationManager.it.navigateUp(completion: {
 					NavigationManager.it.navigateTo(childClass: AssistantRoot.self)
 				})

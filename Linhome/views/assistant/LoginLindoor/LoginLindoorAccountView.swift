@@ -55,7 +55,7 @@ class LoginLinhomeAccountView: CreatorAssistantView {
 				model.loginResult.observeOnce(onChange: { stringResponse in
 					self.hideProgress()
 					if (stringResponse == "OK") {
-						Account.it.linhomeAccountCreateProxyConfig(accountCreator: model.accountCreator)
+						LinhomeAccount.it.linhomeAccountCreateProxyConfig(accountCreator: model.accountCreator)
 						NavigationManager.it.navigateTo(childClass: DevicesView.self, asRoot:true)
 						DialogUtil.info("linhome_account_loggedin")
 					} else {

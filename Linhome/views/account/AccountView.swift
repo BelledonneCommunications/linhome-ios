@@ -61,7 +61,7 @@ class AccountView: MainViewContentWithScrollableForm {
 			
 			disconnect.onClick {
 				DialogUtil.confirm(titleTextKey: "menu_disconnect", messageTextKey: "disconnect_confirm_message", confirmAction: {
-					Account.it.disconnect()
+					LinhomeAccount.it.disconnect()
 					NavigationManager.it.navigateUp()
 				})
 			}

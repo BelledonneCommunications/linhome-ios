@@ -22,8 +22,8 @@ import Foundation
 import linphonesw
 
 class AccountViewModel : ViewModel {
-	let account = Account.it.get()
-	let pushGw = Account.it.pushGateway()
+	let account = LinhomeAccount.it.get()
+	let pushGw = LinhomeAccount.it.pushGateway()
 	var accountDesc  =  MutableLiveData("")
 	var pushGWDesc  =  MutableLiveData("")
 	private var coreDelegate : CoreDelegateStub?
@@ -33,7 +33,7 @@ class AccountViewModel : ViewModel {
 		accountDesc.value = getDescription(key: "account_info",proxyConfig: account)
 		pushGWDesc.value = getDescription(key: "push_account_info",proxyConfig: pushGw)
 		coreDelegate = CoreDelegateStub(onRegistrationStateChanged : { (core: linphonesw.Core, cfg: linphonesw.ProxyConfig, state: linphonesw.RegistrationState, message: String) -> Void in
-			if (cfg.idkey == Account.PUSH_GW_ID_KEY) {
+			if (cfg.idkey == LinhomeAccount.PUSH_GW_ID_KEY) {
 				self.pushGWDesc.value = self.getDescription(key: "push_account_info",proxyConfig: self.pushGw)
 			} else {
 				self.accountDesc.value = self.getDescription(key: "account_info",proxyConfig: self.account)
