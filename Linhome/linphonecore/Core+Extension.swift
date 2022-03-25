@@ -70,6 +70,7 @@ extension Core {
 				iterateTimers["\(result)"] = Timer.scheduledTimer(timeInterval: 0.20, target: result, selector: #selector(myIterate), userInfo: nil, repeats: true)
 			}
 			result.computeUserAgent()
+			result.pushNotificationEnabled = false
 			return result
 		} catch  {
 			Log.error("Unable to create core \(error)")
