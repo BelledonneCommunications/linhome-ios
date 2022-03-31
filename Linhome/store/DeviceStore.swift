@@ -59,14 +59,15 @@ class DeviceStore {
 	func readFromFriends() -> [Device] {
 		var result = [Device]()
 		Core.get().getFriendListByName(name: local_devices_fl_name)?.friends.forEach { friend in
-			guard let card: Vcard = friend.vcard else {
+			guard let card = friend.vcard, card.isValid() else {
+				Log.error("[DeviceStore] unable to create device from card (card is null or invdalid) \(friend.vcard?.fullName)")
 				return
 			}
 			result.append(Device(card: card, isRemotelyProvisionned: false))
 		}
 		if let remoteFlName = Core.get().config?.getString(section: "misc", key: "contacts-vcard-list", defaultString: nil),  let serverFriendList = Core.get().getFriendListByName(name:remoteFlName) {
 			serverFriendList.friends.forEach { friend in
-				guard let card: Vcard = friend.vcard, Device.remoteVcardValid(card: card) else {
+				guard let card: Vcard = friend.vcard, card.isValid() else {
 					Log.error("[DeviceStore] received invalid or malformed vCard from remote : \(friend.vcard?.asVcard4String() ?? "nil")")
 					return
 				}

@@ -76,33 +76,6 @@ class Device  {
 	}
 	
 	
-	static func remoteVcardValid(card:Vcard) -> Bool {
-		guard let type = card.getExtendedPropertiesValuesByName(name: vcard_device_type_header).first, DeviceTypes.it.deviceTypeSupported(typeKey:type) else {
-			Log.error("[Device] vCard validation : invalid type \(card.getExtendedPropertiesValuesByName(name: vcard_device_type_header).first)")
-			return false
-		}
-		guard let remoteDtmfMethod = card.getExtendedPropertiesValuesByName(name: vcard_action_method_type_header).first,
-				let localDtmfMethod = Device.serverActionMethodsToLocalMethods[remoteDtmfMethod],
-				ActionsMethodTypes.it.methodTypeIsSupported(typeKey: localDtmfMethod) else {
-					Log.error("[Device] vCard validation : invalid dtmf sending method \(card.getExtendedPropertiesValuesByName(name: vcard_action_method_type_header).first)")
-			return false
-		}
-		var validActions = true
-		card.getExtendedPropertiesValuesByName(name: Device.vcard_actions_list_header).forEach { action in
-			let components = action.components(separatedBy: ";")
-			if (components.count == 2) {
-				validActions = validActions && ActionTypes.it.isValid(typeKey: components.first!)
-			} else {
-				validActions = false
-			}
-			if (!validActions) {
-				Log.error("[Device] vCard validation : invalid action \(action)")
-			}
-		}
-		
-		return validActions
-	}
-	
 	init(card:Vcard, isRemotelyProvisionned:Bool) {
 		self.isRemotelyProvisionned = isRemotelyProvisionned
 		self.id = card.uid
