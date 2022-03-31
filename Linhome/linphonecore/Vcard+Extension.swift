@@ -22,10 +22,7 @@ import UIKit
 import linphonesw
 
 extension Vcard {
-	func localVcardValid() -> Bool {
-		return sipAddresses.first != nil
-	}
-	
+
 	func isValid() -> Bool {
 		guard let address = sipAddresses.first else {
 			Log.error("[Device] vCard validation : no sip address")
