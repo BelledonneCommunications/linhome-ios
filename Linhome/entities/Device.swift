@@ -25,7 +25,14 @@ class Device  {
 	static let vcard_device_type_header = "X-LINPHONE-ACCOUNT-TYPE"
 	static let vcard_actions_list_header = "X-LINPHONE-ACCOUNT-ACTION"
 	static let vcard_action_method_type_header = "X-LINPHONE-ACCOUNT-DTMF-PROTOCOL"
-	static let serverActionMethodsToLocalMethods = [ "sipinfo":"method_dtmf_sip_info","rfc2833":"method_dtmf_rfc_4733","sipmessage":"method_sip_message"] // Server side method names to local app names
+	static let vCardActionMethodsToDeviceMethods = [ "sipinfo":"method_dtmf_sip_info","rfc2833":"method_dtmf_rfc_4733","sipmessage":"method_sip_message"] // Server side method names to local app names
+	static func deviceActionMethodsTovCardActionMethods () -> [String:String] {
+		var result : [String:String] = [:]
+		vCardActionMethodsToDeviceMethods.forEach {
+			result[$0.value] = $0.key
+		}
+		return result
+	}
 	
 	var id: String = xDigitsUUID()
 	var type: String?
@@ -43,7 +50,7 @@ class Device  {
 				let _ = try friend.createVcard(name: name)
 				friend.vcard?.addExtendedProperty(name: Device.vcard_device_type_header, value: type!)
 				friend.vcard?.addSipAddress(sipAddress: address)
-				friend.vcard?.addExtendedProperty(name: Device.vcard_action_method_type_header,value: actionsMethodType!)
+				friend.vcard?.addExtendedProperty(name: Device.vcard_action_method_type_header,value: Device.deviceActionMethodsTovCardActionMethods()[actionsMethodType!]!)
 				actions?.forEach { it in
 					friend.vcard?.addExtendedProperty(name: Device.vcard_actions_list_header,value:it.type! + ";" + it.code!)
 				}
@@ -82,8 +89,8 @@ class Device  {
 		self.id = card.uid
 		self.type =  card.getExtendedPropertiesValuesByName(name: Device.vcard_device_type_header).first
 		self.name = card.fullName
-		self.address = isRemotelyProvisionned ? (card.sipAddresses.first?.asStringUriOnly())! : (card.sipAddresses.first?.asString())!
-		self.actionsMethodType = isRemotelyProvisionned ? Device.serverActionMethodsToLocalMethods[card.getExtendedPropertiesValuesByName(name: Device.vcard_action_method_type_header).first!] : card.getExtendedPropertiesValuesByName(name: Device.vcard_action_method_type_header).first!
+		self.address = "sip:iphone@linhome.org" // isRemotelyProvisionned ? (card.sipAddresses.first?.asStringUriOnly())! : (card.sipAddresses.first?.asString())!
+		self.actionsMethodType = Device.vCardActionMethodsToDeviceMethods[card.getExtendedPropertiesValuesByName(name: Device.vcard_action_method_type_header).first!]
 		var actions = [Action]()
 		card.getExtendedPropertiesValuesByName(name: Device.vcard_actions_list_header).forEach { action in
 			let components = action.components(separatedBy: ";")

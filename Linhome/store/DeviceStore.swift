@@ -60,7 +60,7 @@ class DeviceStore {
 		var result = [Device]()
 		Core.get().getFriendListByName(name: local_devices_fl_name)?.friends.forEach { friend in
 			guard let card = friend.vcard, card.isValid() else {
-				Log.error("[DeviceStore] unable to create device from card (card is null or invdalid) \(friend.vcard?.fullName)")
+				Log.error("[DeviceStore] unable to create device from card (card is null or invdalid) \(friend.vcard?.asVcard4String())")
 				return
 			}
 			result.append(Device(card: card, isRemotelyProvisionned: false))

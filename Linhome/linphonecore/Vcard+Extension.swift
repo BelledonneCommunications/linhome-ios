@@ -34,7 +34,7 @@ extension Vcard {
 			return false
 		}
 		guard let remoteDtmfMethod = getExtendedPropertiesValuesByName(name: Device.vcard_action_method_type_header).first,
-				let localDtmfMethod = Device.serverActionMethodsToLocalMethods[remoteDtmfMethod],
+				let localDtmfMethod = Device.vCardActionMethodsToDeviceMethods[remoteDtmfMethod],
 				ActionsMethodTypes.it.methodTypeIsSupported(typeKey: localDtmfMethod) else {
 			Log.error("[Device] vCard validation : invalid dtmf sending method \(getExtendedPropertiesValuesByName(name: Device.vcard_action_method_type_header).first)")
 			return false
