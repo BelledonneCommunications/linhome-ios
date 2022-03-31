@@ -48,7 +48,7 @@ class Device  {
 					friend.vcard?.addExtendedProperty(name: Device.vcard_actions_list_header,value:it.type! + ";" + it.code!)
 				}
 				try friend.setSubscribesenabled(newValue: false)
-				Log.info("[Device] created vCard for device: \(name) \(address) \(friend.vcard?.asVcard4String()  ?? "nil")")
+				Log.info("[Device] created vCard for device: \(name) \(address) \(friend.vcard?.asVcard4String()  ?? "nil") \(friend.vcard?.sipAddresses.first?.asString()  ?? "nil")")
 				return friend
 			} catch {
 				Log.error("[Device] unable to create associated vcard  : \(name) \(error)")
