@@ -110,10 +110,13 @@ class DeviceStore {
 	func saveLocalDevices() {
 		var localDevicesFriendList:FriendList?
 		if let localList = Core.get().getFriendListByName(name:local_devices_fl_name) {
-			Core.get().removeFriendList(list: localList)
+			localList.friends.forEach {
+				localList.removeFriend(linphoneFriend: $0)
+			}
+		} else {
+			localDevicesFriendList = try?Core.get().createFriendList()
+			localDevicesFriendList?.displayName = local_devices_fl_name
 		}
-		localDevicesFriendList = try?Core.get().createFriendList()
-		localDevicesFriendList?.displayName = local_devices_fl_name
 		devices.sort()
 		devices.forEach { device in
 			if let friend = device.friend, !device.isRemotelyProvisionned {
