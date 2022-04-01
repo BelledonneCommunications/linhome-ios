@@ -89,7 +89,7 @@ class Device  {
 		self.id = card.uid
 		self.type =  card.getExtendedPropertiesValuesByName(name: Device.vcard_device_type_header).first
 		self.name = card.fullName
-		self.address = isRemotelyProvisionned ? (card.sipAddresses.first?.asStringUriOnly())! : (card.sipAddresses.first?.asString())!
+		self.address = card.sipAddresses.first!.asStringUriOnly()
 		self.actionsMethodType = Device.vCardActionMethodsToDeviceMethods[card.getExtendedPropertiesValuesByName(name: Device.vcard_action_method_type_header).first!]
 		var actions = [Action]()
 		card.getExtendedPropertiesValuesByName(name: Device.vcard_actions_list_header).forEach { action in
