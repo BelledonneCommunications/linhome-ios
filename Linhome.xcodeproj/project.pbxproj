@@ -1626,7 +1626,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.content-extension";
 				PRODUCT_NAME = LinhomeContentExtension;
 				SKIP_INSTALL = YES;
@@ -1653,7 +1653,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.content-extension";
 				PRODUCT_NAME = LinhomeContentExtension;
 				SKIP_INSTALL = YES;
@@ -1797,7 +1797,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.linhome;
 				PRODUCT_NAME = Linhome;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
@@ -1823,7 +1823,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.linhome;
 				PRODUCT_NAME = Linhome;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
@@ -1847,7 +1847,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.service-extension";
 				PRODUCT_NAME = LinhomeServiceExtension;
 				SKIP_INSTALL = YES;
@@ -1871,7 +1871,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.service-extension";
 				PRODUCT_NAME = LinhomeServiceExtension;
 				SKIP_INSTALL = YES;
