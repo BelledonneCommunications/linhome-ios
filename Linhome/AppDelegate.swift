@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	var notificationAction : String?
 	var hasBeenConnected : [String?] = []
 	
-	var callReceivedWithAppOpened = false
+	var appOpenedTime = Date()
 	
 	var coreState = MutableLiveData(linphonesw.GlobalState.Off)
 	
@@ -79,11 +79,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 				}
 			}
 			
-			if (cstate == linphonesw.Call.State.End) {
-				if (!self.callReceivedWithAppOpened) {
+			if (cstate == linphonesw.Call.State.End && call.callLog?.dir == .Incoming) {
+				if (self.appOpenedTime.timeIntervalSince1970 > Double((call.callLog?.startDate ?? 0))) {
 					UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
 				}
-				self.callReceivedWithAppOpened = false
 			}
 			
 			
@@ -204,6 +203,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		Core.get().ensureRegistered()
 		Core.get().enterForeground()
 		NavigationManager.it.mainView?.tabbarViewModel.updateUnreadCount()
+		appOpenedTime = Date()
 	}
 	
 	func applicationWillResignActive(_ application: UIApplication) {
@@ -217,20 +217,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 			Call.releaseOwnerShip()
 			Core.get().removeDelegate(delegate: self.coreDelegate!)
 		}
-		self.callReceivedWithAppOpened = false
 	}
 	
 	// UNUserNotificationCenterDelegate functions
 	
 	func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 		Log.info("willPresentnotification")
-		callReceivedWithAppOpened = true
 	}
 	
 	
 	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
 		Log.info("didReceiveRemoteNotification")
-		callReceivedWithAppOpened = true
 	}
 	
 	// Actions on the notification here. If the user press too quick on the actions it comes directly here.
