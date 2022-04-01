@@ -34,7 +34,7 @@ class NotificationService: UNNotificationServiceExtension {
 	let userDefaults = UserDefaults(suiteName: Config.appGroupName)!
 	private var callDelegate :  CallDelegateStub?
 	private let extensionCutoffTimeSec = 20
-	
+		
 	override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
 		
 		
@@ -50,10 +50,38 @@ class NotificationService: UNNotificationServiceExtension {
 			Log.error("No call Id in notification")
 			return
 		}
+					
 				
 		bestAttemptContent?.title = Texts.get("notif_incoming_call")
 		bestAttemptContent?.body = ""
 		
+		if let aps = request.content.userInfo["aps"] as? [String: Any], let alert = aps["alert"] as? [String: Any], let locKey = alert["loc-key"] as? String, locKey == "Missing call" {
+			bestAttemptContent?.title = Texts.get("notif_missed_call_title")
+			contentHandler(bestAttemptContent!)
+			return
+		}
+		
+		if let lastNotifFime = userDefaults.object(forKey: "notification_time_"+notifCallId) as? Date {
+			Log.info("[NotificationService] - subsequent push notification received for call Id \(notifCallId) last notif time was : \(lastNotifFime)")
+			bestAttemptContent?.body = Texts.get(userDefaults.bool(forKey: "has_video_"+notifCallId) ? "notif_incoming_call_video" : "notif_incoming_call_audio")
+			bestAttemptContent?.sound=UNNotificationSound.init(named: UNNotificationSoundName.init("bell.caf"))
+			bestAttemptContent?.categoryIdentifier = Config.earlymediaContentExtensionCagetoryIdentifier
+			if let core = Core.getNewOne(autoIterate: false)  {
+				bestAttemptContent?.badge = NSNumber(value: core.missedCount() + 1)
+			}
+			if (lastNotifFime.timeIntervalSince1970 + Double(Config.pushNotificationsInterval) > Date().timeIntervalSince1970 ) {
+				let interval = UInt32(Double(Config.pushNotificationsInterval) - (Date().timeIntervalSince1970-lastNotifFime.timeIntervalSince1970))
+				Log.info("[NotificationService] subsequent notif, about to sleep \(interval)")
+				usleep(interval*1_000_000)
+				Log.info("[NotificationService] subsequent notif, slept \(interval)")
+			}
+			userDefaults.set(Date(), forKey: "notification_time_"+notifCallId)
+			contentHandler(bestAttemptContent!)
+			return
+		}
+	
+		userDefaults.set(Date(), forKey: "notification_time_"+notifCallId)
+	
 		coreDelegateStub = CoreDelegateStub(onCallStateChanged : { (lc: linphonesw.Core, call: linphonesw.Call, cstate: linphonesw.Call.State, message: String) -> Void in
 			
 			Log.info("CoreDelegateStub - onCallStateChanged : \(cstate)")
@@ -87,6 +115,7 @@ class NotificationService: UNNotificationServiceExtension {
 		userDefaults.set(Date(), forKey: "lastpushtime")
 		if (userDefaults.bool(forKey: "appactive")) {
 			Log.info("Application is active. Ignoring push notification.")
+			userDefaults.set(Date(), forKey: "notification_time_"+notifCallId)
 			contentHandler(bestAttemptContent!)
 			return
 		}
@@ -96,6 +125,7 @@ class NotificationService: UNNotificationServiceExtension {
 		guard let core = Core.getNewOne(autoIterate: false) else {
 			Log.error("unable to create a executor core.")
 			Call.releaseOwnerShip()
+			userDefaults.set(Date(), forKey: "notification_time_"+notifCallId)
 			contentHandler(bestAttemptContent!)
 			return
 		}
@@ -122,6 +152,7 @@ class NotificationService: UNNotificationServiceExtension {
 			Log.info("Candidate call is null stopping")
 			bestAttemptContent.title = Texts.get("notif_missed_call_title")
 			Call.releaseOwnerShip()
+			userDefaults.set(Date(), forKey: "notification_time_"+notifCallId)
 			contentHandler(bestAttemptContent)
 			core.stop()
 			return
@@ -130,6 +161,7 @@ class NotificationService: UNNotificationServiceExtension {
 		let hasVideo = call.remoteParams?.videoEnabled ?? false
 		
 		bestAttemptContent.body =  Texts.get(call.state == .End ? "notif_missed_call_title" : hasVideo ? "notif_incoming_call_video" : "notif_incoming_call_audio")
+		userDefaults.set(hasVideo,forKey: "has_video_"+notifCallId)
 		if let name = DeviceStore.it.findDeviceByAddress(address: call.remoteAddress?.asString())?.name {
 			bestAttemptContent.title = name
 		} else {
@@ -155,10 +187,9 @@ class NotificationService: UNNotificationServiceExtension {
 		bestAttemptContent.categoryIdentifier = Config.earlymediaContentExtensionCagetoryIdentifier
 		bestAttemptContent.badge = NSNumber(value: core.missedCount() + 1)
 		Log.info("About to send the notification to contentHandler")
+		userDefaults.set(Date(), forKey: "notification_time_"+notifCallId)
 		contentHandler(bestAttemptContent)
 		Log.info("Sent the notification to contentHandler")
-
-		UIDevice.vibrate()
 		
 		// Wait for the call to be picked up elsewhere (content extension or app) or terminate or extension time out
 		while (i < extensionCutoffTimeSec*50 &&
@@ -166,11 +197,6 @@ class NotificationService: UNNotificationServiceExtension {
 				!Call.ownerShipRequessted() &&
 			   !self.finishedHere
 		) {
-			if (i % 100 == 0) {
-				if (!UIDevice.ipad()) {
-			 	UIDevice.vibrate()
-				}
-			}
 			core.iterate()
 			usleep(20000)
 			i+=1
