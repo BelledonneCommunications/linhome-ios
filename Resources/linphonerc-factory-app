@@ -30,6 +30,8 @@ force_ice_disablement=1
 firewall_policy=ice
 stun_server=stun.linphone.org
 push_notifications_type=remote
+pn-call-remote-push-interval=3
+
 
 
 [video]
