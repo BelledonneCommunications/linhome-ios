@@ -46,6 +46,10 @@ class LinhomeAccount {
 		let proxyConfig = try!accountCreator.createProxyConfig()
 		proxyConfig.findAuthInfo()?.algorithm = CorePreferences.them.passwordAlgo!
 		Core.get().addPushTokenToProxyConfig(proxyConfig: proxyConfig)
+		
+		let account = Core.get().accountList.first
+		let address = "sip:fs-test-conf.linphone.org:5061;transport=tls"
+		try?account?.params?.setServeraddr(newValue: address)		
 	}
 	
 	

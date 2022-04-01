@@ -23,6 +23,7 @@ sip_random_port=1
 store_ha1_passwd=0
 sip_port=-1
 sip_tcp_port=-1
+verify_server_certs=0
 
 [net]
 mtu=1300
