@@ -32,17 +32,32 @@ class DeviceStore {
 	let updatedSnapshotDeviceId = MutableLiveData<String>()
 	let local_devices_fl_name = "local_devices"
 	let devicesUpdated = MutableLiveData<Bool>()
+	var localDevicesFriendList:FriendList?
+
 	
 	var coreDelegate:CoreDelegateStub? = nil
 
 	init () {
-		if (FileManager.default.fileExists(atPath: devicesXml)) {
-			devicesConfig = try!Factory.Instance.createConfig(path: "")
-			let _ = devicesConfig?.loadFromXmlFile(filename: devicesXml)
-			devices = readFromXml()
-			saveLocalDevices()
-			try? FileManager.default.removeItem(atPath: devicesXml)
+		
+		if let localList = Core.get().getFriendListByName(name:local_devices_fl_name) {
+			localDevicesFriendList = localList
+		} else {
+			localDevicesFriendList = try?Core.get().createFriendList()
+			localDevicesFriendList?.displayName = local_devices_fl_name
+			localDevicesFriendList.map { Core.get().addFriendList(list: $0) }
 		}
+		
+		if (FileManager.default.fileExists(atPath: devicesXml)) {
+			DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+				self.devicesConfig = try!Factory.Instance.createConfig(path: "")
+				let _ = self.devicesConfig?.loadFromXmlFile(filename: self.devicesXml)
+				self.devices = self.readFromXml()
+				self.saveLocalDevices()
+				try? FileManager.default.removeItem(atPath: self.devicesXml)
+				self.devicesUpdated.value = true
+			}
+		}
+				
 		devices = readFromFriends()
 		devicesUpdated.value = true
 		coreDelegate = CoreDelegateStub( onFriendListCreated : { (core, list) in
@@ -60,7 +75,7 @@ class DeviceStore {
 		var result = [Device]()
 		Core.get().getFriendListByName(name: local_devices_fl_name)?.friends.forEach { friend in
 			guard let card = friend.vcard, card.isValid() else {
-				Log.error("[DeviceStore] unable to create device from card (card is null or invdalid) \(friend.vcard?.asVcard4String())")
+				Log.error("[DeviceStore] unable to create device from card (card is null or invdalid) \(friend.vcard?.asVcard4String() ?? "nil")")
 				return
 			}
 			result.append(Device(card: card, isRemotelyProvisionned: false))
@@ -108,14 +123,8 @@ class DeviceStore {
 	}
 	
 	func saveLocalDevices() {
-		var localDevicesFriendList:FriendList?
-		if let localList = Core.get().getFriendListByName(name:local_devices_fl_name) {
-			localList.friends.forEach {
-				localList.removeFriend(linphoneFriend: $0)
-			}
-		} else {
-			localDevicesFriendList = try?Core.get().createFriendList()
-			localDevicesFriendList?.displayName = local_devices_fl_name
+		localDevicesFriendList?.friends.forEach {
+			let _ = localDevicesFriendList?.removeFriend(linphoneFriend: $0)
 		}
 		devices.sort()
 		devices.forEach { device in
@@ -123,7 +132,6 @@ class DeviceStore {
 				let _ = localDevicesFriendList?.addFriend(linphoneFriend: friend)
 			}
 		}
-		localDevicesFriendList.map { Core.get().addFriendList(list: $0) }
 	}
 	
 	func persistDevice(device: Device) {
