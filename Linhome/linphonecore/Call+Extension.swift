@@ -68,7 +68,6 @@ extension Call {
 	
 	static func ownerShipRequessted() -> Bool {
 		let result = Bundle.main.bundleURL.path == userDefaults.object(forKey: "owning") as! String? && userDefaults.bool(forKey:"requesting")
-		Log.info("[OwnerShip] ownerShipRequessted ? = \(result)")
 		return result
 	}
 		
@@ -97,7 +96,6 @@ extension Call {
 	static func waitSyncForReleased(timeoutSec:Int) -> Bool {
 		var i = 0
 		while (!ownerShipReleased() && i < timeoutSec*50 && !hasOwnerShip()) {
-			Log.info("[OwnerShip] Waiting for ownerShip ")
 			usleep(20000)
 			i+=1
 		}
