@@ -66,7 +66,11 @@ class NotificationService: UNNotificationServiceExtension {
 			bestAttemptContent?.body = Texts.get(userDefaults.bool(forKey: "has_video_"+notifCallId) ? "notif_incoming_call_video" : "notif_incoming_call_audio")
 			bestAttemptContent?.title = userDefaults.string(forKey: "notification_title_"+notifCallId) ?? ""
 			bestAttemptContent?.badge = NSNumber(value: userDefaults.integer(forKey: "notification_badge_"+notifCallId))
-			bestAttemptContent?.sound=UNNotificationSound.init(named: UNNotificationSoundName.init("bell.caf"))
+			if #available(iOSApplicationExtension 15.2, *) {
+				bestAttemptContent?.sound=UNNotificationSound.ringtoneSoundNamed(UNNotificationSoundName.init("bell.caf"))
+			} else {
+				bestAttemptContent?.sound=UNNotificationSound.init(named: UNNotificationSoundName.init("bell.caf"))
+			}
 			bestAttemptContent?.categoryIdentifier = Config.earlymediaContentExtensionCagetoryIdentifier
 			if (lastNotifFime.timeIntervalSince1970 + Double(Config.pushNotificationsInterval) > Date().timeIntervalSince1970 ) {
 				let interval = UInt32(Double(Config.pushNotificationsInterval) - (Date().timeIntervalSince1970-lastNotifFime.timeIntervalSince1970))
@@ -184,7 +188,11 @@ class NotificationService: UNNotificationServiceExtension {
 		
 		
 		call.extendedAcceptEarlyMedia(core:core)
-		bestAttemptContent.sound=UNNotificationSound.init(named: UNNotificationSoundName.init("bell.caf"))
+		if #available(iOSApplicationExtension 15.2, *) {
+			bestAttemptContent.sound=UNNotificationSound.ringtoneSoundNamed(UNNotificationSoundName.init("bell.caf"))
+		} else {
+			bestAttemptContent.sound=UNNotificationSound.init(named: UNNotificationSoundName.init("bell.caf"))
+		}
 		bestAttemptContent.categoryIdentifier = Config.earlymediaContentExtensionCagetoryIdentifier
 		bestAttemptContent.badge = NSNumber(value: core.missedCount() + 1)
 		userDefaults.set(bestAttemptContent.badge, forKey: "notification_badge_"+notifCallId)
