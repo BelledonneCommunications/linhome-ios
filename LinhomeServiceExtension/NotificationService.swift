@@ -65,11 +65,9 @@ class NotificationService: UNNotificationServiceExtension {
 			Log.info("[NotificationService] - subsequent push notification received for call Id \(notifCallId) last notif time was : \(lastNotifFime)")
 			bestAttemptContent?.body = Texts.get(userDefaults.bool(forKey: "has_video_"+notifCallId) ? "notif_incoming_call_video" : "notif_incoming_call_audio")
 			bestAttemptContent?.title = userDefaults.string(forKey: "notification_title_"+notifCallId) ?? ""
+			bestAttemptContent?.badge = NSNumber(value: userDefaults.integer(forKey: "notification_badge_"+notifCallId))
 			bestAttemptContent?.sound=UNNotificationSound.init(named: UNNotificationSoundName.init("bell.caf"))
 			bestAttemptContent?.categoryIdentifier = Config.earlymediaContentExtensionCagetoryIdentifier
-			if let core = Core.getNewOne(autoIterate: false)  {
-				bestAttemptContent?.badge = NSNumber(value: core.missedCount() + 1)
-			}
 			if (lastNotifFime.timeIntervalSince1970 + Double(Config.pushNotificationsInterval) > Date().timeIntervalSince1970 ) {
 				let interval = UInt32(Double(Config.pushNotificationsInterval) - (Date().timeIntervalSince1970-lastNotifFime.timeIntervalSince1970))
 				Log.info("[NotificationService] subsequent notif, about to sleep \(interval)")
@@ -131,7 +129,7 @@ class NotificationService: UNNotificationServiceExtension {
 			return
 		}
 		core.disableVP8() // Two heavy to run in ServiceExtension
-		
+
 		core.addDelegate(delegate: coreDelegateStub!)
 		try?core.extendedStart()
 		
@@ -189,6 +187,7 @@ class NotificationService: UNNotificationServiceExtension {
 		bestAttemptContent.sound=UNNotificationSound.init(named: UNNotificationSoundName.init("bell.caf"))
 		bestAttemptContent.categoryIdentifier = Config.earlymediaContentExtensionCagetoryIdentifier
 		bestAttemptContent.badge = NSNumber(value: core.missedCount() + 1)
+		userDefaults.set(bestAttemptContent.badge, forKey: "notification_badge_"+notifCallId)
 		Log.info("About to send the notification to contentHandler")
 		userDefaults.set(Date(), forKey: "notification_time_"+notifCallId)
 		contentHandler(bestAttemptContent)
