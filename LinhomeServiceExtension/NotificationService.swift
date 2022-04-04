@@ -117,6 +117,7 @@ class NotificationService: UNNotificationServiceExtension {
 		
 		userDefaults.set(Date(), forKey: "lastpushtime")
 		if (userDefaults.bool(forKey: "appactive")) {
+			bestAttemptContent?.sound=UNNotificationSound.init(named: UNNotificationSoundName.init("bell.caf"))
 			Log.info("Application is active. Ignoring push notification.")
 			userDefaults.set(Date(), forKey: "notification_time_"+notifCallId)
 			contentHandler(bestAttemptContent!)
