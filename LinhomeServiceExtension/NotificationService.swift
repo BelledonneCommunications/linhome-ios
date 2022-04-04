@@ -64,6 +64,7 @@ class NotificationService: UNNotificationServiceExtension {
 		if let lastNotifFime = userDefaults.object(forKey: "notification_time_"+notifCallId) as? Date {
 			Log.info("[NotificationService] - subsequent push notification received for call Id \(notifCallId) last notif time was : \(lastNotifFime)")
 			bestAttemptContent?.body = Texts.get(userDefaults.bool(forKey: "has_video_"+notifCallId) ? "notif_incoming_call_video" : "notif_incoming_call_audio")
+			bestAttemptContent?.title = userDefaults.string(forKey: "notification_title_"+notifCallId) ?? ""
 			bestAttemptContent?.sound=UNNotificationSound.init(named: UNNotificationSoundName.init("bell.caf"))
 			bestAttemptContent?.categoryIdentifier = Config.earlymediaContentExtensionCagetoryIdentifier
 			if let core = Core.getNewOne(autoIterate: false)  {
@@ -167,6 +168,8 @@ class NotificationService: UNNotificationServiceExtension {
 		} else {
 			bestAttemptContent.title = call.remoteAddress?.asString() ?? ""
 		}
+		userDefaults.set(bestAttemptContent.title, forKey: "notification_title_"+notifCallId)
+
 		
 		callDelegate =  CallDelegateStub(onNextVideoFrameDecoded : { (call: linphonesw.Call) -> Void in
 				if let event = call.callLog?.getHistoryEvent() {
