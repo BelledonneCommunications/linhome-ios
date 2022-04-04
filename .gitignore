@@ -9,4 +9,5 @@ zip-theme.log
 git-version.log
 Linhome.xcworkspace
 Linhome/GitVersion.swift
-Resources/linhome.zip
+Resources/linhome.zipA
+Linhome.xcodeproj/xcuserdata
