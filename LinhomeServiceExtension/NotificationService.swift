@@ -61,6 +61,21 @@ class NotificationService: UNNotificationServiceExtension {
 			return
 		}
 		
+		if let aps = request.content.userInfo["aps"] as? [String: Any], let alert = aps["alert"] as? [String: Any], let locKey = alert["loc-key"] as? String, locKey == "Accepted elsewhere" {
+			bestAttemptContent?.title = Texts.get("notif_accepted_elsewhere_call_title")
+			contentHandler(bestAttemptContent!)
+			return
+		}
+		
+		if let aps = request.content.userInfo["aps"] as? [String: Any], let alert = aps["alert"] as? [String: Any], let locKey = alert["loc-key"] as? String, locKey == "Declined elsewhere" {
+			bestAttemptContent?.title = Texts.get("notif_declined_elsewhere_call_title")
+			contentHandler(bestAttemptContent!)
+			return
+		}
+		
+		
+		
+		
 		if let lastNotifFime = userDefaults.object(forKey: "notification_time_"+notifCallId) as? Date {
 			Log.info("[NotificationService] - subsequent push notification received for call Id \(notifCallId) last notif time was : \(lastNotifFime)")
 			bestAttemptContent?.body = Texts.get(userDefaults.bool(forKey: "has_video_"+notifCallId) ? "notif_incoming_call_video" : "notif_incoming_call_audio")
