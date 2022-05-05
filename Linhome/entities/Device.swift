@@ -22,12 +22,47 @@ import linphonesw
 
 class Device  {
 	
+	static let vcard_device_type_header = "X-LINPHONE-ACCOUNT-TYPE"
+	static let vcard_actions_list_header = "X-LINPHONE-ACCOUNT-ACTION"
+	static let vcard_action_method_type_header = "X-LINPHONE-ACCOUNT-DTMF-PROTOCOL"
+	static let vCardActionMethodsToDeviceMethods = [ "sipinfo":"method_dtmf_sip_info","rfc2833":"method_dtmf_rfc_4733","sipmessage":"method_sip_message"] // Server side method names to local app names
+	static func deviceActionMethodsTovCardActionMethods () -> [String:String] {
+		var result : [String:String] = [:]
+		vCardActionMethodsToDeviceMethods.forEach {
+			result[$0.value] = $0.key
+		}
+		return result
+	}
+	
 	var id: String = xDigitsUUID()
 	var type: String?
 	var name: String
 	var address: String
 	var actionsMethodType: String?
 	var actions: [Action]?
+	var isRemotelyProvisionned: Bool = false
+
+	
+	var friend: Friend? {
+		get {
+			do {
+				let friend = try Core.get().createFriend()
+				let _ = try friend.createVcard(name: name)
+				friend.vcard?.addExtendedProperty(name: Device.vcard_device_type_header, value: type!)
+				friend.vcard?.addSipAddress(sipAddress: address)
+				friend.vcard?.addExtendedProperty(name: Device.vcard_action_method_type_header,value: Device.deviceActionMethodsTovCardActionMethods()[actionsMethodType!]!)
+				actions?.forEach { it in
+					friend.vcard?.addExtendedProperty(name: Device.vcard_actions_list_header,value:it.type! + ";" + it.code!)
+				}
+				try friend.setSubscribesenabled(newValue: false)
+				Log.info("[Device] created vCard for device: \(name) \(address) \(friend.vcard?.asVcard4String()  ?? "nil") \(friend.vcard?.sipAddresses.first?.asString()  ?? "nil")")
+				return friend
+			} catch {
+				Log.error("[Device] unable to create associated vcard  : \(name) \(error)")
+				return nil
+			}
+		}
+	}
 	
 	
 	init(
@@ -36,13 +71,35 @@ class Device  {
 		name: String,
 		address: String,
 		actionsMethodType: String?,
-		actions: [Action]?
+		actions: [Action]?,
+		isRemotelyProvisionned:Bool
 	) {
 		self.id = id
 		self.type = type
 		self.name = name
 		self.address = address
 		self.actionsMethodType = actionsMethodType
+		self.actions = actions
+		self.isRemotelyProvisionned = isRemotelyProvisionned
+	}
+	
+	
+	init(card:Vcard, isRemotelyProvisionned:Bool) {
+		self.isRemotelyProvisionned = isRemotelyProvisionned
+		self.id = card.uid
+		self.type =  card.getExtendedPropertiesValuesByName(name: Device.vcard_device_type_header).first
+		self.name = card.fullName
+		self.address = card.sipAddresses.first!.asStringUriOnly()
+		self.actionsMethodType = Device.vCardActionMethodsToDeviceMethods[card.getExtendedPropertiesValuesByName(name: Device.vcard_action_method_type_header).first!]
+		var actions = [Action]()
+		card.getExtendedPropertiesValuesByName(name: Device.vcard_actions_list_header).forEach { action in
+			let components = action.components(separatedBy: ";")
+			guard components.count == 2 else {
+				Log.error("Unable to create action from VCard \(action)")
+				return
+			}
+			actions.append(Action(type: components.first!, code: components.last))
+		}
 		self.actions = actions
 	}
 	

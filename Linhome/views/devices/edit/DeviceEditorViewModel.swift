@@ -88,7 +88,8 @@ class DeviceEditorViewModel : ViewModel{
 				name:name.first.value!,
 				address:(address.first.value!.hasPrefix("sip:") || address.first.value!.hasPrefix("sips:")) ? address.first.value! :  "sip:\(address.first.value!)",
 				actionsMethodType:actionsMethod.value == 0 ? nil :  availableMethodTypes[actionsMethod.value!].backingKey,
-				actions:[Action]()
+				actions:[Action](),
+				isRemotelyProvisionned:false
 			)
 			actionsViewModels.forEach { it in
 				if (it.notEmpty()) {
@@ -117,7 +118,7 @@ class DeviceEditorViewModel : ViewModel{
 					)
 				}
 			}
-			DeviceStore.it.sync()
+			DeviceStore.it.saveLocalDevices()
 		}
 		
 		return true

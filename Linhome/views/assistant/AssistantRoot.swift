@@ -60,9 +60,9 @@ class AssistantRoot: MainViewContentWithScrollableForm {
 	}
 	
 	private func navigateToComponent(childClass: ViewWithModel.Type) {
-		if (Account.it.configured()) {
+		if (LinhomeAccount.it.configured()) {
 			DialogUtil.confirm(titleTextKey: "assistant_using_will_disconnect_title", messageTextKey: "assistant_using_will_disconnect_message", confirmAction: {
-				Account.it.disconnect()
+				LinhomeAccount.it.disconnect()
 				NavigationManager.it.navigateTo(childClass: childClass)
 			})
 		} else {

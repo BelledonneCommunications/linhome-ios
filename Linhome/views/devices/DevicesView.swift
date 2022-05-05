@@ -1,26 +1,27 @@
 /*
-* Copyright (c) 2010-2020 Belledonne Communications SARL.
-*
-* This file is part of linhome
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
+ *
+ * This file is part of linhome
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 
 
 import UIKit
 import Firebase
+import linphonesw
 
 class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  {
 	
@@ -31,6 +32,8 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 	@IBOutlet var ipadEditDevice: UIButton!
 	@IBOutlet weak var ipadLeftColumn: UIView!
 	var deviceInfoViewIpad:DeviceInfoViewIpad? = nil
+	
+	var friendListDelegate : FriendListDelegateStub? = nil
 	
 	var model = DevicesViewModel()
 	
@@ -49,7 +52,7 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 		}
 		
 		if (UIDevice.ipad()) {
-		
+			
 		}
 		
 		devices.register(UINib(nibName: "DeviceCell", bundle: nil), forCellReuseIdentifier: "DeviceCell")
@@ -93,6 +96,46 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 		
 	}
 	
+	func setRefresher() {
+		return // V1
+		if (devices.refreshControl != nil) {
+			return
+		}
+		let refreshControl = UIRefreshControl()
+		refreshControl.addTarget(self, action: #selector(updateRemotelyProvisionnedDevices), for: .valueChanged)
+		devices.refreshControl = refreshControl
+		friendListDelegate = FriendListDelegateStub ( onSyncStatusChanged:  { list, status, message in
+			Log.info("[Devices View] remote list onSyncStatusChanged \(list) \(status) \(message)")
+			if (status == .Successful || status == .Failure) {
+				self.devices.refreshControl?.endRefreshing()
+				list.removeDelegate(delegate: self.friendListDelegate!)
+			}
+			if (status == .Failure) {
+				DialogUtil.error("vcard_sync_failed")
+			}
+		})
+	}
+	
+	
+	@objc func updateRemotelyProvisionnedDevices(refreshControl: UIRefreshControl) {
+		
+		if (Core.get().networkReachable != true) {
+			refreshControl.endRefreshing()
+			DialogUtil.error("no_network")
+			return
+		}
+		
+		if (Core.get().callsNb > 0 ) {
+			refreshControl.endRefreshing()
+			return
+		}
+		
+		if let remoteFlName = Core.get().config?.getString(section: "misc", key: "contacts-vcard-list", defaultString: nil),  let serverFriendList = Core.get().getFriendListByName(name:remoteFlName) {
+			serverFriendList.addDelegate(delegate: friendListDelegate!)
+			serverFriendList.synchronizeFriendsFromServer()
+		}
+	}
+	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		noDevices.isHidden = DeviceStore.it.devices.count > 0
@@ -110,8 +153,18 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 					self.devices.endUpdates()
 				}
 				i += 1
-			}			
+			}
 		}
+		
+		DeviceStore.it.devicesUpdated.observe { (_) in
+			self.devices.reloadData()
+			self.noDevices.isHidden = DeviceStore.it.devices.count > 0
+			if (Core.get().config?.getString(section: "misc", key: "contacts-vcard-list", defaultString: nil) != nil) {
+				self.setRefresher()
+			}
+			self.devices.refreshControl?.endRefreshing()
+		}
+		
 		if (UIDevice.ipad()) {
 			ipadLeftColumn.isHidden = DeviceStore.it.devices.count ==  0
 			self.model.selectedDevice.notifyValue()
@@ -128,7 +181,10 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 		}
 		
 		NavigationManager.it.mainView?.toolbarViewModel.rightButtonVisible.value = false
-
+		
+		if (Core.get().config?.getString(section: "misc", key: "contacts-vcard-list", defaultString: nil) != nil) {
+			setRefresher()
+		}
 	}
 	
 	
@@ -164,7 +220,7 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 	}
 	
 	func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-		return true
+		return  !DeviceStore.it.devices[indexPath.row].isRemotelyProvisionned
 	}
 	
 	func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

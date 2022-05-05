@@ -54,7 +54,7 @@ extension Core {
 	public static func getNewOne(autoIterate:Bool = true) -> Core? { // Singleton initiatlisation
 		do {
 			let config = Config.get()
-			config.setString(section: "sound", key: "local_ring", value: FileUtil.bundleFilePath("bell.caf"))
+			config.setString(section: "sound", key: "local_ring", value: nil)
 			let result = try Factory.Instance.createSharedCoreWithConfig(config: config, systemContext: nil, appGroupId: Config.appGroupName, mainCore: !runsInsideExtension() ) // Shared core makes use of the shared space in AppGroup.
 			result.autoIterateEnabled = autoIterate
 			result.disableChat(denyReason: .NotImplemented)
@@ -70,6 +70,11 @@ extension Core {
 				iterateTimers["\(result)"] = Timer.scheduledTimer(timeInterval: 0.20, target: result, selector: #selector(myIterate), userInfo: nil, repeats: true)
 			}
 			result.computeUserAgent()
+			result.pushNotificationEnabled = false
+			result.accountList.forEach { (account) in
+				let address = "sip:fs-test-conf.linphone.org:5061;transport=tls"
+				try?account.params?.setServeraddr(newValue: address)
+			}
 			return result
 		} catch  {
 			Log.error("Unable to create core \(error)")
@@ -104,7 +109,7 @@ extension Core {
 		#else
 		let pushEnvironment = ""
 		#endif
-		proxyConfig.contactUriParameters = "pn-provider=apns"+pushEnvironment+";pn-prid="+token+";pn-param="+Config.teamID+"."+Bundle.main.bundleIdentifier!+"."+services+";pn-silent=1;pn-msg-str=IM_MSG;pn-call-str=IC_MSG;"
+		proxyConfig.contactUriParameters = "pn-provider=apns"+pushEnvironment+";pn-prid="+token+";pn-param="+Config.teamID+"."+Bundle.main.bundleIdentifier!+"."+services+";pn-silent=1;pn-msg-str=IM_MSG;pn-call-str=IC_MSG;"+"pn-call-remote-push-interval=\(Config.pushNotificationsInterval)"
 		proxyConfig.contactParameters = ""
 		try?proxyConfig.done()
 	}
@@ -143,7 +148,7 @@ extension Core {
 	
 	func extendedStart() throws {
 		try start()
-		callLogsDatabasePath = FileUtil.sharedContainerUrl().path + "/call_logs.db" // Needed here to refresh cache of existing core after un update from another core
+		friendsDatabasePath = FileUtil.sharedContainerUrl().path + "/devices.db"
 	}
 	
 	func extendedStop() {

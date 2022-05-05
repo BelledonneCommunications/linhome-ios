@@ -59,6 +59,8 @@ extension Config {
 	static let defaultUsername =  Config.get().getString(section: "app", key: "user", defaultString: "")
 	static let defaultPass =  Config.get().getString(section: "app", key: "pass", defaultString: "")
 	
+	static let pushNotificationsInterval =  Config.get().getInt(section: "net", key: "pn-call-remote-push-interval", defaultValue: 3)
 
+	
 	
 }

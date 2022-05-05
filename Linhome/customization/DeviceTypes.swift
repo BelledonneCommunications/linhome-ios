@@ -59,4 +59,8 @@ class DeviceTypes {
 		return deviceTypesConfig?.getBool(section: typeKey, key: "hasvideo", defaultValue: true) ?? false
 	}
 	
+	func deviceTypeSupported(typeKey: String)-> Bool {
+		return deviceTypesConfig?.getString(section: typeKey, key: "textkey", defaultString:"-") != "-"
+	}
+	
 }

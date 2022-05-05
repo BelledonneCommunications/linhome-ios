@@ -1,21 +1,21 @@
 /*
-* Copyright (c) 2010-2020 Belledonne Communications SARL.
-*
-* This file is part of linhome
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
+ *
+ * This file is part of linhome
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 import UIKit
 import linphonesw
@@ -34,10 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	var notificationAction : String?
 	var hasBeenConnected : [String?] = []
 	
+	var appOpenedTime = Date()
+	
 	var coreState = MutableLiveData(linphonesw.GlobalState.Off)
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-				
+		
 		FirebaseApp.configure()
 		
 		UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
@@ -66,14 +68,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		window?.rootViewController = fromPush ? MainView() : Splash()
 		window?.makeKeyAndVisible()
 		
-		coreDelegate = CoreDelegateStub(onCallStateChanged : { (lc: linphonesw.Core, call: linphonesw.Call, cstate: linphonesw.Call.State, message: String) -> Void in
+		coreDelegate = CoreDelegateStub( onGlobalStateChanged: { (core: linphonesw.Core, state: linphonesw.GlobalState, message: String) -> Void in
+			self.coreState.value = state
+		},
+										 onCallStateChanged : { (lc: linphonesw.Core, call: linphonesw.Call, cstate: linphonesw.Call.State, message: String) -> Void in
 			
 			if (cstate == linphonesw.Call.State.End && UIApplication.shared.applicationState == .background) { // A call is terminated in background
 				DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
 					self.applicationWillResignActive(UIApplication.shared)
 				}
 			}
-						
+			
+			if (cstate == linphonesw.Call.State.End && call.callLog?.dir == .Incoming) {
+				if (self.appOpenedTime.timeIntervalSince1970 > Double((call.callLog?.startDate ?? 0))) {
+					UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+				}
+			}
+			
+			
 			if (cstate == linphonesw.Call.State.Error && call.callLog?.dir == Call.Dir.Outgoing) {
 				DispatchQueue.main.async {
 					DialogUtil.error("unable_to_call_device")
@@ -114,13 +126,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 					NavigationManager.it.navigateTo(childClass: CallOutgoingView.self, asRoot:false, argument:Pair(call, [Call.State.OutgoingRinging, Call.State.OutgoingProgress, Call.State.OutgoingInit, Call.State.OutgoingEarlyMedia]))
 				}
 			}
-		}, onGlobalStateChanged: { (core: linphonesw.Core, state: linphonesw.GlobalState, message: String) -> Void in
-			self.coreState.value = state
 		})
 		
 		requestMirophonePermission()
 		
-	
+		
 		return true
 	}
 	
@@ -135,16 +145,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 			} else {
 				DispatchQueue.main.async {
 					// Add the actions here as the user can take the decision to refuse/accept from the caller ID ( no need to wait to receive the call)
-						let accept = UNNotificationAction(identifier: "accept", title: Texts.get("call_button_accept"), options: [.foreground, .authenticationRequired])
-						let decline = UNNotificationAction(identifier: "decline", title: Texts.get("call_button_decline"), options: [.destructive])
-						let earlyMediaCategoryIdentifier = UNNotificationCategory(identifier: Config.earlymediaContentExtensionCagetoryIdentifier,
-																				  actions: [accept, decline],
-																				  intentIdentifiers: [],
-																				  options: .customDismissAction)
-						UNUserNotificationCenter.current().setNotificationCategories([earlyMediaCategoryIdentifier])
-						
+					let accept = UNNotificationAction(identifier: "accept", title: Texts.get("call_button_accept"), options: [.foreground, .authenticationRequired])
+					let decline = UNNotificationAction(identifier: "decline", title: Texts.get("call_button_decline"), options: [.destructive])
+					let earlyMediaCategoryIdentifier = UNNotificationCategory(identifier: Config.earlymediaContentExtensionCagetoryIdentifier,
+																			  actions: [accept, decline],
+																			  intentIdentifiers: [],
+																			  options: .customDismissAction)
+					UNUserNotificationCenter.current().setNotificationCategories([earlyMediaCategoryIdentifier])
+					
 					UIApplication.shared.registerForRemoteNotifications()
-					UNUserNotificationCenter.current().delegate = self 
+					UNUserNotificationCenter.current().delegate = self
 				}
 			}
 		}
@@ -163,7 +173,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	
 	func application(_ application: UIApplication,
 					 didRegisterForRemoteNotificationsWithDeviceToken
-		deviceToken: Data) {
+					 deviceToken: Data) {
 		Core.get().configurePushNotifications(deviceToken)
 	}
 	
@@ -174,7 +184,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	
 	func application(_ application: UIApplication,
 					 didFailToRegisterForRemoteNotificationsWithError
-		error: Error) {
+					 error: Error) {
 		Log.error("Failed regidstering to remote notifications \(error)")
 	}
 	
@@ -193,6 +203,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		Core.get().ensureRegistered()
 		Core.get().enterForeground()
 		NavigationManager.it.mainView?.tabbarViewModel.updateUnreadCount()
+		appOpenedTime = Date()
 	}
 	
 	func applicationWillResignActive(_ application: UIApplication) {
@@ -212,6 +223,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	
 	func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 		Log.info("willPresentnotification")
+		if #available(iOS 14.0, *) {
+			completionHandler([.sound,.list])
+		} else {
+			completionHandler(.sound)
+		}
 	}
 	
 	
@@ -228,7 +244,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 			Log.warn("No call ID found in notification or failed getting user detaults : \(response.actionIdentifier)")
 			return
 		}
-			
+		
 		if response.actionIdentifier == "accept" {
 			SVProgressHUD.show()
 			DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {

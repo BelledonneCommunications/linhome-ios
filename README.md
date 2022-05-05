@@ -102,3 +102,14 @@ If you don't have CocoaPods already, you can download and install it using :
   where <path to linphone-sdk-ios> is your build directory of the linphone-sdk project, containing the `linphone-sdk.podspec` file and a `linphone-sdk` ouptut directory comprising built frameworks and resources.
 
 - Then open linhome.xcworkspace with Xcode to build and run the app.
+
+# Device storage and remote provisionning : 
+
+- Devices are now stored in Linphone Friend’s VCards.
+- Apps have 2 friends list, one local for devices created locally in the app, one remote sent by the server
+- Devices created locally can be edited and removed as before
+- Devices received from the server cannot be edited not removed.
+- Values allowed for Account type are : device_audio_intercom|device_video_intercom|device_security_camera|device_internal_unit
+- Values allowed for actions are : action_open_door| action_open_gate | action_lightup | action_unlock
+
+

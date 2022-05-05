@@ -37,7 +37,7 @@ class CreateLinhomeAccountViewModel : CreatorAssistantViewModel {
 		super.init(defaultValuePath: CorePreferences.them.linhomeAccountDefaultValuesPath)
 		delegate = AccountCreatorDelegateStub(onCreateAccount:  { (creator:AccountCreator, status:AccountCreator.Status, response:String) -> Void in
 			if (status == AccountCreator.Status.AccountCreated) {
-				Account.it.linhomeAccountCreateProxyConfig(accountCreator: creator)
+				LinhomeAccount.it.linhomeAccountCreateProxyConfig(accountCreator: creator)
 			}
 			self.creationResult.value = status
 		})

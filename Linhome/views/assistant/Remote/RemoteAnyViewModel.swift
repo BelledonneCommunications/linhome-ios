@@ -50,10 +50,10 @@ class RemoteAnyViewModel: ViewModel {
 						return
 					}
 					if (status == ConfiguringState.Successful) {
-						if (Account.it.pushGateway() != nil) {
-							Account.it.linkProxiesWithPushGateway(pushReady: self.pushReady)
+						if (LinhomeAccount.it.pushGateway() != nil) {
+							LinhomeAccount.it.linkProxiesWithPushGateway(pushReady: self.pushReady)
 						} else {
-							Account.it.createPushGateway(pushReady: self.pushReady)
+							LinhomeAccount.it.createPushGateway(pushReady: self.pushReady)
 						}
 					}
 					self.configurationResult.value = status

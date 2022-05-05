@@ -117,7 +117,7 @@ class DeviceInfoView: MainViewContent, UITableViewDataSource, UITableViewDelegat
 		self.device = device
 		
 		NavigationManager.it.mainView!.right.prepare(iconName: "icons/edit",effectKey: "primary_color",tintColor: "color_c", textStyleKey: "toolbar_action", text: Texts.get("edit"))
-		NavigationManager.it.mainView?.toolbarViewModel.rightButtonVisible.value = true
+		NavigationManager.it.mainView?.toolbarViewModel.rightButtonVisible.value = !device.isRemotelyProvisionned
 		NavigationManager.it.mainView?.toolbarViewModel.leftButtonVisible.value = false
 		
 
