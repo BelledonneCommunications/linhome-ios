@@ -71,10 +71,6 @@ extension Core {
 			}
 			result.computeUserAgent()
 			result.pushNotificationEnabled = false
-			result.accountList.forEach { (account) in
-				let address = "sip:fs-test-conf.linphone.org:5061;transport=tls"
-				try?account.params?.setServeraddr(newValue: address)
-			}
 			return result
 		} catch  {
 			Log.error("Unable to create core \(error)")

@@ -12,5 +12,4 @@ usage_hint=0
 max_calls=1
 call_logs_search_limit=0
 
-[sip]
-verify_server_certs=0
+
