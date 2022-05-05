@@ -54,7 +54,7 @@ extension Core {
 	public static func getNewOne(autoIterate:Bool = true) -> Core? { // Singleton initiatlisation
 		do {
 			let config = Config.get()
-			config.setString(section: "sound", key: "local_ring", value: FileUtil.bundleFilePath("bell.caf"))
+			config.setString(section: "sound", key: "local_ring", value: nil)
 			let result = try Factory.Instance.createSharedCoreWithConfig(config: config, systemContext: nil, appGroupId: Config.appGroupName, mainCore: !runsInsideExtension() ) // Shared core makes use of the shared space in AppGroup.
 			result.autoIterateEnabled = autoIterate
 			result.disableChat(denyReason: .NotImplemented)
@@ -71,6 +71,10 @@ extension Core {
 			}
 			result.computeUserAgent()
 			result.pushNotificationEnabled = false
+			result.accountList.forEach { (account) in
+				let address = "sip:fs-test-conf.linphone.org:5061;transport=tls"
+				try?account.params?.setServeraddr(newValue: address)
+			}
 			return result
 		} catch  {
 			Log.error("Unable to create core \(error)")

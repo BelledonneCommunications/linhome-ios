@@ -223,6 +223,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	
 	func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 		Log.info("willPresentnotification")
+		if #available(iOS 14.0, *) {
+			completionHandler([.sound,.list])
+		} else {
+			completionHandler(.sound)
+		}
 	}
 	
 	

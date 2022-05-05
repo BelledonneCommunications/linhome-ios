@@ -61,15 +61,32 @@ class NotificationService: UNNotificationServiceExtension {
 			return
 		}
 		
+		if let aps = request.content.userInfo["aps"] as? [String: Any], let alert = aps["alert"] as? [String: Any], let locKey = alert["loc-key"] as? String, locKey == "Accepted elsewhere" {
+			bestAttemptContent?.title = Texts.get("notif_accepted_elsewhere_call_title")
+			contentHandler(bestAttemptContent!)
+			return
+		}
+		
+		if let aps = request.content.userInfo["aps"] as? [String: Any], let alert = aps["alert"] as? [String: Any], let locKey = alert["loc-key"] as? String, locKey == "Declined elsewhere" {
+			bestAttemptContent?.title = Texts.get("notif_declined_elsewhere_call_title")
+			contentHandler(bestAttemptContent!)
+			return
+		}
+		
+		
+		
+		
 		if let lastNotifFime = userDefaults.object(forKey: "notification_time_"+notifCallId) as? Date {
 			Log.info("[NotificationService] - subsequent push notification received for call Id \(notifCallId) last notif time was : \(lastNotifFime)")
 			bestAttemptContent?.body = Texts.get(userDefaults.bool(forKey: "has_video_"+notifCallId) ? "notif_incoming_call_video" : "notif_incoming_call_audio")
 			bestAttemptContent?.title = userDefaults.string(forKey: "notification_title_"+notifCallId) ?? ""
-			bestAttemptContent?.sound=UNNotificationSound.init(named: UNNotificationSoundName.init("bell.caf"))
-			bestAttemptContent?.categoryIdentifier = Config.earlymediaContentExtensionCagetoryIdentifier
-			if let core = Core.getNewOne(autoIterate: false)  {
-				bestAttemptContent?.badge = NSNumber(value: core.missedCount() + 1)
+			bestAttemptContent?.badge = NSNumber(value: userDefaults.integer(forKey: "notification_badge_"+notifCallId))
+			if #available(iOSApplicationExtension 15.2, *) {
+				bestAttemptContent?.sound=UNNotificationSound.ringtoneSoundNamed(UNNotificationSoundName.init("bell.caf"))
+			} else {
+				bestAttemptContent?.sound=UNNotificationSound.init(named: UNNotificationSoundName.init("bell.caf"))
 			}
+			bestAttemptContent?.categoryIdentifier = Config.earlymediaContentExtensionCagetoryIdentifier
 			if (lastNotifFime.timeIntervalSince1970 + Double(Config.pushNotificationsInterval) > Date().timeIntervalSince1970 ) {
 				let interval = UInt32(Double(Config.pushNotificationsInterval) - (Date().timeIntervalSince1970-lastNotifFime.timeIntervalSince1970))
 				Log.info("[NotificationService] subsequent notif, about to sleep \(interval)")
@@ -115,6 +132,7 @@ class NotificationService: UNNotificationServiceExtension {
 		
 		userDefaults.set(Date(), forKey: "lastpushtime")
 		if (userDefaults.bool(forKey: "appactive")) {
+			bestAttemptContent?.sound=UNNotificationSound.init(named: UNNotificationSoundName.init("bell.caf"))
 			Log.info("Application is active. Ignoring push notification.")
 			userDefaults.set(Date(), forKey: "notification_time_"+notifCallId)
 			contentHandler(bestAttemptContent!)
@@ -131,7 +149,7 @@ class NotificationService: UNNotificationServiceExtension {
 			return
 		}
 		core.disableVP8() // Two heavy to run in ServiceExtension
-		
+
 		core.addDelegate(delegate: coreDelegateStub!)
 		try?core.extendedStart()
 		
@@ -186,9 +204,14 @@ class NotificationService: UNNotificationServiceExtension {
 		
 		
 		call.extendedAcceptEarlyMedia(core:core)
-		bestAttemptContent.sound=UNNotificationSound.init(named: UNNotificationSoundName.init("bell.caf"))
+		if #available(iOSApplicationExtension 15.2, *) {
+			bestAttemptContent.sound=UNNotificationSound.ringtoneSoundNamed(UNNotificationSoundName.init("bell.caf"))
+		} else {
+			bestAttemptContent.sound=UNNotificationSound.init(named: UNNotificationSoundName.init("bell.caf"))
+		}
 		bestAttemptContent.categoryIdentifier = Config.earlymediaContentExtensionCagetoryIdentifier
 		bestAttemptContent.badge = NSNumber(value: core.missedCount() + 1)
+		userDefaults.set(bestAttemptContent.badge, forKey: "notification_badge_"+notifCallId)
 		Log.info("About to send the notification to contentHandler")
 		userDefaults.set(Date(), forKey: "notification_time_"+notifCallId)
 		contentHandler(bestAttemptContent)
