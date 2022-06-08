@@ -28,4 +28,7 @@
     <entry name="username_min_length" overwrite="true">1</entry>
     <entry name="username_regex" overwrite="true">^[a-z0-9+_.\-]*$</entry>
   </section>
+ <section name="misc">
+      <entry name="contacts-vcard-list" overwrite="true">https://subscribe.linhome.org/contacts/vcard</entry>
+  </section>
 </config>
