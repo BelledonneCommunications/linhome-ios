@@ -178,7 +178,7 @@ extension Core {
 
 	
 	func computeUserAgent() {
-		let deviceName: String =  "\(DeviceGuru().hardware())"
+		let deviceName: String =  "\(DeviceGuruImplementation().hardware)"
 		let appName: String = Bundle.main.appName()
 		let iosVersion = UIDevice.current.systemVersion
 		let userAgent = "\(appName) \(Bundle.main.desc())/\(deviceName) (\(iosVersion)) LinphoneSDK"
