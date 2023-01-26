@@ -1,6 +1,6 @@
 # PODFILE_PATH=../../../master-gitosis/linphone-sdk/ioslinhome/linphone-sdk.podspec pod install
 
-platform :ios, '12.4'
+platform :ios, '11.0'
 source "https://gitlab.linphone.org/BC/public/podspec.git"
 source "https://github.com/CocoaPods/Specs.git"
 
@@ -58,6 +58,8 @@ post_install do |installer|
 				config.build_settings['SWIFT_INSTALL_OBJC_HEADER'] = 'NO'
 			end
 		end
+		target.build_configurations.each do |config|
+      			config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+    		end	
 	end
 end
-
