@@ -67,4 +67,26 @@ class DialogUtil: NSObject {
 		rootVC().present(alertController, animated: true, completion: nil)
 	}
 	
+	static var toastQueue: [String] = []
+	
+	static func toast(textKey:String,oneArg:String? = nil, timeout:CGFloat = 1.5) {
+		let message = oneArg != nil ? Texts.get(textKey,oneArg: oneArg!) : Texts.get(textKey)
+		if (toastQueue.count > 0) {
+			toastQueue.append(message)
+			return
+		}
+		let rootVc = rootVC()
+		let alert = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
+		alert.popoverPresentationController?.sourceView = rootVc.view
+		rootVc.present(alert, animated: true)
+		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeout) {
+			alert.dismiss(animated: true)
+			if (toastQueue.count > 0) {
+				let message = toastQueue.first
+				toastQueue.remove(at: 0)
+				self.toast(textKey:textKey, oneArg: oneArg)
+			}
+		}
+	}
+	
 }
