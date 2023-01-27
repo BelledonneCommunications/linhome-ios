@@ -69,10 +69,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		window?.rootViewController = fromPush ? MainView() : Splash()
 		window?.makeKeyAndVisible()
 		
-		coreDelegate = CoreDelegateStub( onGlobalStateChanged: { (core: linphonesw.Core, state: linphonesw.GlobalState, message: String) -> Void in
-			self.coreState.value = state
+		coreDelegate = CoreDelegateStub(
+			onGlobalStateChanged: { (core: linphonesw.Core, state: linphonesw.GlobalState, message: String) -> Void in
+				self.coreState.value = state
 		},
-										 onCallStateChanged : { (lc: linphonesw.Core, call: linphonesw.Call, cstate: linphonesw.Call.State, message: String) -> Void in
+			onCallStateChanged : { (lc: linphonesw.Core, call: linphonesw.Call, cstate: linphonesw.Call.State, message: String) -> Void in
 			
 			if (cstate == linphonesw.Call.State.End && UIApplication.shared.applicationState == .background) { // A call is terminated in background
 				DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {

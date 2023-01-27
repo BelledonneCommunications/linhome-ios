@@ -33,7 +33,7 @@ class CallOutgoingView : GenericCallView {
 			make.top.equalTo(chunkTop!.view.snp.bottom).offset(100)
 		}
 		
-		let chunkVideoOrIcon = ChunkCallVideoOrIcon(viewModel: callViewModel!)
+		let chunkVideoOrIcon = ChunkCallVideoOrIcon(viewModel: callViewModel!, isIncomingView: false, reservedHeight: 0.0)
 		self.view.addSubview(chunkVideoOrIcon.view)
 		chunkVideoOrIcon.view.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview()

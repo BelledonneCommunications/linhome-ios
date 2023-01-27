@@ -27,10 +27,7 @@ class CallInProgressView : GenericCallView {
 	
 	var actionsButtonRow : UIStackView?
 	var durationLabel : UILabel?
-	let chunkVideoOrIconContraintMaker : (ConstraintMaker) -> Void = { (make) in // Center the Video or Icon with offset below for the actions buttons
-		make.centerY.equalToSuperview().offset(UIDevice.ipad() && UIScreen.isLandscape ? 0 : -50)
-		make.centerX.equalToSuperview()
-	}
+	
 	var chunkVideoOrIcon:ChunkCallVideoOrIcon?
 	var chunkNameAddress:ChunkNameAddress?
 	var controlButtonsRow : UIStackView?
@@ -38,8 +35,24 @@ class CallInProgressView : GenericCallView {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		let hasActions = callViewModel?.device?.actions?.count ?? 0 > 0
 		
-		chunkVideoOrIcon = ChunkCallVideoOrIcon(viewModel: callViewModel!, owningViewContraintMaker: chunkVideoOrIconContraintMaker)
+		let chunkVideoOrIconContraintMaker : (ConstraintMaker) -> Void = { (make) in
+			if (self.chunkNameAddress != nil) {
+				make.top.equalTo(self.chunkNameAddress!.view.snp.bottom).offset(10)
+			}
+			if (self.actionsButtonRow != nil) {
+				make.bottom.equalTo(self.actionsButtonRow!.snp.top).offset(-20)
+			} else if (self.controlButtonsRow != nil) {
+				make.bottom.equalTo(self.controlButtonsRow!.snp.top).offset(-20)
+				make.bottom.equalToSuperview().offset(hasActions && !UIDevice.ipad() ? 10 : 20)
+			}
+			
+			make.centerX.equalToSuperview()
+		}
+		
+		
+		chunkVideoOrIcon = ChunkCallVideoOrIcon(viewModel: callViewModel!,isIncomingView: false, reservedHeight: hasActions ? 400 : 300, owningViewContraintMaker: chunkVideoOrIconContraintMaker)
 		self.view.addSubview(chunkVideoOrIcon!.view)
 		chunkVideoOrIcon!.didMove(toParent: self)
 		self.addChild(chunkVideoOrIcon!)
@@ -50,7 +63,7 @@ class CallInProgressView : GenericCallView {
 		self.view.addSubview(chunkNameAddress!.view)
 		chunkNameAddress!.view.snp.makeConstraints { (make) in
 			make.left.right.equalToSuperview()
-			make.bottom.equalTo(chunkVideoOrIcon!.view.snp.top).offset(-27)
+			make.top.equalTo(chunkTop!.view.snp.bottom).offset(10)
 		}
 		
 		let fullScreenVideo = FullScreenVideo(viewModel: callViewModel!)
@@ -64,6 +77,12 @@ class CallInProgressView : GenericCallView {
 		self.view.addSubview(durationLabel!)
 		durationLabel!.snp.makeConstraints { (make) in
 			make.left.right.equalToSuperview()
+			if (self.actionsButtonRow != nil) {
+				make.bottom.equalTo(self.actionsButtonRow!.snp.top).offset(10)
+			} else if (self.controlButtonsRow != nil) {
+				make.bottom.equalTo(self.controlButtonsRow!.snp.top).offset(10)
+			}
+			
 			make.top.equalTo(chunkVideoOrIcon!.view.snp.bottom).offset(UIDevice.ipad() && !UIScreen.isLandscape ? 80 : 10)
 		}
 			
@@ -81,7 +100,6 @@ class CallInProgressView : GenericCallView {
 		
 		// Device actions button
 		
-		var hasActions = false
 		callViewModel?.device?.actions.map { actions in
 			if (actions.count > 0) {
 				actionsButtonRow = UIStackView()
@@ -96,13 +114,12 @@ class CallInProgressView : GenericCallView {
 						make.bottom.equalToSuperview().offset( -30)
 					} else {
 						make.centerX.equalToSuperview()
-						make.bottom.equalToSuperview().offset( UIDevice.is5SorSEGen1() ? -100 : -120)
+						make.bottom.equalToSuperview().offset( UIDevice.is5SorSEGen1() ? -100 : -100)
 					}
 				}
 				actions.forEach { action in
 					let _ = CallButton.addOne(targetVC: self, iconName: action.iconName()!, text: action.actionText(), effectKey: "incall_call_button", tintColor: "color_c",  outLine: true, action: {self.callViewModel?.performAction(action: action)}, toStackView:actionsButtonRow!)
 				}
-				hasActions = true
 			}
 		}
 		
@@ -116,10 +133,10 @@ class CallInProgressView : GenericCallView {
 		controlButtonsRow!.snp.makeConstraints { (make) in
 			if (UIDevice.ipad()) {
 				make.centerX.equalToSuperview().dividedBy(hasActions ? 2 : 1)
-				make.bottom.equalToSuperview().offset( -30)
+				make.bottom.equalToSuperview().offset( -20)
 			} else {
 				make.centerX.equalToSuperview()
-				make.bottom.equalToSuperview().offset(hasActions && !UIDevice.ipad() ? -10 : -30)
+				make.bottom.equalToSuperview().offset(hasActions && !UIDevice.ipad() ? -10 : -20)
 			}
 		}
 		
@@ -164,6 +181,13 @@ class CallInProgressView : GenericCallView {
 					it.forceVisible()
 				}
 			}
+			self.durationLabel?.isHidden = full == true
+		}
+		
+		callViewModel?.videoContent.readCurrentAndObserve { video in
+			if (video == true) {
+				self.callViewModel?.videoFullScreen.value = true
+			}
 		}
 		
 	}
@@ -179,7 +203,7 @@ class CallInProgressView : GenericCallView {
 					make.bottom.equalToSuperview().offset( -30)
 				} else {
 					make.centerX.equalToSuperview()
-					make.bottom.equalToSuperview().offset( -120)
+					make.bottom.equalToSuperview().offset( -100)
 				}
 			}
 			self.durationLabel!.snp.remakeConstraints { (make) in

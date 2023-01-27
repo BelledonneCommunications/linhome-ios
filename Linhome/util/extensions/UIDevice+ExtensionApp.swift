@@ -46,4 +46,12 @@ extension UIDevice {
 	static func is5SorSEGen1() -> Bool {
 		return UIScreen.main.nativeBounds.height == 1136
 	}
+	
+	static func notchHeight() -> CGFloat {
+		guard #available(iOS 11.0, *), let topPadding = UIApplication.shared.keyWindow?.safeAreaInsets.top, let sidePadding =  UIApplication.shared.keyWindow?.safeAreaInsets.left else {
+			return 0
+		}
+		return [.landscapeRight, .landscapeLeft].contains(UIDevice.current.orientation) ? sidePadding : topPadding
+	}
+	
 }

@@ -121,7 +121,6 @@
 		C64A4FCD2413574000149217 /* Core+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FB72413574000149217 /* Core+Extension.swift */; };
 		C64A4FD3241357A700149217 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FD2241357A600149217 /* FileUtil.swift */; };
 		C64E26F224BE4E4B00F6C3C7 /* FullScreenVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64E26F124BE4E4B00F6C3C7 /* FullScreenVideo.swift */; };
-		C64E26F424BEFEED00F6C3C7 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64E26F324BEFEED00F6C3C7 /* UIView+Extension.swift */; };
 		C64E8AB927F56A83002539D7 /* Vcard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64E8AB827F56A83002539D7 /* Vcard+Extension.swift */; };
 		C64E8ABA27F56DA9002539D7 /* Vcard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64E8AB827F56A83002539D7 /* Vcard+Extension.swift */; };
 		C64E8ABB27F56DAA002539D7 /* Vcard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64E8AB827F56A83002539D7 /* Vcard+Extension.swift */; };
@@ -412,7 +411,6 @@
 		C64A4FB72413574000149217 /* Core+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Core+Extension.swift"; sourceTree = "<group>"; };
 		C64A4FD2241357A600149217 /* FileUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
 		C64E26F124BE4E4B00F6C3C7 /* FullScreenVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenVideo.swift; sourceTree = "<group>"; };
-		C64E26F324BEFEED00F6C3C7 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		C64E8AB827F56A83002539D7 /* Vcard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Vcard+Extension.swift"; sourceTree = "<group>"; };
 		C656921B29829AE7001FEF7D /* LinhomeCXCallObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinhomeCXCallObserver.swift; sourceTree = "<group>"; };
 		C6571BA724193340008987AB /* linphonerc-factory-appex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "linphonerc-factory-appex"; sourceTree = "<group>"; };
@@ -773,7 +771,6 @@
 				C648FA5424A3602D00D9B92D /* UIApplication+Extension.swift */,
 				C646852524A5E9460045AA4D /* UISegmentedControl+Extension.swift */,
 				C6EC9FBA24AB4C7E00F08AA9 /* Array+Extension.swift */,
-				C64E26F324BEFEED00F6C3C7 /* UIView+Extension.swift */,
 				C6317BDC24C07A8E007CC1DA /* UIImage+Extension.swift */,
 				C641EC9D249B710D00672832 /* UIView+Extensions.swift */,
 				C648FA0824A1F70500D9B92D /* UILabel+Extension.swift */,
@@ -1411,7 +1408,6 @@
 				C648F7D624B8531600F3E346 /* ChunkCallTop.swift in Sources */,
 				C627099B24AF3489000E43D2 /* UIRoundRectButtonWithIcon.swift in Sources */,
 				C648FA0624A1F09500D9B92D /* LTextInput.swift in Sources */,
-				C64E26F424BEFEED00F6C3C7 /* UIView+Extension.swift in Sources */,
 				C6FB3829249CFDEE007A6E7B /* TapGestureRecognizer.swift in Sources */,
 				C648F9FE24A1DB3D00D9B92D /* AssistantRoot.swift in Sources */,
 				C6E7B47424E9681800D7D8E2 /* AccountViewModel.swift in Sources */,

@@ -29,7 +29,8 @@ extension Call {
 			let earlyMediaCallParams: CallParams = try core.createCallParams(call: self)
 			earlyMediaCallParams.recordFile = callLog!.getHistoryEvent().mediaFileName!
 			cameraEnabled = false
-			earlyMediaCallParams.audioEnabled = false
+			earlyMediaCallParams.audioEnabled = true
+			earlyMediaCallParams.videoDirection = .RecvOnly
 			try acceptEarlyMediaWithParams(params: earlyMediaCallParams)
 			startRecording()
 			sendVfuRequest()
@@ -48,6 +49,7 @@ extension Call {
 				Core.get().useRfc2833ForDtmf = device.actionsMethodType == "method_dtmf_rfc_4733"
 				Core.get().useInfoForDtmf = device.actionsMethodType == "method_dtmf_sip_info"
 			}
+			inCallParams.videoDirection = .RecvOnly
 			try acceptWithParams(params: inCallParams)
 			startRecording()
 		} catch {
