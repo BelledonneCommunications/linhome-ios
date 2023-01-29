@@ -58,7 +58,9 @@ class LinhomeAccount {
 		let transports = ["udp","tcp","tls"]
 		let _  = try!accountCreator.createProxyConfig()
 		let account = Core.get().accountList.first
-		account?.params?.expires = Int(expiration)!
+		if let expiration = Int(expiration) {
+			account?.params?.expires = expiration
+		}
 		if (!TextUtils.isEmpty(proxy) ) {
 			let address = (accountCreator.transport == .Tls ? "sips:" : "sip:") + proxy! + ";transport="+transports[accountCreator.transport.rawValue]
 			try?account?.params?.setServeraddr(newValue: address)

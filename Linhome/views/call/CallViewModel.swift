@@ -192,10 +192,12 @@ class CallViewModel : ViewModel {
 				if (d.actionsMethodType == "method_dtmf_sip_info") {
 					Core.get().useInfoForDtmf = true
 					try call.sendDtmfs(dtmfs: action.code!)
+					DialogUtil.toast(textKey: "action_sent", oneArg: action.actionText())
 				}
 				if (d.actionsMethodType == "method_dtmf_rfc_4733") {
 					Core.get().useRfc2833ForDtmf = true
 					try call.sendDtmfs(dtmfs: action.code!)
+					DialogUtil.toast(textKey: "action_sent", oneArg: action.actionText())
 				}
 				if (d.actionsMethodType == "method_sip_message")  {
 					let params = try Core.get().createDefaultChatRoomParams()
@@ -207,6 +209,7 @@ class CallViewModel : ViewModel {
 					}
 					let message = try chatRoom?.createMessageFromUtf8(message: action.code!)
 					message?.send()
+					DialogUtil.toast(textKey: "action_sent", oneArg: action.actionText())
 				}
 			}
 		} catch {
