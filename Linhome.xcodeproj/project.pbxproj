@@ -1145,7 +1145,7 @@
 				};
 			};
 			buildConfigurationList = C676AD6F24040F6C0048C504 /* Build configuration list for PBXProject "Linhome" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
