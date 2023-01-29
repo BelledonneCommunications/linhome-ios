@@ -1,21 +1,21 @@
 /*
-* Copyright (c) 2010-2020 Belledonne Communications SARL.
-*
-* This file is part of linhome
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
+ *
+ * This file is part of linhome
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 
 
@@ -100,18 +100,18 @@ extension Core {
 		proxyConfig.edit()
 		let services = "remote"
 		let token = pushToken+":"+services
-		#if DEBUG
+#if DEBUG
 		let pushEnvironment = ".dev"
-		#else
+#else
 		let pushEnvironment = ""
-		#endif
+#endif
 		proxyConfig.contactUriParameters = "pn-provider=apns"+pushEnvironment+";pn-prid="+token+";pn-param="+Config.teamID+"."+Bundle.main.bundleIdentifier!+"."+services+";pn-silent=1;pn-msg-str=IM_MSG;pn-call-str=IC_MSG;"+"pn-call-remote-push-interval=\(Config.pushNotificationsInterval)"
 		proxyConfig.contactParameters = ""
 		try?proxyConfig.done()
 	}
 	
 	
-	public static func runsInsideExtension() -> Bool { // Tells wether it is run inside app extension or the main app. 
+	public static func runsInsideExtension() -> Bool { // Tells wether it is run inside app extension or the main app.
 		let bundleUrl: URL = Bundle.main.bundleURL
 		let bundlePathExtension: String = bundleUrl.pathExtension
 		return bundlePathExtension == "appex"
@@ -137,7 +137,7 @@ extension Core {
 	
 	
 	func workAroundFindCallLogFromCallId(callId: String) -> CallLog? { // Work around as Core.get.
-		// findCallLogFromCallId(callId: callId) // KO https://bugs.linphone.org/view.php?id=7765
+																																		 // findCallLogFromCallId(callId: callId) // KO https://bugs.linphone.org/view.php?id=7765
 		return callLogs.filter {$0.callId == callId}[0] // OK
 	}
 	
@@ -158,7 +158,14 @@ extension Core {
 	}
 	
 	
+	
 	func setDefaultCodecs () {
+		audioPayloadTypes.forEach {
+			if (!CorePreferences.availableAudioCodecs.contains($0.mimeType.lowercased())) {
+				let _ = $0.enable(enabled: false)
+			}
+		}
+		
 		let userDefaults = UserDefaults(suiteName: Config.appGroupName)!
 		
 		if (userDefaults.bool(forKey: "default_codec_set")) {
@@ -175,7 +182,7 @@ extension Core {
 	}
 	
 	//User-Agent: Linhome/14.5.1 (iphone_x) LinphoneSDK/4.5.0
-
+	
 	
 	func computeUserAgent() {
 		let deviceName: String =  "\(DeviceGuruImplementation().hardware)"
@@ -187,6 +194,6 @@ extension Core {
 	}
 	
 	//User-Agent: Linhome (1.1 (2) / 14.5.1 (iphone_x) LinphoneSDK/4.5.0
-
+	
 }
 

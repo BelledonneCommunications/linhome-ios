@@ -60,7 +60,9 @@ class SettingsViewModel : ViewModel {
 		showLatestSnapshot.observe { (enable) in
 			CorePreferences.them.showLatestSnapshot = enable!
 		}
-		audioCodecs = initCodecsList(payloads: Core.get().audioPayloadTypes, showRate: true)
+		audioCodecs = initCodecsList(payloads: Core.get().audioPayloadTypes.filter{
+			CorePreferences.availableAudioCodecs.contains($0.mimeType.lowercased())
+		}, showRate: true)
 		videCodecs = initCodecsList(payloads: Core.get().videoPayloadTypes, showRate: false)
 		delegate = CoreDelegateStub(onLogCollectionUploadStateChanged: { (lc, state, url) in
 			self.logUploadResult.value = Pair(state, url)
