@@ -122,7 +122,7 @@ class NotificationService: UNNotificationServiceExtension {
 			if (cstate == linphonesw.Call.State.End) {
 				self.waitForACall = false
 				self.finishedHere = true
-				if (call.isRecording) {
+				if (call.params?.isRecording == true) {
 					call.stopRecording()
 					HistoryEventStore.it.sync()
 				}
@@ -228,7 +228,7 @@ class NotificationService: UNNotificationServiceExtension {
 			i+=1
 		}
 		Log.info("Finished waiting - stopping core, stopping recording and declining with IO error and release ownership")
-		if (call.isRecording) {
+		if (call.params?.isRecording == true) {
 			call.stopRecording()
 			HistoryEventStore.it.sync()
 		}

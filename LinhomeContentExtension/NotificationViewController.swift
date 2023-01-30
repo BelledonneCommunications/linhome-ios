@@ -155,7 +155,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
 	func end() {
 		core?.removeDelegate(delegate: coreDelegateStub!)
 		call.map { it in
-			if (it.isRecording) {
+			if (it.params?.isRecording == true) {
 				it.stopRecording()
 				HistoryEventStore.it.sync()
 			}

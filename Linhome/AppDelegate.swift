@@ -178,14 +178,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 			}
 		}
 	}
-	
-	
-	func application(_ application: UIApplication,
-					 didRegisterForRemoteNotificationsWithDeviceToken
-					 deviceToken: Data) {
-		Core.get().configurePushNotifications(deviceToken)
-	}
-	
+		
 	func applicationWillTerminate(_ application: UIApplication) {
 		Core.get().stop()
 		Call.releaseOwnerShip()
