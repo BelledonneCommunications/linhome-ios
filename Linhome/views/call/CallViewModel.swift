@@ -67,6 +67,9 @@ class CallViewModel : ViewModel {
 				}
 			},
 			onNextVideoFrameDecoded : { (call: linphonesw.Call) -> Void in
+				if let recordingFile = call.params?.recordFile, let mimeType = call.currentParams?.usedVideoPayloadType?.mimeType {
+					Core.get().config?.setString(section: "recording_formats",key: recordingFile,value: mimeType)
+				}
 				self.videoContent.value = true
 				if let event = call.callLog?.getHistoryEvent() {
 					if (!event.hasVideo) {

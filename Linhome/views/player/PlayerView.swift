@@ -17,8 +17,6 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-
 import UIKit
 import Foundation
 import linphonesw
@@ -58,18 +56,18 @@ class PlayerView : ViewWithModel {
 		
 		// Close button
 		
-		let close = UIButton(frame: CGRect(x: 0,y: 0,width: 20,height: 20))
+		let close = UIButton(frame: CGRect(x: 0,y: 0,width: 40,height: 40))
+		close.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 		close.prepare(iconName: "icons/cancel", tintColor: "color_c")
 		self.view.addSubview(close)
 		close.snp.makeConstraints { (make) in
-			make.right.equalToSuperview().offset(-40)
-			make.top.equalToSuperview().offset(40)
+			make.right.equalToSuperview().offset(-20)
+			make.top.equalToSuperview().offset(20+UIDevice.notchHeight())
 		}
 		close.onClick {
 			close.alpha = 0.3
 			NavigationManager.it.navigateUp()
 		}
-		
 		
 		// Controls
 		
@@ -84,7 +82,6 @@ class PlayerView : ViewWithModel {
 		}
 		controls.didMove(toParent: self)
 		
-				
 		// Video/Audio view
 		
 		if (event.hasVideo) {
@@ -99,6 +96,8 @@ class PlayerView : ViewWithModel {
 				make.width.equalTo(videoPreviewWidth)
 				make.height.equalTo(videoPreviewWidth / videoAspectRatio)
 			}
+			videoView.layer.cornerRadius = CGFloat(Customisation.it.themeConfig.getFloat(section: "arbitrary-values", key: "video_view_corner_radius", defaultValue: 20.0))
+			videoView.clipsToBounds = true
 		} else {
 			let iconSize = UIScreen.main.bounds.size.width * iconPercentageOfScreenWidth
 			let audio = UIImageView(frame: CGRect(x: 0,y: 0,width: iconSize ,height: iconSize))
@@ -108,7 +107,6 @@ class PlayerView : ViewWithModel {
 				make.center.equalToSuperview()
 				make.width.height.equalTo(iconSize)
 			}
-			
 		}
 	}
 	
@@ -136,12 +134,10 @@ class PlayerView : ViewWithModel {
 		return speakerCard != nil ? speakerCard : earpieceCard
 	}
 	
-	
 	override func viewWillDisappear(_ animated: Bool) {
 		playerViewModel?.pausePlay()
 		playerViewModel?.end()
 		super.viewWillDisappear(animated)
 	}
-	
 	
 }
