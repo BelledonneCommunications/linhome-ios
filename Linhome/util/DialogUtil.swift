@@ -56,10 +56,10 @@ class DialogUtil: NSObject {
 		rootVC().present(alert, animated: true, completion: nil)
 	}
 	
-	class func confirm(titleTextKey:String? = nil, messageTextKey:String, oneArg:String? = nil, confirmAction:@escaping ()->Void, cancelAction:( ()->Void)? = nil, confirmTextKey:String = "confirm") {
+	class func confirm(titleTextKey:String? = nil, messageTextKey:String, oneArg:String? = nil, confirmAction:@escaping ()->Void, cancelAction:( ()->Void)? = nil, confirmTextKey:String = "confirm", cancelTextKey:String = "cancel") {
 		let alertController = UIAlertController(title: titleTextKey != nil ? Texts.get(titleTextKey!) : nil, message: oneArg != nil ? Texts.get(messageTextKey, oneArg: oneArg!) : Texts.get(messageTextKey), preferredStyle: .alert)
 		alertController.addAction(UIAlertAction(title: Texts.get(confirmTextKey), style: .default, handler: {(alert: UIAlertAction!) in confirmAction()}))
-		alertController.addAction(UIAlertAction(title: Texts.get("cancel"), style: .cancel, handler: {(alert: UIAlertAction!) in
+		alertController.addAction(UIAlertAction(title: Texts.get(cancelTextKey), style: .cancel, handler: {(alert: UIAlertAction!) in
 			if (cancelAction != nil) {
 				cancelAction!()
 			}

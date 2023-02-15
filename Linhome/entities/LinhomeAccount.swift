@@ -32,6 +32,7 @@ class LinhomeAccount {
 	var xmlRpcRequestDelegateStub : XmlRpcRequestDelegateStub? = nil
 	
 	private var creatorDelegate : AccountCreatorDelegateStub? = nil
+	private var coreDelegate : CoreDelegateStub? = nil
 	
 	
 	func configured() -> Bool {
@@ -60,7 +61,8 @@ class LinhomeAccount {
 		accountCreator: AccountCreator,
 		proxy: String?,
 		expiration: String,
-		pushReady: MutableLiveData<Bool>
+		pushReady: MutableLiveData<Bool>,
+		sipRegistered: MutableLiveData<Bool>
 	) {
 		let transports = ["udp","tcp","tls"]
 		let _  = try!accountCreator.createProxyConfig()
@@ -76,11 +78,26 @@ class LinhomeAccount {
 			}
 			account?.params = clonedAccountParams
 		}
-		if (pushGateway() != nil) {
-			linkProxiesWithPushGateway(pushReady: pushReady)
-		} else {
-			createPushGateway(pushReady: pushReady)
-		}
+		
+		coreDelegate =  CoreDelegateStub(
+			onAccountRegistrationStateChanged : { (core: Core, account: Account, state: RegistrationState, message: String) -> Void in
+				if (state == .Ok) {
+					core.removeDelegate(delegate: self.coreDelegate!)
+					sipRegistered.value = true
+					if (self.pushGateway() != nil) {
+						self.linkProxiesWithPushGateway(pushReady: pushReady)
+					} else {
+						self.createPushGateway(pushReady: pushReady)
+					}
+				}
+				if (state == .Failed) {
+					core.removeDelegate(delegate: self.coreDelegate!)
+					sipRegistered.value = false
+				}
+			}
+		)
+		Core.get().addDelegate(delegate: coreDelegate!)
+		account?.refreshRegister()
 	}
 	
 	func pushGateway() -> Account? {
@@ -149,6 +166,12 @@ class LinhomeAccount {
 				clonedParams.pushNotificationAllowed = false
 				it.params = clonedParams
 			}
+			Core.get().removeAccount(account: it)
+		}
+	}
+	
+	func delete() {
+		Core.get().accountList.forEach { it in
 			Core.get().removeAccount(account: it)
 		}
 	}
