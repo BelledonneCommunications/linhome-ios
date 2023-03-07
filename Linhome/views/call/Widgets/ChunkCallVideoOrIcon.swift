@@ -96,6 +96,8 @@ class ChunkCallVideoOrIcon: UIViewController {
 			videoViewRotated!.frame = CGRect(x: 0,y: 0,width: videoRotatedPreviewWidth  ,height: videoRotatedPreviewWidth / videoAspectRatio)
 			self.view.addSubview(videoViewRotated!)
 			videoViewRotated?.isHidden = true
+			videoViewRotated?.layer.cornerRadius = CGFloat(Customisation.it.themeConfig.getFloat(section: "arbitrary-values", key: "video_view_corner_radius", defaultValue: 20.0))
+			videoViewRotated?.clipsToBounds = true
 		}
 		
 		fullSizeVideoButton = UIButton(frame: CGRect(x: 0,y: 0,width: 50,height: 50))
@@ -164,6 +166,7 @@ class ChunkCallVideoOrIcon: UIViewController {
 	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 		super.viewWillTransition(to: size, with: coordinator)
 		if (UIDevice.ipad()) {
+			return
 			rotated = !rotated
 			callViewModel.videoContent.notifyValue()
 			coordinator.animate(alongsideTransition: { context in

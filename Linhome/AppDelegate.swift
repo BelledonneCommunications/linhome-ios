@@ -181,22 +181,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		
 	func applicationWillTerminate(_ application: UIApplication) {
 		Core.get().stop()
-		Call.releaseOwnerShip()
 	}
 	
 	func application(_ application: UIApplication,
 					 didFailToRegisterForRemoteNotificationsWithError
 					 error: Error) {
 		Log.error("Failed regidstering to remote notifications \(error)")
+		Core.get().didRegisterForRemotePush(deviceToken: nil)
 	}
+	
+	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+		DispatchQueue.main.async() {
+			Core.get().configurePushNotifications(deviceToken)
+		}
+	}
+	
+	//-		proxyConfig.contactUriParameters = "pn-provider=apns"+pushEnvironment+";pn-prid="+token+";pn-param="+Config.teamID+"."+Bundle.main.bundleIdentifier!+"."+services+";pn-silent=1;pn-msg-str=IM_MSG;pn-call-str=IC_MSG;"+"pn-call-remote-push-interval=\(Config.pushNotificationsInterval)"
+
 	
 	func applicationDidBecomeActive(_ application: UIApplication) {
 		HistoryEventStore.refresh()
 		if let userDefaults = UserDefaults(suiteName: Config.appGroupName) {
 			userDefaults.set(true, forKey: "appactive")
-		}
-		if (Core.get().callsNb == 0) {
-			Call.requestAndWaitForOwnerShip()
 		}
 		try?Config.get().sync()
 		registerForPushNotifications()
@@ -216,7 +222,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		Core.get().enterBackground()
 		if (Core.get().callsNb == 0) {
 			Core.get().stop()
-			Call.releaseOwnerShip()
 			Core.get().removeDelegate(delegate: self.coreDelegate!)
 		}
 	}
@@ -234,7 +239,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	
 	
 	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-		Log.info("didReceiveRemoteNotification")
+		Log.info("didReceiveRemoteNotification \(userInfo)")
+		Core.get().accountList.forEach {
+			$0.refreshRegister()
+		}
 	}
 	
 	// Actions on the notification here. If the user press too quick on the actions it comes directly here.

@@ -70,7 +70,7 @@ extension Core {
 				iterateTimers["\(core)"] = Timer.scheduledTimer(timeInterval: 0.20, target: core, selector: #selector(myIterate), userInfo: nil, repeats: true)
 			}
 			core.computeUserAgent()
-			core.pushNotificationEnabled = true
+			core.pushNotificationEnabled = false // Handled in app (cf Account+Extension.swift)
 			core.callkitEnabled = false
 			return core
 		} catch  {
@@ -83,7 +83,7 @@ extension Core {
 		self.iterate()
 	}
 	
-		
+	
 	public static func runsInsideExtension() -> Bool { // Tells wether it is run inside app extension or the main app.
 		let bundleUrl: URL = Bundle.main.bundleURL
 		let bundlePathExtension: String = bundleUrl.pathExtension
@@ -133,6 +133,10 @@ extension Core {
 	
 	
 	func setDefaultCodecs () {
+		
+		audioPayloadTypes.forEach {
+			Log.info("Payload Type : \($0.mimeType)")
+		}
 		audioPayloadTypes.forEach {
 			if (!CorePreferences.availableAudioCodecs.contains($0.mimeType.lowercased())) {
 				let _ = $0.enable(enabled: false)
@@ -167,6 +171,14 @@ extension Core {
 	}
 	
 	//User-Agent: Linhome (1.1 (2) / 14.5.1 (iphone_x) LinphoneSDK/4.5.0
+	
+	public func configurePushNotifications(_ deviceToken:Data) { // Should be called by the app when a push token is made abvailable. It adds it to the default proxy config.
+		Core.pushToken = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+		Log.info("Push token received from device:"+Core.pushToken!)
+		Core.get().accountList.forEach { account in
+			account.addPushToken()
+		}
+	}
 	
 }
 

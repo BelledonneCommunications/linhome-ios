@@ -54,7 +54,6 @@ extension Config {
 	static let earlymediaContentExtensionCagetoryIdentifier = Config.get().getString(section: "app", key: "extension_category", defaultString: "")
 	
 	// Default values in app
-	static let domain = Config.get().getString(section: "app", key: "domain", defaultString: "")
 	static let serveraddress =  Config.get().getString(section: "app", key: "server", defaultString: "")
 	static let defaultUsername =  Config.get().getString(section: "app", key: "user", defaultString: "")
 	static let defaultPass =  Config.get().getString(section: "app", key: "pass", defaultString: "")

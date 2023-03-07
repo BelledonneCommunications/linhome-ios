@@ -139,11 +139,11 @@ class NotificationService: UNNotificationServiceExtension {
 			return
 		}
 		
-		Call.takeOwnerShip()
+		Call.takeOwnerShip(notifCallId)
 		
 		guard let core = Core.getNewOne(autoIterate: false) else {
 			Log.error("unable to create a executor core.")
-			Call.releaseOwnerShip()
+			Call.releaseOwnerShip(notifCallId)
 			userDefaults.set(Date(), forKey: "notification_time_"+notifCallId)
 			contentHandler(bestAttemptContent!)
 			return
@@ -164,13 +164,13 @@ class NotificationService: UNNotificationServiceExtension {
 		guard let bestAttemptContent = self.bestAttemptContent else {
 			Log.info("Best attempt comptent is null - stopping")
 			core.stop()
-			Call.releaseOwnerShip()
+			Call.releaseOwnerShip(notifCallId)
 			return
 		}
 		guard let call = self.candidateCall else {
 			Log.info("Candidate call is null stopping")
 			bestAttemptContent.title = Texts.get("notif_missed_call_title")
-			Call.releaseOwnerShip()
+			Call.releaseOwnerShip(notifCallId)
 			userDefaults.set(Date(), forKey: "notification_time_"+notifCallId)
 			contentHandler(bestAttemptContent)
 			core.stop()
@@ -219,8 +219,8 @@ class NotificationService: UNNotificationServiceExtension {
 		
 		// Wait for the call to be picked up elsewhere (content extension or app) or terminate or extension time out
 		while (i < extensionCutoffTimeSec*50 &&
-				Call.hasOwnerShip() &&
-				!Call.ownerShipRequessted() &&
+				Call.hasOwnerShip(notifCallId) &&
+				!Call.ownerShipRequessted(notifCallId) &&
 			   !self.finishedHere
 		) {
 			core.iterate()
@@ -236,7 +236,7 @@ class NotificationService: UNNotificationServiceExtension {
 		call.removeDelegate(delegate: callDelegate!)
 
 		try?call.decline(reason: .IOError)
-		Call.releaseOwnerShip()
+		Call.releaseOwnerShip(notifCallId)
 		core.stop()
 		
 	}

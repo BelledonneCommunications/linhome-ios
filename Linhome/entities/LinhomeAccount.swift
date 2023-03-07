@@ -46,6 +46,7 @@ class LinhomeAccount {
 	func linhomeAccountCreateProxyConfig(accountCreator: AccountCreator) {
 		let _ = try!accountCreator.createProxyConfig() // Account creator does not support yet Account creation (createAccount creates in on server). Create proxy config will create the local account. 30.1.2023
 		Core.get().accountList.first.map { account in
+			account.addPushToken()
 			account.findAuthInfo().map { authInfo in
 				authInfo.clone().map { clonedAuthInfo in
 					Core.get().removeAuthInfo(info: authInfo)
@@ -60,7 +61,7 @@ class LinhomeAccount {
 	func sipAccountLogin(
 		accountCreator: AccountCreator,
 		proxy: String?,
-		expiration: String,
+		expiration: Int,
 		pushReady: MutableLiveData<Bool>,
 		sipRegistered: MutableLiveData<Bool>
 	) {
@@ -68,9 +69,7 @@ class LinhomeAccount {
 		let _  = try!accountCreator.createProxyConfig()
 		let account = Core.get().accountList.first
 		account?.params?.clone().map {clonedAccountParams in
-			if let expiration = Int(expiration) {
-				clonedAccountParams.expires = expiration
-			}
+			clonedAccountParams.expires = expiration
 			if (!TextUtils.isEmpty(proxy) ) {
 				if let address = try?Factory.Instance.createAddress(addr: (accountCreator.transport == .Tls ? "sips:" : "sip:") + proxy! + ";transport="+transports[accountCreator.transport.rawValue]) {
 					try?clonedAccountParams.setRoutesaddresses(newValue: [address])
@@ -115,12 +114,11 @@ class LinhomeAccount {
 					params.idkey = LinhomeAccount.PUSH_GW_ID_KEY
 					params.registerEnabled = true
 					params.publishEnabled = false
-					params.expires = 31536000
 					if let address = try?Factory.Instance.createAddress(addr: "sips:\(responseValues[1]);transport=tls") {
 						try?params.setRoutesaddresses(newValue:[address])
 					}
 					params.remotePushNotificationAllowed = true
-					params.pushNotificationAllowed = true // No voip push
+					params.pushNotificationAllowed = false // No voip push
 					if let address =  try?Factory.Instance.createAddress(addr: "sip:\(responseValues[0])@\(responseValues[1])") {
 						try?params.setIdentityaddress(newValue: address)
 					}
@@ -133,6 +131,7 @@ class LinhomeAccount {
 						Log.error("Unable to create push gateway proxy config")
 						return
 					}
+					pushGw.addPushToken()
 					try?Core.get().addAccount(account: pushGw)
 					self.linkProxiesWithPushGateway(pushReady: pushReady)
 				}
@@ -153,6 +152,11 @@ class LinhomeAccount {
 			Core.get().accountList.forEach { it in
 				if (it.params?.idkey != LinhomeAccount.PUSH_GW_ID_KEY) {
 					it.dependency = pgw
+					if let clonedParams = pgw.params?.clone(), let expiration = it.params?.expires  {
+						clonedParams.expires = expiration
+						pgw.params = clonedParams
+						pgw.refreshRegister()
+					}
 				}
 			}
 		}
@@ -164,6 +168,7 @@ class LinhomeAccount {
 			it.params?.clone().map { clonedParams in
 				clonedParams.expires = 0
 				clonedParams.pushNotificationAllowed = false
+				clonedParams.remotePushNotificationAllowed = false
 				it.params = clonedParams
 			}
 			Core.get().removeAccount(account: it)
@@ -175,7 +180,7 @@ class LinhomeAccount {
 			Core.get().removeAccount(account: it)
 		}
 	}
-	
+		
 }
 
 

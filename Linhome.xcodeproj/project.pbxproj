@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -193,13 +193,16 @@
 		C6C2BD872523D2400035857B /* HistoryEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C2BD862523D2400035857B /* HistoryEventsViewModel.swift */; };
 		C6C2BD8F2523DA7B0035857B /* HistoryEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C2BD8E2523DA7B0035857B /* HistoryEventViewModel.swift */; };
 		C6DA26A2240FA94400CDF3D7 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA26A1240FA94400CDF3D7 /* NotificationService.swift */; };
-		C6DA26A6240FA94400CDF3D7 /* LinhomeServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C6DA269F240FA94400CDF3D7 /* LinhomeServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C6DA26A6240FA94400CDF3D7 /* LinhomeServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C6DA269F240FA94400CDF3D7 /* LinhomeServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C6DBA148250FB81A00C2CFBD /* RegistrationState+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBA147250FB81A00C2CFBD /* RegistrationState+Extension.swift */; };
 		C6DBA14F25100B8300C2CFBD /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBA14E25100B8300C2CFBD /* UIScreen+Extension.swift */; };
 		C6DBA15125101C6E00C2CFBD /* DevicesView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6DBA15025101C6E00C2CFBD /* DevicesView~ipad.xib */; };
 		C6DBA153251091A100C2CFBD /* DeviceCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6DBA152251091A100C2CFBD /* DeviceCell~ipad.xib */; };
 		C6DC0C2227A03BB3008F950B /* ActionsMethodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9FB224AB3A9000F08AA9 /* ActionsMethodTypes.swift */; };
 		C6DC0C2327A03BB4008F950B /* ActionsMethodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9FB224AB3A9000F08AA9 /* ActionsMethodTypes.swift */; };
+		C6E24C7E299D13FF00304F6E /* Account+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E24C7D299D13FF00304F6E /* Account+Extension.swift */; };
+		C6E24C7F299D17AB00304F6E /* Account+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E24C7D299D13FF00304F6E /* Account+Extension.swift */; };
+		C6E24C80299D17AC00304F6E /* Account+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E24C7D299D13FF00304F6E /* Account+Extension.swift */; };
 		C6E7B46124E6C62200D7D8E2 /* PlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7B45F24E6C62200D7D8E2 /* PlayerControls.swift */; };
 		C6E7B46224E6C62200D7D8E2 /* PlayerControls.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E7B46024E6C62200D7D8E2 /* PlayerControls.xib */; };
 		C6E7B46424E6EBD700D7D8E2 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7B46324E6EBD600D7D8E2 /* PlayerView.swift */; };
@@ -245,7 +248,7 @@
 		C6EC9FE524AC5F1E00F08AA9 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9FE224AC5F1D00F08AA9 /* HistoryView.swift */; };
 		C6EC9FEA24AC8A4000F08AA9 /* LSpinner.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6EC9FE824AC8A3F00F08AA9 /* LSpinner.xib */; };
 		C6EC9FEB24AC8A4000F08AA9 /* LSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9FE924AC8A4000F08AA9 /* LSpinner.swift */; };
-		C6ECA099240C7BCE0033EF78 /* LinhomeContentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C62D3DED24067A1800328486 /* LinhomeContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C6ECA099240C7BCE0033EF78 /* LinhomeContentExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C62D3DED24067A1800328486 /* LinhomeContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C6EDB7322513B0B600690F07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6EDB7312513B0B500690F07 /* GoogleService-Info.plist */; };
 		C6EDB7342513BE5700690F07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6EDB7312513B0B500690F07 /* GoogleService-Info.plist */; };
 		C6EDB7352513BE5700690F07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6EDB7312513B0B500690F07 /* GoogleService-Info.plist */; };
@@ -276,16 +279,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C6ECA09C240C7BCE0033EF78 /* Embed App Extensions */ = {
+		C6ECA09C240C7BCE0033EF78 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C6DA26A6240FA94400CDF3D7 /* LinhomeServiceExtension.appex in Embed App Extensions */,
-				C6ECA099240C7BCE0033EF78 /* LinhomeContentExtension.appex in Embed App Extensions */,
+				C6DA26A6240FA94400CDF3D7 /* LinhomeServiceExtension.appex in Embed Foundation Extensions */,
+				C6ECA099240C7BCE0033EF78 /* LinhomeContentExtension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -441,6 +444,7 @@
 		C6DBA14E25100B8300C2CFBD /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
 		C6DBA15025101C6E00C2CFBD /* DevicesView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DevicesView~ipad.xib"; sourceTree = "<group>"; };
 		C6DBA152251091A100C2CFBD /* DeviceCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DeviceCell~ipad.xib"; sourceTree = "<group>"; };
+		C6E24C7D299D13FF00304F6E /* Account+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+Extension.swift"; sourceTree = "<group>"; };
 		C6E7B45F24E6C62200D7D8E2 /* PlayerControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControls.swift; sourceTree = "<group>"; };
 		C6E7B46024E6C62200D7D8E2 /* PlayerControls.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerControls.xib; sourceTree = "<group>"; };
 		C6E7B46324E6EBD600D7D8E2 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -844,6 +848,7 @@
 				C648FA3924A2328E00D9B92D /* CorePreferences.swift */,
 				C648FA4024A2400900D9B92D /* AccountCreator+Extension.swift */,
 				C6DBA147250FB81A00C2CFBD /* RegistrationState+Extension.swift */,
+				C6E24C7D299D13FF00304F6E /* Account+Extension.swift */,
 			);
 			path = linphonecore;
 			sourceTree = "<group>";
@@ -1074,7 +1079,7 @@
 				C676AD7024040F6C0048C504 /* Sources */,
 				C676AD7124040F6C0048C504 /* Frameworks */,
 				C676AD7224040F6C0048C504 /* Resources */,
-				C6ECA09C240C7BCE0033EF78 /* Embed App Extensions */,
+				C6ECA09C240C7BCE0033EF78 /* Embed Foundation Extensions */,
 				C6EDB7332513B2B600690F07 /* ShellScript */,
 				CAD12448EDDCC717DD23FEDE /* [CP] Embed Pods Frameworks */,
 			);
@@ -1114,11 +1119,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = "Belledonne communications";
 				TargetAttributes = {
 					C62D3DEC24067A1800328486 = {
 						CreatedOnToolsVersion = 10.3;
+						DevelopmentTeam = Z2V957B3D6;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1127,6 +1134,8 @@
 					};
 					C676AD7324040F6C0048C504 = {
 						CreatedOnToolsVersion = 10.3;
+						DevelopmentTeam = Z2V957B3D6;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1141,6 +1150,8 @@
 					};
 					C6DA269E240FA94400CDF3D7 = {
 						CreatedOnToolsVersion = 10.3;
+						DevelopmentTeam = Z2V957B3D6;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1292,12 +1303,83 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DeviceGuru/DeviceGuru.framework",
+				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSVG/SwiftSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/Zip/Zip.framework",
+				"${BUILT_PRODUCTS_DIR}/linphone-sdk/linphonesw.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/bctoolbox-ios.framework/bctoolbox-ios",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/bctoolbox-tester.framework/bctoolbox-tester",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/bctoolbox.framework/bctoolbox",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/belcard.framework/belcard",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/belle-sip.framework/belle-sip",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/belr.framework/belr",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/lime.framework/lime",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/limetester.framework/limetester",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/linphone.framework/linphone",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/linphonetester.framework/linphonetester",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/mediastreamer2.framework/mediastreamer2",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/msamr.framework/msamr",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/mscodec2.framework/mscodec2",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/msopenh264.framework/msopenh264",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/mssilk.framework/mssilk",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/mswebrtc.framework/mswebrtc",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/ortp.framework/ortp",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/ZXing.framework/ZXing",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceGuru.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreInternal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Zip.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphonesw.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox-ios.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox-tester.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/belcard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/belle-sip.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/belr.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/lime.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/limetester.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphone.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphonetester.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mediastreamer2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/msamr.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mscodec2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/msopenh264.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mssilk.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mswebrtc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ortp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZXing.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1378,6 +1460,7 @@
 				C68978D624D163E100FB8235 /* SpinnerItem.swift in Sources */,
 				C68978CC24D1638D00FB8235 /* DeviceStore.swift in Sources */,
 				C68978D224D163CE00FB8235 /* Action.swift in Sources */,
+				C6E24C80299D17AC00304F6E /* Account+Extension.swift in Sources */,
 				C68978DC24D1640800FB8235 /* HistoryEvent.swift in Sources */,
 				C62D3DF424067A1800328486 /* NotificationViewController.swift in Sources */,
 				C68978C624D1612900FB8235 /* FileUtil.swift in Sources */,
@@ -1412,6 +1495,7 @@
 				C648F9FE24A1DB3D00D9B92D /* AssistantRoot.swift in Sources */,
 				C6E7B47424E9681800D7D8E2 /* AccountViewModel.swift in Sources */,
 				C62709AE24AF7BB8000E43D2 /* CallOutgoingView.swift in Sources */,
+				C6E24C7E299D13FF00304F6E /* Account+Extension.swift in Sources */,
 				C62709B424B054D3000E43D2 /* GenericCallView.swift in Sources */,
 				C6EC9FDC24ABB5A000F08AA9 /* ToobarButtonClickedListener.swift in Sources */,
 				C6EC9FEB24AC8A4000F08AA9 /* LSpinner.swift in Sources */,
@@ -1550,6 +1634,7 @@
 				C68978CB24D1638C00FB8235 /* DeviceStore.swift in Sources */,
 				C68978D124D163CD00FB8235 /* Action.swift in Sources */,
 				C68992C325124E0200B62F70 /* UIDevice+Extension.swift in Sources */,
+				C6E24C7F299D17AB00304F6E /* Account+Extension.swift in Sources */,
 				C68978DB24D1640700FB8235 /* HistoryEvent.swift in Sources */,
 				C6DA26A2240FA94400CDF3D7 /* NotificationService.swift in Sources */,
 				C68978C524D1612900FB8235 /* FileUtil.swift in Sources */,
@@ -1605,11 +1690,7 @@
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/LinhomeContentExtension/notifcontent-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.content-extension";
 				PRODUCT_NAME = LinhomeContentExtension;
@@ -1632,11 +1713,7 @@
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/LinhomeContentExtension/notifcontent-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.content-extension";
 				PRODUCT_NAME = LinhomeContentExtension;
@@ -1758,8 +1835,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1777,10 +1853,7 @@
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Linhome/app-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.linhome;
 				PRODUCT_NAME = Linhome;
@@ -1803,10 +1876,7 @@
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Linhome/app-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.linhome;
 				PRODUCT_NAME = Linhome;
@@ -1826,11 +1896,7 @@
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				INFOPLIST_FILE = "LinhomeServiceExtension/notifservice-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.service-extension";
 				PRODUCT_NAME = LinhomeServiceExtension;
@@ -1850,11 +1916,7 @@
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				INFOPLIST_FILE = "LinhomeServiceExtension/notifservice-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.service-extension";
 				PRODUCT_NAME = LinhomeServiceExtension;

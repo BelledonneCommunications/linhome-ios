@@ -64,12 +64,14 @@ class LoginSipAccountView: CreatorAssistantView {
 			if (model.valid()) {
 				self.hideKeyBoard()
 				self.showProgress()
-				LinhomeAccount.it.sipAccountLogin(
-					accountCreator: model.accountCreator,
-					proxy: model.proxy.first.value,
-					expiration: model.expiration.first.value!,
-					pushReady: model.pushReady,
-					sipRegistered: model.sipRegistered)
+				if let expiraation = Int(model.expiration.first.value!) {
+					LinhomeAccount.it.sipAccountLogin(
+						accountCreator: model.accountCreator,
+						proxy: model.proxy.first.value,
+						expiration: expiraation,
+						pushReady: model.pushReady,
+						sipRegistered: model.sipRegistered)
+				}
 			}
 		}
 		

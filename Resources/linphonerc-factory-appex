@@ -13,3 +13,6 @@ max_calls=1
 call_logs_search_limit=0
 
 
+[net]
+firewall_policy=ice
+stun_server=stun.linphone.org
