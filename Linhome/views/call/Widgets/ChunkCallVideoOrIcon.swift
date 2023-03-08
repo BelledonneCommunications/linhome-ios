@@ -29,7 +29,6 @@ class ChunkCallVideoOrIcon: UIViewController {
 	
 	let iconPercentageOfScreenWidth: CGFloat = 0.4
 	var videoPreviewPercentageOfScreenWidth: CGFloat = UIDevice.ipad() ? UIScreen.isLandscape ? 0.5 : 0.9 : 0.95
-	var videoPreviewPercentageOfScreenWidthRotated: CGFloat = UIDevice.ipad() ? UIScreen.isLandscape ? 0.9 : 0.5 : 0.95
 	var videoAspectRatio: CGFloat = 4/3
 	
 	let owningViewContraintMaker : ((ConstraintMaker) -> Void)?
@@ -38,9 +37,8 @@ class ChunkCallVideoOrIcon: UIViewController {
 	let isIncomingView : Bool
 	let reservedHeight : CGFloat
 
-	var videoView, videoViewRotated : UIView?
+	var videoView : UIView?
 	var fullSizeVideoButton : UIButton?
-	var rotated = false
 	
 	init(viewModel:CallViewModel, isIncomingView : Bool, reservedHeight:CGFloat, owningViewContraintMaker: ((ConstraintMaker) -> Void)? = nil) {
 		self.callViewModel = viewModel
@@ -59,7 +57,7 @@ class ChunkCallVideoOrIcon: UIViewController {
 		super.viewDidLoad()
 		
 		iconView = UIImageView()
-		let iconSize = UIScreen.main.bounds.size.width * iconPercentageOfScreenWidth * ( UIDevice.ipad() ? 0.5 : 1)
+		let iconSize = usableWidth() * iconPercentageOfScreenWidth * ( UIDevice.ipad() ? 0.5 : 1)
 		iconView!.frame = CGRect(x: 0,y: 0,width: iconSize ,height: iconSize)
 		iconView!.prepare(iconName: DeviceTypes.it.iconNameForDeviceType(typeKey:  (callViewModel.device != nil && callViewModel.device!.type != nil ? callViewModel.device!.type! : callViewModel.defaultDeviceType)!, circle: true)!, fillColor: "color_c", bgColor: nil)
 		self.view.addSubview(iconView!)
@@ -89,17 +87,6 @@ class ChunkCallVideoOrIcon: UIViewController {
 		videoView?.layer.cornerRadius = CGFloat(Customisation.it.themeConfig.getFloat(section: "arbitrary-values", key: "video_view_corner_radius", defaultValue: 20.0))
 		videoView?.clipsToBounds = true
 		
-		if (UIDevice.ipad()) {
-			videoViewRotated = UIView()
-			videoViewRotated!.backgroundColor = .black
-			let videoRotatedPreviewWidth = UIScreen.main.bounds.size.height * videoPreviewPercentageOfScreenWidthRotated
-			videoViewRotated!.frame = CGRect(x: 0,y: 0,width: videoRotatedPreviewWidth  ,height: videoRotatedPreviewWidth / videoAspectRatio)
-			self.view.addSubview(videoViewRotated!)
-			videoViewRotated?.isHidden = true
-			videoViewRotated?.layer.cornerRadius = CGFloat(Customisation.it.themeConfig.getFloat(section: "arbitrary-values", key: "video_view_corner_radius", defaultValue: 20.0))
-			videoViewRotated?.clipsToBounds = true
-		}
-		
 		fullSizeVideoButton = UIButton(frame: CGRect(x: 0,y: 0,width: 50,height: 50))
 		self.view.addSubview(fullSizeVideoButton!)
 		fullSizeVideoButton!.prepareRoundIcon(effectKey: "primary_color", tintColor: "color_c", iconName: "icons/fullscreen_start", padding: 12)
@@ -117,7 +104,7 @@ class ChunkCallVideoOrIcon: UIViewController {
 		callViewModel.videoFullScreen.observe { (fullScreen) in
 			self.view.isHidden = fullScreen!
 			if (!fullScreen!) {
-				Core.get().nativeVideoWindowId = UnsafeMutableRawPointer(Unmanaged.passRetained(self.rotated ? self.videoViewRotated! : self.videoView!).toOpaque())
+				Core.get().nativeVideoWindowId = UnsafeMutableRawPointer(Unmanaged.passRetained(self.videoView!).toOpaque())
 			}
 		}
 		
@@ -136,7 +123,7 @@ class ChunkCallVideoOrIcon: UIViewController {
 		
 		callViewModel.videoContent.readCurrentAndObserve { (hasVideo) in
 			someText?.isHidden = hasVideo == true
-			let videoPreviewWidth = UIScreen.main.bounds.size.width * self.videoPreviewPercentageOfScreenWidth
+			let videoPreviewWidth = self.usableWidth() * self.videoPreviewPercentageOfScreenWidth
 			self.view.snp.remakeConstraints{ (make) in
 				if (hasVideo == true) {
 					make.width.equalTo(videoPreviewWidth)
@@ -152,13 +139,11 @@ class ChunkCallVideoOrIcon: UIViewController {
 			initialReading = false
 			
 			self.iconView!.isHidden = hasVideo!
-			self.videoView!.isHidden = !hasVideo! || self.rotated
-			self.videoViewRotated?.isHidden = !hasVideo! || !self.rotated
+			self.videoView!.isHidden = !hasVideo!
 			
 			self.fullSizeVideoButton!.isHidden = !hasVideo!
 		}
-		
-				
+						
 	}
 	
 	
@@ -166,31 +151,22 @@ class ChunkCallVideoOrIcon: UIViewController {
 	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 		super.viewWillTransition(to: size, with: coordinator)
 		if (UIDevice.ipad()) {
-			return
-			rotated = !rotated
-			callViewModel.videoContent.notifyValue()
-			coordinator.animate(alongsideTransition: { context in
-				let iconSize = UIScreen.main.bounds.size.width * self.iconPercentageOfScreenWidth * ( UIDevice.ipad() ? 0.5 : 1)
-				self.iconView!.frame = CGRect(x: 0,y: 0,width: iconSize ,height: iconSize)
-				self.videoPreviewPercentageOfScreenWidth  = UIDevice.ipad() ? UIScreen.isLandscape ? 0.5 : 0.9 : 0.95
-				self.videoView!.isHidden = !self.callViewModel.videoContent.value! || self.rotated
-				self.videoViewRotated!.isHidden = !self.callViewModel.videoContent.value! || !self.rotated
-				if (!self.callViewModel.videoFullScreen.value!) {
-					Core.get().nativeVideoWindowId = UnsafeMutableRawPointer(Unmanaged.passRetained(!self.rotated ? self.videoView! : self.videoViewRotated!).toOpaque())
+			callViewModel.videoSize.readCurrentAndObserve { size in
+				guard let size = size else {
+					return
 				}
-				self.callViewModel.videoContent.notifyValue()
-				self.fullSizeVideoButton!.snp.remakeConstraints { (make) in
-					make.top.equalTo(self.rotated ? self.videoViewRotated!.snp.top : self.videoView!.snp.top).offset(13)
-					make.right.equalTo(self.rotated ? self.videoViewRotated!.snp.right : self.videoView!.snp.right).offset(-13)
+				self.videoPreviewPercentageOfScreenWidth = self.computePercentageWidth(videoSize: size)
+				self.videoAspectRatio = CGFloat(size.width / size.height)
+				if (self.callViewModel.videoContent.value == true) {
+					self.callViewModel.videoContent.notifyValue()
 				}
-			}, completion: { context in
-			})
+			}
 		}
 	}
 	
 	func computePercentageWidth(videoSize : CGSize) -> CGFloat {
-		let screenHeight = UIScreen.main.bounds.size.height
-		let screenWidth = UIScreen.main.bounds.size.width
+		let screenHeight = usableHeight()
+		let screenWidth = usableWidth()
 		let availableHeightPx = screenHeight - reservedHeight
 		let videoRatio: CGFloat = CGFloat(videoSize.width / videoSize.height)
 		let availableWidthPx = availableHeightPx * videoRatio
@@ -198,6 +174,14 @@ class ChunkCallVideoOrIcon: UIViewController {
 		Log.info("Computing video metrics : screen=\(screenWidth)/\(screenHeight) videoSize=\(videoSize.width)/\(videoSize.height) reservedpxheight=\(reservedHeight) computed withpct=\(result)")
 		Log.info("Computing video metrics : video height should not exceed : \(availableHeightPx) and is \(result*screenWidth)")
 		return  result > 0.95 ? 0.95 : result
+	}
+	
+	func usableWidth() -> CGFloat {
+		return UIScreen.main.bounds.size.width
+	}
+	
+	func usableHeight() -> CGFloat {
+		return UIScreen.main.bounds.size.height
 	}
 	
 }
