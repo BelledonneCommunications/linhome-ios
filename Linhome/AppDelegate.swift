@@ -239,9 +239,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	
 	
 	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-		Log.info("didReceiveRemoteNotification \(userInfo)")
+		Log.info("didReceiveRemoteNotification - service notification \(userInfo)")
+		if (Core.get().globalState != .On) {
+			try?Core.get().extendedStart()
+			Core.get().enterForeground()
+		}
 		Core.get().accountList.forEach {
 			$0.refreshRegister()
+		}
+		DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
+			if (UserDefaults(suiteName: Config.appGroupName)?.bool(forKey: "appactive") != true) {
+				Core.get().enterBackground()
+				if (Core.get().callsNb == 0) {
+					Core.get().stop()
+				}
+			}
+			completionHandler(.newData)
 		}
 	}
 	
