@@ -78,7 +78,9 @@ class DeviceStore {
 				Log.error("[DeviceStore] unable to create device from card (card is null or invdalid) \(friend.vcard?.asVcard4String() ?? "nil")")
 				return
 			}
-			result.append(Device(card: card, isRemotelyProvisionned: false))
+			let device = Device(card: card, isRemotelyProvisionned: false)
+			Log.info("[DeviceStore] found local device : \(device)")
+			result.append(device)
 		}
 		if let remoteFlName = Core.get().config?.getString(section: "misc", key: "contacts-vcard-list", defaultString: nil),  let serverFriendList = Core.get().getFriendListByName(name:remoteFlName) {
 			serverFriendList.friends.forEach { friend in
@@ -86,7 +88,11 @@ class DeviceStore {
 					Log.error("[DeviceStore] received invalid or malformed vCard from remote : \(friend.vcard?.asVcard4String() ?? "nil")")
 					return
 				}
-				result.append(Device(card: card, isRemotelyProvisionned: true))
+				let device = Device(card: card, isRemotelyProvisionned: true)
+				if (result.filter { $0.address == device.address}.count == 0) {
+					Log.info("[DeviceStore] found remotely provisionned device : \(device)")
+					result.append(device)
+				}
 			}
 		}
 		result.sort()

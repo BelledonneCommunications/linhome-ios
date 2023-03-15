@@ -97,7 +97,6 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 	}
 	
 	func setRefresher() {
-		return // V1
 		if (devices.refreshControl != nil) {
 			return
 		}
@@ -119,10 +118,9 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 	
 	@objc func updateRemotelyProvisionnedDevices(refreshControl: UIRefreshControl) {
 		
-		if (Core.get().networkReachable != true) {
+		if (Core.get().isNetworkReachable != true) {
 			refreshControl.endRefreshing()
 			DialogUtil.error("no_network")
-			return
 		}
 		
 		if (Core.get().callsNb > 0 ) {
