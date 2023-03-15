@@ -57,7 +57,7 @@ class ChunkCallVideoOrIcon: UIViewController {
 		super.viewDidLoad()
 		
 		iconView = UIImageView()
-		let iconSize = usableWidth() * iconPercentageOfScreenWidth * ( UIDevice.ipad() ? 0.5 : 1)
+		let iconSize = ChunkCallVideoOrIcon.usableWidth() * iconPercentageOfScreenWidth * ( UIDevice.ipad() ? 0.5 : 1)
 		iconView!.frame = CGRect(x: 0,y: 0,width: iconSize ,height: iconSize)
 		iconView!.prepare(iconName: DeviceTypes.it.iconNameForDeviceType(typeKey:  (callViewModel.device != nil && callViewModel.device!.type != nil ? callViewModel.device!.type! : callViewModel.defaultDeviceType)!, circle: true)!, fillColor: "color_c", bgColor: nil)
 		self.view.addSubview(iconView!)
@@ -114,7 +114,7 @@ class ChunkCallVideoOrIcon: UIViewController {
 			guard let size = size else {
 				return
 			}
-			self.videoPreviewPercentageOfScreenWidth = self.computePercentageWidth(videoSize: size)
+			self.videoPreviewPercentageOfScreenWidth = ChunkCallVideoOrIcon.computePercentageWidth(videoSize: size, reservedHeight: self.reservedHeight)
 			self.videoAspectRatio = CGFloat(size.width / size.height)
 			if (self.callViewModel.videoContent.value == true) {
 				self.callViewModel.videoContent.notifyValue()
@@ -123,7 +123,7 @@ class ChunkCallVideoOrIcon: UIViewController {
 		
 		callViewModel.videoContent.readCurrentAndObserve { (hasVideo) in
 			someText?.isHidden = hasVideo == true
-			let videoPreviewWidth = self.usableWidth() * self.videoPreviewPercentageOfScreenWidth
+			let videoPreviewWidth = ChunkCallVideoOrIcon.usableWidth() * self.videoPreviewPercentageOfScreenWidth
 			self.view.snp.remakeConstraints{ (make) in
 				if (hasVideo == true) {
 					make.width.equalTo(videoPreviewWidth)
@@ -155,7 +155,7 @@ class ChunkCallVideoOrIcon: UIViewController {
 				guard let size = size else {
 					return
 				}
-				self.videoPreviewPercentageOfScreenWidth = self.computePercentageWidth(videoSize: size)
+				self.videoPreviewPercentageOfScreenWidth = ChunkCallVideoOrIcon.computePercentageWidth(videoSize: size, reservedHeight: self.reservedHeight)
 				self.videoAspectRatio = CGFloat(size.width / size.height)
 				if (self.callViewModel.videoContent.value == true) {
 					self.callViewModel.videoContent.notifyValue()
@@ -164,7 +164,7 @@ class ChunkCallVideoOrIcon: UIViewController {
 		}
 	}
 	
-	func computePercentageWidth(videoSize : CGSize) -> CGFloat {
+	static func computePercentageWidth(videoSize : CGSize, reservedHeight : CGFloat) -> CGFloat {
 		let screenHeight = usableHeight()
 		let screenWidth = usableWidth()
 		let availableHeightPx = screenHeight - reservedHeight
@@ -176,11 +176,11 @@ class ChunkCallVideoOrIcon: UIViewController {
 		return  result > 0.95 ? 0.95 : result
 	}
 	
-	func usableWidth() -> CGFloat {
+	static func usableWidth() -> CGFloat {
 		return UIScreen.main.bounds.size.width
 	}
 	
-	func usableHeight() -> CGFloat {
+	static func usableHeight() -> CGFloat {
 		return UIScreen.main.bounds.size.height
 	}
 	

@@ -23,8 +23,8 @@ import linphonesw
 
 class PlayerView : ViewWithModel {
 	
-	let videoPreviewPercentageOfScreenWidth: CGFloat = UIDevice.ipad() && UIScreen.isLandscape ? 0.75 : 0.95
-	let videoAspectRatio: CGFloat = 4/3
+	var videoPreviewPercentageOfScreenWidth: CGFloat = UIDevice.ipad() && UIScreen.isLandscape ? 0.75 : 0.95
+	var videoAspectRatio: CGFloat = 4/3
 	let iconPercentageOfScreenWidth: CGFloat = 0.4
 	var playerViewModel : PlayerViewModel?
 	
@@ -91,13 +91,21 @@ class PlayerView : ViewWithModel {
 			videoView.frame = CGRect(x: 0,y: 0,width: videoPreviewWidth ,height: videoPreviewWidth / videoAspectRatio)
 			self.view.addSubview(videoView)
 			player.windowId = UnsafeMutableRawPointer(Unmanaged.passRetained(videoView).toOpaque())
+			
+			videoView.layer.cornerRadius = CGFloat(Customisation.it.themeConfig.getFloat(section: "arbitrary-values", key: "video_view_corner_radius", defaultValue: 20.0))
+			videoView.clipsToBounds = true
+			if (event.hasMediaThumbnail()) {
+				if let image = UIImage(contentsOfFile: event.mediaThumbnailFileName) {
+					let size = image.size
+					self.videoPreviewPercentageOfScreenWidth = ChunkCallVideoOrIcon.computePercentageWidth(videoSize: size, reservedHeight: 200)
+					self.videoAspectRatio = CGFloat(size.width / size.height)
+				}
+			}
 			videoView.snp.makeConstraints { (make) in
 				make.center.equalToSuperview()
 				make.width.equalTo(videoPreviewWidth)
 				make.height.equalTo(videoPreviewWidth / videoAspectRatio)
 			}
-			videoView.layer.cornerRadius = CGFloat(Customisation.it.themeConfig.getFloat(section: "arbitrary-values", key: "video_view_corner_radius", defaultValue: 20.0))
-			videoView.clipsToBounds = true
 		} else {
 			let iconSize = UIScreen.main.bounds.size.width * iconPercentageOfScreenWidth
 			let audio = UIImageView(frame: CGRect(x: 0,y: 0,width: iconSize ,height: iconSize))
