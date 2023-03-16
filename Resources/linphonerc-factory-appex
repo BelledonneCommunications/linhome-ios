@@ -14,5 +14,5 @@ call_logs_search_limit=0
 
 
 [net]
-firewall_policy=ice
+firewall_policy=stun,ice
 stun_server=stun.linphone.org

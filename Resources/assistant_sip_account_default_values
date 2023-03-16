@@ -15,10 +15,10 @@
     <entry name="nat_policy_ref" overwrite="true"></entry>
     <entry name="realm" overwrite="true"></entry>
   </section>
-  <section name="nat_policy_default_values">
-    <entry name="stun_server" overwrite="true"></entry>
-    <entry name="protocols" overwrite="true"></entry>
-  </section>
+	<section name="nat_policy_default_values">
+		<entry name="stun_server" overwrite="true">stun.linphone.org</entry>
+		<entry name="protocols" overwrite="true">stun,ice</entry>
+	</section>
   <section name="assistant">
     <entry name="domain" overwrite="true"></entry>
     <entry name="algorithm" overwrite="true">MD5</entry>

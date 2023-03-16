@@ -26,7 +26,7 @@ sip_tcp_port=-1
 
 [net]
 mtu=1300
-firewall_policy=ice
+firewall_policy=stun,ice
 stun_server=stun.linphone.org
 pn-call-remote-push-interval=3
 
