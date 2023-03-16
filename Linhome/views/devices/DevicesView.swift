@@ -155,6 +155,9 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 		}
 		
 		DeviceStore.it.devicesUpdated.observe { (_) in
+			if (UIDevice.ipad()) {
+				self.ipadLeftColumn.isHidden = DeviceStore.it.devices.count ==  0
+			}
 			self.devices.reloadData()
 			self.noDevices.isHidden = DeviceStore.it.devices.count > 0
 			if (Core.get().config?.getString(section: "misc", key: "contacts-vcard-list", defaultString: nil) != nil) {
