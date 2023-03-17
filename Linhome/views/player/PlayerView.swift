@@ -27,6 +27,8 @@ class PlayerView : ViewWithModel {
 	var videoAspectRatio: CGFloat = 4/3
 	let iconPercentageOfScreenWidth: CGFloat = 0.4
 	var playerViewModel : PlayerViewModel?
+	var event: HistoryEvent? = nil
+	var videoView: UIView? = nil
 	
 	public required init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil,bundle: nibBundleOrNil)
@@ -46,6 +48,8 @@ class PlayerView : ViewWithModel {
 				NavigationManager.it.navigateUp()
 				return
 		}
+		
+		self.event = event
 		
 		HistoryEventStore.it.markAsRead(historyEventId: event.id)
 		
@@ -87,8 +91,7 @@ class PlayerView : ViewWithModel {
 		if (event.hasVideo) {
 			let videoView = UIView()
 			videoView.backgroundColor = .black
-			let videoPreviewWidth = UIScreen.main.bounds.size.width * videoPreviewPercentageOfScreenWidth
-			videoView.frame = CGRect(x: 0,y: 0,width: videoPreviewWidth ,height: videoPreviewWidth / videoAspectRatio)
+			var videoPreviewWidth = UIScreen.main.bounds.size.width * videoPreviewPercentageOfScreenWidth
 			self.view.addSubview(videoView)
 			player.windowId = UnsafeMutableRawPointer(Unmanaged.passRetained(videoView).toOpaque())
 			
@@ -99,6 +102,7 @@ class PlayerView : ViewWithModel {
 					let size = image.size
 					self.videoPreviewPercentageOfScreenWidth = ChunkCallVideoOrIcon.computePercentageWidth(videoSize: size, reservedHeight: 200)
 					self.videoAspectRatio = CGFloat(size.width / size.height)
+					videoPreviewWidth = UIScreen.main.bounds.size.width * videoPreviewPercentageOfScreenWidth
 				}
 			}
 			videoView.snp.makeConstraints { (make) in
@@ -106,6 +110,7 @@ class PlayerView : ViewWithModel {
 				make.width.equalTo(videoPreviewWidth)
 				make.height.equalTo(videoPreviewWidth / videoAspectRatio)
 			}
+			self.videoView = videoView
 		} else {
 			let iconSize = UIScreen.main.bounds.size.width * iconPercentageOfScreenWidth
 			let audio = UIImageView(frame: CGRect(x: 0,y: 0,width: iconSize ,height: iconSize))
@@ -114,6 +119,25 @@ class PlayerView : ViewWithModel {
 			audio.snp.makeConstraints { (make) in
 				make.center.equalToSuperview()
 				make.width.height.equalTo(iconSize)
+			}
+		}
+	}
+	
+	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+		super.viewWillTransition(to: size, with: coordinator)
+		if (UIDevice.ipad()) {
+			if let event = event, event.hasMediaThumbnail() {
+				if let image = UIImage(contentsOfFile: event.mediaThumbnailFileName) {
+					let size = image.size
+					self.videoPreviewPercentageOfScreenWidth = ChunkCallVideoOrIcon.computePercentageWidth(videoSize: size, reservedHeight: 200)
+					self.videoAspectRatio = CGFloat(size.width / size.height)
+					let videoPreviewWidth = UIScreen.main.bounds.size.width * videoPreviewPercentageOfScreenWidth
+					videoView?.snp.remakeConstraints { (make) in
+						make.center.equalToSuperview()
+						make.width.equalTo(videoPreviewWidth)
+						make.height.equalTo(videoPreviewWidth / videoAspectRatio)
+					}
+				}
 			}
 		}
 	}

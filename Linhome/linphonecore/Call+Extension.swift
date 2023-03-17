@@ -33,7 +33,7 @@ extension Call {
 			earlyMediaCallParams.videoDirection = .RecvOnly
 			try acceptEarlyMediaWithParams(params: earlyMediaCallParams)
 			startRecording()
-			sendVfuRequest()
+			//sendVfuRequest()
 		} catch {
 			Log.error("[extendedAcceptEarlyMedia] exception \(error) ")
 		}
