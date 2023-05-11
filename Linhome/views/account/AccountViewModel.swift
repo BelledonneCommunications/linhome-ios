@@ -64,6 +64,9 @@ class AccountViewModel : ViewModel {
 		}
 	}
 	
+	func isLinhome() -> Bool {
+		return LinhomeAccount.it.get()?.params?.domain == CorePreferences.them.loginDomain
+	}
 	
 }
 

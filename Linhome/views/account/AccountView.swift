@@ -44,21 +44,21 @@ class AccountView: MainViewContentWithScrollableForm {
 		
 		if (model.account != nil) {
 			let refresh = UIRoundRectButton(container:contentView, placedBelow:form, effectKey: "secondary_color", tintColor: "color_c", textKey: "refresh_registers", topMargin: 0)
-			let changepass = UIRoundRectButton(container:contentView, placedBelow:refresh, effectKey: "secondary_color", tintColor: "color_c", textKey: "change_password", topMargin: 23)
-			let deleteaccount = UIRoundRectButton(container:contentView, placedBelow:changepass, effectKey: "secondary_color", tintColor: "color_c", textKey: "delete_account", topMargin: 23)
-			let disconnect = UIRoundRectButton(container:contentView, placedBelow:deleteaccount, effectKey: "secondary_color", tintColor: "color_c", textKey: "menu_disconnect", topMargin: 23, isLastInContainer : true)
+			var deleteaccount : UIRoundRectButton? = nil
+			if (model.isLinhome()) {
+				let changepass = UIRoundRectButton(container:contentView, placedBelow:refresh, effectKey: "secondary_color", tintColor: "color_c", textKey: "change_password", topMargin: 23)
+				deleteaccount = UIRoundRectButton(container:contentView, placedBelow:changepass, effectKey: "secondary_color", tintColor: "color_c", textKey: "delete_account", topMargin: 23)
+				changepass.onClick {
+					self.gotoFreeSip()
+				}
+				deleteaccount?.onClick {
+					self.gotoFreeSip()
+				}
+			}
+			let disconnect = UIRoundRectButton(container:contentView, placedBelow:deleteaccount != nil ? deleteaccount! : refresh , effectKey: "secondary_color", tintColor: "color_c", textKey: "menu_disconnect", topMargin: 23, isLastInContainer : true)
 			refresh.onClick {
 				model.refreshRegisters()
 			}
-			
-			changepass.onClick {
-				self.gotoFreeSip()
-			}
-			
-			deleteaccount.onClick {
-				self.gotoFreeSip()
-			}
-			
 			disconnect.onClick {
 				DialogUtil.confirm(titleTextKey: "menu_disconnect", messageTextKey: "disconnect_confirm_message", confirmAction: {
 					LinhomeAccount.it.disconnect()
