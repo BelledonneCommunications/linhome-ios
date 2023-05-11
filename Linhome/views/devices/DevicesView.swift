@@ -74,7 +74,7 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 			devices.backgroundColor = Theme.getColor("color_d")
 			model.selectedDevice.readCurrentAndObserve { (device) in
 				self.ipadSelectedItemView.isHidden = device == nil
-				self.ipadEditDevice.isHidden = device == nil
+				self.ipadEditDevice.isHidden = device == nil || device?.isRemotelyProvisionned == true
 				if (device != nil) {
 					NavigationManager.it.nextViewArgument = device
 					let child = DeviceInfoViewIpad.init()
