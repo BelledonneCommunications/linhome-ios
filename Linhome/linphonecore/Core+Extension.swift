@@ -180,5 +180,14 @@ extension Core {
 		}
 	}
 	
+	// Early media phase - work around to avoid playing audio back to user, but still have the stream
+	public func muteAudioPLayBack() {
+			playbackGainDb = -1000.0
+	}
+
+	public func unMuteAudioPLayBack() {
+			playbackGainDb = 0.0
+	}
+	
 }
 
