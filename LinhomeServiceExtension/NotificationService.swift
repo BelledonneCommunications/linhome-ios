@@ -184,7 +184,7 @@ class NotificationService: UNNotificationServiceExtension {
 		if let name = DeviceStore.it.findDeviceByAddress(address: call.remoteAddress?.asString())?.name {
 			bestAttemptContent.title = name
 		} else {
-			bestAttemptContent.title = call.remoteAddress?.asString() ?? ""
+			bestAttemptContent.title = call.remoteAddress?.username ?? ""
 		}
 		userDefaults.set(bestAttemptContent.title, forKey: "notification_title_"+notifCallId)
 
