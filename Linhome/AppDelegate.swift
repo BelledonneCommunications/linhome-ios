@@ -80,13 +80,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 					self.applicationWillResignActive(UIApplication.shared)
 				}
 			}
-			
+
 			if (cstate == linphonesw.Call.State.End && call.callLog?.dir == .Incoming) {
 				if (self.appOpenedTime.timeIntervalSince1970 > Double((call.callLog?.startDate ?? 0))) {
 					UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
 				}
 			}
-			
 			
 			if (cstate == linphonesw.Call.State.Error && call.callLog?.dir == Call.Dir.Outgoing) {
 				DispatchQueue.main.async {
@@ -138,7 +137,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		})
 		
 		requestMirophonePermission()
-		
 		
 		return true
 	}
@@ -229,9 +227,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	// UNUserNotificationCenterDelegate functions
 	
 	func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-		Log.info("willPresentnotification")
+		Log.info("willPresentnotification : \(notification.request.content.userInfo)")
 		if #available(iOS 14.0, *) {
-			completionHandler([.sound,.list])
+			let appActive = UserDefaults(suiteName: Config.appGroupName)?.bool(forKey: "appactive") == true
+			let isMissedInForeGround = notification.request.content.title == Texts.get("notif_missed_call_title") && appActive
+			completionHandler(isMissedInForeGround ? [.banner] : [.sound,.list])
 		} else {
 			completionHandler(.sound)
 		}
