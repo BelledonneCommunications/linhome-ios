@@ -60,13 +60,20 @@ class DeviceStore {
 				
 		devices = readFromFriends()
 		devicesUpdated.value = true
-		coreDelegate = CoreDelegateStub( onFriendListCreated : { (core, list) in
+		coreDelegate = CoreDelegateStub(
+			onConfiguringStatus : { (core, state, message) in
+				if (state == .Successful) {
+					self.localDevicesFriendList = Core.get().getFriendListByName(name:self.local_devices_fl_name)
+				}
+			},
+			onFriendListCreated : { (core, list) in
 				Log.info("[DeviceStore] friend list created. \(list.displayName)")
 				if (core.globalState == .On) {
 					self.devices = self.readFromFriends()
 					self.devicesUpdated.value = true
 				}
-			})
+			}
+		)
 		Core.get().addDelegate(delegate: self.coreDelegate!)
 	}
 	
