@@ -23,7 +23,7 @@ import UIKit
 import Foundation
 import SnapKit
 import AVFoundation
-
+import SVProgressHUD
 
 class CallIncomingView: GenericCallView {
 	
@@ -58,6 +58,10 @@ class CallIncomingView: GenericCallView {
 		self.addChild(fullScreenVideo)
 
 		let decline = CallButton.addOne(targetVC: self, iconName: "icons/decline", textKey: "call_button_decline", effectKey: "decline_call_button", tintColor: "color_c", action: {
+			if (self.callViewModel?.call.state != .IncomingEarlyMedia && self.callViewModel?.call.state != .IncomingReceived) {
+				Log.error("Call Incoming view is active but call state is : \(self.callViewModel?.call.state) this is a bug.")
+				super.dismiss()
+			}
 			self.callViewModel?.decline()
 		})
 		decline.view.snp.makeConstraints { (make) in
@@ -81,10 +85,13 @@ class CallIncomingView: GenericCallView {
 			try?AVAudioSession.sharedInstance().overrideOutputAudioPort(.speaker)
 			UIDevice.current.isProximityMonitoringEnabled = false
 		}
+		NavigationManager.it.incomingViewDisplaying = true
+		SVProgressHUD.dismiss()
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
 		VibratorHelper.vibrate(false)
+		NavigationManager.it.incomingViewDisplaying = false
 	}
 	
 	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

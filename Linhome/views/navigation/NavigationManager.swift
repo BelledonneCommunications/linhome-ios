@@ -34,6 +34,8 @@ class NavigationManager {
 	var viewStack : [ViewWithModel] = []
 	var nextViewArgument:Any?
 	
+	var incomingViewDisplaying = false
+	
 	
 	func nibName<T>(className: T.Type) -> String? {
 		if (UIDevice.is5SorSEGen1() && Bundle.main.path(forResource: "iPhone5-SE-"+String(describing: className), ofType: "nib") != nil) {
@@ -61,7 +63,9 @@ class NavigationManager {
 			mainView!.content.addSubview(child.view)
 		}
 		child.didMove(toParent: self.mainView!)
-		viewStack.last.map {$0.viewWillDisappear(true) }
+		viewStack.last.map {
+			$0.beginAppearanceTransition(false, animated: true)
+		}
 		if (asRoot) {
 			viewStack.forEach {
 				$0.finish()
@@ -102,7 +106,9 @@ class NavigationManager {
 			child.finish()
 			updateNavigationComponents()
 		}
-		viewStack.last.map {$0.viewWillAppear(true) }
+		viewStack.last.map {
+			$0.beginAppearanceTransition(true, animated: true)
+		}
 	}
 	
 	
@@ -134,7 +140,7 @@ class NavigationManager {
 			if (type(of: current) == DevicesView.self || type(of: current) == HistoryView.self ) {
 				enterRootFragment()
 				if (UIDevice.ipad()) {
-					current.viewWillAppear(false)
+					current.beginAppearanceTransition(true, animated: false)
 				}
 			} else {
 				enterNonRootFragment()

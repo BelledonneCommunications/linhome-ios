@@ -75,15 +75,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		},
 			onCallStateChanged : { (lc: linphonesw.Core, call: linphonesw.Call, cstate: linphonesw.Call.State, message: String) -> Void in
 			
-			if (cstate == linphonesw.Call.State.End && UIApplication.shared.applicationState == .background) { // A call is terminated in background
+			
+			if let callId = call.callLog?.callId {
+				Call.requestOwnerShip(callId) // Will release the extension handling
+			}
+				
+				if (cstate == linphonesw.Call.State.Released) {
+					SVProgressHUD.dismiss()
+			}
+				
+			if (cstate == linphonesw.Call.State.Released && UIApplication.shared.applicationState == .background) { // A call is terminated in background
 				DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-					self.applicationWillResignActive(UIApplication.shared)
+					//self.applicationWillResignActive(UIApplication.shared)
 				}
 			}
 
-			if (cstate == linphonesw.Call.State.End && call.callLog?.dir == .Incoming) {
+			if (cstate == linphonesw.Call.State.Released && call.callLog?.dir == .Incoming) {
 				if (self.appOpenedTime.timeIntervalSince1970 > Double((call.callLog?.startDate ?? 0))) {
-					UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+					//UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
 				}
 			}
 			
@@ -184,7 +193,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	func application(_ application: UIApplication,
 					 didFailToRegisterForRemoteNotificationsWithError
 					 error: Error) {
-		Log.error("Failed regidstering to remote notifications \(error)")
+		Log.error("Failed registering to remote notifications \(error)")
 		Core.get().didRegisterForRemotePush(deviceToken: nil)
 	}
 	
@@ -205,10 +214,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		try?Config.get().sync()
 		registerForPushNotifications()
 		Core.get().addDelegate(delegate: self.coreDelegate!)
-		try?Core.get().extendedStart()
-		Core.get().ensureRegistered()
-		Core.get().enterForeground()
-		NavigationManager.it.mainView?.tabbarViewModel.updateUnreadCount()
+		DispatchQueue.main.async {
+			try?Core.get().extendedStart()
+			Core.get().enterForeground()
+			NavigationManager.it.mainView?.tabbarViewModel.updateUnreadCount()
+		}
 		appOpenedTime = Date()
 	}
 	
@@ -219,7 +229,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		try?Config.get().sync()
 		Core.get().enterBackground()
 		if (Core.get().callsNb == 0) {
-			Core.get().stop()
+			Core.get().stopAsync()
 			Core.get().removeDelegate(delegate: self.coreDelegate!)
 		}
 	}
@@ -228,6 +238,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	
 	func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 		Log.info("willPresentnotification : \(notification.request.content.userInfo)")
+		if let aps = notification.request.content.userInfo["aps"] as? [String: Any], let alert = aps["alert"] as? [String: Any], let locKey = alert["loc-key"] as? String, locKey == "IC_MSG" {
+			if  let callId = notification.request.content.userInfo["call-id"] as! String? {
+				Call.requestOwnerShip(callId)
+			}
+			if (!NavigationManager.it.incomingViewDisplaying) {
+				//SVProgressHUD.show()
+			}
+		}
+
+
 		if #available(iOS 14.0, *) {
 			let appActive = UserDefaults(suiteName: Config.appGroupName)?.bool(forKey: "appactive") == true
 			let isMissedInForeGround = notification.request.content.title == Texts.get("notif_missed_call_title") && appActive
@@ -251,7 +271,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 			if (UserDefaults(suiteName: Config.appGroupName)?.bool(forKey: "appactive") != true) {
 				Core.get().enterBackground()
 				if (Core.get().callsNb == 0) {
-					Core.get().stop()
+					Core.get().stopAsync()
 				}
 			}
 			completionHandler(.newData)
