@@ -38,6 +38,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	
 	var coreState = MutableLiveData(linphonesw.GlobalState.Off)
 	
+	func displayWaitIndicatorIfFromPush() -> Bool {
+		var fromPush = false
+		if let userDefaults = UserDefaults(suiteName: Config.appGroupName) {
+			if let lastPushTime = userDefaults.value(forKey: "lastcallpushtime") as! Date? {
+				if let lastLaunchTime = userDefaults.value(forKey: "lastlaunchtime") as! Date? {
+					if (lastPushTime > lastLaunchTime) {
+						fromPush = true
+						if (Date().timeIntervalSince1970 - lastPushTime.timeIntervalSince1970 < 5.0) { // Fresh push most likely waiting for core to start
+							DispatchQueue.main.async {
+								SVProgressHUD.show()
+							}
+							DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(10)) {
+								SVProgressHUD.dismiss()
+							}
+						}
+					}
+				}
+			}
+			userDefaults.set(Date(), forKey: "lastlaunchtime")
+		}
+		return fromPush
+	}
+	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		
 		FirebaseApp.configure()
@@ -47,26 +70,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		_ = Customisation.it
 		_ = LinhomeCXCallObserver.it
 		
-		var fromPush = false
-		if let userDefaults = UserDefaults(suiteName: Config.appGroupName) {
-			if let lastPushTime = userDefaults.value(forKey: "lastpushtime") as! Date? {
-				if let lastLaunchTime = userDefaults.value(forKey: "lastlaunchtime") as! Date? {
-					if (lastPushTime > lastLaunchTime) {
-						fromPush = true
-						if (Date().timeIntervalSince1970 - lastPushTime.timeIntervalSince1970 < 5.0) { // Fresh push most likely waiting for core to start
-							SVProgressHUD.show()
-							DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
-								SVProgressHUD.dismiss()
-							}
-						}
-					}
-				}
-			}
-			userDefaults.set(Date(), forKey: "lastlaunchtime")
-		}
+		
 		
 		self.window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = fromPush ? MainView() : Splash()
+		window?.rootViewController = displayWaitIndicatorIfFromPush() ? MainView() : Splash()
 		window?.makeKeyAndVisible()
 		
 		coreDelegate = CoreDelegateStub(
@@ -207,6 +214,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
 	
 	func applicationDidBecomeActive(_ application: UIApplication) {
+		displayWaitIndicatorIfFromPush()
 		HistoryEventStore.refresh()
 		if let userDefaults = UserDefaults(suiteName: Config.appGroupName) {
 			userDefaults.set(true, forKey: "appactive")

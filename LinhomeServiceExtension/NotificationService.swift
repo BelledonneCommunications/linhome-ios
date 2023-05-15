@@ -55,6 +55,11 @@ class NotificationService: UNNotificationServiceExtension {
 		bestAttemptContent?.title = Texts.get("notif_incoming_call")
 		bestAttemptContent?.body = ""
 		
+		
+		if let aps = request.content.userInfo["aps"] as? [String: Any], let alert = aps["alert"] as? [String: Any], let locKey = alert["loc-key"] as? String, locKey == "IC_MSG" {
+			userDefaults.set(Date(), forKey: "lastcallpushtime")
+		}
+		
 		if let aps = request.content.userInfo["aps"] as? [String: Any], let alert = aps["alert"] as? [String: Any], let locKey = alert["loc-key"] as? String, locKey == "Missing call" {
 			bestAttemptContent?.title = Texts.get("notif_missed_call_title")
 			contentHandler(bestAttemptContent!)
@@ -128,7 +133,6 @@ class NotificationService: UNNotificationServiceExtension {
 			}
 		})
 		
-		userDefaults.set(Date(), forKey: "lastpushtime")
 		if (userDefaults.bool(forKey: "appactive")) {
 			bestAttemptContent?.sound=UNNotificationSound.init(named: UNNotificationSoundName.init("bell.caf"))
 			Log.info("Application is active. Ignoring push notification.")
@@ -236,8 +240,12 @@ class NotificationService: UNNotificationServiceExtension {
 		}
 		core.removeDelegate(delegate: self.coreDelegateStub!)
 		call.removeDelegate(delegate: callDelegate!)
-		try?call.decline(reason: .IOError)
-		Call.releaseOwnerShip(notifCallId)
+		core.calls.forEach { call in
+			try?call.decline(reason: .IOError)
+			if let callId = call.callLog?.callId {
+				Call.releaseOwnerShip(callId)
+			}
+		}
 		core.stopAsync()
 		
 	}

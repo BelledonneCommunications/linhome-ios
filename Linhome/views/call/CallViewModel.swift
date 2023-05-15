@@ -90,6 +90,9 @@ class CallViewModel : ViewModel {
 				}
 			})
 		call.addDelegate(delegate: callDelegate!)
+		if (videoContent.value != true && call.params?.videoEnabled == true) {
+			call.sendVfuRequest()
+		}
 		fireActionsOnCallStateChanged(cstate: call.state)
 		if let address = call.remoteAddress?.asStringUriOnly(){
 			let storedDimensions = CorePreferences.them.config.getString(section: "detected_video_dimensions",key: address ,defaultString: "").components(separatedBy: ",")
