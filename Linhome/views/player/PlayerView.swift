@@ -144,6 +144,7 @@ class PlayerView : ViewWithModel {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+		NavigationManager.it.playerViewDisplaying = true
 		playerViewModel?.playFromStart()
 	}
 	
@@ -167,6 +168,7 @@ class PlayerView : ViewWithModel {
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
+		NavigationManager.it.playerViewDisplaying = false
 		playerViewModel?.pausePlay()
 		playerViewModel?.end()
 		super.viewWillDisappear(animated)

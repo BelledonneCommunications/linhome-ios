@@ -35,7 +35,8 @@ class NavigationManager {
 	var nextViewArgument:Any?
 	
 	var incomingViewDisplaying = false
-	
+	var playerViewDisplaying = false
+
 	
 	func nibName<T>(className: T.Type) -> String? {
 		if (UIDevice.is5SorSEGen1() && Bundle.main.path(forResource: "iPhone5-SE-"+String(describing: className), ofType: "nib") != nil) {
@@ -52,28 +53,35 @@ class NavigationManager {
 	}
 	
 	func navigateTo<T>(childClass: T.Type, asRoot:Bool = false, argument:Any? = nil) where T: ViewWithModel {
-		self.nextViewArgument = argument
-		let nib = nibName(className: childClass)
-		let child = nib != nil ? childClass.init(nibName: nib, bundle: nil) : childClass.init()
-		child.view.frame = child.isCallView() ? UIScreen.main.bounds : mainView!.content.frame
-		mainView!.addChild(child)
-		if (child.isCallView()) {
-			mainView!.view.addSubview(child.view)
-		} else {
-			mainView!.content.addSubview(child.view)
-		}
-		child.didMove(toParent: self.mainView!)
-		viewStack.last.map {
-			$0.beginAppearanceTransition(false, animated: true)
-		}
-		if (asRoot) {
-			viewStack.forEach {
-				$0.finish()
+		do {
+			if (playerViewDisplaying) {
+				navigateUp()
 			}
-			viewStack.removeAll()
+			self.nextViewArgument = argument
+			let nib = nibName(className: childClass)
+			let child = nib != nil ? childClass.init(nibName: nib, bundle: nil) : childClass.init()
+			child.view.frame = child.isCallView() ? UIScreen.main.bounds : mainView!.content.frame
+			mainView!.addChild(child)
+			if (child.isCallView()) {
+				mainView!.view.addSubview(child.view)
+			} else {
+				mainView!.content.addSubview(child.view)
+			}
+			child.didMove(toParent: self.mainView!)
+			viewStack.last.map {
+				$0.beginAppearanceTransition(false, animated: true)
+			}
+			if (asRoot) {
+				viewStack.forEach {
+					$0.finish()
+				}
+				viewStack.removeAll()
+			}
+			viewStack.append(child)
+			updateNavigationComponents()
+		} catch {
+			Log.error("Exception occured in navigation : \(error)")
 		}
-		viewStack.append(child)
-		updateNavigationComponents()
 	}
 	
 	func navigateUp(completion : (()->Void)? = nil) {
