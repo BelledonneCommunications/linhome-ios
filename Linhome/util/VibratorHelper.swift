@@ -22,6 +22,7 @@
 import Foundation
 import AVFoundation
 import UIKit
+import linphonesw
 
 class VibratorHelper {
 	
@@ -37,7 +38,7 @@ class VibratorHelper {
 				
 		AudioServicesPlaySystemSoundWithCompletion(kSystemSoundID_Vibrate) {
 			DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-				if (shouldVibrate) {
+				if (shouldVibrate && Core.get().currentCall?.state == .IncomingReceived || Core.get().currentCall?.state == .IncomingEarlyMedia) {
 					vibrate()
 				}
 			}
