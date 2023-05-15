@@ -201,8 +201,8 @@ class CallInProgressView : GenericCallView {
 	}
 	
 	func applyDurationLabelConstraints(_ make: ConstraintMaker) {
-		make.left.right.equalToSuperview()
-		make.bottom.equalToSuperview().offset(self.actionsButtonRow != nil && !UIDevice.ipad() ? -180 : -120)
+		make.left.equalToSuperview().offset(30)
+		make.top.equalToSuperview().offset(UIDevice.notchHeight() + 30)
 	}
 	
 }
