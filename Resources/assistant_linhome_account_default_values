@@ -14,6 +14,9 @@
     <entry name="nat_policy_ref" overwrite="true">nat_policy_default_values</entry>
     <entry name="realm" overwrite="true">sip.linhome.org</entry>
   </section>
+	<section name="misc">
+		<entry name="contacts-vcard-list" overwrite="true">https://subscribe.linhome.org/contacts/vcard</entry>
+	</section>
 	<section name="nat_policy_default_values">
 		<entry name="stun_server" overwrite="true">stun.linphone.org</entry>
 		<entry name="protocols" overwrite="true">stun,ice</entry>
