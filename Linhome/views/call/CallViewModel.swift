@@ -110,7 +110,11 @@ class CallViewModel : ViewModel {
 			call.extendedAcceptEarlyMedia(core: Core.get())
 		}
 		if (cstate == Call.State.StreamsRunning && call.callLog?.dir == Call.Dir.Outgoing && call.params?.isRecording != true) {
-			call.startRecording()
+			do {
+				call.startRecording()
+			} catch {
+				Log.error("Failed to start recording :\(error)")
+			}
 		}
 	}
 	
