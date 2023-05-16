@@ -24,7 +24,6 @@ class LinhomeAccount {
 	
 	static let it = LinhomeAccount()
 	
-	static let PUSH_GW_ID_KEY = "linhome_pushgateway"
 	private static let PUSH_GW_USER_PREFIX = "linhome_generated"
 	private static let PUSH_GW_DISPLAY_NAME = "Linhome"
 	let xmlRpcSession = try!Core.get().createXmlRpcSession(url: CorePreferences.them.xmlRpcServerUrl)
@@ -40,7 +39,7 @@ class LinhomeAccount {
 	}
 	
 	func get() -> Account? {
-		return Core.get().accountList.filter{$0.params?.idkey != LinhomeAccount.PUSH_GW_ID_KEY}.first
+		return Core.get().accountList.filter{$0.params?.idkey != Config.PUSH_GW_ID_KEY}.first
 	}
 	
 	func linhomeAccountCreateProxyConfig(accountCreator: AccountCreator) {
@@ -100,7 +99,7 @@ class LinhomeAccount {
 	}
 	
 	func pushGateway() -> Account? {
-		return Core.get().getAccountByIdkey(idkey: LinhomeAccount.PUSH_GW_ID_KEY)
+		return Core.get().getAccountByIdkey(idkey: Config.PUSH_GW_ID_KEY)
 	}
 	
 	func createPushGateway(pushReady: MutableLiveData<Bool>) {
@@ -111,7 +110,7 @@ class LinhomeAccount {
 			let responseValues = request.listResponse
 			if (request.status == XmlRpcStatus.Ok) {
 				if let params = try?Core.get().createAccountParams() {
-					params.idkey = LinhomeAccount.PUSH_GW_ID_KEY
+					params.idkey = Config.PUSH_GW_ID_KEY
 					params.registerEnabled = true
 					params.publishEnabled = false
 					if let address = try?Factory.Instance.createAddress(addr: "sips:\(responseValues[1]);transport=tls") {
@@ -150,7 +149,7 @@ class LinhomeAccount {
 	func linkProxiesWithPushGateway(pushReady: MutableLiveData<Bool>) {
 		pushGateway().map { pgw in
 			Core.get().accountList.forEach { it in
-				if (it.params?.idkey != LinhomeAccount.PUSH_GW_ID_KEY) {
+				if (it.params?.idkey != Config.PUSH_GW_ID_KEY) {
 					it.dependency = pgw
 					if let clonedParams = pgw.params?.clone(), let expiration = it.params?.expires  {
 						clonedParams.expires = expiration
@@ -180,7 +179,7 @@ class LinhomeAccount {
 			Core.get().removeAccount(account: it)
 		}
 	}
-		
+
 }
 
 

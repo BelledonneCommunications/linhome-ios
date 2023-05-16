@@ -60,6 +60,7 @@ extension Config {
 	
 	static let pushNotificationsInterval =  Config.get().getInt(section: "net", key: "pn-call-remote-push-interval", defaultValue: 3)
 
-	
+	static let PUSH_GW_ID_KEY = "linhome_pushgateway"
+
 	
 }

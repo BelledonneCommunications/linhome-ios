@@ -117,7 +117,6 @@ extension Core {
 	
 	func extendedStart() throws {
 		try start()
-		friendsDatabasePath = FileUtil.sharedContainerUrl().path + "/devices.db"
 	}
 	
 	func extendedStop() {

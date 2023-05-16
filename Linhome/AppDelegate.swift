@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		
 		_ = Customisation.it
 		_ = LinhomeCXCallObserver.it
-		
+		_ = DeviceStore.it
 		
 		
 		self.window = UIWindow(frame: UIScreen.main.bounds)
