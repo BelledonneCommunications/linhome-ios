@@ -151,8 +151,6 @@
 		C68978C624D1612900FB8235 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FD2241357A600149217 /* FileUtil.swift */; };
 		C68978C724D1614600FB8235 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FB42413574000149217 /* Log.swift */; };
 		C68978C824D1614700FB8235 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FB42413574000149217 /* Log.swift */; };
-		C68978CB24D1638C00FB8235 /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9F9B24AB324C00F08AA9 /* DeviceStore.swift */; };
-		C68978CC24D1638D00FB8235 /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9F9B24AB324C00F08AA9 /* DeviceStore.swift */; };
 		C68978CD24D1639E00FB8235 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9FA624AB36F800F08AA9 /* Device.swift */; };
 		C68978CE24D1639F00FB8235 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9FA624AB36F800F08AA9 /* Device.swift */; };
 		C68978CF24D163AA00FB8235 /* StringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646852924A5FE6D0045AA4D /* StringUtil.swift */; };
@@ -187,6 +185,8 @@
 		C6933F56254C355D00E12D1B /* HistoryCellLand~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6933F55254C355D00E12D1B /* HistoryCellLand~ipad.xib */; };
 		C6933F5E254C848D00E12D1B /* RemoteQr~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6933F5D254C848D00E12D1B /* RemoteQr~ipad.xib */; };
 		C6A9D77E24A93BE9005B58C4 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9D77D24A93BE9005B58C4 /* SettingsViewModel.swift */; };
+		C6C1AEE02A13A7A7009D4848 /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9F9B24AB324C00F08AA9 /* DeviceStore.swift */; };
+		C6C1AEE12A13A7A7009D4848 /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9F9B24AB324C00F08AA9 /* DeviceStore.swift */; };
 		C6C2BD792523D0B60035857B /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C2BD762523D0B50035857B /* HistoryCell.swift */; };
 		C6C2BD7A2523D0B60035857B /* HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6C2BD772523D0B60035857B /* HistoryCell.xib */; };
 		C6C2BD7F2523D0EE0035857B /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C2BD7E2523D0EE0035857B /* AccountView.swift */; };
@@ -1454,11 +1454,11 @@
 				C6E7B46F24E92AEA00D7D8E2 /* Call+Extension.swift in Sources */,
 				C6DC0C2327A03BB4008F950B /* ActionsMethodTypes.swift in Sources */,
 				C68978D624D163E100FB8235 /* SpinnerItem.swift in Sources */,
-				C68978CC24D1638D00FB8235 /* DeviceStore.swift in Sources */,
 				C68978D224D163CE00FB8235 /* Action.swift in Sources */,
 				C6E24C80299D17AC00304F6E /* Account+Extension.swift in Sources */,
 				C68978DC24D1640800FB8235 /* HistoryEvent.swift in Sources */,
 				C62D3DF424067A1800328486 /* NotificationViewController.swift in Sources */,
+				C6C1AEE12A13A7A7009D4848 /* DeviceStore.swift in Sources */,
 				C68978C624D1612900FB8235 /* FileUtil.swift in Sources */,
 				C68978DA24D163FB00FB8235 /* DeviceTypes.swift in Sources */,
 			);
@@ -1627,12 +1627,12 @@
 				C655FDEB24B6F78B0058EE2C /* CorePreferences.swift in Sources */,
 				C68978D524D163E000FB8235 /* SpinnerItem.swift in Sources */,
 				C6DC0C2227A03BB3008F950B /* ActionsMethodTypes.swift in Sources */,
-				C68978CB24D1638C00FB8235 /* DeviceStore.swift in Sources */,
 				C68978D124D163CD00FB8235 /* Action.swift in Sources */,
 				C68992C325124E0200B62F70 /* UIDevice+Extension.swift in Sources */,
 				C6E24C7F299D17AB00304F6E /* Account+Extension.swift in Sources */,
 				C68978DB24D1640700FB8235 /* HistoryEvent.swift in Sources */,
 				C6DA26A2240FA94400CDF3D7 /* NotificationService.swift in Sources */,
+				C6C1AEE02A13A7A7009D4848 /* DeviceStore.swift in Sources */,
 				C68978C524D1612900FB8235 /* FileUtil.swift in Sources */,
 				C68978D924D163FB00FB8235 /* DeviceTypes.swift in Sources */,
 			);
@@ -1682,7 +1682,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeContentExtension/LinhomeNotifContentExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/LinhomeContentExtension/notifcontent-Info.plist";
@@ -1705,7 +1705,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeContentExtension/LinhomeNotifContentExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/LinhomeContentExtension/notifcontent-Info.plist";
@@ -1845,7 +1845,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Linhome/Linhome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Linhome/app-Info.plist";
@@ -1868,7 +1868,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Linhome/Linhome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Linhome/app-Info.plist";
@@ -1889,7 +1889,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeServiceExtension/LinhomeServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				INFOPLIST_FILE = "LinhomeServiceExtension/notifservice-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1909,7 +1909,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeServiceExtension/LinhomeServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				INFOPLIST_FILE = "LinhomeServiceExtension/notifservice-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
