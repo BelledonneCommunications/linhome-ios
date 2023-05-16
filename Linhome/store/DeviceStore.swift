@@ -19,6 +19,7 @@
 
 import Foundation
 import linphonesw
+import linphone
 
 class DeviceStore {
 	
@@ -77,6 +78,7 @@ class DeviceStore {
 			Log.info("[DeviceStore] no xml migration storage to perform")
 			return
 		}
+		linphone_core_set_call_logs_database_path(Core.get().getCobject, FileUtil.sharedContainerUrl().path + "/call_logs.db") // Will perform migration
 		self.devicesConfig = try!Factory.Instance.createConfig(path: "")
 		let _ = self.devicesConfig?.loadFromXmlFile(filename: self.devicesXml)
 		self.devices = self.readFromXml()
