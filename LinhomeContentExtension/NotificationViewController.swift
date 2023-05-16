@@ -108,7 +108,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
 		})
 		core = Core.getNewOne()
 		core?.addDelegate(delegate: coreDelegateStub!)
-		try?core?.extendedStart()
+		try?core?.start()
 	}
 	
 	func didReceive(_ response: UNNotificationResponse, completionHandler completion: @escaping (UNNotificationContentExtensionResponseOption) -> Void) { // !! can be called before didReceive

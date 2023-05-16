@@ -115,10 +115,6 @@ extension Core {
 	}
 	
 	
-	func extendedStart() throws {
-		try start()
-	}
-	
 	func extendedStop() {
 		stop()
 		Core.iterateTimers["\(self)"]?.invalidate()

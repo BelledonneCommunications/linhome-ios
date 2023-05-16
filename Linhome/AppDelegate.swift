@@ -223,7 +223,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		registerForPushNotifications()
 		Core.get().addDelegate(delegate: self.coreDelegate!)
 		DispatchQueue.main.async {
-			try?Core.get().extendedStart()
+			try?Core.get().start()
 			Core.get().enterForeground()
 			NavigationManager.it.mainView?.tabbarViewModel.updateUnreadCount()
 		}
@@ -269,7 +269,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
 		Log.info("didReceiveRemoteNotification - service notification \(userInfo)")
 		if (Core.get().globalState != .On) {
-			try?Core.get().extendedStart()
+			try?Core.get().start()
 			Core.get().enterForeground()
 		}
 		Core.get().accountList.forEach {

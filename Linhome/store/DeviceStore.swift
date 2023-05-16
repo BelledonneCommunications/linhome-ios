@@ -24,7 +24,8 @@ import linphone
 class DeviceStore {
 	
 	static let it = DeviceStore()
-	
+	static  let userDefaults = UserDefaults(suiteName: Config.appGroupName)!
+
 	private var devicesConfig: Config? = nil
 	
 	var devices =  [Device]()
@@ -120,6 +121,9 @@ class DeviceStore {
 				}
 			}
 		}
+		self.devices.forEach {
+			DeviceStore.userDefaults.set( $0.name , forKey: "cached_device_names_"+$0.address)
+		}
 		self.devices.sort()
 		self.devicesUpdated.value = true
 	}
@@ -164,6 +168,7 @@ class DeviceStore {
 					Log.error("[DeviceStore] unable to save device to local friend list.")
 				}
 			}
+			DeviceStore.userDefaults.set( device.name , forKey: "cached_device_names_"+device.address)
 		}
 	}
 	
@@ -198,4 +203,11 @@ class DeviceStore {
 		}
 	}
 	
+	static func getDeviceNameForExtension(address: Address) -> String {
+		if let cached = DeviceStore.userDefaults.string(forKey: "cached_device_names_"+address.asStringUriOnly()) {
+			return cached
+		} else {
+			return address.username
+		}
+	}
 }

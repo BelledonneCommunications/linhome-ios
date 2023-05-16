@@ -153,7 +153,7 @@ class NotificationService: UNNotificationServiceExtension {
 		core.disableVP8() // Two heavy to run in ServiceExtension
 
 		core.addDelegate(delegate: coreDelegateStub!)
-		try?core.extendedStart()
+		try?core.start()
 		
 		// Wait for a call to showup
 		
@@ -186,11 +186,7 @@ class NotificationService: UNNotificationServiceExtension {
 		
 		bestAttemptContent.body =  Texts.get(call.state == .End ? "notif_missed_call_title" : hasVideo ? "notif_incoming_call_video" : "notif_incoming_call_audio")
 		userDefaults.set(hasVideo,forKey: "has_video_"+notifCallId)
-		if let name = DeviceStore.it.findDeviceByAddress(address: call.remoteAddress?.asString())?.name {
-			bestAttemptContent.title = name
-		} else {
-			bestAttemptContent.title = call.remoteAddress?.username ?? ""
-		}
+		bestAttemptContent.title = DeviceStore.getDeviceNameForExtension(address: call.remoteAddress!)
 		userDefaults.set(bestAttemptContent.title, forKey: "notification_title_"+notifCallId)
 
 		
