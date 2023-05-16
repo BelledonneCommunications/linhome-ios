@@ -120,7 +120,12 @@ class FileUtil: NSObject {
 		let fileManager = FileManager.default
 		do {
 			let fileURLs = try fileManager.contentsOfDirectory(at:  FileUtil.sharedContainerUrl(), includingPropertiesForKeys: nil)
-			fileURLs.forEach{print($0)}
+			try?fileURLs.forEach{
+				let attribute = try FileManager.default.attributesOfItem(atPath: $0.path)
+				if let size = attribute[FileAttributeKey.size] as? NSNumber {
+					Log.info("\($0) \(size.doubleValue)")
+				}
+			}
 		} catch {
 			print("Error while enumerating files \(error.localizedDescription)")
 		}
