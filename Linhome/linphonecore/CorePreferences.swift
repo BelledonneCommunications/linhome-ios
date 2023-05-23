@@ -54,6 +54,11 @@ class CorePreferences {
 		  }
 	}
 	
+	var automaticallyCreatePushGatewayAccount: Bool {
+		get {
+			return config.getBool(section: "app", key: "auto_create_push_gateway_account", defaultValue: true)
+		}
+	}
 	
 	var linhomeAccountDefaultValuesPath: String {
 		get { return FileUtil.bundleFilePath("/assistant_linhome_account_default_values")! }

@@ -103,6 +103,11 @@ class LinhomeAccount {
 	}
 	
 	func createPushGateway(pushReady: MutableLiveData<Bool>) {
+		if (!CorePreferences.them.automaticallyCreatePushGatewayAccount) {
+			Log.info("Skipping push gateway creation as disabled in config (section app/auto_create_push_gateway_account)")
+			pushReady.value = true
+			return
+		}
 		
 		Core.get().loadConfigFromXml(xmlUri: CorePreferences.them.linhomeAccountDefaultValuesPath)
 		xmlRpcRequest = try!xmlRpcSession.createRequest(returnType: XmlRpcArgType.StringStruct, method: "create_push_account")
