@@ -55,6 +55,7 @@ extension Core {
 		do {
 			let config = Config.get()
 			config.setString(section: "sound", key: "local_ring", value: nil)
+			config.setString(section:"storage", key: "call_logs_db_uri",value: FileUtil.sharedContainerUrl().path + "/call_logs.db")
 			let core = try Factory.Instance.createSharedCoreWithConfig(config: config, systemContext: nil, appGroupId: Config.appGroupName, mainCore: !runsInsideExtension() ) // Shared core makes use of the shared space in AppGroup.
 			core.autoIterateEnabled = autoIterate
 			core.disableChat(denyReason: .NotImplemented)
