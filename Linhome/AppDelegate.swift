@@ -89,6 +89,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 				
 				if (cstate == linphonesw.Call.State.Released) {
 					SVProgressHUD.dismiss()
+					let openFiles = FileUtil.openFilePaths()
+					Log.debug("Open file descriptors: limit = \(FileUtil.getNofFileLimit()) count=\(openFiles.count) FDs : \n \(openFiles)")
 			}
 				
 			if (cstate == linphonesw.Call.State.Released && UIApplication.shared.applicationState == .background) { // A call is terminated in background
