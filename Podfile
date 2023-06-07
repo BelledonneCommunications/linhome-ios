@@ -60,6 +60,7 @@ post_install do |installer|
 		end
 		target.build_configurations.each do |config|
       			config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+			config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) POCKETSVG_DISABLE_FILEWATCH=1'
     		end	
 	end
 end
