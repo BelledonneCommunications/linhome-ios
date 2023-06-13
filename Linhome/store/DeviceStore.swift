@@ -37,11 +37,14 @@ class DeviceStore {
 	var storageMigrated = false
 
 	var coreDelegate:CoreDelegateStub? = nil
+	
+	var enteringBackground = false
 
 	init () {
 		coreDelegate = CoreDelegateStub(
 			onGlobalStateChanged: { (core: linphonesw.Core, state: linphonesw.GlobalState, message: String) -> Void in
-				if (core.globalState == .On) {
+				Log.info("Core state changed to \(state)")
+				if (!self.enteringBackground && core.globalState == .On) {
 					Core.get().friendsDatabasePath = FileUtil.sharedContainerUrl().path + "/devices.db"
 					if (Core.get().getFriendListByName(name:self.local_devices_fl_name) == nil) {
 						let localDevicesFriendList = try?Core.get().createFriendList()

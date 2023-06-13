@@ -156,6 +156,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		
 		requestMirophonePermission()
 		
+		Core.get().addDelegate(delegate: self.coreDelegate!)
+		
 		return true
 	}
 	
@@ -216,6 +218,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
 	
 	func applicationDidBecomeActive(_ application: UIApplication) {
+		DeviceStore.it.enteringBackground = false
 		displayWaitIndicatorIfFromPush()
 		HistoryEventStore.refresh()
 		if let userDefaults = UserDefaults(suiteName: Config.appGroupName) {
@@ -223,7 +226,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		}
 		try?Config.get().sync()
 		registerForPushNotifications()
-		Core.get().addDelegate(delegate: self.coreDelegate!)
 		DispatchQueue.main.async {
 			try?Core.get().start()
 			Core.get().enterForeground()
@@ -237,11 +239,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 			userDefaults.set(false, forKey: "appactive")
 		}
 		try?Config.get().sync()
-		Core.get().enterBackground()
-		if (Core.get().callsNb == 0) {
-			Core.get().stopAsync()
-			Core.get().removeDelegate(delegate: self.coreDelegate!)
-		}
+		enterBackground()
 	}
 	
 	// UNUserNotificationCenterDelegate functions
@@ -279,12 +277,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		}
 		DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
 			if (UserDefaults(suiteName: Config.appGroupName)?.bool(forKey: "appactive") != true) {
-				Core.get().enterBackground()
-				if (Core.get().callsNb == 0) {
-					Core.get().stopAsync()
-				}
+				self.enterBackground()
 			}
 			completionHandler(.newData)
+		}
+	}
+	
+	func enterBackground() {
+		DeviceStore.it.enteringBackground = true
+		Core.get().enterBackground()
+		if (Core.get().callsNb == 0) {
+			Core.get().stopAsync()
 		}
 	}
 	
