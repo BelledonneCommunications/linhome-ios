@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8A5BE318C07CC9723CB624F2 /* Pods_LinhomeServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 445D75291547C3B2D8177ADD /* Pods_LinhomeServiceExtension.framework */; };
+		371BD8DC31EE6268DB3786F1 /* Pods_Linhome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 667B796B04FD7B52D30328F5 /* Pods_Linhome.framework */; };
+		886135D53B36B47BEB3B4BBC /* Pods_LinhomeServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EF8D91DC0E7DBF552C81388 /* Pods_LinhomeServiceExtension.framework */; };
 		C627098124ADE889000E43D2 /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627097F24ADE889000E43D2 /* DeviceCell.swift */; };
 		C627098224ADE889000E43D2 /* DeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C627098024ADE889000E43D2 /* DeviceCell.xib */; };
 		C627098824AE4910000E43D2 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627098724AE4910000E43D2 /* NavigationManager.swift */; };
@@ -257,8 +258,7 @@
 		C6FB382D24A0684A007A6E7B /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB382B24A0684A007A6E7B /* SideMenu.swift */; };
 		C6FB382E24A0684A007A6E7B /* SideMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6FB382C24A0684A007A6E7B /* SideMenu.xib */; };
 		C6FE4BC1257949B500F31F38 /* iPhone5-SE-About.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6FE4BC0257949B500F31F38 /* iPhone5-SE-About.xib */; };
-		CD11A4026CF122D50594E31B /* Pods_Linhome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8ED31A8C21BA2900ACDACE /* Pods_Linhome.framework */; };
-		D1B8FBBF703C7E8E2A2489F7 /* Pods_LinhomeContentExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D034279970F7E34EF1438C2D /* Pods_LinhomeContentExtension.framework */; };
+		D50F6C2FFF1C608EA0939E09 /* Pods_LinhomeContentExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B904C5D82D8A034B3AD393 /* Pods_LinhomeContentExtension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -294,13 +294,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		445D75291547C3B2D8177ADD /* Pods_LinhomeServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinhomeServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4CC8490B45F7F06AF9D64EE5 /* Pods-Linhome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.debug.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.debug.xcconfig"; sourceTree = "<group>"; };
-		4E2F1EECADB77B2644E1BB57 /* Pods-Linhome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.release.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.release.xcconfig"; sourceTree = "<group>"; };
-		5095ACE67F45B80BA41AF2DD /* Pods-LinhomeContentExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		5A77012B0A48291933BDA949 /* Pods-LinhomeServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
-		BA8ED31A8C21BA2900ACDACE /* Pods_Linhome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Linhome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE0B37C327D2DA107DE56A8E /* Pods-LinhomeServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		1EF8D91DC0E7DBF552C81388 /* Pods_LinhomeServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinhomeServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B1EE6E756DCEE26EA09D0F7 /* Pods-LinhomeServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		4EE62E2400806E38D58B963B /* Pods-Linhome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.release.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.release.xcconfig"; sourceTree = "<group>"; };
+		667B796B04FD7B52D30328F5 /* Pods_Linhome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Linhome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B97726DD2CEEBD20BE5F04E /* Pods-LinhomeServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		AF98E6F4C0A6CD3CFE872CA7 /* Pods-LinhomeContentExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.release.xcconfig"; sourceTree = "<group>"; };
 		C623DC01241167930049C646 /* LinhomeServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LinhomeServiceExtension.entitlements; sourceTree = "<group>"; };
 		C627097F24ADE889000E43D2 /* DeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
 		C627098024ADE889000E43D2 /* DeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceCell.xib; sourceTree = "<group>"; };
@@ -495,8 +494,9 @@
 		C6FB382B24A0684A007A6E7B /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		C6FB382C24A0684A007A6E7B /* SideMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenu.xib; sourceTree = "<group>"; };
 		C6FE4BC0257949B500F31F38 /* iPhone5-SE-About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "iPhone5-SE-About.xib"; sourceTree = "<group>"; };
-		CD6ED3EC2B9D0DC491B8A19C /* Pods-LinhomeContentExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.release.xcconfig"; sourceTree = "<group>"; };
-		D034279970F7E34EF1438C2D /* Pods_LinhomeContentExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinhomeContentExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF59A21967A8C32DF4FAE34E /* Pods-LinhomeContentExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		F3AD4012C35B55A5BABD61C0 /* Pods-Linhome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.debug.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.debug.xcconfig"; sourceTree = "<group>"; };
+		F4B904C5D82D8A034B3AD393 /* Pods_LinhomeContentExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinhomeContentExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -506,7 +506,7 @@
 			files = (
 				C62D3DF124067A1800328486 /* UserNotificationsUI.framework in Frameworks */,
 				C62D3DEF24067A1800328486 /* UserNotifications.framework in Frameworks */,
-				D1B8FBBF703C7E8E2A2489F7 /* Pods_LinhomeContentExtension.framework in Frameworks */,
+				D50F6C2FFF1C608EA0939E09 /* Pods_LinhomeContentExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,7 +514,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD11A4026CF122D50594E31B /* Pods_Linhome.framework in Frameworks */,
+				371BD8DC31EE6268DB3786F1 /* Pods_Linhome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,7 +522,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A5BE318C07CC9723CB624F2 /* Pods_LinhomeServiceExtension.framework in Frameworks */,
+				886135D53B36B47BEB3B4BBC /* Pods_LinhomeServiceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,9 +534,9 @@
 			children = (
 				C62D3DEE24067A1800328486 /* UserNotifications.framework */,
 				C62D3DF024067A1800328486 /* UserNotificationsUI.framework */,
-				BA8ED31A8C21BA2900ACDACE /* Pods_Linhome.framework */,
-				D034279970F7E34EF1438C2D /* Pods_LinhomeContentExtension.framework */,
-				445D75291547C3B2D8177ADD /* Pods_LinhomeServiceExtension.framework */,
+				667B796B04FD7B52D30328F5 /* Pods_Linhome.framework */,
+				F4B904C5D82D8A034B3AD393 /* Pods_LinhomeContentExtension.framework */,
+				1EF8D91DC0E7DBF552C81388 /* Pods_LinhomeServiceExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -544,12 +544,12 @@
 		72AE357133F0AFC024E5F893 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4CC8490B45F7F06AF9D64EE5 /* Pods-Linhome.debug.xcconfig */,
-				4E2F1EECADB77B2644E1BB57 /* Pods-Linhome.release.xcconfig */,
-				5095ACE67F45B80BA41AF2DD /* Pods-LinhomeContentExtension.debug.xcconfig */,
-				CD6ED3EC2B9D0DC491B8A19C /* Pods-LinhomeContentExtension.release.xcconfig */,
-				BE0B37C327D2DA107DE56A8E /* Pods-LinhomeServiceExtension.debug.xcconfig */,
-				5A77012B0A48291933BDA949 /* Pods-LinhomeServiceExtension.release.xcconfig */,
+				F3AD4012C35B55A5BABD61C0 /* Pods-Linhome.debug.xcconfig */,
+				4EE62E2400806E38D58B963B /* Pods-Linhome.release.xcconfig */,
+				EF59A21967A8C32DF4FAE34E /* Pods-LinhomeContentExtension.debug.xcconfig */,
+				AF98E6F4C0A6CD3CFE872CA7 /* Pods-LinhomeContentExtension.release.xcconfig */,
+				3B1EE6E756DCEE26EA09D0F7 /* Pods-LinhomeServiceExtension.debug.xcconfig */,
+				9B97726DD2CEEBD20BE5F04E /* Pods-LinhomeServiceExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1057,7 +1057,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C62D3DFC24067A1800328486 /* Build configuration list for PBXNativeTarget "LinhomeContentExtension" */;
 			buildPhases = (
-				CC3D349A0B61CD9D958EA127 /* [CP] Check Pods Manifest.lock */,
+				7F4D8919D53038D6B0BBEAE6 /* [CP] Check Pods Manifest.lock */,
 				C62D3DE924067A1800328486 /* Sources */,
 				C62D3DEA24067A1800328486 /* Frameworks */,
 				C62D3DEB24067A1800328486 /* Resources */,
@@ -1075,13 +1075,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C676AD8624040F6E0048C504 /* Build configuration list for PBXNativeTarget "Linhome" */;
 			buildPhases = (
-				FC43225184F5B8E02D9FF7EC /* [CP] Check Pods Manifest.lock */,
+				45A0751A0C83D61A94B16620 /* [CP] Check Pods Manifest.lock */,
 				C676AD7024040F6C0048C504 /* Sources */,
 				C676AD7124040F6C0048C504 /* Frameworks */,
 				C676AD7224040F6C0048C504 /* Resources */,
 				C6ECA09C240C7BCE0033EF78 /* Embed Foundation Extensions */,
 				C6EDB7332513B2B600690F07 /* ShellScript */,
-				CAD12448EDDCC717DD23FEDE /* [CP] Embed Pods Frameworks */,
+				5DE61AC7E00CD8467EDF3B88 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1098,7 +1098,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C6DA26A7240FA94400CDF3D7 /* Build configuration list for PBXNativeTarget "LinhomeServiceExtension" */;
 			buildPhases = (
-				08A1F8A353696A9EEC46D4CF /* [CP] Check Pods Manifest.lock */,
+				16363A19353B43D22E0A4BF3 /* [CP] Check Pods Manifest.lock */,
 				C6DA269B240FA94400CDF3D7 /* Sources */,
 				C6DA269C240FA94400CDF3D7 /* Frameworks */,
 				C6DA269D240FA94400CDF3D7 /* Resources */,
@@ -1257,7 +1257,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		08A1F8A353696A9EEC46D4CF /* [CP] Check Pods Manifest.lock */ = {
+		16363A19353B43D22E0A4BF3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1279,7 +1279,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C6EDB7332513B2B600690F07 /* ShellScript */ = {
+		45A0751A0C83D61A94B16620 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1287,18 +1287,21 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
-				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Linhome-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
-		CAD12448EDDCC717DD23FEDE /* [CP] Embed Pods Frameworks */ = {
+		5DE61AC7E00CD8467EDF3B88 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1382,7 +1385,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CC3D349A0B61CD9D958EA127 /* [CP] Check Pods Manifest.lock */ = {
+		7F4D8919D53038D6B0BBEAE6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1404,7 +1407,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FC43225184F5B8E02D9FF7EC /* [CP] Check Pods Manifest.lock */ = {
+		C6EDB7332513B2B600690F07 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1412,19 +1415,16 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Linhome-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1675,14 +1675,14 @@
 /* Begin XCBuildConfiguration section */
 		C62D3DFD24067A1800328486 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5095ACE67F45B80BA41AF2DD /* Pods-LinhomeContentExtension.debug.xcconfig */;
+			baseConfigurationReference = EF59A21967A8C32DF4FAE34E /* Pods-LinhomeContentExtension.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeContentExtension/LinhomeNotifContentExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/LinhomeContentExtension/notifcontent-Info.plist";
@@ -1698,14 +1698,14 @@
 		};
 		C62D3DFE24067A1800328486 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CD6ED3EC2B9D0DC491B8A19C /* Pods-LinhomeContentExtension.release.xcconfig */;
+			baseConfigurationReference = AF98E6F4C0A6CD3CFE872CA7 /* Pods-LinhomeContentExtension.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeContentExtension/LinhomeNotifContentExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/LinhomeContentExtension/notifcontent-Info.plist";
@@ -1838,14 +1838,14 @@
 		};
 		C676AD8724040F6E0048C504 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4CC8490B45F7F06AF9D64EE5 /* Pods-Linhome.debug.xcconfig */;
+			baseConfigurationReference = F3AD4012C35B55A5BABD61C0 /* Pods-Linhome.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Linhome/Linhome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Linhome/app-Info.plist";
@@ -1861,14 +1861,14 @@
 		};
 		C676AD8824040F6E0048C504 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E2F1EECADB77B2644E1BB57 /* Pods-Linhome.release.xcconfig */;
+			baseConfigurationReference = 4EE62E2400806E38D58B963B /* Pods-Linhome.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Linhome/Linhome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Linhome/app-Info.plist";
@@ -1884,12 +1884,12 @@
 		};
 		C6DA26A8240FA94400CDF3D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BE0B37C327D2DA107DE56A8E /* Pods-LinhomeServiceExtension.debug.xcconfig */;
+			baseConfigurationReference = 3B1EE6E756DCEE26EA09D0F7 /* Pods-LinhomeServiceExtension.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeServiceExtension/LinhomeServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				INFOPLIST_FILE = "LinhomeServiceExtension/notifservice-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1904,12 +1904,12 @@
 		};
 		C6DA26A9240FA94400CDF3D7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A77012B0A48291933BDA949 /* Pods-LinhomeServiceExtension.release.xcconfig */;
+			baseConfigurationReference = 9B97726DD2CEEBD20BE5F04E /* Pods-LinhomeServiceExtension.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeServiceExtension/LinhomeServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				INFOPLIST_FILE = "LinhomeServiceExtension/notifservice-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
