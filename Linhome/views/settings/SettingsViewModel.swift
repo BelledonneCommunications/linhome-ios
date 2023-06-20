@@ -98,6 +98,7 @@ class SettingsViewModel : ViewModel {
 	
 	func clearLogs() {
 		Core.resetLogCollection()
+		Core.setLogCollectionPath(path: Factory.Instance.getDownloadDir(context: UnsafeMutablePointer<Int8>(mutating: (Config.appGroupName as NSString).utf8String)))
 	}
 	
 	func sendLogs() {
