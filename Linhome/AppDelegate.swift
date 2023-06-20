@@ -38,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	
 	var coreState = MutableLiveData(linphonesw.GlobalState.Off)
 	
+	var historyNotifTapped = false
+	
 	func displayWaitIndicatorIfFromPush() -> Bool {
 		var fromPush = false
 		if let userDefaults = UserDefaults(suiteName: Config.appGroupName) {
@@ -214,9 +216,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		}
 	}
 	
-	//-		proxyConfig.contactUriParameters = "pn-provider=apns"+pushEnvironment+";pn-prid="+token+";pn-param="+Config.teamID+"."+Bundle.main.bundleIdentifier!+"."+services+";pn-silent=1;pn-msg-str=IM_MSG;pn-call-str=IC_MSG;"+"pn-call-remote-push-interval=\(Config.pushNotificationsInterval)"
-
-	
 	func applicationDidBecomeActive(_ application: UIApplication) {
 		DeviceStore.it.enteringBackground = false
 		displayWaitIndicatorIfFromPush()
@@ -268,6 +267,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	
 	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
 		Log.info("didReceiveRemoteNotification - service notification \(userInfo)")
+		
+		if let aps = userInfo["aps"] as? [String: Any], let alert = aps["alert"] as? [String: Any], let locKey = alert["loc-key"] as? String, locKey == "Missing call" {
+			historyNotifTapped = true
+		}
+		
 		if (Core.get().globalState != .On) {
 			try?Core.get().start()
 			Core.get().enterForeground()
@@ -294,7 +298,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	// Actions on the notification here. If the user press too quick on the actions it comes directly here.
 	
 	func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-		Log.info("User pressed action in notification. (app) : \(response.actionIdentifier)")
+		Log.info("User pressed action in notification. (app) : \(response)")
+		
+		if (response.notification.request.content.title == Texts.get("notif_missed_call_title")) {
+			historyNotifTapped = true
+			if ( UIApplication.shared.applicationState == .active && coreState.value == .On) {
+				coreState.notifyValue()
+			}
+			return
+		}
 		
 		guard  let callId = response.notification.request.content.userInfo["call-id"] as! String?, let userDefaults = UserDefaults(suiteName: Config.appGroupName) else {
 			Log.warn("No call ID found in notification or failed getting user detaults : \(response.actionIdentifier)")

@@ -79,6 +79,10 @@ extension UIView {
 		sender.action!()
 	}
 	
+	@objc func performTap() {
+		(gestureRecognizers?.first as? TapGestureRecognizer)?.action?()
+	}
+	
 	
 	func setFrameHeight(_ height:CGFloat) {
 		var r = self.frame
