@@ -87,6 +87,9 @@ class LinhomeAccount {
 					} else {
 						self.createPushGateway(pushReady: pushReady)
 					}
+					DispatchQueue.main.async {
+						DeviceStore.it.fetchVCards()
+					}
 				}
 				if (state == .Failed) {
 					core.removeDelegate(delegate: self.coreDelegate!)

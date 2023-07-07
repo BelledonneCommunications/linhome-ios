@@ -13,8 +13,8 @@ extension Account {
 	
 	public func addPushToken() { // Update the registration of an Account with Push parameters, not done in SDK (yet!) as some custom parameters need to be set, and VoIP Push needs to be disabled.
 		
-		if (params?.domain != Config.get().getString(section: "assistant", key: "domain")) {
-			Log.info("Skipping adding push marapeters as not of domain \(Config.get().getString(section: "assistant", key: "domain")) ")
+		if (params?.domain != CorePreferences.them.loginDomain) {
+			Log.info("Skipping adding push parameters as not of domain \(CorePreferences.them.loginDomain) ")
 			return
 		}
 		

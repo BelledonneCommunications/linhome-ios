@@ -27,12 +27,13 @@ import CommonCrypto
 
 class CorePreferences {
 	
-	var config:Config
 	static let them = CorePreferences()
 	static let availableAudioCodecs = ["pcmu","pcma","opus","g729"]
 	
-	init () {
-		config = Config.get()
+	var config:Config {
+		get {
+			Config.get()
+		}
 	}
 	
 	var xmlRpcServerUrl: String {

@@ -1,21 +1,21 @@
 /*
-* Copyright (c) 2010-2020 Belledonne Communications SARL.
-*
-* This file is part of linhome
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
+ *
+ * This file is part of linhome
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 import Foundation
 import linphonesw
@@ -25,7 +25,7 @@ class DeviceStore {
 	
 	static let it = DeviceStore()
 	static  let userDefaults = UserDefaults(suiteName: Config.appGroupName)!
-
+	
 	private var devicesConfig: Config? = nil
 	
 	var devices =  [Device]()
@@ -35,11 +35,11 @@ class DeviceStore {
 	let local_devices_fl_name = "local_devices"
 	let devicesUpdated = MutableLiveData<Bool>()
 	var storageMigrated = false
-
+	
 	var coreDelegate:CoreDelegateStub? = nil
 	
 	var enteringBackground = false
-
+	
 	init () {
 		coreDelegate = CoreDelegateStub(
 			onGlobalStateChanged: { (core: linphonesw.Core, state: linphonesw.GlobalState, message: String) -> Void in
@@ -88,16 +88,23 @@ class DeviceStore {
 		self.saveLocalDevices()
 		self.readDevicesFromFriends()
 		try? FileManager.default.removeItem(atPath: self.devicesXml)
-		let isLinhomeAccount = Core.get().accountList.filter{$0.params?.idkey != Config.PUSH_GW_ID_KEY}.first?.params?.domain == CorePreferences.them.loginDomain
-		if (isLinhomeAccount) {
-				Core.get().config?.setString(section: "misc", key: "contacts-vcard-list", value: "https://subscribe.linhome.org/contacts/vcard")
-				try?Core.get().config?.sync()
-				Core.get().stop()
-				try?Core.get().start()
-		}
+		fetchVCards()
 		Log.info("[DeviceStore] migration done")
 	}
-
+	
+	func fetchVCards() {
+		let isLinhomeAccount = Core.get().accountList.filter{$0.params?.idkey != Config.PUSH_GW_ID_KEY}.first?.params?.domain == CorePreferences.them.loginDomain
+		if (isLinhomeAccount) {
+			Log.info("[DeviceStore] fetching vCards")
+			Core.get().config?.setString(section: "misc", key: "contacts-vcard-list", value: "https://subscribe.linhome.org/contacts/vcard")
+			try?Core.get().config?.sync()
+			Core.get().stop()
+			try?Core.get().start()
+		} else {
+			Log.info("[DeviceStore] No vards to fetch, as account not from the main domain \(CorePreferences.them.loginDomain)")
+		}
+	}
+	
 	
 	func readDevicesFromFriends() {
 		self.devices = [Device]()
