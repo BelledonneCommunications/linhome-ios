@@ -33,7 +33,7 @@ class About: MainViewContent {
 	@IBOutlet weak var linhomeOrg: UILabel!
 	@IBOutlet weak var license: UILabel!
 	@IBOutlet weak var copyRight: UILabel!
-	
+	@IBOutlet weak var privacyPolicy: UILabel!
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +55,8 @@ class About: MainViewContent {
 		linhomeOrg.prepare(styleKey: "about_link",textKey: "about_link")
 		license.prepare(styleKey: "about_text",textKey: "license_text")
 		copyRight.prepare(styleKey: "about_text",textKey: "copyright_text")
+		privacyPolicy.prepare(styleKey: "about_text",textKey: "privacy_policy_text")
+
 		
 		linhomeOrg.onClick {
 			self.linhomeOrg.text.map { urlString in
@@ -66,6 +68,11 @@ class About: MainViewContent {
 		
 		license.onClick {
 			if let url = URL(string:Texts.get("license_link")) {
+				UIApplication.shared.open(url)
+			}
+		}
+		privacyPolicy.onClick {
+			if let url = URL(string:Texts.get("privacy_policy_link")) {
 				UIApplication.shared.open(url)
 			}
 		}
