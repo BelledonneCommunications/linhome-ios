@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
 		
 		_ = Customisation.it
-		_ = LinhomeCXCallObserver.it
+		_ = GSMActivityHelper.it
 		_ = DeviceStore.it
 		
 		
@@ -121,7 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 			if ([Call.State.IncomingReceived].contains(call.state)) {
 				if let log = call.callLog, let userDefaults = UserDefaults(suiteName: Config.appGroupName), userDefaults.bool(forKey: "accepted_calls_via_notif_\(log.callId)") {
 					Log.info("Accepting call Id in app (accept button pressed on notif) : \(log.callId)")
-					if (LinhomeCXCallObserver.it.ongoingCxCall.value == true) {
+					if (GSMActivityHelper.it.ongoingGSMCall.value == true) {
 						NavigationManager.it.navigateTo(childClass: CallIncomingView.self, asRoot:false, argument:Pair(call, [Call.State.IncomingReceived, Call.State.IncomingEarlyMedia]))
 						DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
 							DialogUtil.toast(textKey: "unable_to_accept_call_gsm_call_in_progress")

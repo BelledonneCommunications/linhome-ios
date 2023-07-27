@@ -228,7 +228,7 @@ class CallViewModel : ViewModel {
 	}
 	
 	func extendedAccept() {
-		if (LinhomeCXCallObserver.it.ongoingCxCall.value == true) {
+		if (GSMActivityHelper.it.ongoingGSMCall.value == true) {
 			DialogUtil.toast(textKey: "unable_to_accept_call_gsm_call_in_progress")
 		} else {
 			call.extendedAccept(core : Core.get())

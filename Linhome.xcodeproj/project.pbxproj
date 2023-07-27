@@ -127,7 +127,7 @@
 		C64E8ABB27F56DAA002539D7 /* Vcard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64E8AB827F56A83002539D7 /* Vcard+Extension.swift */; };
 		C655FDEB24B6F78B0058EE2C /* CorePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648FA3924A2328E00D9B92D /* CorePreferences.swift */; };
 		C655FDEC24B6F78B0058EE2C /* CorePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648FA3924A2328E00D9B92D /* CorePreferences.swift */; };
-		C656921C29829AE7001FEF7D /* LinhomeCXCallObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C656921B29829AE7001FEF7D /* LinhomeCXCallObserver.swift */; };
+		C656921C29829AE7001FEF7D /* GSMActivityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C656921B29829AE7001FEF7D /* GSMActivityHelper.swift */; };
 		C6571BA9241936C0008987AB /* linphonerc-factory-appex in Resources */ = {isa = PBXBuildFile; fileRef = C6571BA724193340008987AB /* linphonerc-factory-appex */; };
 		C6571BAA241936C0008987AB /* linphonerc-factory-appex in Resources */ = {isa = PBXBuildFile; fileRef = C6571BA724193340008987AB /* linphonerc-factory-appex */; };
 		C664BD0124D9556000EDE72D /* CallLog+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62709C024B484D1000E43D2 /* CallLog+extension.swift */; };
@@ -414,7 +414,7 @@
 		C64A4FD2241357A600149217 /* FileUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
 		C64E26F124BE4E4B00F6C3C7 /* FullScreenVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenVideo.swift; sourceTree = "<group>"; };
 		C64E8AB827F56A83002539D7 /* Vcard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Vcard+Extension.swift"; sourceTree = "<group>"; };
-		C656921B29829AE7001FEF7D /* LinhomeCXCallObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinhomeCXCallObserver.swift; sourceTree = "<group>"; };
+		C656921B29829AE7001FEF7D /* GSMActivityHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSMActivityHelper.swift; sourceTree = "<group>"; };
 		C6571BA724193340008987AB /* linphonerc-factory-appex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "linphonerc-factory-appex"; sourceTree = "<group>"; };
 		C676AD7424040F6C0048C504 /* Linhome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Linhome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C676AD7724040F6C0048C504 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -753,7 +753,7 @@
 		C648F9F624A1B9F100D9B92D /* util */ = {
 			isa = PBXGroup;
 			children = (
-				C656921B29829AE7001FEF7D /* LinhomeCXCallObserver.swift */,
+				C656921B29829AE7001FEF7D /* GSMActivityHelper.swift */,
 				C62709C424B4C968000E43D2 /* AudioHelper.swift */,
 				C64A4FB22413574000149217 /* DialogUtil.swift */,
 				C648F9F724A1B9F800D9B92D /* extensions */,
@@ -1573,7 +1573,7 @@
 				C64A4FCB2413574000149217 /* Core+Extension.swift in Sources */,
 				C6A9D77E24A93BE9005B58C4 /* SettingsViewModel.swift in Sources */,
 				C6864A61255C14F7005F65A2 /* VibratorHelper.swift in Sources */,
-				C656921C29829AE7001FEF7D /* LinhomeCXCallObserver.swift in Sources */,
+				C656921C29829AE7001FEF7D /* GSMActivityHelper.swift in Sources */,
 				C6C2BD792523D0B60035857B /* HistoryCell.swift in Sources */,
 				C648FA5324A32EA200D9B92D /* CreateLindoorAccountViewModel.swift in Sources */,
 				C6E7B46124E6C62200D7D8E2 /* PlayerControls.swift in Sources */,
