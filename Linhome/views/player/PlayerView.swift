@@ -17,18 +17,18 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-
 import UIKit
 import Foundation
 import linphonesw
 
 class PlayerView : ViewWithModel {
 	
-	let videoPreviewPercentageOfScreenWidth: CGFloat = UIDevice.ipad() && UIScreen.isLandscape ? 0.75 : 0.95
-	let videoAspectRatio: CGFloat = 4/3
+	var videoPreviewPercentageOfScreenWidth: CGFloat = UIDevice.ipad() && UIScreen.isLandscape ? 0.75 : 0.95
+	var videoAspectRatio: CGFloat = 4/3
 	let iconPercentageOfScreenWidth: CGFloat = 0.4
 	var playerViewModel : PlayerViewModel?
+	var event: HistoryEvent? = nil
+	var videoView: UIView? = nil
 	
 	public required init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil,bundle: nibBundleOrNil)
@@ -49,6 +49,8 @@ class PlayerView : ViewWithModel {
 				return
 		}
 		
+		self.event = event
+		
 		HistoryEventStore.it.markAsRead(historyEventId: event.id)
 		
 		self.view.backgroundColor = Theme.getColor("color_j")
@@ -58,18 +60,18 @@ class PlayerView : ViewWithModel {
 		
 		// Close button
 		
-		let close = UIButton(frame: CGRect(x: 0,y: 0,width: 20,height: 20))
+		let close = UIButton(frame: CGRect(x: 0,y: 0,width: 40,height: 40))
+		close.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 		close.prepare(iconName: "icons/cancel", tintColor: "color_c")
 		self.view.addSubview(close)
 		close.snp.makeConstraints { (make) in
-			make.right.equalToSuperview().offset(-40)
-			make.top.equalToSuperview().offset(40)
+			make.right.equalToSuperview().offset(-20)
+			make.top.equalToSuperview().offset(20+UIDevice.notchHeight())
 		}
 		close.onClick {
 			close.alpha = 0.3
 			NavigationManager.it.navigateUp()
 		}
-		
 		
 		// Controls
 		
@@ -84,21 +86,31 @@ class PlayerView : ViewWithModel {
 		}
 		controls.didMove(toParent: self)
 		
-				
 		// Video/Audio view
 		
 		if (event.hasVideo) {
 			let videoView = UIView()
 			videoView.backgroundColor = .black
-			let videoPreviewWidth = UIScreen.main.bounds.size.width * videoPreviewPercentageOfScreenWidth
-			videoView.frame = CGRect(x: 0,y: 0,width: videoPreviewWidth ,height: videoPreviewWidth / videoAspectRatio)
+			var videoPreviewWidth = UIScreen.main.bounds.size.width * videoPreviewPercentageOfScreenWidth
 			self.view.addSubview(videoView)
 			player.windowId = UnsafeMutableRawPointer(Unmanaged.passRetained(videoView).toOpaque())
+			
+			videoView.layer.cornerRadius = CGFloat(Customisation.it.themeConfig.getFloat(section: "arbitrary-values", key: "video_view_corner_radius", defaultValue: 20.0))
+			videoView.clipsToBounds = true
+			if (event.hasMediaThumbnail()) {
+				if let image = UIImage(contentsOfFile: event.mediaThumbnailFileName) {
+					let size = image.size
+					self.videoPreviewPercentageOfScreenWidth = ChunkCallVideoOrIcon.computePercentageWidth(videoSize: size, reservedHeight: 200)
+					self.videoAspectRatio = CGFloat(size.width / size.height)
+					videoPreviewWidth = UIScreen.main.bounds.size.width * videoPreviewPercentageOfScreenWidth
+				}
+			}
 			videoView.snp.makeConstraints { (make) in
 				make.center.equalToSuperview()
 				make.width.equalTo(videoPreviewWidth)
 				make.height.equalTo(videoPreviewWidth / videoAspectRatio)
 			}
+			self.videoView = videoView
 		} else {
 			let iconSize = UIScreen.main.bounds.size.width * iconPercentageOfScreenWidth
 			let audio = UIImageView(frame: CGRect(x: 0,y: 0,width: iconSize ,height: iconSize))
@@ -108,12 +120,31 @@ class PlayerView : ViewWithModel {
 				make.center.equalToSuperview()
 				make.width.height.equalTo(iconSize)
 			}
-			
+		}
+	}
+	
+	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+		super.viewWillTransition(to: size, with: coordinator)
+		if (UIDevice.ipad()) {
+			if let event = event, event.hasMediaThumbnail() {
+				if let image = UIImage(contentsOfFile: event.mediaThumbnailFileName) {
+					let size = image.size
+					self.videoPreviewPercentageOfScreenWidth = ChunkCallVideoOrIcon.computePercentageWidth(videoSize: size, reservedHeight: 200)
+					self.videoAspectRatio = CGFloat(size.width / size.height)
+					let videoPreviewWidth = UIScreen.main.bounds.size.width * videoPreviewPercentageOfScreenWidth
+					videoView?.snp.remakeConstraints { (make) in
+						make.center.equalToSuperview()
+						make.width.equalTo(videoPreviewWidth)
+						make.height.equalTo(videoPreviewWidth / videoAspectRatio)
+					}
+				}
+			}
 		}
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+		NavigationManager.it.playerViewDisplaying = true
 		playerViewModel?.playFromStart()
 	}
 	
@@ -136,12 +167,11 @@ class PlayerView : ViewWithModel {
 		return speakerCard != nil ? speakerCard : earpieceCard
 	}
 	
-	
 	override func viewWillDisappear(_ animated: Bool) {
+		NavigationManager.it.playerViewDisplaying = false
 		playerViewModel?.pausePlay()
 		playerViewModel?.end()
 		super.viewWillDisappear(animated)
 	}
-	
 	
 }

@@ -80,7 +80,7 @@ class RemoteAnyViewModel: ViewModel {
 		do {
 			try Core.get().setProvisioninguri(newValue: url.first.value!)
 			Core.get().stop()
-			try Core.get().extendedStart()
+			try Core.get().start()
 		} catch {
 			self.configurationResult.value = ConfiguringState.Failed
 			Log.error("Exception caught firing remote provisionning : \(error)")

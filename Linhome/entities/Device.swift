@@ -86,7 +86,7 @@ class Device  {
 	
 	init(card:Vcard, isRemotelyProvisionned:Bool) {
 		self.isRemotelyProvisionned = isRemotelyProvisionned
-		self.id = card.uid
+		self.id = card.sipAddresses.first!.asStringUriOnly().md5()
 		self.type =  card.getExtendedPropertiesValuesByName(name: Device.vcard_device_type_header).first
 		self.name = card.fullName
 		self.address = card.sipAddresses.first!.asStringUriOnly()

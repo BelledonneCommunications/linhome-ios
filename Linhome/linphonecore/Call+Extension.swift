@@ -29,10 +29,9 @@ extension Call {
 			let earlyMediaCallParams: CallParams = try core.createCallParams(call: self)
 			earlyMediaCallParams.recordFile = callLog!.getHistoryEvent().mediaFileName!
 			cameraEnabled = false
-			earlyMediaCallParams.audioEnabled = false
+			core.muteAudioPLayBack()
 			try acceptEarlyMediaWithParams(params: earlyMediaCallParams)
 			startRecording()
-			sendVfuRequest()
 		} catch {
 			Log.error("[extendedAcceptEarlyMedia] exception \(error) ")
 		}
@@ -43,7 +42,7 @@ extension Call {
 			let inCallParams: CallParams = try!core.createCallParams(call: self)
 			inCallParams.recordFile = callLog!.getHistoryEvent().mediaFileName!
 			cameraEnabled = false
-			inCallParams.audioEnabled = true
+			core.unMuteAudioPLayBack()
 			if let device = DeviceStore.it.findDeviceByAddress(address: remoteAddress!) {
 				Core.get().useRfc2833ForDtmf = device.actionsMethodType == "method_dtmf_rfc_4733"
 				Core.get().useInfoForDtmf = device.actionsMethodType == "method_dtmf_sip_info"
@@ -61,62 +60,62 @@ extension Call {
 	static  let userDefaults = UserDefaults(suiteName: Config.appGroupName)!
 
 	
-	static func hasOwnerShip() -> Bool {
-		let result =  Bundle.main.bundleURL.path == userDefaults.object(forKey: "owning") as! String?
+	static func hasOwnerShip(_ callId:String) -> Bool {
+		let result =  Bundle.main.bundleURL.path == userDefaults.object(forKey: "owning"+callId) as! String?
 		return result
 	}
 	
-	static func ownerShipRequessted() -> Bool {
-		let result = Bundle.main.bundleURL.path == userDefaults.object(forKey: "owning") as! String? && userDefaults.bool(forKey:"requesting")
+	static func ownerShipRequessted(_ callId:String) -> Bool {
+		let result = Bundle.main.bundleURL.path == userDefaults.object(forKey: "owning"+callId) as! String? && userDefaults.bool(forKey:"requesting"+callId)
 		return result
 	}
 		
-	static func requestOwnerShip(){
-		Log.info("[OwnerShip] requestOwnerShip ")
-		userDefaults.setValue(true, forKey:"requesting")
+	static func requestOwnerShip(_ callId:String){
+		Log.info("[OwnerShip] requestOwnerShip "+callId)
+		userDefaults.setValue(true, forKey:"requesting"+callId)
 	}
 	
-	static func takeOwnerShip(){
-		Log.info("[OwnerShip] takeOwnerShip ")
-		userDefaults.setValue(Bundle.main.bundleURL.path, forKey:"owning")
+	static func takeOwnerShip(_ callId:String){
+		Log.info("[OwnerShip] takeOwnerShip "+callId)
+		userDefaults.setValue(Bundle.main.bundleURL.path, forKey:"owning"+callId)
 	}
 	
-	static func releaseOwnerShip() {
-		Log.info("[OwnerShip] releaseOwnerShip ")
-		userDefaults.removeObject(forKey: "owning")
-		userDefaults.removeObject(forKey: "requesting")
+	static func releaseOwnerShip(_ callId:String) {
+		Log.info("[OwnerShip] releaseOwnerShip "+callId)
+		userDefaults.removeObject(forKey: "owning"+callId)
+		userDefaults.removeObject(forKey: "requesting"+callId)
 	}
 	
-	static func ownerShipReleased() -> Bool {
-		let result = userDefaults.object(forKey: "owning")  == nil
-		Log.info("[OwnerShip] ownerShipReleased ? = \(result) ")
+	static func ownerShipReleased(_ callId:String) -> Bool {
+		let result = userDefaults.object(forKey: "owning"+callId)  == nil
+		Log.info("[OwnerShip] ownerShipReleased ? = \(result) "+callId)
 		return result
 	}
 	
-	static func waitSyncForReleased(timeoutSec:Int) -> Bool {
+	static func waitSyncForReleased(timeoutSec:Int,_ callId:String) -> Bool {
 		var i = 0
-		while (!ownerShipReleased() && i < timeoutSec*50 && !hasOwnerShip()) {
+		while (!ownerShipReleased(callId) && i < timeoutSec*50 && !hasOwnerShip(callId)) {
 			usleep(20000)
 			i+=1
 		}
-		Log.info("[OwnerShip]  waitSyncForReleased ? = \(i < timeoutSec*50)")
+		Log.info("[OwnerShip]  waitSyncForReleased ? \(i < timeoutSec*50) "+callId)
 		return i < timeoutSec*50
 	}
 	
 	
 	
-	static func requestAndWaitForOwnerShip() {
-		Log.warn("[OwnerShip] requestAndWaitForOwnerShip  ")
-		requestOwnerShip()
-		if (!Call.waitSyncForReleased(timeoutSec: 5)) {
-			Log.warn("[OwnerShip] Timed out waiting for call to be released in Service Extension")
+	static func requestAndWaitForOwnerShip(_ callId:String) {
+		Log.warn("[OwnerShip] requestAndWaitForOwnerShip  "+callId)
+		requestOwnerShip(callId)
+		if (!Call.waitSyncForReleased(timeoutSec: 5,callId)) {
+			Log.warn("[OwnerShip] Timed out waiting for call to be released in Service Extension "+callId)
 			return
 		}
-		takeOwnerShip()
+		takeOwnerShip(callId)
 	}
 	
-	func requestAndWaitForOwnerShip() {
-		Call.requestAndWaitForOwnerShip()
+	func requestAndWaitForOwnerShip(_ callId:String) {
+		Call.requestAndWaitForOwnerShip(callId)
 	}
 	
 	

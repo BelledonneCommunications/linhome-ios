@@ -43,8 +43,8 @@ class LoginSipAccountView: CreatorAssistantView {
 		manageModel(model)
 		
 		
-		let userNameInput = LTextInput.addOne(titleKey: "username", targetVC: self, keyboardType: UIKeyboardType.default, validator: ValidatorFactory.nonEmptyStringValidator, liveInfo: model.username, inForm: form)
-		let domainInput = LTextInput.addOne(titleKey: "domain", targetVC: self, keyboardType: UIKeyboardType.emailAddress, validator: ValidatorFactory.nonEmptyStringValidator, liveInfo: model.domain, inForm: form )
+		let userNameInput = LTextInput.addOne(titleKey: "username", targetVC: self, keyboardType: UIKeyboardType.default, validator: ValidatorFactory.nonEmptyStringValidator, liveInfo: model.username, inForm: form, hintKey: "sip_user_hint")
+		let domainInput = LTextInput.addOne(titleKey: "domain", targetVC: self, keyboardType: UIKeyboardType.emailAddress, validator: ValidatorFactory.nonEmptyStringValidator, liveInfo: model.domain, inForm: form, hintKey: "sip_domain_hint")
 		let pass1Input = LTextInput.addOne(titleKey: "password", targetVC: self, keyboardType: UIKeyboardType.default, validator: ValidatorFactory.nonEmptyStringValidator, liveInfo: model.pass1, inForm: form, secure: true)
 		
 		
@@ -64,11 +64,14 @@ class LoginSipAccountView: CreatorAssistantView {
 			if (model.valid()) {
 				self.hideKeyBoard()
 				self.showProgress()
-				LinhomeAccount.it.sipAccountLogin(
-					accountCreator: model.accountCreator,
-					proxy: model.proxy.first.value,
-					expiration: model.expiration.first.value!,
-					pushReady: model.pushReady)
+				if let expiraation = Int(model.expiration.first.value!) {
+					LinhomeAccount.it.sipAccountLogin(
+						accountCreator: model.accountCreator,
+						proxy: model.proxy.first.value,
+						expiration: expiraation,
+						pushReady: model.pushReady,
+						sipRegistered: model.sipRegistered)
+				}
 			}
 		}
 		
@@ -79,15 +82,24 @@ class LoginSipAccountView: CreatorAssistantView {
 				NavigationManager.it.navigateTo(childClass: DevicesView.self, asRoot:true)
 			} else {
 				DialogUtil.error("failed_creating_pushgateway")
+				NavigationManager.it.navigateTo(childClass: DevicesView.self, asRoot:true)
 			}
 		})
 		
+		model.sipRegistered.observe(onChange: { sipRegistered in
+			self.hideProgress()
+			if (!sipRegistered!) {
+				DialogUtil.confirm(titleTextKey: nil, messageTextKey: "failed_sip_login_modify_parameters", confirmAction: {
+					LinhomeAccount.it.delete()
+				}, confirmTextKey: "yes", cancelTextKey: "no")
+			}
+		})
 		
 		more.onClick {
 			model.moreOptionsOpened.value = true
 			more.removeFromSuperview()
 			let _ = LSegmentedControl.addOne(titleKey: "transport", targetVC: self, liveValue: model.transport, inForm: self.form, itemKeys: model.transportOptionKeys)
-			let _ = LTextInput.addOne(titleKey: "proxy", targetVC: self, keyboardType: UIKeyboardType.default, validator: ValidatorFactory.hostnameEmptyOrValidValidator, liveInfo: model.proxy, inForm: self.form)
+			let _ = LTextInput.addOne(titleKey: "proxy", targetVC: self, keyboardType: UIKeyboardType.default, validator: ValidatorFactory.hostnameEmptyOrValidValidator, liveInfo: model.proxy, inForm: self.form, hintKey: "sip_proxy_hint")
 			let expiration = LTextInput.addOne(titleKey: "register_expiration", targetVC: self, keyboardType: UIKeyboardType.numberPad, validator: ValidatorFactory.numberEmptyOrValidValidator, liveInfo: model.expiration, inForm: self.form)
 			login.snp.makeConstraints { (make) in
 				make.top.equalTo(expiration.view.snp.bottom).offset(50)

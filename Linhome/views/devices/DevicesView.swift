@@ -74,7 +74,7 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 			devices.backgroundColor = Theme.getColor("color_d")
 			model.selectedDevice.readCurrentAndObserve { (device) in
 				self.ipadSelectedItemView.isHidden = device == nil
-				self.ipadEditDevice.isHidden = device == nil
+				self.ipadEditDevice.isHidden = device == nil || device?.isRemotelyProvisionned == true
 				if (device != nil) {
 					NavigationManager.it.nextViewArgument = device
 					let child = DeviceInfoViewIpad.init()
@@ -97,7 +97,6 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 	}
 	
 	func setRefresher() {
-		return // V1
 		if (devices.refreshControl != nil) {
 			return
 		}
@@ -119,10 +118,9 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 	
 	@objc func updateRemotelyProvisionnedDevices(refreshControl: UIRefreshControl) {
 		
-		if (Core.get().networkReachable != true) {
+		if (Core.get().isNetworkReachable != true) {
 			refreshControl.endRefreshing()
 			DialogUtil.error("no_network")
-			return
 		}
 		
 		if (Core.get().callsNb > 0 ) {
@@ -157,6 +155,9 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 		}
 		
 		DeviceStore.it.devicesUpdated.observe { (_) in
+			if (UIDevice.ipad()) {
+				self.ipadLeftColumn.isHidden = DeviceStore.it.devices.count ==  0
+			}
 			self.devices.reloadData()
 			self.noDevices.isHidden = DeviceStore.it.devices.count > 0
 			if (Core.get().config?.getString(section: "misc", key: "contacts-vcard-list", defaultString: nil) != nil) {

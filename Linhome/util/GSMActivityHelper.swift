@@ -18,29 +18,21 @@
  */
 
 
+import Foundation
+import CoreTelephony
 
-import UIKit
-
-class ChunkCallTop: UIViewController {
+class GSMActivityHelper : NSObject {
 	
-	@IBOutlet weak var topLettLine: UIView!
-	@IBOutlet weak var topRightLine: UIView!
-	@IBOutlet weak var linhomeLogo: UIImageView!
-	@IBOutlet weak var linhomeText: UIImageView!
+	static let it = GSMActivityHelper()
+	var ongoingGSMCall = MutableLiveData(false)
+	var callCenter = CTCallCenter() // Deprecated, but only alternative to avoid CallKit and comply with Chinese AppStore
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		
-		topLettLine.backgroundColor = Theme.getColor("color_c")
-		topRightLine.backgroundColor = Theme.getColor("color_c")
-		linhomeLogo.prepare(iconName: "others/linhome_icon", fillColor: "color_c", bgColor: nil)
-		linhomeText.prepare(iconName: "others/linhome_text", fillColor: "color_c", bgColor: nil)
-
-	}
-	
-	override func viewWillAppear(_ animated: Bool) {
-		self.view.snp.makeConstraints { make in
-			make.height.equalTo(self.view.frame.height)
+	override init () {
+		super.init()
+		ongoingGSMCall.value = callCenter.currentCalls?.count ?? 0 > 0
+		callCenter.callEventHandler = { call in
+			self.ongoingGSMCall.value = self.callCenter.currentCalls?.count ?? 0 > 0
 		}
 	}
+	
 }

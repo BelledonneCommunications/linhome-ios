@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8A5BE318C07CC9723CB624F2 /* Pods_LinhomeServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 445D75291547C3B2D8177ADD /* Pods_LinhomeServiceExtension.framework */; };
+		371BD8DC31EE6268DB3786F1 /* Pods_Linhome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 667B796B04FD7B52D30328F5 /* Pods_Linhome.framework */; };
+		886135D53B36B47BEB3B4BBC /* Pods_LinhomeServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EF8D91DC0E7DBF552C81388 /* Pods_LinhomeServiceExtension.framework */; };
 		C627098124ADE889000E43D2 /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627097F24ADE889000E43D2 /* DeviceCell.swift */; };
 		C627098224ADE889000E43D2 /* DeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C627098024ADE889000E43D2 /* DeviceCell.xib */; };
 		C627098824AE4910000E43D2 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627098724AE4910000E43D2 /* NavigationManager.swift */; };
@@ -21,7 +22,6 @@
 		C62709AE24AF7BB8000E43D2 /* CallOutgoingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62709A924AF7BB8000E43D2 /* CallOutgoingView.swift */; };
 		C62709AF24AF7BB8000E43D2 /* CallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62709AA24AF7BB8000E43D2 /* CallViewModel.swift */; };
 		C62709B024AF7BB8000E43D2 /* CallIncomingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62709AB24AF7BB8000E43D2 /* CallIncomingView.swift */; };
-		C62709B224B052C6000E43D2 /* CallDelegateStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62709B124B052C6000E43D2 /* CallDelegateStub.swift */; };
 		C62709B424B054D3000E43D2 /* GenericCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62709B324B054D3000E43D2 /* GenericCallView.swift */; };
 		C62709C124B484D1000E43D2 /* CallLog+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62709C024B484D1000E43D2 /* CallLog+extension.swift */; };
 		C62709C324B49267000E43D2 /* Call+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62709C224B49267000E43D2 /* Call+Extension.swift */; };
@@ -35,7 +35,6 @@
 		C62D3E232406BCBF00328486 /* linphonerc-factory-app in Resources */ = {isa = PBXBuildFile; fileRef = C62D3E212406BCA800328486 /* linphonerc-factory-app */; };
 		C6317BDD24C07A8E007CC1DA /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6317BDC24C07A8E007CC1DA /* UIImage+Extension.swift */; };
 		C6406F8524E55ADA007E6334 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6406F8424E55ADA007E6334 /* PlayerViewModel.swift */; };
-		C6406F8724E562B3007E6334 /* PlayerDelegateStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6406F8624E562B3007E6334 /* PlayerDelegateStub.swift */; };
 		C6406F8B24E67EA1007E6334 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C6406F8A24E67EA1007E6334 /* README.md */; };
 		C641EC13249B1A6C00672832 /* Customisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C641EC12249B1A6C00672832 /* Customisation.swift */; };
 		C641EC15249B223A00672832 /* Texts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C641EC14249B223A00672832 /* Texts.swift */; };
@@ -56,7 +55,6 @@
 		C644D52B264080FC00EF86C2 /* Device+ExtensionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C644D52A264080FC00EF86C2 /* Device+ExtensionApp.swift */; };
 		C646850C24A4A0200045AA4D /* LoginLindoorAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646850924A4A0200045AA4D /* LoginLindoorAccountView.swift */; };
 		C646850D24A4A0200045AA4D /* LoginLindoorAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646850A24A4A0200045AA4D /* LoginLindoorAccountViewModel.swift */; };
-		C646851024A4C3690045AA4D /* XmlRpcRequestDelegateStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646850F24A4C3690045AA4D /* XmlRpcRequestDelegateStub.swift */; };
 		C646851924A4E5D10045AA4D /* LoginSipAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646851624A4E5D10045AA4D /* LoginSipAccountViewModel.swift */; };
 		C646851B24A4E5D10045AA4D /* LoginSipAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646851824A4E5D10045AA4D /* LoginSipAccountView.swift */; };
 		C646851E24A5BF7B0045AA4D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646851D24A5BF7B0045AA4D /* ViewModel.swift */; };
@@ -65,7 +63,6 @@
 		C646852424A5E6210045AA4D /* LSegmentedControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = C646852224A5E6210045AA4D /* LSegmentedControl.xib */; };
 		C646852624A5E9460045AA4D /* UISegmentedControl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646852524A5E9460045AA4D /* UISegmentedControl+Extension.swift */; };
 		C646852A24A5FE6D0045AA4D /* StringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646852924A5FE6D0045AA4D /* StringUtil.swift */; };
-		C646852C24A60B9F0045AA4D /* AccountCreatorDelegateStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646852B24A60B9F0045AA4D /* AccountCreatorDelegateStub.swift */; };
 		C646853424A632C30045AA4D /* RemoteRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646853224A632C30045AA4D /* RemoteRoot.swift */; };
 		C646853824A634880045AA4D /* RemoteUrlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646853624A634880045AA4D /* RemoteUrlView.swift */; };
 		C646853924A634880045AA4D /* RemoteUrlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C646853724A634880045AA4D /* RemoteUrlView.xib */; };
@@ -125,12 +122,12 @@
 		C64A4FCD2413574000149217 /* Core+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FB72413574000149217 /* Core+Extension.swift */; };
 		C64A4FD3241357A700149217 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FD2241357A600149217 /* FileUtil.swift */; };
 		C64E26F224BE4E4B00F6C3C7 /* FullScreenVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64E26F124BE4E4B00F6C3C7 /* FullScreenVideo.swift */; };
-		C64E26F424BEFEED00F6C3C7 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64E26F324BEFEED00F6C3C7 /* UIView+Extension.swift */; };
 		C64E8AB927F56A83002539D7 /* Vcard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64E8AB827F56A83002539D7 /* Vcard+Extension.swift */; };
 		C64E8ABA27F56DA9002539D7 /* Vcard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64E8AB827F56A83002539D7 /* Vcard+Extension.swift */; };
 		C64E8ABB27F56DAA002539D7 /* Vcard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64E8AB827F56A83002539D7 /* Vcard+Extension.swift */; };
 		C655FDEB24B6F78B0058EE2C /* CorePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648FA3924A2328E00D9B92D /* CorePreferences.swift */; };
 		C655FDEC24B6F78B0058EE2C /* CorePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648FA3924A2328E00D9B92D /* CorePreferences.swift */; };
+		C656921C29829AE7001FEF7D /* GSMActivityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C656921B29829AE7001FEF7D /* GSMActivityHelper.swift */; };
 		C6571BA9241936C0008987AB /* linphonerc-factory-appex in Resources */ = {isa = PBXBuildFile; fileRef = C6571BA724193340008987AB /* linphonerc-factory-appex */; };
 		C6571BAA241936C0008987AB /* linphonerc-factory-appex in Resources */ = {isa = PBXBuildFile; fileRef = C6571BA724193340008987AB /* linphonerc-factory-appex */; };
 		C664BD0124D9556000EDE72D /* CallLog+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62709C024B484D1000E43D2 /* CallLog+extension.swift */; };
@@ -155,8 +152,6 @@
 		C68978C624D1612900FB8235 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FD2241357A600149217 /* FileUtil.swift */; };
 		C68978C724D1614600FB8235 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FB42413574000149217 /* Log.swift */; };
 		C68978C824D1614700FB8235 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FB42413574000149217 /* Log.swift */; };
-		C68978CB24D1638C00FB8235 /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9F9B24AB324C00F08AA9 /* DeviceStore.swift */; };
-		C68978CC24D1638D00FB8235 /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9F9B24AB324C00F08AA9 /* DeviceStore.swift */; };
 		C68978CD24D1639E00FB8235 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9FA624AB36F800F08AA9 /* Device.swift */; };
 		C68978CE24D1639F00FB8235 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9FA624AB36F800F08AA9 /* Device.swift */; };
 		C68978CF24D163AA00FB8235 /* StringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646852924A5FE6D0045AA4D /* StringUtil.swift */; };
@@ -191,19 +186,24 @@
 		C6933F56254C355D00E12D1B /* HistoryCellLand~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6933F55254C355D00E12D1B /* HistoryCellLand~ipad.xib */; };
 		C6933F5E254C848D00E12D1B /* RemoteQr~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6933F5D254C848D00E12D1B /* RemoteQr~ipad.xib */; };
 		C6A9D77E24A93BE9005B58C4 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9D77D24A93BE9005B58C4 /* SettingsViewModel.swift */; };
+		C6C1AEE02A13A7A7009D4848 /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9F9B24AB324C00F08AA9 /* DeviceStore.swift */; };
+		C6C1AEE12A13A7A7009D4848 /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9F9B24AB324C00F08AA9 /* DeviceStore.swift */; };
 		C6C2BD792523D0B60035857B /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C2BD762523D0B50035857B /* HistoryCell.swift */; };
 		C6C2BD7A2523D0B60035857B /* HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6C2BD772523D0B60035857B /* HistoryCell.xib */; };
 		C6C2BD7F2523D0EE0035857B /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C2BD7E2523D0EE0035857B /* AccountView.swift */; };
 		C6C2BD872523D2400035857B /* HistoryEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C2BD862523D2400035857B /* HistoryEventsViewModel.swift */; };
 		C6C2BD8F2523DA7B0035857B /* HistoryEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C2BD8E2523DA7B0035857B /* HistoryEventViewModel.swift */; };
 		C6DA26A2240FA94400CDF3D7 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA26A1240FA94400CDF3D7 /* NotificationService.swift */; };
-		C6DA26A6240FA94400CDF3D7 /* LinhomeServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C6DA269F240FA94400CDF3D7 /* LinhomeServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C6DA26A6240FA94400CDF3D7 /* LinhomeServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C6DA269F240FA94400CDF3D7 /* LinhomeServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C6DBA148250FB81A00C2CFBD /* RegistrationState+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBA147250FB81A00C2CFBD /* RegistrationState+Extension.swift */; };
 		C6DBA14F25100B8300C2CFBD /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBA14E25100B8300C2CFBD /* UIScreen+Extension.swift */; };
 		C6DBA15125101C6E00C2CFBD /* DevicesView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6DBA15025101C6E00C2CFBD /* DevicesView~ipad.xib */; };
 		C6DBA153251091A100C2CFBD /* DeviceCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6DBA152251091A100C2CFBD /* DeviceCell~ipad.xib */; };
 		C6DC0C2227A03BB3008F950B /* ActionsMethodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9FB224AB3A9000F08AA9 /* ActionsMethodTypes.swift */; };
 		C6DC0C2327A03BB4008F950B /* ActionsMethodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9FB224AB3A9000F08AA9 /* ActionsMethodTypes.swift */; };
+		C6E24C7E299D13FF00304F6E /* Account+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E24C7D299D13FF00304F6E /* Account+Extension.swift */; };
+		C6E24C7F299D17AB00304F6E /* Account+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E24C7D299D13FF00304F6E /* Account+Extension.swift */; };
+		C6E24C80299D17AC00304F6E /* Account+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E24C7D299D13FF00304F6E /* Account+Extension.swift */; };
 		C6E7B46124E6C62200D7D8E2 /* PlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7B45F24E6C62200D7D8E2 /* PlayerControls.swift */; };
 		C6E7B46224E6C62200D7D8E2 /* PlayerControls.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E7B46024E6C62200D7D8E2 /* PlayerControls.xib */; };
 		C6E7B46424E6EBD700D7D8E2 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7B46324E6EBD600D7D8E2 /* PlayerView.swift */; };
@@ -249,7 +249,7 @@
 		C6EC9FE524AC5F1E00F08AA9 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9FE224AC5F1D00F08AA9 /* HistoryView.swift */; };
 		C6EC9FEA24AC8A4000F08AA9 /* LSpinner.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6EC9FE824AC8A3F00F08AA9 /* LSpinner.xib */; };
 		C6EC9FEB24AC8A4000F08AA9 /* LSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC9FE924AC8A4000F08AA9 /* LSpinner.swift */; };
-		C6ECA099240C7BCE0033EF78 /* LinhomeContentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C62D3DED24067A1800328486 /* LinhomeContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C6ECA099240C7BCE0033EF78 /* LinhomeContentExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C62D3DED24067A1800328486 /* LinhomeContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C6EDB7322513B0B600690F07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6EDB7312513B0B500690F07 /* GoogleService-Info.plist */; };
 		C6EDB7342513BE5700690F07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6EDB7312513B0B500690F07 /* GoogleService-Info.plist */; };
 		C6EDB7352513BE5700690F07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6EDB7312513B0B500690F07 /* GoogleService-Info.plist */; };
@@ -258,8 +258,7 @@
 		C6FB382D24A0684A007A6E7B /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB382B24A0684A007A6E7B /* SideMenu.swift */; };
 		C6FB382E24A0684A007A6E7B /* SideMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6FB382C24A0684A007A6E7B /* SideMenu.xib */; };
 		C6FE4BC1257949B500F31F38 /* iPhone5-SE-About.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6FE4BC0257949B500F31F38 /* iPhone5-SE-About.xib */; };
-		CD11A4026CF122D50594E31B /* Pods_Linhome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8ED31A8C21BA2900ACDACE /* Pods_Linhome.framework */; };
-		D1B8FBBF703C7E8E2A2489F7 /* Pods_LinhomeContentExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D034279970F7E34EF1438C2D /* Pods_LinhomeContentExtension.framework */; };
+		D50F6C2FFF1C608EA0939E09 /* Pods_LinhomeContentExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B904C5D82D8A034B3AD393 /* Pods_LinhomeContentExtension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -280,28 +279,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C6ECA09C240C7BCE0033EF78 /* Embed App Extensions */ = {
+		C6ECA09C240C7BCE0033EF78 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C6DA26A6240FA94400CDF3D7 /* LinhomeServiceExtension.appex in Embed App Extensions */,
-				C6ECA099240C7BCE0033EF78 /* LinhomeContentExtension.appex in Embed App Extensions */,
+				C6DA26A6240FA94400CDF3D7 /* LinhomeServiceExtension.appex in Embed Foundation Extensions */,
+				C6ECA099240C7BCE0033EF78 /* LinhomeContentExtension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		445D75291547C3B2D8177ADD /* Pods_LinhomeServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinhomeServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4CC8490B45F7F06AF9D64EE5 /* Pods-Linhome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.debug.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.debug.xcconfig"; sourceTree = "<group>"; };
-		4E2F1EECADB77B2644E1BB57 /* Pods-Linhome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.release.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.release.xcconfig"; sourceTree = "<group>"; };
-		5095ACE67F45B80BA41AF2DD /* Pods-LinhomeContentExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		5A77012B0A48291933BDA949 /* Pods-LinhomeServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
-		BA8ED31A8C21BA2900ACDACE /* Pods_Linhome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Linhome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE0B37C327D2DA107DE56A8E /* Pods-LinhomeServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		1EF8D91DC0E7DBF552C81388 /* Pods_LinhomeServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinhomeServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B1EE6E756DCEE26EA09D0F7 /* Pods-LinhomeServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		4EE62E2400806E38D58B963B /* Pods-Linhome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.release.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.release.xcconfig"; sourceTree = "<group>"; };
+		667B796B04FD7B52D30328F5 /* Pods_Linhome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Linhome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B97726DD2CEEBD20BE5F04E /* Pods-LinhomeServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		AF98E6F4C0A6CD3CFE872CA7 /* Pods-LinhomeContentExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.release.xcconfig"; sourceTree = "<group>"; };
 		C623DC01241167930049C646 /* LinhomeServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LinhomeServiceExtension.entitlements; sourceTree = "<group>"; };
 		C627097F24ADE889000E43D2 /* DeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
 		C627098024ADE889000E43D2 /* DeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceCell.xib; sourceTree = "<group>"; };
@@ -316,7 +314,6 @@
 		C62709A924AF7BB8000E43D2 /* CallOutgoingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallOutgoingView.swift; sourceTree = "<group>"; };
 		C62709AA24AF7BB8000E43D2 /* CallViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallViewModel.swift; sourceTree = "<group>"; };
 		C62709AB24AF7BB8000E43D2 /* CallIncomingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallIncomingView.swift; sourceTree = "<group>"; };
-		C62709B124B052C6000E43D2 /* CallDelegateStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallDelegateStub.swift; sourceTree = "<group>"; };
 		C62709B324B054D3000E43D2 /* GenericCallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCallView.swift; sourceTree = "<group>"; };
 		C62709C024B484D1000E43D2 /* CallLog+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CallLog+extension.swift"; sourceTree = "<group>"; };
 		C62709C224B49267000E43D2 /* Call+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Call+Extension.swift"; sourceTree = "<group>"; };
@@ -333,7 +330,6 @@
 		C62D3E212406BCA800328486 /* linphonerc-factory-app */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "linphonerc-factory-app"; sourceTree = "<group>"; };
 		C6317BDC24C07A8E007CC1DA /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		C6406F8424E55ADA007E6334 /* PlayerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
-		C6406F8624E562B3007E6334 /* PlayerDelegateStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerDelegateStub.swift; sourceTree = "<group>"; };
 		C6406F8A24E67EA1007E6334 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C641EC12249B1A6C00672832 /* Customisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customisation.swift; sourceTree = "<group>"; };
 		C641EC14249B223A00672832 /* Texts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texts.swift; sourceTree = "<group>"; };
@@ -354,7 +350,6 @@
 		C644D52A264080FC00EF86C2 /* Device+ExtensionApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Device+ExtensionApp.swift"; sourceTree = "<group>"; };
 		C646850924A4A0200045AA4D /* LoginLindoorAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginLindoorAccountView.swift; sourceTree = "<group>"; };
 		C646850A24A4A0200045AA4D /* LoginLindoorAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginLindoorAccountViewModel.swift; sourceTree = "<group>"; };
-		C646850F24A4C3690045AA4D /* XmlRpcRequestDelegateStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmlRpcRequestDelegateStub.swift; sourceTree = "<group>"; };
 		C646851624A4E5D10045AA4D /* LoginSipAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSipAccountViewModel.swift; sourceTree = "<group>"; };
 		C646851824A4E5D10045AA4D /* LoginSipAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSipAccountView.swift; sourceTree = "<group>"; };
 		C646851D24A5BF7B0045AA4D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -363,7 +358,6 @@
 		C646852224A5E6210045AA4D /* LSegmentedControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSegmentedControl.xib; sourceTree = "<group>"; };
 		C646852524A5E9460045AA4D /* UISegmentedControl+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Extension.swift"; sourceTree = "<group>"; };
 		C646852924A5FE6D0045AA4D /* StringUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtil.swift; sourceTree = "<group>"; };
-		C646852B24A60B9F0045AA4D /* AccountCreatorDelegateStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreatorDelegateStub.swift; sourceTree = "<group>"; };
 		C646853224A632C30045AA4D /* RemoteRoot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRoot.swift; sourceTree = "<group>"; };
 		C646853624A634880045AA4D /* RemoteUrlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteUrlView.swift; sourceTree = "<group>"; };
 		C646853724A634880045AA4D /* RemoteUrlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemoteUrlView.xib; sourceTree = "<group>"; };
@@ -419,8 +413,8 @@
 		C64A4FB72413574000149217 /* Core+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Core+Extension.swift"; sourceTree = "<group>"; };
 		C64A4FD2241357A600149217 /* FileUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
 		C64E26F124BE4E4B00F6C3C7 /* FullScreenVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenVideo.swift; sourceTree = "<group>"; };
-		C64E26F324BEFEED00F6C3C7 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		C64E8AB827F56A83002539D7 /* Vcard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Vcard+Extension.swift"; sourceTree = "<group>"; };
+		C656921B29829AE7001FEF7D /* GSMActivityHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSMActivityHelper.swift; sourceTree = "<group>"; };
 		C6571BA724193340008987AB /* linphonerc-factory-appex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "linphonerc-factory-appex"; sourceTree = "<group>"; };
 		C676AD7424040F6C0048C504 /* Linhome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Linhome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C676AD7724040F6C0048C504 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -449,6 +443,7 @@
 		C6DBA14E25100B8300C2CFBD /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
 		C6DBA15025101C6E00C2CFBD /* DevicesView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DevicesView~ipad.xib"; sourceTree = "<group>"; };
 		C6DBA152251091A100C2CFBD /* DeviceCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DeviceCell~ipad.xib"; sourceTree = "<group>"; };
+		C6E24C7D299D13FF00304F6E /* Account+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+Extension.swift"; sourceTree = "<group>"; };
 		C6E7B45F24E6C62200D7D8E2 /* PlayerControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControls.swift; sourceTree = "<group>"; };
 		C6E7B46024E6C62200D7D8E2 /* PlayerControls.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerControls.xib; sourceTree = "<group>"; };
 		C6E7B46324E6EBD600D7D8E2 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -499,8 +494,9 @@
 		C6FB382B24A0684A007A6E7B /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		C6FB382C24A0684A007A6E7B /* SideMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenu.xib; sourceTree = "<group>"; };
 		C6FE4BC0257949B500F31F38 /* iPhone5-SE-About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "iPhone5-SE-About.xib"; sourceTree = "<group>"; };
-		CD6ED3EC2B9D0DC491B8A19C /* Pods-LinhomeContentExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.release.xcconfig"; sourceTree = "<group>"; };
-		D034279970F7E34EF1438C2D /* Pods_LinhomeContentExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinhomeContentExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF59A21967A8C32DF4FAE34E /* Pods-LinhomeContentExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		F3AD4012C35B55A5BABD61C0 /* Pods-Linhome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.debug.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.debug.xcconfig"; sourceTree = "<group>"; };
+		F4B904C5D82D8A034B3AD393 /* Pods_LinhomeContentExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinhomeContentExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -510,7 +506,7 @@
 			files = (
 				C62D3DF124067A1800328486 /* UserNotificationsUI.framework in Frameworks */,
 				C62D3DEF24067A1800328486 /* UserNotifications.framework in Frameworks */,
-				D1B8FBBF703C7E8E2A2489F7 /* Pods_LinhomeContentExtension.framework in Frameworks */,
+				D50F6C2FFF1C608EA0939E09 /* Pods_LinhomeContentExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,7 +514,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD11A4026CF122D50594E31B /* Pods_Linhome.framework in Frameworks */,
+				371BD8DC31EE6268DB3786F1 /* Pods_Linhome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,7 +522,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A5BE318C07CC9723CB624F2 /* Pods_LinhomeServiceExtension.framework in Frameworks */,
+				886135D53B36B47BEB3B4BBC /* Pods_LinhomeServiceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,9 +534,9 @@
 			children = (
 				C62D3DEE24067A1800328486 /* UserNotifications.framework */,
 				C62D3DF024067A1800328486 /* UserNotificationsUI.framework */,
-				BA8ED31A8C21BA2900ACDACE /* Pods_Linhome.framework */,
-				D034279970F7E34EF1438C2D /* Pods_LinhomeContentExtension.framework */,
-				445D75291547C3B2D8177ADD /* Pods_LinhomeServiceExtension.framework */,
+				667B796B04FD7B52D30328F5 /* Pods_Linhome.framework */,
+				F4B904C5D82D8A034B3AD393 /* Pods_LinhomeContentExtension.framework */,
+				1EF8D91DC0E7DBF552C81388 /* Pods_LinhomeServiceExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -548,12 +544,12 @@
 		72AE357133F0AFC024E5F893 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4CC8490B45F7F06AF9D64EE5 /* Pods-Linhome.debug.xcconfig */,
-				4E2F1EECADB77B2644E1BB57 /* Pods-Linhome.release.xcconfig */,
-				5095ACE67F45B80BA41AF2DD /* Pods-LinhomeContentExtension.debug.xcconfig */,
-				CD6ED3EC2B9D0DC491B8A19C /* Pods-LinhomeContentExtension.release.xcconfig */,
-				BE0B37C327D2DA107DE56A8E /* Pods-LinhomeServiceExtension.debug.xcconfig */,
-				5A77012B0A48291933BDA949 /* Pods-LinhomeServiceExtension.release.xcconfig */,
+				F3AD4012C35B55A5BABD61C0 /* Pods-Linhome.debug.xcconfig */,
+				4EE62E2400806E38D58B963B /* Pods-Linhome.release.xcconfig */,
+				EF59A21967A8C32DF4FAE34E /* Pods-LinhomeContentExtension.debug.xcconfig */,
+				AF98E6F4C0A6CD3CFE872CA7 /* Pods-LinhomeContentExtension.release.xcconfig */,
+				3B1EE6E756DCEE26EA09D0F7 /* Pods-LinhomeServiceExtension.debug.xcconfig */,
+				9B97726DD2CEEBD20BE5F04E /* Pods-LinhomeServiceExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -757,6 +753,7 @@
 		C648F9F624A1B9F100D9B92D /* util */ = {
 			isa = PBXGroup;
 			children = (
+				C656921B29829AE7001FEF7D /* GSMActivityHelper.swift */,
 				C62709C424B4C968000E43D2 /* AudioHelper.swift */,
 				C64A4FB22413574000149217 /* DialogUtil.swift */,
 				C648F9F724A1B9F800D9B92D /* extensions */,
@@ -778,7 +775,6 @@
 				C648FA5424A3602D00D9B92D /* UIApplication+Extension.swift */,
 				C646852524A5E9460045AA4D /* UISegmentedControl+Extension.swift */,
 				C6EC9FBA24AB4C7E00F08AA9 /* Array+Extension.swift */,
-				C64E26F324BEFEED00F6C3C7 /* UIView+Extension.swift */,
 				C6317BDC24C07A8E007CC1DA /* UIImage+Extension.swift */,
 				C641EC9D249B710D00672832 /* UIView+Extensions.swift */,
 				C648FA0824A1F70500D9B92D /* UILabel+Extension.swift */,
@@ -851,11 +847,8 @@
 				C64A4FB62413574000149217 /* Config+Extension.swift */,
 				C648FA3924A2328E00D9B92D /* CorePreferences.swift */,
 				C648FA4024A2400900D9B92D /* AccountCreator+Extension.swift */,
-				C646852B24A60B9F0045AA4D /* AccountCreatorDelegateStub.swift */,
-				C646850F24A4C3690045AA4D /* XmlRpcRequestDelegateStub.swift */,
-				C62709B124B052C6000E43D2 /* CallDelegateStub.swift */,
-				C6406F8624E562B3007E6334 /* PlayerDelegateStub.swift */,
 				C6DBA147250FB81A00C2CFBD /* RegistrationState+Extension.swift */,
+				C6E24C7D299D13FF00304F6E /* Account+Extension.swift */,
 			);
 			path = linphonecore;
 			sourceTree = "<group>";
@@ -1064,7 +1057,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C62D3DFC24067A1800328486 /* Build configuration list for PBXNativeTarget "LinhomeContentExtension" */;
 			buildPhases = (
-				CC3D349A0B61CD9D958EA127 /* [CP] Check Pods Manifest.lock */,
+				7F4D8919D53038D6B0BBEAE6 /* [CP] Check Pods Manifest.lock */,
 				C62D3DE924067A1800328486 /* Sources */,
 				C62D3DEA24067A1800328486 /* Frameworks */,
 				C62D3DEB24067A1800328486 /* Resources */,
@@ -1082,13 +1075,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C676AD8624040F6E0048C504 /* Build configuration list for PBXNativeTarget "Linhome" */;
 			buildPhases = (
-				FC43225184F5B8E02D9FF7EC /* [CP] Check Pods Manifest.lock */,
+				45A0751A0C83D61A94B16620 /* [CP] Check Pods Manifest.lock */,
 				C676AD7024040F6C0048C504 /* Sources */,
 				C676AD7124040F6C0048C504 /* Frameworks */,
 				C676AD7224040F6C0048C504 /* Resources */,
-				C6ECA09C240C7BCE0033EF78 /* Embed App Extensions */,
+				C6ECA09C240C7BCE0033EF78 /* Embed Foundation Extensions */,
 				C6EDB7332513B2B600690F07 /* ShellScript */,
-				CAD12448EDDCC717DD23FEDE /* [CP] Embed Pods Frameworks */,
+				5DE61AC7E00CD8467EDF3B88 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1105,7 +1098,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C6DA26A7240FA94400CDF3D7 /* Build configuration list for PBXNativeTarget "LinhomeServiceExtension" */;
 			buildPhases = (
-				08A1F8A353696A9EEC46D4CF /* [CP] Check Pods Manifest.lock */,
+				16363A19353B43D22E0A4BF3 /* [CP] Check Pods Manifest.lock */,
 				C6DA269B240FA94400CDF3D7 /* Sources */,
 				C6DA269C240FA94400CDF3D7 /* Frameworks */,
 				C6DA269D240FA94400CDF3D7 /* Resources */,
@@ -1126,11 +1119,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = "Belledonne communications";
 				TargetAttributes = {
 					C62D3DEC24067A1800328486 = {
 						CreatedOnToolsVersion = 10.3;
+						DevelopmentTeam = Z2V957B3D6;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1139,6 +1134,8 @@
 					};
 					C676AD7324040F6C0048C504 = {
 						CreatedOnToolsVersion = 10.3;
+						DevelopmentTeam = Z2V957B3D6;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1153,11 +1150,13 @@
 					};
 					C6DA269E240FA94400CDF3D7 = {
 						CreatedOnToolsVersion = 10.3;
+						DevelopmentTeam = Z2V957B3D6;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = C676AD6F24040F6C0048C504 /* Build configuration list for PBXProject "Linhome" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1258,7 +1257,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		08A1F8A353696A9EEC46D4CF /* [CP] Check Pods Manifest.lock */ = {
+		16363A19353B43D22E0A4BF3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1274,6 +1273,134 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-LinhomeServiceExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		45A0751A0C83D61A94B16620 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Linhome-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5DE61AC7E00CD8467EDF3B88 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DeviceGuru/DeviceGuru.framework",
+				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSVG/SwiftSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/Zip/Zip.framework",
+				"${BUILT_PRODUCTS_DIR}/linphone-sdk/linphonesw.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/bctoolbox-ios.framework/bctoolbox-ios",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/bctoolbox.framework/bctoolbox",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/belcard.framework/belcard",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/belle-sip.framework/belle-sip",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/belr.framework/belr",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/lime.framework/lime",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/linphone.framework/linphone",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/linphonetester.framework/linphonetester",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/mediastreamer2.framework/mediastreamer2",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/msamr.framework/msamr",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/mscodec2.framework/mscodec2",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/msopenh264.framework/msopenh264",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/mssilk.framework/mssilk",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/mswebrtc.framework/mswebrtc",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/ortp.framework/ortp",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/ZXing.framework/ZXing",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceGuru.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreInternal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Zip.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphonesw.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox-ios.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/belcard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/belle-sip.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/belr.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/lime.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphone.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphonetester.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mediastreamer2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/msamr.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mscodec2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/msopenh264.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mssilk.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mswebrtc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ortp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZXing.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F4D8919D53038D6B0BBEAE6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LinhomeContentExtension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1298,67 +1425,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
-		};
-		CAD12448EDDCC717DD23FEDE /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Linhome/Pods-Linhome-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CC3D349A0B61CD9D958EA127 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LinhomeContentExtension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FC43225184F5B8E02D9FF7EC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Linhome-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1388,10 +1454,11 @@
 				C6E7B46F24E92AEA00D7D8E2 /* Call+Extension.swift in Sources */,
 				C6DC0C2327A03BB4008F950B /* ActionsMethodTypes.swift in Sources */,
 				C68978D624D163E100FB8235 /* SpinnerItem.swift in Sources */,
-				C68978CC24D1638D00FB8235 /* DeviceStore.swift in Sources */,
 				C68978D224D163CE00FB8235 /* Action.swift in Sources */,
+				C6E24C80299D17AC00304F6E /* Account+Extension.swift in Sources */,
 				C68978DC24D1640800FB8235 /* HistoryEvent.swift in Sources */,
 				C62D3DF424067A1800328486 /* NotificationViewController.swift in Sources */,
+				C6C1AEE12A13A7A7009D4848 /* DeviceStore.swift in Sources */,
 				C68978C624D1612900FB8235 /* FileUtil.swift in Sources */,
 				C68978DA24D163FB00FB8235 /* DeviceTypes.swift in Sources */,
 			);
@@ -1420,11 +1487,11 @@
 				C648F7D624B8531600F3E346 /* ChunkCallTop.swift in Sources */,
 				C627099B24AF3489000E43D2 /* UIRoundRectButtonWithIcon.swift in Sources */,
 				C648FA0624A1F09500D9B92D /* LTextInput.swift in Sources */,
-				C64E26F424BEFEED00F6C3C7 /* UIView+Extension.swift in Sources */,
 				C6FB3829249CFDEE007A6E7B /* TapGestureRecognizer.swift in Sources */,
 				C648F9FE24A1DB3D00D9B92D /* AssistantRoot.swift in Sources */,
 				C6E7B47424E9681800D7D8E2 /* AccountViewModel.swift in Sources */,
 				C62709AE24AF7BB8000E43D2 /* CallOutgoingView.swift in Sources */,
+				C6E24C7E299D13FF00304F6E /* Account+Extension.swift in Sources */,
 				C62709B424B054D3000E43D2 /* GenericCallView.swift in Sources */,
 				C6EC9FDC24ABB5A000F08AA9 /* ToobarButtonClickedListener.swift in Sources */,
 				C6EC9FEB24AC8A4000F08AA9 /* LSpinner.swift in Sources */,
@@ -1437,7 +1504,6 @@
 				C6C2BD7F2523D0EE0035857B /* AccountView.swift in Sources */,
 				C64A4FB92413574000149217 /* Optional+orNil.swift in Sources */,
 				C648F9D924A0EA1100D9B92D /* MenuOption.swift in Sources */,
-				C646851024A4C3690045AA4D /* XmlRpcRequestDelegateStub.swift in Sources */,
 				C6EC9FE524AC5F1E00F08AA9 /* HistoryView.swift in Sources */,
 				C6EC9FB924AB3B7800F08AA9 /* SpinnerItem.swift in Sources */,
 				C648F7E724B9945400F3E346 /* ChunkNameAddress.swift in Sources */,
@@ -1445,7 +1511,6 @@
 				C648FA4D24A2624400D9B92D /* CreatorAssistantView.swift in Sources */,
 				C648FA2B24A2282300D9B92D /* RegExpFormatValidator.swift in Sources */,
 				C6EC9F8A24A9D91100F08AA9 /* CodecDescriptor.swift in Sources */,
-				C6406F8724E562B3007E6334 /* PlayerDelegateStub.swift in Sources */,
 				C644D52B264080FC00EF86C2 /* Device+ExtensionApp.swift in Sources */,
 				C648FA1D24A21A8000D9B92D /* TextUtils.swift in Sources */,
 				C641EC17249B2C7300672832 /* Theme.swift in Sources */,
@@ -1461,7 +1526,6 @@
 				C6EC9FBB24AB4C7E00F08AA9 /* Array+Extension.swift in Sources */,
 				C6EC9FB624AB3A9100F08AA9 /* ActionTypes.swift in Sources */,
 				C627098124ADE889000E43D2 /* DeviceCell.swift in Sources */,
-				C62709B224B052C6000E43D2 /* CallDelegateStub.swift in Sources */,
 				C6EC9FAB24AB36F800F08AA9 /* Action.swift in Sources */,
 				C641EC13249B1A6C00672832 /* Customisation.swift in Sources */,
 				C648F7DA24B8589000F3E346 /* ChunkCallVideoOrIcon.swift in Sources */,
@@ -1507,9 +1571,9 @@
 				C648FA5224A32EA200D9B92D /* CreateLindoorAccountView.swift in Sources */,
 				C646853824A634880045AA4D /* RemoteUrlView.swift in Sources */,
 				C64A4FCB2413574000149217 /* Core+Extension.swift in Sources */,
-				C646852C24A60B9F0045AA4D /* AccountCreatorDelegateStub.swift in Sources */,
 				C6A9D77E24A93BE9005B58C4 /* SettingsViewModel.swift in Sources */,
 				C6864A61255C14F7005F65A2 /* VibratorHelper.swift in Sources */,
+				C656921C29829AE7001FEF7D /* GSMActivityHelper.swift in Sources */,
 				C6C2BD792523D0B60035857B /* HistoryCell.swift in Sources */,
 				C648FA5324A32EA200D9B92D /* CreateLindoorAccountViewModel.swift in Sources */,
 				C6E7B46124E6C62200D7D8E2 /* PlayerControls.swift in Sources */,
@@ -1563,11 +1627,12 @@
 				C655FDEB24B6F78B0058EE2C /* CorePreferences.swift in Sources */,
 				C68978D524D163E000FB8235 /* SpinnerItem.swift in Sources */,
 				C6DC0C2227A03BB3008F950B /* ActionsMethodTypes.swift in Sources */,
-				C68978CB24D1638C00FB8235 /* DeviceStore.swift in Sources */,
 				C68978D124D163CD00FB8235 /* Action.swift in Sources */,
 				C68992C325124E0200B62F70 /* UIDevice+Extension.swift in Sources */,
+				C6E24C7F299D17AB00304F6E /* Account+Extension.swift in Sources */,
 				C68978DB24D1640700FB8235 /* HistoryEvent.swift in Sources */,
 				C6DA26A2240FA94400CDF3D7 /* NotificationService.swift in Sources */,
+				C6C1AEE02A13A7A7009D4848 /* DeviceStore.swift in Sources */,
 				C68978C524D1612900FB8235 /* FileUtil.swift in Sources */,
 				C68978D924D163FB00FB8235 /* DeviceTypes.swift in Sources */,
 			);
@@ -1610,22 +1675,18 @@
 /* Begin XCBuildConfiguration section */
 		C62D3DFD24067A1800328486 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5095ACE67F45B80BA41AF2DD /* Pods-LinhomeContentExtension.debug.xcconfig */;
+			baseConfigurationReference = EF59A21967A8C32DF4FAE34E /* Pods-LinhomeContentExtension.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeContentExtension/LinhomeNotifContentExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/LinhomeContentExtension/notifcontent-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.content-extension";
 				PRODUCT_NAME = LinhomeContentExtension;
@@ -1637,22 +1698,18 @@
 		};
 		C62D3DFE24067A1800328486 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CD6ED3EC2B9D0DC491B8A19C /* Pods-LinhomeContentExtension.release.xcconfig */;
+			baseConfigurationReference = AF98E6F4C0A6CD3CFE872CA7 /* Pods-LinhomeContentExtension.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeContentExtension/LinhomeNotifContentExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/LinhomeContentExtension/notifcontent-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.content-extension";
 				PRODUCT_NAME = LinhomeContentExtension;
@@ -1774,29 +1831,25 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		C676AD8724040F6E0048C504 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4CC8490B45F7F06AF9D64EE5 /* Pods-Linhome.debug.xcconfig */;
+			baseConfigurationReference = F3AD4012C35B55A5BABD61C0 /* Pods-Linhome.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Linhome/Linhome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Linhome/app-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.linhome;
 				PRODUCT_NAME = Linhome;
@@ -1808,21 +1861,18 @@
 		};
 		C676AD8824040F6E0048C504 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E2F1EECADB77B2644E1BB57 /* Pods-Linhome.release.xcconfig */;
+			baseConfigurationReference = 4EE62E2400806E38D58B963B /* Pods-Linhome.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Linhome/Linhome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Linhome/app-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.linhome;
 				PRODUCT_NAME = Linhome;
@@ -1834,19 +1884,15 @@
 		};
 		C6DA26A8240FA94400CDF3D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BE0B37C327D2DA107DE56A8E /* Pods-LinhomeServiceExtension.debug.xcconfig */;
+			baseConfigurationReference = 3B1EE6E756DCEE26EA09D0F7 /* Pods-LinhomeServiceExtension.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeServiceExtension/LinhomeServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				INFOPLIST_FILE = "LinhomeServiceExtension/notifservice-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.service-extension";
 				PRODUCT_NAME = LinhomeServiceExtension;
@@ -1858,19 +1904,15 @@
 		};
 		C6DA26A9240FA94400CDF3D7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A77012B0A48291933BDA949 /* Pods-LinhomeServiceExtension.release.xcconfig */;
+			baseConfigurationReference = 9B97726DD2CEEBD20BE5F04E /* Pods-LinhomeServiceExtension.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeServiceExtension/LinhomeServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				INFOPLIST_FILE = "LinhomeServiceExtension/notifservice-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.service-extension";
 				PRODUCT_NAME = LinhomeServiceExtension;

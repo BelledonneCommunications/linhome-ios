@@ -9,7 +9,13 @@ video_rtp_port=-1
 usage_hint=0
 
 [misc]
-max_calls=1
+max_calls=5
 call_logs_search_limit=0
 
 
+[net]
+firewall_policy=stun,ice
+stun_server=stun.linphone.org
+
+[sip]
+reject_duplicated_calls=0

@@ -109,7 +109,7 @@ class DeviceInfoView: MainViewContent, UITableViewDataSource, UITableViewDelegat
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		guard let device = NavigationManager.it.nextViewArgument as! Device? else {
+		guard let device : Device = NavigationManager.it.nextViewArgument as? Device? ?? nil else {
 			NavigationManager.it.navigateUp()
 			return
 		}

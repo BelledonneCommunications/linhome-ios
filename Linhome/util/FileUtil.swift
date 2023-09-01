@@ -120,10 +120,40 @@ class FileUtil: NSObject {
 		let fileManager = FileManager.default
 		do {
 			let fileURLs = try fileManager.contentsOfDirectory(at:  FileUtil.sharedContainerUrl(), includingPropertiesForKeys: nil)
-			fileURLs.forEach{print($0)}
+			try?fileURLs.forEach{
+				let attribute = try FileManager.default.attributesOfItem(atPath: $0.path)
+				if let size = attribute[FileAttributeKey.size] as? NSNumber {
+					Log.info("\($0) \(size.doubleValue)")
+				}
+			}
 		} catch {
 			print("Error while enumerating files \(error.localizedDescription)")
 		}
 	}
 	
+	static func openFilePaths() -> [String] {
+		(0..<getdtablesize()).map { fd in
+			// Return "" for invalid file descriptors.
+			var flags: CInt = 0
+			guard fcntl(fd, F_GETFL, &flags) >= 0 else {
+				return ""
+			}
+			// Return "?" for file descriptors not associated with a path, for
+			// example, a socket.
+			var path = [CChar](repeating: 0, count: Int(MAXPATHLEN))
+			guard fcntl(fd, F_GETPATH, &path) >= 0 else {
+				return "?"
+			}
+			return String(cString: path)
+		}
+	}
+	
+	static func getNofFileLimit() -> rlimit? {
+		var limits = rlimit()
+		guard getrlimit(RLIMIT_NOFILE, &limits) != -1 else {
+			perror("Error with getrlimit")
+			return nil
+		}
+		return limits
+	}
 }

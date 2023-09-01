@@ -1,28 +1,30 @@
 /*
-* Copyright (c) 2010-2020 Belledonne Communications SARL.
-*
-* This file is part of linhome
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
+ *
+ * This file is part of linhome
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 import Foundation
 import linphonesw
+import linphone
 
 class DeviceStore {
 	
 	static let it = DeviceStore()
+	static  let userDefaults = UserDefaults(suiteName: Config.appGroupName)!
 	
 	private var devicesConfig: Config? = nil
 	
@@ -32,53 +34,88 @@ class DeviceStore {
 	let updatedSnapshotDeviceId = MutableLiveData<String>()
 	let local_devices_fl_name = "local_devices"
 	let devicesUpdated = MutableLiveData<Bool>()
-	var localDevicesFriendList:FriendList?
-
+	var storageMigrated = false
 	
 	var coreDelegate:CoreDelegateStub? = nil
-
+	
+	var enteringBackground = false
+	
 	init () {
-		
-		if let localList = Core.get().getFriendListByName(name:local_devices_fl_name) {
-			localDevicesFriendList = localList
-		} else {
-			localDevicesFriendList = try?Core.get().createFriendList()
-			localDevicesFriendList?.displayName = local_devices_fl_name
-			localDevicesFriendList.map { Core.get().addFriendList(list: $0) }
-		}
-		
-		if (FileManager.default.fileExists(atPath: devicesXml)) {
-			DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-				self.devicesConfig = try!Factory.Instance.createConfig(path: "")
-				let _ = self.devicesConfig?.loadFromXmlFile(filename: self.devicesXml)
-				self.devices = self.readFromXml()
-				self.saveLocalDevices()
-				try? FileManager.default.removeItem(atPath: self.devicesXml)
-				self.devicesUpdated.value = true
-			}
-		}
-				
-		devices = readFromFriends()
-		devicesUpdated.value = true
-		coreDelegate = CoreDelegateStub( onFriendListCreated : { (core, list) in
+		coreDelegate = CoreDelegateStub(
+			onGlobalStateChanged: { (core: linphonesw.Core, state: linphonesw.GlobalState, message: String) -> Void in
+				Log.info("Core state changed to \(state)")
+				if (!self.enteringBackground && core.globalState == .On) {
+					Core.get().friendsDatabasePath = FileUtil.sharedContainerUrl().path + "/devices.db"
+					if (Core.get().getFriendListByName(name:self.local_devices_fl_name) == nil) {
+						let localDevicesFriendList = try?Core.get().createFriendList()
+						localDevicesFriendList?.displayName = self.local_devices_fl_name
+						localDevicesFriendList.map { Core.get().addFriendList(list: $0) }
+					}
+					DispatchQueue.main.async { // Leave one cycle to the core to create the friend list
+						if (!self.storageMigrated) {
+							self.migrateFromXmlStorage()
+						} else {
+							self.readDevicesFromFriends()
+						}
+					}
+				}
+			},
+			onConfiguringStatus : { (core, state, message) in
+				if (state == .Successful) {
+					self.readDevicesFromFriends()
+				}
+			},
+			onFriendListCreated : { (core, list) in
 				Log.info("[DeviceStore] friend list created. \(list.displayName)")
 				if (core.globalState == .On) {
-					self.devices = self.readFromFriends()
-					self.devicesUpdated.value = true
+					self.readDevicesFromFriends()
 				}
-			})
+			}
+		)
 		Core.get().addDelegate(delegate: self.coreDelegate!)
 	}
 	
 	
-	func readFromFriends() -> [Device] {
-		var result = [Device]()
+	func migrateFromXmlStorage() {
+		storageMigrated = true
+		if (!FileManager.default.fileExists(atPath: devicesXml)) {
+			Log.info("[DeviceStore] no xml migration storage to perform")
+			return
+		}
+		self.devicesConfig = try!Factory.Instance.createConfig(path: "")
+		let _ = self.devicesConfig?.loadFromXmlFile(filename: self.devicesXml)
+		self.devices = self.readFromXml()
+		self.saveLocalDevices()
+		self.readDevicesFromFriends()
+		try? FileManager.default.removeItem(atPath: self.devicesXml)
+		fetchVCards()
+		Log.info("[DeviceStore] migration done")
+	}
+	
+	func fetchVCards() {
+		let isLinhomeAccount = Core.get().accountList.filter{$0.params?.idkey != Config.PUSH_GW_ID_KEY}.first?.params?.domain == CorePreferences.them.loginDomain
+		if (isLinhomeAccount) {
+			Log.info("[DeviceStore] fetching vCards")
+			Core.get().config?.setString(section: "misc", key: "contacts-vcard-list", value: "https://subscribe.linhome.org/contacts/vcard")
+			try?Core.get().config?.sync()
+			Core.get().stop()
+			try?Core.get().start()
+		} else {
+			Log.info("[DeviceStore] No vards to fetch, as account not from the main domain \(CorePreferences.them.loginDomain)")
+		}
+	}
+	
+	
+	func readDevicesFromFriends() {
+		self.devices = [Device]()
 		Core.get().getFriendListByName(name: local_devices_fl_name)?.friends.forEach { friend in
 			guard let card = friend.vcard, card.isValid() else {
 				Log.error("[DeviceStore] unable to create device from card (card is null or invdalid) \(friend.vcard?.asVcard4String() ?? "nil")")
 				return
 			}
-			result.append(Device(card: card, isRemotelyProvisionned: false))
+			let device = Device(card: card, isRemotelyProvisionned: false)
+			Log.info("[DeviceStore] found local device : \(device)")
+			self.devices.append(device)
 		}
 		if let remoteFlName = Core.get().config?.getString(section: "misc", key: "contacts-vcard-list", defaultString: nil),  let serverFriendList = Core.get().getFriendListByName(name:remoteFlName) {
 			serverFriendList.friends.forEach { friend in
@@ -86,11 +123,18 @@ class DeviceStore {
 					Log.error("[DeviceStore] received invalid or malformed vCard from remote : \(friend.vcard?.asVcard4String() ?? "nil")")
 					return
 				}
-				result.append(Device(card: card, isRemotelyProvisionned: true))
+				let device = Device(card: card, isRemotelyProvisionned: true)
+				if (self.devices.filter { $0.address == device.address}.count == 0) {
+					Log.info("[DeviceStore] found remotely provisionned device : \(device)")
+					self.devices.append(device)
+				}
 			}
 		}
-		result.sort()
-		return result
+		self.devices.forEach {
+			DeviceStore.userDefaults.set( $0.name , forKey: "cached_device_names_"+$0.address)
+		}
+		self.devices.sort()
+		self.devicesUpdated.value = true
 	}
 	
 	func readFromXml() -> [Device] {
@@ -123,14 +167,17 @@ class DeviceStore {
 	}
 	
 	func saveLocalDevices() {
-		localDevicesFriendList?.friends.forEach {
-			let _ = localDevicesFriendList?.removeFriend(linphoneFriend: $0)
+		Core.get().getFriendListByName(name:local_devices_fl_name)?.friends.forEach {
+			let _ = Core.get().getFriendListByName(name:local_devices_fl_name)?.removeFriend(linphoneFriend: $0)
 		}
 		devices.sort()
 		devices.forEach { device in
 			if let friend = device.friend, !device.isRemotelyProvisionned {
-				let _ = localDevicesFriendList?.addFriend(linphoneFriend: friend)
+				if (Core.get().getFriendListByName(name:local_devices_fl_name)?.addFriend(linphoneFriend: friend) != .OK) {
+					Log.error("[DeviceStore] unable to save device to local friend list.")
+				}
 			}
+			DeviceStore.userDefaults.set( device.name , forKey: "cached_device_names_"+device.address)
 		}
 	}
 	
@@ -165,4 +212,11 @@ class DeviceStore {
 		}
 	}
 	
+	static func getDeviceNameForExtension(address: Address) -> String {
+		if let cached = DeviceStore.userDefaults.string(forKey: "cached_device_names_"+address.asStringUriOnly()) {
+			return cached
+		} else {
+			return address.username
+		}
+	}
 }

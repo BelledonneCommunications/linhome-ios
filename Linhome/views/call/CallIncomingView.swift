@@ -23,7 +23,7 @@ import UIKit
 import Foundation
 import SnapKit
 import AVFoundation
-
+import SVProgressHUD
 
 class CallIncomingView: GenericCallView {
 	
@@ -37,7 +37,7 @@ class CallIncomingView: GenericCallView {
 		let chunkVideoOrIconContraintMaker : (ConstraintMaker) -> Void = { (make) in // Center the Video or Icon
 						make.center.equalToSuperview()
 		}
-		chunkVideoOrIcon = ChunkCallVideoOrIcon(viewModel: callViewModel!, owningViewContraintMaker: chunkVideoOrIconContraintMaker)
+		chunkVideoOrIcon = ChunkCallVideoOrIcon(viewModel: callViewModel!, isIncomingView: true, reservedHeight: 290.0, owningViewContraintMaker: chunkVideoOrIconContraintMaker)
 		self.view.addSubview(chunkVideoOrIcon!.view)
 		chunkVideoOrIcon!.didMove(toParent: self)
 		self.addChild(chunkVideoOrIcon!)
@@ -49,15 +49,7 @@ class CallIncomingView: GenericCallView {
 		self.addChild(chunkNameAddress)
 		chunkNameAddress.view.snp.makeConstraints { (make) in
 			make.left.right.equalToSuperview()
-			make.bottom.equalTo(chunkVideoOrIcon!.view.snp.top).offset(-27)
-		}
-		
-		let someText = UILabel()
-		someText.prepare(styleKey: "view_call_device_address", textKey: "incoming_someone_at_your_door")
-		self.view.addSubview(someText)
-		someText.snp.makeConstraints { (make) in
-			make.left.right.equalToSuperview()
-			make.top.equalTo(chunkVideoOrIcon!.view.snp.bottom).offset(27)
+			make.top.equalTo(chunkTop!.view.snp.bottom).offset(10)
 		}
 		
 		let fullScreenVideo = FullScreenVideo(viewModel: callViewModel!)
@@ -66,11 +58,15 @@ class CallIncomingView: GenericCallView {
 		self.addChild(fullScreenVideo)
 
 		let decline = CallButton.addOne(targetVC: self, iconName: "icons/decline", textKey: "call_button_decline", effectKey: "decline_call_button", tintColor: "color_c", action: {
+			if (self.callViewModel?.call.state != .IncomingEarlyMedia && self.callViewModel?.call.state != .IncomingReceived) {
+				Log.error("Call Incoming view is active but call state is : \(self.callViewModel?.call.state) this is a bug.")
+				super.dismiss()
+			}
 			self.callViewModel?.decline()
 		})
 		decline.view.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview().offset(-100)
-			make.bottom.equalToSuperview().offset(-30)
+			make.bottom.equalToSuperview().offset(-20)
 		}
 		
 		let accept = CallButton.addOne(targetVC: self, iconName: "icons/phone.png", textKey: "call_button_accept", effectKey: "accept_call_button", tintColor: "color_c", action: {
@@ -78,7 +74,7 @@ class CallIncomingView: GenericCallView {
 		})
 		accept.view.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview().offset(100)
-			make.bottom.equalToSuperview().offset(-30)
+			make.bottom.equalToSuperview().offset(-20)
 		}
 		
 	}
@@ -89,10 +85,13 @@ class CallIncomingView: GenericCallView {
 			try?AVAudioSession.sharedInstance().overrideOutputAudioPort(.speaker)
 			UIDevice.current.isProximityMonitoringEnabled = false
 		}
+		NavigationManager.it.incomingViewDisplaying = true
+		SVProgressHUD.dismiss()
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
 		VibratorHelper.vibrate(false)
+		NavigationManager.it.incomingViewDisplaying = false
 	}
 	
 	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

@@ -44,7 +44,8 @@ class LoginSipAccountViewModel : CreatorAssistantViewModel {
 	
 	let moreOptionsOpened = MutableLiveData<Bool>(false)
 	let pushReady = MutableLiveData<Bool>()
-	
+	let sipRegistered = MutableLiveData<Bool>()
+
 	init() {
 		super.init(defaultValuePath: CorePreferences.them.sipAccountDefaultValuesPath)
 	}

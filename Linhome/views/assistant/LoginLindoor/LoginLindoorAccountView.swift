@@ -58,6 +58,10 @@ class LoginLinhomeAccountView: CreatorAssistantView {
 						LinhomeAccount.it.linhomeAccountCreateProxyConfig(accountCreator: model.accountCreator)
 						NavigationManager.it.navigateTo(childClass: DevicesView.self, asRoot:true)
 						DialogUtil.info("linhome_account_loggedin")
+						DispatchQueue.main.async {// Fetch vcards
+							Core.get().stop()
+							try?Core.get().start()
+						}
 					} else {
 						userNameInput.setError(Texts.get("linhome_account_login_failed_unknown_user_or_wroong_password"))
 					}

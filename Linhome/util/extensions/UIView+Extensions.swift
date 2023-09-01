@@ -79,6 +79,10 @@ extension UIView {
 		sender.action!()
 	}
 	
+	@objc func performTap() {
+		(gestureRecognizers?.first as? TapGestureRecognizer)?.action?()
+	}
+	
 	
 	func setFrameHeight(_ height:CGFloat) {
 		var r = self.frame
@@ -112,6 +116,40 @@ extension UIView {
 						self.frame = r
 		}, completion:nil)
 
+	}
+	
+	func toggleVisible() {
+		let hidden = !self.isHidden
+		if self.isHidden && !hidden {
+			self.alpha = 0.0
+			self.isHidden = false
+		}
+		UIView.animate(withDuration: 0.25, animations: {
+			self.alpha = hidden ? 0.0 : 1.0
+		}) { (complete) in
+			self.isHidden = hidden
+		}
+	}
+	
+	func forceVisible() {
+		self.alpha = 1.0
+		self.isHidden = false
+	}
+	
+	// Snapkit related
+	
+	func done() {
+		// to avoid the unused variable warning
+	}
+
+	func wrapContentY() -> UIView {
+		subviews.first?.snp.makeConstraints({ make in
+			make.top.equalToSuperview()
+		})
+		subviews.last?.snp.makeConstraints({ make in
+			make.bottom.equalToSuperview()
+		})
+		return self
 	}
 	
 }

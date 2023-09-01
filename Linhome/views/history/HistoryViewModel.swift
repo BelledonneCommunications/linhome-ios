@@ -81,6 +81,13 @@ class HistoryViewModel : ViewModel {
 		}
 	}
 	
+	func markEventsAsRead() {
+		history.value?.forEach { event in
+			event.getHistoryEvent().viewedByUser = true
+			event.getHistoryEvent().persist()
+		}
+	}
+	
 	
 	func refresh() { // Could happen it log is updatesd by extensions - callback not called
 		self.history.value = Core.get().callLogsWithNonEmptyCallId()

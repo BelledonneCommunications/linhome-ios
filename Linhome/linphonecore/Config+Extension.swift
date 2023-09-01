@@ -54,13 +54,13 @@ extension Config {
 	static let earlymediaContentExtensionCagetoryIdentifier = Config.get().getString(section: "app", key: "extension_category", defaultString: "")
 	
 	// Default values in app
-	static let domain = Config.get().getString(section: "app", key: "domain", defaultString: "")
 	static let serveraddress =  Config.get().getString(section: "app", key: "server", defaultString: "")
 	static let defaultUsername =  Config.get().getString(section: "app", key: "user", defaultString: "")
 	static let defaultPass =  Config.get().getString(section: "app", key: "pass", defaultString: "")
 	
 	static let pushNotificationsInterval =  Config.get().getInt(section: "net", key: "pn-call-remote-push-interval", defaultValue: 3)
 
-	
+	static let PUSH_GW_ID_KEY = "linhome_pushgateway"
+
 	
 }

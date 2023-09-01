@@ -60,7 +60,9 @@ class SettingsViewModel : ViewModel {
 		showLatestSnapshot.observe { (enable) in
 			CorePreferences.them.showLatestSnapshot = enable!
 		}
-		audioCodecs = initCodecsList(payloads: Core.get().audioPayloadTypes, showRate: true)
+		audioCodecs = initCodecsList(payloads: Core.get().audioPayloadTypes.filter{
+			CorePreferences.availableAudioCodecs.contains($0.mimeType.lowercased())
+		}, showRate: true)
 		videCodecs = initCodecsList(payloads: Core.get().videoPayloadTypes, showRate: false)
 		delegate = CoreDelegateStub(onLogCollectionUploadStateChanged: { (lc, state, url) in
 			self.logUploadResult.value = Pair(state, url)
@@ -96,6 +98,7 @@ class SettingsViewModel : ViewModel {
 	
 	func clearLogs() {
 		Core.resetLogCollection()
+		Core.setLogCollectionPath(path: Factory.Instance.getDownloadDir(context: UnsafeMutablePointer<Int8>(mutating: (Config.appGroupName as NSString).utf8String)))
 	}
 	
 	func sendLogs() {

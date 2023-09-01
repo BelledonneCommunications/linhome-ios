@@ -30,13 +30,13 @@ class AccountViewModel : ViewModel {
 	
 	override  init() {
 		super.init()
-		accountDesc.value = getDescription(key: "account_info",proxyConfig: account)
-		pushGWDesc.value = getDescription(key: "push_account_info",proxyConfig: pushGw)
-		coreDelegate = CoreDelegateStub(onRegistrationStateChanged : { (core: linphonesw.Core, cfg: linphonesw.ProxyConfig, state: linphonesw.RegistrationState, message: String) -> Void in
-			if (cfg.idkey == LinhomeAccount.PUSH_GW_ID_KEY) {
-				self.pushGWDesc.value = self.getDescription(key: "push_account_info",proxyConfig: self.pushGw)
+		accountDesc.value = getDescription(key: "account_info",account: account)
+		pushGWDesc.value = getDescription(key: "push_account_info",account: pushGw)
+		coreDelegate = CoreDelegateStub(onAccountRegistrationStateChanged : { (core: linphonesw.Core, cfg: linphonesw.Account, state: linphonesw.RegistrationState, message: String) -> Void in
+			if (cfg.params?.idkey == Config.PUSH_GW_ID_KEY) {
+				self.pushGWDesc.value = self.getDescription(key: "push_account_info",account: self.pushGw)
 			} else {
-				self.accountDesc.value = self.getDescription(key: "account_info",proxyConfig: self.account)
+				self.accountDesc.value = self.getDescription(key: "account_info",account: self.account)
 			}
 		})
 		Core.get().addDelegate(delegate: self.coreDelegate!)
@@ -56,14 +56,17 @@ class AccountViewModel : ViewModel {
 	}
 	
 	
-	func getDescription(key:String, proxyConfig: ProxyConfig?) -> String? {
-		if let state = proxyConfig?.state.toHumanReadable(), let ident = proxyConfig?.identityAddress?.asStringUriOnly() {
+	func getDescription(key:String, account: Account?) -> String? {
+		if let state = account?.state.toHumanReadable(), let ident = account?.params?.identityAddress?.asStringUriOnly() {
 			return Texts.get(key, arg1: ident, arg2: state)
 		} else {
 			return Texts.get("no_account_configured")
 		}
 	}
 	
+	func isLinhome() -> Bool {
+		return LinhomeAccount.it.get()?.params?.domain == CorePreferences.them.loginDomain
+	}
 	
 }
 

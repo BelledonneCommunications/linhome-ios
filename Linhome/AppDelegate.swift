@@ -38,23 +38,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	
 	var coreState = MutableLiveData(linphonesw.GlobalState.Off)
 	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		
-		FirebaseApp.configure()
-		
-		UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
-		
-		_ = Customisation.it
-		
+	var historyNotifTapped = false
+	
+	func displayWaitIndicatorIfFromPush() -> Bool {
 		var fromPush = false
 		if let userDefaults = UserDefaults(suiteName: Config.appGroupName) {
-			if let lastPushTime = userDefaults.value(forKey: "lastpushtime") as! Date? {
+			if let lastPushTime = userDefaults.value(forKey: "lastcallpushtime") as! Date? {
 				if let lastLaunchTime = userDefaults.value(forKey: "lastlaunchtime") as! Date? {
 					if (lastPushTime > lastLaunchTime) {
 						fromPush = true
 						if (Date().timeIntervalSince1970 - lastPushTime.timeIntervalSince1970 < 5.0) { // Fresh push most likely waiting for core to start
-							SVProgressHUD.show()
-							DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+							DispatchQueue.main.async {
+								SVProgressHUD.show()
+							}
+							DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(10)) {
 								SVProgressHUD.dismiss()
 							}
 						}
@@ -63,28 +60,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 			}
 			userDefaults.set(Date(), forKey: "lastlaunchtime")
 		}
+		return fromPush
+	}
+	
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+		
+		FirebaseApp.configure()
+		
+		UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+		
+		_ = Customisation.it
+		_ = GSMActivityHelper.it
+		_ = DeviceStore.it
+		
 		
 		self.window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = fromPush ? MainView() : Splash()
+		window?.rootViewController = displayWaitIndicatorIfFromPush() ? MainView() : Splash()
 		window?.makeKeyAndVisible()
 		
-		coreDelegate = CoreDelegateStub( onGlobalStateChanged: { (core: linphonesw.Core, state: linphonesw.GlobalState, message: String) -> Void in
-			self.coreState.value = state
+		coreDelegate = CoreDelegateStub(
+			onGlobalStateChanged: { (core: linphonesw.Core, state: linphonesw.GlobalState, message: String) -> Void in
+				self.coreState.value = state
 		},
-										 onCallStateChanged : { (lc: linphonesw.Core, call: linphonesw.Call, cstate: linphonesw.Call.State, message: String) -> Void in
+			onCallStateChanged : { (lc: linphonesw.Core, call: linphonesw.Call, cstate: linphonesw.Call.State, message: String) -> Void in
 			
-			if (cstate == linphonesw.Call.State.End && UIApplication.shared.applicationState == .background) { // A call is terminated in background
+			
+			if let callId = call.callLog?.callId {
+				Call.requestOwnerShip(callId) // Will release the extension handling
+			}
+				
+				if (cstate == linphonesw.Call.State.Released) {
+					SVProgressHUD.dismiss()
+					let openFiles = FileUtil.openFilePaths()
+					Log.debug("Open file descriptors: limit = \(FileUtil.getNofFileLimit()) count=\(openFiles.count) FDs : \n \(openFiles)")
+			}
+				
+			if (cstate == linphonesw.Call.State.Released && UIApplication.shared.applicationState == .background) { // A call is terminated in background
 				DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-					self.applicationWillResignActive(UIApplication.shared)
+					//self.applicationWillResignActive(UIApplication.shared)
 				}
 			}
-			
-			if (cstate == linphonesw.Call.State.End && call.callLog?.dir == .Incoming) {
+
+			if (cstate == linphonesw.Call.State.Released && call.callLog?.dir == .Incoming) {
 				if (self.appOpenedTime.timeIntervalSince1970 > Double((call.callLog?.startDate ?? 0))) {
-					UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+					//UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
 				}
 			}
-			
 			
 			if (cstate == linphonesw.Call.State.Error && call.callLog?.dir == Call.Dir.Outgoing) {
 				DispatchQueue.main.async {
@@ -97,10 +118,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 				return
 			}
 			
-			if ([Call.State.IncomingReceived, Call.State.IncomingEarlyMedia].contains(call.state)) {
+			if ([Call.State.IncomingReceived].contains(call.state)) {
 				if let log = call.callLog, let userDefaults = UserDefaults(suiteName: Config.appGroupName), userDefaults.bool(forKey: "accepted_calls_via_notif_\(log.callId)") {
 					Log.info("Accepting call Id in app (accept button pressed on notif) : \(log.callId)")
-					call.extendedAccept(core: Core.get())
+					if (GSMActivityHelper.it.ongoingGSMCall.value == true) {
+						NavigationManager.it.navigateTo(childClass: CallIncomingView.self, asRoot:false, argument:Pair(call, [Call.State.IncomingReceived, Call.State.IncomingEarlyMedia]))
+						DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+							DialogUtil.toast(textKey: "unable_to_accept_call_gsm_call_in_progress")
+						}
+					} else {
+						call.extendedAccept(core : Core.get())
+					}
 					return
 				}
 				if let log = call.callLog, let userDefaults = UserDefaults(suiteName: Config.appGroupName), userDefaults.bool(forKey: "declined_calls_via_notif_\(log.callId)") {
@@ -130,6 +158,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		
 		requestMirophonePermission()
 		
+		Core.get().addDelegate(delegate: self.coreDelegate!)
 		
 		return true
 	}
@@ -169,40 +198,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 			}
 		}
 	}
-	
-	
-	func application(_ application: UIApplication,
-					 didRegisterForRemoteNotificationsWithDeviceToken
-					 deviceToken: Data) {
-		Core.get().configurePushNotifications(deviceToken)
-	}
-	
+		
 	func applicationWillTerminate(_ application: UIApplication) {
 		Core.get().stop()
-		Call.releaseOwnerShip()
 	}
 	
 	func application(_ application: UIApplication,
 					 didFailToRegisterForRemoteNotificationsWithError
 					 error: Error) {
-		Log.error("Failed regidstering to remote notifications \(error)")
+		Log.error("Failed registering to remote notifications \(error)")
+		Core.get().didRegisterForRemotePush(deviceToken: nil)
+	}
+	
+	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+		DispatchQueue.main.async() {
+			Core.get().configurePushNotifications(deviceToken)
+		}
 	}
 	
 	func applicationDidBecomeActive(_ application: UIApplication) {
+		DeviceStore.it.enteringBackground = false
+		displayWaitIndicatorIfFromPush()
 		HistoryEventStore.refresh()
 		if let userDefaults = UserDefaults(suiteName: Config.appGroupName) {
 			userDefaults.set(true, forKey: "appactive")
 		}
-		if (Core.get().callsNb == 0) {
-			Call.requestAndWaitForOwnerShip()
-		}
 		try?Config.get().sync()
 		registerForPushNotifications()
-		Core.get().addDelegate(delegate: self.coreDelegate!)
-		try?Core.get().extendedStart()
-		Core.get().ensureRegistered()
-		Core.get().enterForeground()
-		NavigationManager.it.mainView?.tabbarViewModel.updateUnreadCount()
+		DispatchQueue.main.async {
+			try?Core.get().start()
+			Core.get().enterForeground()
+			NavigationManager.it.mainView?.tabbarViewModel.updateUnreadCount()
+		}
 		appOpenedTime = Date()
 	}
 	
@@ -211,20 +238,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 			userDefaults.set(false, forKey: "appactive")
 		}
 		try?Config.get().sync()
-		Core.get().enterBackground()
-		if (Core.get().callsNb == 0) {
-			Core.get().stop()
-			Call.releaseOwnerShip()
-			Core.get().removeDelegate(delegate: self.coreDelegate!)
-		}
+		enterBackground()
 	}
 	
 	// UNUserNotificationCenterDelegate functions
 	
 	func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-		Log.info("willPresentnotification")
+		Log.info("willPresentnotification : \(notification.request.content.userInfo)")
+		if let aps = notification.request.content.userInfo["aps"] as? [String: Any], let alert = aps["alert"] as? [String: Any], let locKey = alert["loc-key"] as? String, locKey == "IC_MSG" {
+			if  let callId = notification.request.content.userInfo["call-id"] as! String? {
+				Call.requestOwnerShip(callId)
+			}
+			if (!NavigationManager.it.incomingViewDisplaying) {
+				//SVProgressHUD.show()
+			}
+		}
+
+
 		if #available(iOS 14.0, *) {
-			completionHandler([.sound,.list])
+			let appActive = UserDefaults(suiteName: Config.appGroupName)?.bool(forKey: "appactive") == true
+			let isMissedInForeGround = notification.request.content.title == Texts.get("notif_missed_call_title") && appActive
+			completionHandler(isMissedInForeGround ? [.banner] : [.sound,.list])
 		} else {
 			completionHandler(.sound)
 		}
@@ -232,13 +266,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	
 	
 	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-		Log.info("didReceiveRemoteNotification")
+		Log.info("didReceiveRemoteNotification - service notification \(userInfo)")
+		
+		if let aps = userInfo["aps"] as? [String: Any], let alert = aps["alert"] as? [String: Any], let locKey = alert["loc-key"] as? String, locKey == "Missing call" {
+			historyNotifTapped = true
+		}
+		
+		if (Core.get().globalState != .On) {
+			try?Core.get().start()
+			Core.get().enterForeground()
+		}
+		Core.get().accountList.forEach {
+			$0.refreshRegister()
+		}
+		DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
+			if (UserDefaults(suiteName: Config.appGroupName)?.bool(forKey: "appactive") != true) {
+				self.enterBackground()
+			}
+			completionHandler(.newData)
+		}
+	}
+	
+	func enterBackground() {
+		DeviceStore.it.enteringBackground = true
+		Core.get().enterBackground()
+		if (Core.get().callsNb == 0) {
+			Core.get().stopAsync()
+		}
 	}
 	
 	// Actions on the notification here. If the user press too quick on the actions it comes directly here.
 	
 	func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-		Log.info("User pressed action in notification. (app) : \(response.actionIdentifier)")
+		Log.info("User pressed action in notification. (app) : \(response)")
+		
+		if (response.notification.request.content.title == Texts.get("notif_missed_call_title")) {
+			historyNotifTapped = true
+			if ( UIApplication.shared.applicationState == .active && coreState.value == .On) {
+				coreState.notifyValue()
+			}
+			return
+		}
 		
 		guard  let callId = response.notification.request.content.userInfo["call-id"] as! String?, let userDefaults = UserDefaults(suiteName: Config.appGroupName) else {
 			Log.warn("No call ID found in notification or failed getting user detaults : \(response.actionIdentifier)")
