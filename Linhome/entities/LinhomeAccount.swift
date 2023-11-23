@@ -106,6 +106,13 @@ class LinhomeAccount {
 	}
 	
 	func createPushGateway(pushReady: MutableLiveData<Bool>) {
+		
+		if (get()?.params?.domain == CorePreferences.them.loginDomain) {
+			get()?.addPushToken()
+			Log.info("No need to create a push gateway for this account, as it supports push notifications. setting push notification parameters instead")
+			return
+		}
+		
 		if (!CorePreferences.them.automaticallyCreatePushGatewayAccount) {
 			Log.info("Skipping push gateway creation as disabled in config (section app/auto_create_push_gateway_account)")
 			pushReady.value = true
