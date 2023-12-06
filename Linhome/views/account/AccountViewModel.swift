@@ -23,7 +23,7 @@ import linphonesw
 
 class AccountViewModel : ViewModel {
 	let account = LinhomeAccount.it.get()
-	let pushGw = LinhomeAccount.it.pushGateway()
+	let pushGw = LinhomeAccount.it.pushAccount()
 	var accountDesc  =  MutableLiveData("")
 	var pushGWDesc  =  MutableLiveData("")
 	private var coreDelegate : CoreDelegateStub?

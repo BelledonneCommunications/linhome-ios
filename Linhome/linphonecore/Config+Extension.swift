@@ -58,9 +58,41 @@ extension Config {
 	static let defaultUsername =  Config.get().getString(section: "app", key: "user", defaultString: "")
 	static let defaultPass =  Config.get().getString(section: "app", key: "pass", defaultString: "")
 	
+	// Push related
 	static let pushNotificationsInterval =  Config.get().getInt(section: "net", key: "pn-call-remote-push-interval", defaultValue: 3)
-
 	static let PUSH_GW_ID_KEY = "linhome_pushgateway"
+#if DEBUG
+		static let pushProvider = "apns.dev"
+#else
+		static let pushProvider = "apns"
+#endif
+	
+	// FlexiApi Requests token with 1h validity, and one time usage
+	
+	static var flexiApiToken: String? {
+		get {
+			let token = Config.get().getString(section: "account_creator", key: "account_creation_token", defaultString: "")
+			if (token.isEmpty) {
+				return nil
+			}
+			let tokenValidity = Config.get().getInt64(section: "account_creator", key: "account_creation_token_retry_minutes", defaultValue: 60)
+			let tokenStoreTime = Config.get().getInt64(section: "account_creator", key: "account_creation_token_store_time", defaultValue: 0)
+			if (tokenStoreTime + tokenValidity * 60 > Int64(Date().timeIntervalSince1970)) {
+				return token
+			} else {
+				Config.get().setString(section: "account_creator", key: "account_creation_token", value: "")
+				return nil
+			}
+		}
+		set {
+			Config.get().setString(section: "account_creator", key: "account_creation_token", value: newValue)
+			Config.get().setInt64(
+				section: "account_creator",
+				key: "account_creation_token_store_time",
+				value: newValue != nil ? Int64(Date().timeIntervalSince1970) : Int64(0))
+		}
+		
+	}
 
 	
 }

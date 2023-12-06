@@ -18,46 +18,40 @@
 */
 
 
+
 import Foundation
 import linphonesw
 import linphone
 
 
-class CreateLinhomeAccountViewModel : CreatorAssistantViewModel {
+class LoginLinhomeAccountViewModel : CreatorAssistantViewModel {
 	
 	var username: Pair<MutableLiveData<String>, MutableLiveData<Bool>> = Pair(MutableLiveData<String>(), MutableLiveData<Bool>(false))
-	var email: Pair<MutableLiveData<String>, MutableLiveData<Bool>> = Pair(MutableLiveData<String>(), MutableLiveData<Bool>(false))
 	var pass1: Pair<MutableLiveData<String>, MutableLiveData<Bool>> = Pair(MutableLiveData<String>(), MutableLiveData<Bool>(false))
-	var pass2: Pair<MutableLiveData<String>, MutableLiveData<Bool>> = Pair(MutableLiveData<String>(), MutableLiveData<Bool>(false))
-	var creationResult = MutableLiveData<AccountCreator.Status>()
-	
-	var delegate : AccountCreatorDelegateStub? = nil
-	
+	var accountCreatorResult = MutableLiveData<AccountCreator.Status>()
+	var sipRegistrationResult = MutableLiveData<Bool>()
+
 	init() {
 		super.init(defaultValuePath: CorePreferences.them.linhomeAccountDefaultValuesPath)
-		delegate = AccountCreatorDelegateStub(onCreateAccount:  { (creator:AccountCreator, status:AccountCreator.Status, response:String) -> Void in
-			if (status == AccountCreator.Status.AccountCreated) {
-				LinhomeAccount.it.linhomeAccountCreateProxyConfig(accountCreator: creator)
-			}
-			self.creationResult.value = status
+		creatorDelegate = AccountCreatorDelegateStub(onIsAccountExist:  { (creator:AccountCreator, status:AccountCreator.Status, response:String) -> Void in
+			self.accountCreatorResult.value = status
 		})
 	}
 	
 	func valid() -> Bool {
-		return username.second.value! && email.second.value! && pass1.second.value! && pass2.second.value!
-	}
-		
-	override func onStart() {
-		super.onStart()
-		delegate.map{accountCreator.addDelegate(delegate:$0)}
+		return username.second.value! && pass1.second.value!
 	}
 	
-	override func onEnd() {
-		delegate.map{accountCreator.removeDelegate(delegate:$0)}
-		super.onEnd()
+	func fireLogin() {
+		if (accountCreator.isAccountExist() == .RequestOk) {
+			accountCreator.addDelegate(delegate: creatorDelegate!)
+		} else {
+			self.accountCreatorResult.value = .UnexpectedError
+		}
 	}
 	
 }
+
 
 
 

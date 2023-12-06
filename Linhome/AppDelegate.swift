@@ -37,7 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	var appOpenedTime = Date()
 	
 	var coreState = MutableLiveData(linphonesw.GlobalState.Off)
-	
+	var flexiApiTokenReceived = MutableLiveData(false)
+
 	var historyNotifTapped = false
 	
 	func displayWaitIndicatorIfFromPush() -> Bool {
@@ -266,7 +267,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	
 	
 	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-		Log.info("didReceiveRemoteNotification - service notification \(userInfo)")
+		Log.info("didReceiveRemoteNotification - remote notification \(userInfo)")
+
+		if let payload = userInfo["customPayload"] as? [String: Any], let token = payload["token"] as? String {
+			Config.flexiApiToken = token
+			flexiApiTokenReceived.value = true
+		}
 		
 		if let aps = userInfo["aps"] as? [String: Any], let alert = aps["alert"] as? [String: Any], let locKey = alert["loc-key"] as? String, locKey == "Missing call" {
 			historyNotifTapped = true

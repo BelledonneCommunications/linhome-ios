@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		371BD8DC31EE6268DB3786F1 /* Pods_Linhome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 667B796B04FD7B52D30328F5 /* Pods_Linhome.framework */; };
 		886135D53B36B47BEB3B4BBC /* Pods_LinhomeServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EF8D91DC0E7DBF552C81388 /* Pods_LinhomeServiceExtension.framework */; };
+		C6022E8B2B3C25A000988793 /* FlexiApiPushAccountCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6022E8A2B3C25A000988793 /* FlexiApiPushAccountCreationViewModel.swift */; };
+		C6022E8D2B3C34AD00988793 /* DefaultStringInterpolation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6022E8C2B3C34AD00988793 /* DefaultStringInterpolation+Extension.swift */; };
 		C627098124ADE889000E43D2 /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627097F24ADE889000E43D2 /* DeviceCell.swift */; };
 		C627098224ADE889000E43D2 /* DeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C627098024ADE889000E43D2 /* DeviceCell.xib */; };
 		C627098824AE4910000E43D2 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627098724AE4910000E43D2 /* NavigationManager.swift */; };
@@ -53,8 +55,8 @@
 		C641ECCD249CAD3F00672832 /* linhome_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C641ECCC249CAD3F00672832 /* linhome_icon.png */; };
 		C644D5272640601400EF86C2 /* UIDevice+ExtensionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C644D5262640601400EF86C2 /* UIDevice+ExtensionApp.swift */; };
 		C644D52B264080FC00EF86C2 /* Device+ExtensionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C644D52A264080FC00EF86C2 /* Device+ExtensionApp.swift */; };
-		C646850C24A4A0200045AA4D /* LoginLindoorAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646850924A4A0200045AA4D /* LoginLindoorAccountView.swift */; };
-		C646850D24A4A0200045AA4D /* LoginLindoorAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646850A24A4A0200045AA4D /* LoginLindoorAccountViewModel.swift */; };
+		C646850C24A4A0200045AA4D /* LoginLinhomeAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646850924A4A0200045AA4D /* LoginLinhomeAccountView.swift */; };
+		C646850D24A4A0200045AA4D /* LoginLinhomeAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646850A24A4A0200045AA4D /* LoginLinhomeAccountViewModel.swift */; };
 		C646851924A4E5D10045AA4D /* LoginSipAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646851624A4E5D10045AA4D /* LoginSipAccountViewModel.swift */; };
 		C646851B24A4E5D10045AA4D /* LoginSipAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646851824A4E5D10045AA4D /* LoginSipAccountView.swift */; };
 		C646851E24A5BF7B0045AA4D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646851D24A5BF7B0045AA4D /* ViewModel.swift */; };
@@ -108,8 +110,8 @@
 		C648FA4824A260CE00D9B92D /* assistant_linhome_account_default_values in Resources */ = {isa = PBXBuildFile; fileRef = C648FA4624A260CE00D9B92D /* assistant_linhome_account_default_values */; };
 		C648FA4924A260CE00D9B92D /* assistant_sip_account_default_values in Resources */ = {isa = PBXBuildFile; fileRef = C648FA4724A260CE00D9B92D /* assistant_sip_account_default_values */; };
 		C648FA4D24A2624400D9B92D /* CreatorAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648FA4C24A2624400D9B92D /* CreatorAssistantView.swift */; };
-		C648FA5224A32EA200D9B92D /* CreateLindoorAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648FA4F24A32EA200D9B92D /* CreateLindoorAccountView.swift */; };
-		C648FA5324A32EA200D9B92D /* CreateLindoorAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648FA5024A32EA200D9B92D /* CreateLindoorAccountViewModel.swift */; };
+		C648FA5224A32EA200D9B92D /* CreateLinhomeAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648FA4F24A32EA200D9B92D /* CreateLinhomeAccountView.swift */; };
+		C648FA5324A32EA200D9B92D /* CreateLinhomeAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648FA5024A32EA200D9B92D /* CreateLinhomeAccountViewModel.swift */; };
 		C648FA5524A3602D00D9B92D /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648FA5424A3602D00D9B92D /* UIApplication+Extension.swift */; };
 		C64A4FB92413574000149217 /* Optional+orNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FB12413574000149217 /* Optional+orNil.swift */; };
 		C64A4FBC2413574000149217 /* DialogUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64A4FB22413574000149217 /* DialogUtil.swift */; };
@@ -300,6 +302,8 @@
 		667B796B04FD7B52D30328F5 /* Pods_Linhome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Linhome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B97726DD2CEEBD20BE5F04E /* Pods-LinhomeServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeServiceExtension/Pods-LinhomeServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		AF98E6F4C0A6CD3CFE872CA7 /* Pods-LinhomeContentExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.release.xcconfig"; sourceTree = "<group>"; };
+		C6022E8A2B3C25A000988793 /* FlexiApiPushAccountCreationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexiApiPushAccountCreationViewModel.swift; sourceTree = "<group>"; };
+		C6022E8C2B3C34AD00988793 /* DefaultStringInterpolation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultStringInterpolation+Extension.swift"; sourceTree = "<group>"; };
 		C623DC01241167930049C646 /* LinhomeServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LinhomeServiceExtension.entitlements; sourceTree = "<group>"; };
 		C627097F24ADE889000E43D2 /* DeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
 		C627098024ADE889000E43D2 /* DeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceCell.xib; sourceTree = "<group>"; };
@@ -348,8 +352,8 @@
 		C641ECCC249CAD3F00672832 /* linhome_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linhome_icon.png; sourceTree = "<group>"; };
 		C644D5262640601400EF86C2 /* UIDevice+ExtensionApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+ExtensionApp.swift"; sourceTree = "<group>"; };
 		C644D52A264080FC00EF86C2 /* Device+ExtensionApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Device+ExtensionApp.swift"; sourceTree = "<group>"; };
-		C646850924A4A0200045AA4D /* LoginLindoorAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginLindoorAccountView.swift; sourceTree = "<group>"; };
-		C646850A24A4A0200045AA4D /* LoginLindoorAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginLindoorAccountViewModel.swift; sourceTree = "<group>"; };
+		C646850924A4A0200045AA4D /* LoginLinhomeAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginLinhomeAccountView.swift; sourceTree = "<group>"; };
+		C646850A24A4A0200045AA4D /* LoginLinhomeAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginLinhomeAccountViewModel.swift; sourceTree = "<group>"; };
 		C646851624A4E5D10045AA4D /* LoginSipAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSipAccountViewModel.swift; sourceTree = "<group>"; };
 		C646851824A4E5D10045AA4D /* LoginSipAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSipAccountView.swift; sourceTree = "<group>"; };
 		C646851D24A5BF7B0045AA4D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -403,8 +407,8 @@
 		C648FA4624A260CE00D9B92D /* assistant_linhome_account_default_values */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = assistant_linhome_account_default_values; sourceTree = "<group>"; };
 		C648FA4724A260CE00D9B92D /* assistant_sip_account_default_values */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = assistant_sip_account_default_values; sourceTree = "<group>"; };
 		C648FA4C24A2624400D9B92D /* CreatorAssistantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatorAssistantView.swift; sourceTree = "<group>"; };
-		C648FA4F24A32EA200D9B92D /* CreateLindoorAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateLindoorAccountView.swift; sourceTree = "<group>"; };
-		C648FA5024A32EA200D9B92D /* CreateLindoorAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateLindoorAccountViewModel.swift; sourceTree = "<group>"; };
+		C648FA4F24A32EA200D9B92D /* CreateLinhomeAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateLinhomeAccountView.swift; sourceTree = "<group>"; };
+		C648FA5024A32EA200D9B92D /* CreateLinhomeAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateLinhomeAccountViewModel.swift; sourceTree = "<group>"; };
 		C648FA5424A3602D00D9B92D /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		C64A4FB12413574000149217 /* Optional+orNil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+orNil.swift"; sourceTree = "<group>"; };
 		C64A4FB22413574000149217 /* DialogUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogUtil.swift; sourceTree = "<group>"; };
@@ -554,6 +558,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C6022E892B3C252700988793 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C6022E8A2B3C25A000988793 /* FlexiApiPushAccountCreationViewModel.swift */,
+				C648FA3524A22DE100D9B92D /* CreatorAssistantViewModel.swift */,
+				C648FA4C24A2624400D9B92D /* CreatorAssistantView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		C627098624AE4903000E43D2 /* navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -666,25 +680,25 @@
 			path = main;
 			sourceTree = "<group>";
 		};
-		C646850824A4A0200045AA4D /* LoginLindoor */ = {
+		C646850824A4A0200045AA4D /* LoginLinhomeAccount */ = {
 			isa = PBXGroup;
 			children = (
-				C646850924A4A0200045AA4D /* LoginLindoorAccountView.swift */,
-				C646850A24A4A0200045AA4D /* LoginLindoorAccountViewModel.swift */,
+				C646850924A4A0200045AA4D /* LoginLinhomeAccountView.swift */,
+				C646850A24A4A0200045AA4D /* LoginLinhomeAccountViewModel.swift */,
 			);
-			path = LoginLindoor;
+			path = LoginLinhomeAccount;
 			sourceTree = "<group>";
 		};
-		C646851524A4E5D10045AA4D /* LoginSip */ = {
+		C646851524A4E5D10045AA4D /* LoginSipAccount */ = {
 			isa = PBXGroup;
 			children = (
 				C646851824A4E5D10045AA4D /* LoginSipAccountView.swift */,
 				C646851624A4E5D10045AA4D /* LoginSipAccountViewModel.swift */,
 			);
-			path = LoginSip;
+			path = LoginSipAccount;
 			sourceTree = "<group>";
 		};
-		C646853124A632C30045AA4D /* Remote */ = {
+		C646853124A632C30045AA4D /* RemoteProvisioning */ = {
 			isa = PBXGroup;
 			children = (
 				C646853D24A65DFE0045AA4D /* RemoteQr.swift */,
@@ -695,7 +709,7 @@
 				C646853724A634880045AA4D /* RemoteUrlView.xib */,
 				C646853224A632C30045AA4D /* RemoteRoot.swift */,
 			);
-			path = Remote;
+			path = RemoteProvisioning;
 			sourceTree = "<group>";
 		};
 		C648F7EE24BC5D1600F3E346 /* Widgets */ = {
@@ -784,6 +798,7 @@
 				C6DBA14C250FEF4D00C2CFBD /* UIDevice+Extension.swift */,
 				C644D5262640601400EF86C2 /* UIDevice+ExtensionApp.swift */,
 				C6DBA14E25100B8300C2CFBD /* UIScreen+Extension.swift */,
+				C6022E8C2B3C34AD00988793 /* DefaultStringInterpolation+Extension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -791,24 +806,23 @@
 		C648F9FA24A1DB3D00D9B92D /* assistant */ = {
 			isa = PBXGroup;
 			children = (
-				C646853124A632C30045AA4D /* Remote */,
-				C648FA4C24A2624400D9B92D /* CreatorAssistantView.swift */,
-				C648FA3524A22DE100D9B92D /* CreatorAssistantViewModel.swift */,
-				C648F9FF24A1EAB600D9B92D /* CreateLindoor */,
-				C646850824A4A0200045AA4D /* LoginLindoor */,
-				C646851524A4E5D10045AA4D /* LoginSip */,
 				C648F9FC24A1DB3D00D9B92D /* AssistantRoot.swift */,
+				C6022E892B3C252700988793 /* Shared */,
+				C646853124A632C30045AA4D /* RemoteProvisioning */,
+				C648F9FF24A1EAB600D9B92D /* CreateLinhomeAccount */,
+				C646850824A4A0200045AA4D /* LoginLinhomeAccount */,
+				C646851524A4E5D10045AA4D /* LoginSipAccount */,
 			);
 			path = assistant;
 			sourceTree = "<group>";
 		};
-		C648F9FF24A1EAB600D9B92D /* CreateLindoor */ = {
+		C648F9FF24A1EAB600D9B92D /* CreateLinhomeAccount */ = {
 			isa = PBXGroup;
 			children = (
-				C648FA4F24A32EA200D9B92D /* CreateLindoorAccountView.swift */,
-				C648FA5024A32EA200D9B92D /* CreateLindoorAccountViewModel.swift */,
+				C648FA4F24A32EA200D9B92D /* CreateLinhomeAccountView.swift */,
+				C648FA5024A32EA200D9B92D /* CreateLinhomeAccountViewModel.swift */,
 			);
-			path = CreateLindoor;
+			path = CreateLinhomeAccount;
 			sourceTree = "<group>";
 		};
 		C648FA2024A2282300D9B92D /* validators */ = {
@@ -1471,7 +1485,7 @@
 				C648FA3624A22DE200D9B92D /* CreatorAssistantViewModel.swift in Sources */,
 				C641ECB7249BA9A500672832 /* MainView.swift in Sources */,
 				C64E8AB927F56A83002539D7 /* Vcard+Extension.swift in Sources */,
-				C646850C24A4A0200045AA4D /* LoginLindoorAccountView.swift in Sources */,
+				C646850C24A4A0200045AA4D /* LoginLinhomeAccountView.swift in Sources */,
 				C648FA3F24A23C6E00D9B92D /* MutableLiveData.swift in Sources */,
 				C6EC9FA924AB36F800F08AA9 /* Device.swift in Sources */,
 				C6EC9FE424AC5F1E00F08AA9 /* HistoryViewModel.swift in Sources */,
@@ -1481,7 +1495,7 @@
 				C6EC9F7624A9CA7400F08AA9 /* SettingSwitch.swift in Sources */,
 				C6EC9F7A24A9CD3400F08AA9 /* SettingExpandable.swift in Sources */,
 				C627098824AE4910000E43D2 /* NavigationManager.swift in Sources */,
-				C646850D24A4A0200045AA4D /* LoginLindoorAccountViewModel.swift in Sources */,
+				C646850D24A4A0200045AA4D /* LoginLinhomeAccountViewModel.swift in Sources */,
 				C646851E24A5BF7B0045AA4D /* ViewModel.swift in Sources */,
 				C648F9EE24A10DCB00D9B92D /* LinhomeAccount.swift in Sources */,
 				C648F7D624B8531600F3E346 /* ChunkCallTop.swift in Sources */,
@@ -1547,6 +1561,7 @@
 				C6EDB73B2513E44900690F07 /* DeviceInfoViewIpad.swift in Sources */,
 				C6C2BD8F2523DA7B0035857B /* HistoryEventViewModel.swift in Sources */,
 				C62709AF24AF7BB8000E43D2 /* CallViewModel.swift in Sources */,
+				C6022E8D2B3C34AD00988793 /* DefaultStringInterpolation+Extension.swift in Sources */,
 				C648FA2E24A2282300D9B92D /* NonEmptyStringMatcherValidator.swift in Sources */,
 				C646852A24A5FE6D0045AA4D /* StringUtil.swift in Sources */,
 				C641ECC6249C937100672832 /* UIButton+extension.swift in Sources */,
@@ -1557,6 +1572,7 @@
 				C64A4FC22413574000149217 /* Log.swift in Sources */,
 				C6EC9FDE24ABB5AF00F08AA9 /* TabbarViewModel.swift in Sources */,
 				C648FA2D24A2282300D9B92D /* ValidatorFactory.swift in Sources */,
+				C6022E8B2B3C25A000988793 /* FlexiApiPushAccountCreationViewModel.swift in Sources */,
 				C6EC9FC124AB652600F08AA9 /* DeviceEditorViewModel.swift in Sources */,
 				C6EC9F9F24AB324C00F08AA9 /* HistoryEventStore.swift in Sources */,
 				C648F9F224A123E700D9B92D /* About.swift in Sources */,
@@ -1568,14 +1584,14 @@
 				C62709C124B484D1000E43D2 /* CallLog+extension.swift in Sources */,
 				C62709AD24AF7BB8000E43D2 /* CallInProgressView.swift in Sources */,
 				C646853B24A635390045AA4D /* RemoteAnyViewModel.swift in Sources */,
-				C648FA5224A32EA200D9B92D /* CreateLindoorAccountView.swift in Sources */,
+				C648FA5224A32EA200D9B92D /* CreateLinhomeAccountView.swift in Sources */,
 				C646853824A634880045AA4D /* RemoteUrlView.swift in Sources */,
 				C64A4FCB2413574000149217 /* Core+Extension.swift in Sources */,
 				C6A9D77E24A93BE9005B58C4 /* SettingsViewModel.swift in Sources */,
 				C6864A61255C14F7005F65A2 /* VibratorHelper.swift in Sources */,
 				C656921C29829AE7001FEF7D /* GSMActivityHelper.swift in Sources */,
 				C6C2BD792523D0B60035857B /* HistoryCell.swift in Sources */,
-				C648FA5324A32EA200D9B92D /* CreateLindoorAccountViewModel.swift in Sources */,
+				C648FA5324A32EA200D9B92D /* CreateLinhomeAccountViewModel.swift in Sources */,
 				C6E7B46124E6C62200D7D8E2 /* PlayerControls.swift in Sources */,
 				C68992BF2511E51000B62F70 /* GitVersion.swift in Sources */,
 				C648F9D624A0E5E400D9B92D /* SideMenuCell.swift in Sources */,

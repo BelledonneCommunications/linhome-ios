@@ -23,21 +23,21 @@ import linphonesw
 import linphone
 
 
-class RemoteAnyViewModel: ViewModel {
+class RemoteAnyViewModel: FlexiApiPushAccountCreationViewModel {
 	
 	var url: Pair<MutableLiveData<String>, MutableLiveData<Bool>> = Pair(MutableLiveData<String>(), MutableLiveData<Bool>(false))
 	
 	var configurationResult = MutableLiveData<Config.ConfiguringState>()
-	let pushReady = MutableLiveData<Bool>()
 	
 	var delegate : CoreDelegateStub? = nil
 	
 	
-	override init() {
-	}
-	
 	func valid() -> Bool {
 		return url.second.value!
+	}
+	
+	init() {
+		super.init(defaultValuePath: CorePreferences.them.linhomeAccountDefaultValuesPath)
 	}
 	
 	override func onStart() {
@@ -50,10 +50,10 @@ class RemoteAnyViewModel: ViewModel {
 						return
 					}
 					if (status == Config.ConfiguringState.Successful) {
-						if (LinhomeAccount.it.pushGateway() != nil) {
-							LinhomeAccount.it.linkProxiesWithPushGateway(pushReady: self.pushReady)
+						if (LinhomeAccount.it.pushAccount() != nil) {
+							LinhomeAccount.it.linkProxiesWithPushAccount(pushReady: self.pushReady)
 						} else {
-							LinhomeAccount.it.createPushGateway(pushReady: self.pushReady)
+							self.createPushAccount()
 						}
 					}
 					self.configurationResult.value = status

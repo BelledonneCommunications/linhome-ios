@@ -70,8 +70,8 @@ extension Core {
 				Log.warn("Manually iterating inside contenet app extension")
 				iterateTimers["\(core)"] = Timer.scheduledTimer(timeInterval: 0.20, target: core, selector: #selector(myIterate), userInfo: nil, repeats: true)
 			}
-			core.computeUserAgent()
-			core.pushNotificationEnabled = false // Handled in app (cf Account+Extension.swift)
+			core.setUserAgent()
+			core.pushNotificationEnabled = true
 			core.callkitEnabled = false
 			return core
 		} catch  {
@@ -154,10 +154,7 @@ extension Core {
 		
 	}
 	
-	//User-Agent: Linhome/14.5.1 (iphone_x) LinphoneSDK/4.5.0
-	
-	
-	func computeUserAgent() {
+	func setUserAgent() {
 		let deviceName: String =  "\(DeviceGuruImplementation().hardware)"
 		let appName: String = Bundle.main.appName()
 		let iosVersion = UIDevice.current.systemVersion
@@ -165,14 +162,13 @@ extension Core {
 		let sdkVersion = Core.getVersion
 		setUserAgent(name: userAgent, version: sdkVersion)
 	}
-	
-	//User-Agent: Linhome (1.1 (2) / 14.5.1 (iphone_x) LinphoneSDK/4.5.0
-	
+		
 	public func configurePushNotifications(_ deviceToken:Data) { // Should be called by the app when a push token is made abvailable. It adds it to the default proxy config.
 		Core.pushToken = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
 		Log.info("Push token received from device:"+Core.pushToken!)
+		didRegisterForRemotePushWithStringifiedToken(deviceTokenStr: Core.pushToken)
 		Core.get().accountList.forEach { account in
-			account.addPushToken()
+			account.configurePushNotificationParameters()
 		}
 	}
 	

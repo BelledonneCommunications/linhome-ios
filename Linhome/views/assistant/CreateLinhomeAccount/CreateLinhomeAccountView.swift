@@ -65,14 +65,11 @@ class CreateLinhomeAccountView: CreatorAssistantView {
 						NavigationManager.it.navigateTo(childClass: DevicesView.self, asRoot:true)
 						DialogUtil.info("linhome_account_created", oneArg: model.username.first.value)
 					} else {
-						userNameInput.setError(Texts.get("linhome_account_creation_failed",oneArg: "$status")
+						userNameInput.setError(Texts.get("linhome_account_creation_failed",oneArg: "\(status)")
 						)
 					}
 				})
-				if (try!model.accountCreator.createAccount() != AccountCreator.Status.RequestOk) {
-					self.hideProgress()
-					DialogUtil.error("linhome_account_creation_request_failed")
-				}
+				model.create()
 			}
 		}
 				

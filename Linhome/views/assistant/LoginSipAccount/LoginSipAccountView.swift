@@ -64,12 +64,10 @@ class LoginSipAccountView: CreatorAssistantView {
 			if (model.valid()) {
 				self.hideKeyBoard()
 				self.showProgress()
-				if let expiraation = Int(model.expiration.first.value!) {
-					LinhomeAccount.it.sipAccountLogin(
-						accountCreator: model.accountCreator,
+				if let expiration = Int(model.expiration.first.value!) {
+					model.sipAccountLogin(
 						proxy: model.proxy.first.value,
-						expiration: expiraation,
-						pushReady: model.pushReady,
+						expiration: expiration,
 						sipRegistered: model.sipRegistered)
 				}
 			}
@@ -87,10 +85,10 @@ class LoginSipAccountView: CreatorAssistantView {
 		})
 		
 		model.sipRegistered.observe(onChange: { sipRegistered in
-			self.hideProgress()
+			//self.hideProgress()
 			if (!sipRegistered!) {
 				DialogUtil.confirm(titleTextKey: nil, messageTextKey: "failed_sip_login_modify_parameters", confirmAction: {
-					LinhomeAccount.it.delete()
+					LinhomeAccount.it.disconnect()
 				}, confirmTextKey: "yes", cancelTextKey: "no")
 			}
 		})

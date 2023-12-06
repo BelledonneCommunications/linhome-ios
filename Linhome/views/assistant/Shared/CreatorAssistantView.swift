@@ -36,7 +36,6 @@ class CreatorAssistantView : MainViewContentWithScrollableForm {
 		}
 	}
 	
-	
 	func updateField(status: LinphoneAccountCreatorPasswordStatus?, textInput: LTextInput) {
 		switch status {
 		case LinphoneAccountCreatorPasswordStatusTooShort : textInput.setError(Texts.get("account_creator_password_too_short"))
@@ -58,7 +57,6 @@ class CreatorAssistantView : MainViewContentWithScrollableForm {
 	}
 	
 	func updateField(status: LinphoneAccountCreatorDomainStatus?, textInput: LTextInput) {
-		
 		switch status {
 		case LinphoneAccountCreatorDomainInvalid : textInput.setError(Texts.get("account_creator_domain_invalid"))
 		case LinphoneAccountCreatorDomainOk : textInput.clearError()

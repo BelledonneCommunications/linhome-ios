@@ -72,3 +72,4 @@ reg_expires=31536000
 [account_creator]
 backend=1
 url=https://subscribe.linhome.org/api/
+account_creation_token_retry_minutes=60

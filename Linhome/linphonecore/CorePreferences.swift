@@ -80,7 +80,6 @@ class CorePreferences {
 		set { config.setString(section: "assistant", key: "password_algo", value: newValue) }
 	}
 	
-	
 	var debugLog: Bool {
 		get  { return config.getBool(section: "app", key: "debug", defaultValue: true) }
 		set {
@@ -100,6 +99,10 @@ class CorePreferences {
 			return nil
 		}
     }
+	
+	var flexiApiTimeOutSeconds: Int {
+		get  { return config.getInt(section: "assistant", key: "flexiapi_token_request_timeout_seconds",defaultValue: 10) }
+	}
 			
 }
 
