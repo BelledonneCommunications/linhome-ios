@@ -27,7 +27,7 @@ extension RegistrationState {
 	func toHumanReadable() -> String {
 		switch(self) {
 		case .None : return Texts.get("registration_state_none")
-		case .Progress : return Texts.get("registration_state_progress")
+		case .Progress,.Refreshing : return Texts.get("registration_state_progress")
 		case .Ok : return Texts.get("registration_state_ok")
 		case .Failed : return Texts.get("registration_state_failed")
 		case .Cleared : return Texts.get("registration_state_cleared")

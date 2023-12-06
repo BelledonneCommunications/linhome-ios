@@ -28,20 +28,20 @@ extension CallLog {
 	func getHistoryEvent() -> HistoryEvent {
 		if (userData != nil) {
 			let historyEvent = Unmanaged<HistoryEvent>.fromOpaque(userData!).takeUnretainedValue()
-			if (historyEvent.callId == nil && !callId.isEmpty) {
+			if (historyEvent.callId == nil && callId != nil) {
 				historyEvent.callId = callId
 				HistoryEventStore.it.persistHistoryEvent(entry: historyEvent)
 				userData = nil
 			}
 			return historyEvent
 		}
-		if let event = HistoryEventStore.it.findHistoryEventByCallId(callId: callId) {
+		if let callId = callId, let event = HistoryEventStore.it.findHistoryEventByCallId(callId: callId) {
 			return event
 		}
 		
 		
 		let historyEvent = HistoryEvent()
-		if (!callId.isEmpty) {
+		if (callId != nil) {
 			historyEvent.callId = callId
 			HistoryEventStore.it.persistHistoryEvent(entry: historyEvent)
 		}

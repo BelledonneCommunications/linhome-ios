@@ -68,3 +68,7 @@ ringer_dev_id=AU Speaker: Speaker
 
 [proxy_default_values]
 reg_expires=31536000
+
+[account_creator]
+backend=1
+url=https://subscribe.linhome.org/api/

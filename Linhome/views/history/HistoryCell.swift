@@ -125,11 +125,12 @@ class HistoryCell: UITableViewCell {
 	}
 	
 	func updateDynamicValues(model:HistoryEventViewModel) {
-		contentView.alpha = model.historyViewModel.editing.value! && !model.historyViewModel.selectedForDeletion.value!.contains(model.callLog.callId)  ? 0.3 : 1.0
+		let selected = model.callLog.callId != nil ? model.historyViewModel.selectedForDeletion.value!.contains(model.callLog.callId!) : false;
+		contentView.alpha = model.historyViewModel.editing.value! && !selected  ? 0.3 : 1.0
 		play.tintColor = model.historyViewModel.editing.value! ? Theme.getColor("color_b") : Theme.getColor("color_c")
 		self.checkbox.isHidden = !model.historyViewModel.editing.value!
 		self.newtag.isHidden = !self.checkbox.isHidden || !model.isNew()
-		self.checkbox.isSelected = model.historyViewModel.selectedForDeletion.value!.contains(model.callLog.callId)
+		self.checkbox.isSelected = selected
 	}
 	
 	func playIt(model:HistoryEventViewModel) {

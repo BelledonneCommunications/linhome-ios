@@ -93,7 +93,7 @@ extension Core {
 	
 	func callLogsWithNonEmptyCallId() -> [CallLog] {
 		return callLogs.filter { (callLog) -> Bool in
-			callLog.callId != nil && callLog.callId.count > 0 // CallID can be null in early stage of call.
+			callLog.callId != nil && callLog.callId != nil // CallID can be null in early stage of call.
 		}.reversed()
 	}
 	

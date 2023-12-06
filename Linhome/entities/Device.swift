@@ -87,8 +87,8 @@ class Device  {
 	init(card:Vcard, isRemotelyProvisionned:Bool) {
 		self.isRemotelyProvisionned = isRemotelyProvisionned
 		self.id = card.sipAddresses.first!.asStringUriOnly().md5()
-		self.type =  card.getExtendedPropertiesValuesByName(name: Device.vcard_device_type_header).first
-		self.name = card.fullName
+		self.type = card.getExtendedPropertiesValuesByName(name: Device.vcard_device_type_header).first
+		self.name = card.fullName! // nullability checked in isValid() VCard extension.
 		self.address = card.sipAddresses.first!.asStringUriOnly()
 		self.actionsMethodType = Device.vCardActionMethodsToDeviceMethods[card.getExtendedPropertiesValuesByName(name: Device.vcard_action_method_type_header).first!]
 		var actions = [Action]()

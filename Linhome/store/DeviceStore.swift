@@ -216,7 +216,7 @@ class DeviceStore {
 		if let cached = DeviceStore.userDefaults.string(forKey: "cached_device_names_"+address.asStringUriOnly()) {
 			return cached
 		} else {
-			return address.username
+			return address.username!
 		}
 	}
 }

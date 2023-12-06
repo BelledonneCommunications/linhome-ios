@@ -1327,6 +1327,7 @@
 				"${BUILT_PRODUCTS_DIR}/linphone-sdk/linphonesw.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/bctoolbox-ios.framework/bctoolbox-ios",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/bctoolbox-tester.framework/bctoolbox-tester",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/bctoolbox.framework/bctoolbox",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/belcard.framework/belcard",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/belle-sip.framework/belle-sip",
@@ -1341,7 +1342,6 @@
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/mssilk.framework/mssilk",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/mswebrtc.framework/mswebrtc",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/ortp.framework/ortp",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/ZXing.framework/ZXing",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1364,6 +1364,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphonesw.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox-ios.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox-tester.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/belcard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/belle-sip.framework",
@@ -1378,7 +1379,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mssilk.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mswebrtc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ortp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZXing.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1686,6 +1686,7 @@
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/LinhomeContentExtension/notifcontent-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.content-extension";
@@ -1709,6 +1710,7 @@
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/LinhomeContentExtension/notifcontent-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.content-extension";
@@ -1849,6 +1851,7 @@
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Linhome/app-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.linhome;
@@ -1872,6 +1875,7 @@
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Linhome/app-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.linhome;
@@ -1892,6 +1896,7 @@
 				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				INFOPLIST_FILE = "LinhomeServiceExtension/notifservice-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.service-extension";
@@ -1912,6 +1917,7 @@
 				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				INFOPLIST_FILE = "LinhomeServiceExtension/notifservice-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.service-extension";

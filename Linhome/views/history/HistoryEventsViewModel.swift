@@ -36,7 +36,9 @@ class HistoryEventsViewModel : ViewModel {
 		self.showDate = showDate
 		self.historyViewModel = historyViewModel
 		self.device = DeviceStore.it.findDeviceByAddress(address: callLog.remoteAddress!)
-		self.historyEvent = HistoryEventStore.it.findHistoryEventByCallId(callId: callLog.callId)
+		if let callId = callLog.callId {
+			self.historyEvent = HistoryEventStore.it.findHistoryEventByCallId(callId: callId)
+		}
 	}
 	
 	override func onEnd() {
@@ -78,13 +80,15 @@ class HistoryEventsViewModel : ViewModel {
 	}
 	
 	func toggleSelect() {
-		if (historyViewModel.selectedForDeletion.value!.contains(callLog.callId)) {
-			historyViewModel.selectedForDeletion.value!.removeAll{callLog.callId == $0}
+		if let callId = callLog.callId {
+			if (historyViewModel.selectedForDeletion.value!.contains(callId)) {
+				historyViewModel.selectedForDeletion.value!.removeAll{callLog.callId == $0}
+			}
+			else {
+				historyViewModel.selectedForDeletion.value!.append(callId)
+			}
+			historyViewModel.notifyDeleteSelectionListUpdated()
 		}
-		else {
-			historyViewModel.selectedForDeletion.value!.append(callLog.callId)
-		}
-		historyViewModel.notifyDeleteSelectionListUpdated()
 	}
 	
 	func setViewMedia() {

@@ -27,7 +27,7 @@ class RemoteAnyViewModel: ViewModel {
 	
 	var url: Pair<MutableLiveData<String>, MutableLiveData<Bool>> = Pair(MutableLiveData<String>(), MutableLiveData<Bool>(false))
 	
-	var configurationResult = MutableLiveData<ConfiguringState>()
+	var configurationResult = MutableLiveData<Config.ConfiguringState>()
 	let pushReady = MutableLiveData<Bool>()
 	
 	var delegate : CoreDelegateStub? = nil
@@ -45,11 +45,11 @@ class RemoteAnyViewModel: ViewModel {
 		if (delegate == nil) {
 			delegate = CoreDelegateStub(
 				onConfiguringStatus: { (core, status, message) in
-					if (core.provisioningUri == nil || core.provisioningUri.count == 0) {
+					if (core.provisioningUri == nil || core.provisioningUri?.count == 0) {
 						Log.debug("Ignoring core status update as URL is empty. Core could have been restarted by app going in BG then FG (permission check for example)")
 						return
 					}
-					if (status == ConfiguringState.Successful) {
+					if (status == Config.ConfiguringState.Successful) {
 						if (LinhomeAccount.it.pushGateway() != nil) {
 							LinhomeAccount.it.linkProxiesWithPushGateway(pushReady: self.pushReady)
 						} else {
@@ -82,7 +82,7 @@ class RemoteAnyViewModel: ViewModel {
 			Core.get().stop()
 			try Core.get().start()
 		} catch {
-			self.configurationResult.value = ConfiguringState.Failed
+			self.configurationResult.value = Config.ConfiguringState.Failed
 			Log.error("Exception caught firing remote provisionning : \(error)")
 			
 		}

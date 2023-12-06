@@ -1,6 +1,6 @@
 # PODFILE_PATH=../../../master-gitosis/linphone-sdk/ioslinhome/linphone-sdk.podspec pod install
 
-platform :ios, '11.0'
+platform :ios, '12.0'
 source "https://gitlab.linphone.org/BC/public/podspec.git"
 source "https://github.com/CocoaPods/Specs.git"
 

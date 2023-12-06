@@ -170,7 +170,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
 		}
 		try?call?.decline(reason: declined ? .Declined : .IOError)
 		call?.callLog.map { it in
-			Call.releaseOwnerShip(it.callId)
+			Call.releaseOwnerShip(it.callId!)
 		}
 		core?.extendedStop()
 		core = nil

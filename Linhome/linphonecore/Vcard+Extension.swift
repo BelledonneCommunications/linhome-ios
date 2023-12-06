@@ -24,6 +24,12 @@ import linphonesw
 extension Vcard {
 
 	func isValid() -> Bool {
+		
+		guard let name = fullName else {
+			Log.error("[Device] vCard validation : fullName is nil")
+			return false
+		}
+		
 		guard let address = sipAddresses.first else {
 			Log.error("[Device] vCard validation : no sip address")
 			return false
