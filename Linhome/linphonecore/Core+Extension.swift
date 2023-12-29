@@ -181,5 +181,14 @@ extension Core {
 			playbackGainDb = 0.0
 	}
 	
+	func cleanHistory() {
+		callLogs.forEach {it in
+			if (it.callId != nil) {
+				HistoryEventStore.it.removeHistoryEventByCallId(callId: it.callId!)
+			}
+			removeCallLog(callLog: it)
+		}
+	}
+	
 }
 

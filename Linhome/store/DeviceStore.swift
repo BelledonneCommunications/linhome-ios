@@ -225,4 +225,15 @@ class DeviceStore {
 			return address.username!
 		}
 	}
+	
+	func clearRemoteProvisionnedDevicesUponLogout() {
+		let url = Config.get().getString(section: "misc",key: "contacts-vcard-list",defaultString: "")
+		if (!url.isEmpty) {
+			Log.info("[DeviceStore] Found contacts-vcard-list url : \(url) ")
+			Core.get().getFriendListByName(name: url).map { serverFriendList in
+				Core.get().removeFriendList(list: serverFriendList)
+				readDevicesFromFriends()
+			}
+		}
+	}
 }

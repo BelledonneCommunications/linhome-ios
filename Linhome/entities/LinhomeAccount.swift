@@ -74,11 +74,15 @@ class LinhomeAccount {
 				Core.get().removeAccount(account: it)
 			}
 		}
+		Core.get().cleanHistory()
+		try?Core.get().setProvisioninguri(newValue: "")
+		Config.get().cleanEntry(section: "misc", key: "config-uri")
 		Core.get().stop()
 		try?Core.get().start()
+		DeviceStore.it.clearRemoteProvisionnedDevicesUponLogout()
 	}
 	
-	func disablePushAccount(pushAccount:Account) {
+	private func disablePushAccount(pushAccount:Account) {
 		pushAccount.params?.clone().map {
 			$0.expires = 0
 			pushAccount.params = $0
@@ -86,7 +90,7 @@ class LinhomeAccount {
 		}
 	}
 	
-	func enablePushAccount(pushAccount:Account) {
+	private func enablePushAccount(pushAccount:Account) {
 		pushAccount.params?.clone().map {
 			$0.expires = Config.get().getInt(section: "proxy_default_values",key: "reg_expires",defaultValue: 31536000)
 			pushAccount.params = $0

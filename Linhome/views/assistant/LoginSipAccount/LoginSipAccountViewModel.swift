@@ -25,9 +25,9 @@ import linphone
 
 class LoginSipAccountViewModel : FlexiApiPushAccountCreationViewModel {
 	
-	var username: Pair<MutableLiveData<String>, MutableLiveData<Bool>> = Pair(MutableLiveData<String>("cd1"), MutableLiveData<Bool>(false))
-	var domain: Pair<MutableLiveData<String>, MutableLiveData<Bool>> = Pair(MutableLiveData<String>("sip.linphone.org"), MutableLiveData<Bool>(false))
-	var pass1: Pair<MutableLiveData<String>, MutableLiveData<Bool>> = Pair(MutableLiveData<String>("cd1"), MutableLiveData<Bool>(false))
+	var username: Pair<MutableLiveData<String>, MutableLiveData<Bool>> = Pair(MutableLiveData<String>(), MutableLiveData<Bool>(false))
+	var domain: Pair<MutableLiveData<String>, MutableLiveData<Bool>> = Pair(MutableLiveData<String>(), MutableLiveData<Bool>(false))
+	var pass1: Pair<MutableLiveData<String>, MutableLiveData<Bool>> = Pair(MutableLiveData<String>(), MutableLiveData<Bool>(false))
 	var transport = MutableLiveData<Int>(0)
 	var transportOptionKeys = ["udp","tcp","tls"]
 	var proxy: Pair<MutableLiveData<String>, MutableLiveData<Bool>> = Pair(MutableLiveData<String>(), MutableLiveData<Bool>(true))
