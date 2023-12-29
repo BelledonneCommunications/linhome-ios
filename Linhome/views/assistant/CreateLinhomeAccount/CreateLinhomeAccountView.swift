@@ -64,9 +64,12 @@ class CreateLinhomeAccountView: CreatorAssistantView {
 					} else if (status == AccountCreator.Status.AccountCreated) {
 						NavigationManager.it.navigateTo(childClass: DevicesView.self, asRoot:true)
 						DialogUtil.info("linhome_account_created", oneArg: model.username.first.value)
+					} else if (status == AccountCreator.Status.RequestTooManyRequests) {
+						userNameInput.setError(Texts.get("account_creator_token_requests_failed_too_many"))
+					} else if (status == AccountCreator.Status.UnexpectedError) {
+						userNameInput.setError(Texts.get("account_creator_token_requests_failed_generic"))
 					} else {
-						userNameInput.setError(Texts.get("linhome_account_creation_failed",oneArg: "\(status)")
-						)
+						userNameInput.setError(Texts.get("linhome_account_creation_failed",oneArg: "\(status)"))
 					}
 				})
 				model.create()

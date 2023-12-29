@@ -33,7 +33,8 @@ class CreateLinhomeAccountViewModel : CreatorAssistantViewModel {
 	
 	init() {
 		super.init(defaultValuePath: CorePreferences.them.linhomeAccountDefaultValuesPath)
-		creatorDelegate = AccountCreatorDelegateStub(onCreateAccount:  { (creator:AccountCreator, status:AccountCreator.Status, response:String) -> Void in
+		creatorDelegate = AccountCreatorDelegateStub(
+			onCreateAccount:  { (creator:AccountCreator, status:AccountCreator.Status, response:String) -> Void in
 			if (status == AccountCreator.Status.AccountCreated) {
 				Log.info("[Assistant] [Account Creation] Account created")
 				Config.flexiApiToken = nil
@@ -62,7 +63,14 @@ class CreateLinhomeAccountViewModel : CreatorAssistantViewModel {
 				self.creationResult.value = status
 				Log.error("[Assistant] [Account Creation] fail verifying if account exists\(status)")
 			}
-		})
+		},
+			onSendToken: { (creator:AccountCreator, status:AccountCreator.Status, response:String) -> Void in
+				Log.info("[Assistant] [Account Creation] get push token \(status) \(response)")
+				if (status == AccountCreator.Status.RequestTooManyRequests) {
+					self.creationResult.value = status
+				}
+			}
+		)
 	}
 	
 	func valid() -> Bool {

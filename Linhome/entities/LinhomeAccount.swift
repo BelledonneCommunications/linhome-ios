@@ -26,10 +26,7 @@ class LinhomeAccount {
 	
 	private static let PUSH_GW_USER_PREFIX = "linhome_generated"
 	private static let PUSH_GW_DISPLAY_NAME = "Linhome"
-	let xmlRpcSession = try!Core.get().createXmlRpcSession(url: CorePreferences.them.xmlRpcServerUrl)
-	var xmlRpcRequest : XmlRpcRequest?
-	var xmlRpcRequestDelegateStub : XmlRpcRequestDelegateStub? = nil
-		
+			
 	func configured() -> Bool {
 		return Core.get().proxyConfigList.count > 0
 	}

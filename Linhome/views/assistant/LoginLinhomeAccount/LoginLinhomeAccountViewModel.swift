@@ -35,6 +35,7 @@ class LoginLinhomeAccountViewModel : CreatorAssistantViewModel {
 		super.init(defaultValuePath: CorePreferences.them.linhomeAccountDefaultValuesPath)
 		creatorDelegate = AccountCreatorDelegateStub(onIsAccountExist:  { (creator:AccountCreator, status:AccountCreator.Status, response:String) -> Void in
 			self.accountCreatorResult.value = status
+			self.accountCreator.removeDelegate(delegate: self.creatorDelegate!)
 		})
 	}
 	

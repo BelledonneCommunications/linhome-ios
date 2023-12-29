@@ -23,6 +23,7 @@ import linphonesw
 class  FlexiApiPushAccountCreationViewModel : CreatorAssistantViewModel {
 	
 	let pushReady = MutableLiveData(false)
+
 	func createPushAccount() {
 		if (!CorePreferences.them.automaticallyCreatePushGatewayAccount) {
 			Log.info("[Assistant] [Push Account Creation] skipping as automaticallyCreatePushGatewayAccount is set to false")
@@ -59,7 +60,7 @@ class  FlexiApiPushAccountCreationViewModel : CreatorAssistantViewModel {
 			onSendToken: { (creator:AccountCreator, status:AccountCreator.Status, response:String) -> Void in
 				Log.info("[Assistant] [Push Account Creation] get push token \(status) \(response)")
 				if (status == AccountCreator.Status.RequestTooManyRequests) {
-					self.requestFlexiApiToken()
+					self.pushReady.value = false
 				}
 			}
 		)
