@@ -195,7 +195,13 @@ class DeviceStore {
 	}
 	
 	func findDeviceByAddress(address: Address) -> Device? {
-		if let device = devices.first(where: { $0.address == address.asStringUriOnly() }) {
+		if let device = devices.first(where: {
+			if let deviceAddress = try?Core.get().createAddress(address: $0.address) {
+				return deviceAddress.username == address.username && deviceAddress.domain == address.domain
+			} else {
+				return false
+			}
+		}) {
 			return device
 		}
 		return nil
