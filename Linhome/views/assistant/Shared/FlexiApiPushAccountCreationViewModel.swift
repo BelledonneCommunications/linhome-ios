@@ -39,9 +39,7 @@ class  FlexiApiPushAccountCreationViewModel : CreatorAssistantViewModel {
 				Log.info("[Assistant] [Push Account Creation] Account creation response \(status)")
 				if (status == AccountCreator.Status.AccountCreated) {
 					Config.flexiApiToken = nil
-					Core.get().accountList.filter{
-						$0.params?.identityAddress?.username == creator.username
-					}.first.map { pushAccount in
+					if let pushAccount = try? creator.createAccountInCore() {
 						pushAccount.params?.clone().map { clonedParams in
 							clonedParams.idkey = Config.PUSH_GW_ID_KEY
 							pushAccount.params = clonedParams
