@@ -68,7 +68,7 @@ extension Core {
 			Log.debug("Created core \(Core.getVersion) with config:\n\(config.dump())")
 			if (autoIterate && runsInsideExtension()) { // Core not working yet with autoiterate in extensions
 				Log.warn("Manually iterating inside contenet app extension")
-				iterateTimers["\(core)"] = Timer.scheduledTimer(timeInterval: 0.20, target: core, selector: #selector(myIterate), userInfo: nil, repeats: true)
+				iterateTimers["\(core)"] = Timer.scheduledTimer(timeInterval: 0.02, target: core, selector: #selector(myIterate), userInfo: nil, repeats: true)
 			}
 			core.setUserAgent()
 			core.pushNotificationEnabled = true
