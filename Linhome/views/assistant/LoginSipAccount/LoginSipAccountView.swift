@@ -86,6 +86,7 @@ class LoginSipAccountView: CreatorAssistantView {
 		
 		model.sipRegistered.observe(onChange: { sipRegistered in
 			if (!sipRegistered!) {
+				self.hideProgress()
 				DialogUtil.confirm(titleTextKey: nil, messageTextKey: "failed_sip_login_modify_parameters", confirmAction: {
 					LinhomeAccount.it.disconnect()
 				}, confirmTextKey: "yes", cancelTextKey: "no")
