@@ -28,7 +28,7 @@ class LinhomeAccount {
 	private static let PUSH_GW_DISPLAY_NAME = "Linhome"
 			
 	func configured() -> Bool {
-		return Core.get().proxyConfigList.count > 0
+		return get() != nil
 	}
 	
 	func get() -> Account? {
