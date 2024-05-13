@@ -78,8 +78,10 @@ extension Config {
 			let tokenValidity = Config.get().getInt64(section: "account_creator", key: "account_creation_token_retry_minutes", defaultValue: 60)
 			let tokenStoreTime = Config.get().getInt64(section: "account_creator", key: "account_creation_token_store_time", defaultValue: 0)
 			if (tokenStoreTime + tokenValidity * 60 > Int64(Date().timeIntervalSince1970)) {
+				Log.info("Reusing account creation token \(token)")
 				return token
 			} else {
+				Log.info("Removing stored account creation token as it expired token = \(token) store time was \(tokenStoreTime)")
 				Config.get().setString(section: "account_creator", key: "account_creation_token", value: "")
 				return nil
 			}
