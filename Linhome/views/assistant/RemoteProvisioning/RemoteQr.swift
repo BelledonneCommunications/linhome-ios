@@ -71,11 +71,11 @@ class RemoteQr: MainViewContentWithScrollableForm {
 		manageModel(model)
 		
 		model.configurationResult.observeAsUniqueObserver(onChange : { status in
-			if (status == Config.ConfiguringState.Failed) {
+			if (status == ConfiguringState.Failed) {
 				DialogUtil.error("remote_configuration_failed", postAction: {
 					self.startScanner()
 				})
-			} else if (status == Config.ConfiguringState.Skipped) {
+			} else if (status == ConfiguringState.Skipped) {
 				DialogUtil.error("remote_configuration_failed", postAction: {
 					self.startScanner()
 				})

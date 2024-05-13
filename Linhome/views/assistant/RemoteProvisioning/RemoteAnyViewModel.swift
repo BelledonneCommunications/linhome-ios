@@ -27,7 +27,7 @@ class RemoteAnyViewModel: FlexiApiPushAccountCreationViewModel {
 	
 	var url: Pair<MutableLiveData<String>, MutableLiveData<Bool>> = Pair(MutableLiveData<String>(), MutableLiveData<Bool>(false))
 	
-	var configurationResult = MutableLiveData<Config.ConfiguringState>()
+	var configurationResult = MutableLiveData<ConfiguringState>()
 	
 	var delegate : CoreDelegateStub? = nil
 	
@@ -49,7 +49,7 @@ class RemoteAnyViewModel: FlexiApiPushAccountCreationViewModel {
 						Log.debug("Ignoring core status update as URL is empty. Core could have been restarted by app going in BG then FG (permission check for example)")
 						return
 					}
-					if (status == Config.ConfiguringState.Successful) {
+					if (status == ConfiguringState.Successful) {
 						if (LinhomeAccount.it.pushAccount() != nil) {
 							LinhomeAccount.it.linkProxiesWithPushAccount(pushReady: self.pushReady)
 						} else {
@@ -82,7 +82,7 @@ class RemoteAnyViewModel: FlexiApiPushAccountCreationViewModel {
 			Core.get().stop()
 			try Core.get().start()
 		} catch {
-			self.configurationResult.value = Config.ConfiguringState.Failed
+			self.configurationResult.value = ConfiguringState.Failed
 			Log.error("Exception caught firing remote provisionning : \(error)")
 			
 		}

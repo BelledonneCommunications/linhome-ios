@@ -39,9 +39,9 @@ class RemoteUrlView: MainViewContentWithScrollableForm {
 		
 		model.configurationResult.observeAsUniqueObserver (onChange: { status in
 			self.hideProgress()
-			if (status == Config.ConfiguringState.Failed) {
+			if (status == ConfiguringState.Failed) {
 				DialogUtil.error("remote_configuration_failed")
-			} else if (status == Config.ConfiguringState.Skipped) {
+			} else if (status == ConfiguringState.Skipped) {
 				DialogUtil.error("remote_configuration_failed")
 			}
 		})
