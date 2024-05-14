@@ -70,12 +70,18 @@ class RemoteQr: MainViewContentWithScrollableForm {
 		let model = RemoteAnyViewModel()
 		manageModel(model)
 		
+		model.qrCodeFound.observeAsUniqueObserver { found in
+			self.showProgress()
+		}
+		
 		model.configurationResult.observeAsUniqueObserver(onChange : { status in
 			if (status == ConfiguringState.Failed) {
+				self.hideProgress()
 				DialogUtil.error("remote_configuration_failed", postAction: {
 					self.startScanner()
 				})
 			} else if (status == ConfiguringState.Skipped) {
+				self.hideProgress()
 				DialogUtil.error("remote_configuration_failed", postAction: {
 					self.startScanner()
 				})
@@ -83,6 +89,7 @@ class RemoteQr: MainViewContentWithScrollableForm {
 		})
 		
 		model.pushReady.observeAsUniqueObserver(onChange: { pushready in
+			self.hideProgress()
 			NavigationManager.it.navigateTo(childClass: DevicesView.self, asRoot:true)
 			if (pushready!) {
 				DialogUtil.info("remote_configuration_success")

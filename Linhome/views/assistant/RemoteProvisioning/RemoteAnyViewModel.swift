@@ -31,6 +31,8 @@ class RemoteAnyViewModel: FlexiApiPushAccountCreationViewModel {
 	
 	var delegate : CoreDelegateStub? = nil
 	
+	var qrCodeFound = MutableLiveData(false)
+
 	
 	func valid() -> Bool {
 		return url.second.value!
@@ -60,6 +62,7 @@ class RemoteAnyViewModel: FlexiApiPushAccountCreationViewModel {
 			},
 				onQrcodeFound: { (core, qr) in
 					DispatchQueue.main.async {
+						self.qrCodeFound.value = true
 						Core.get().qrcodeVideoPreviewEnabled = false
 						Core.get().videoPreviewEnabled = false
 						self.url.first.value = qr
