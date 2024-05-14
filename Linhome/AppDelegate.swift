@@ -155,7 +155,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 					NavigationManager.it.navigateTo(childClass: CallOutgoingView.self, asRoot:false, argument:Pair(call, [Call.State.OutgoingRinging, Call.State.OutgoingProgress, Call.State.OutgoingInit, Call.State.OutgoingEarlyMedia]))
 				}
 			}
-		})
+		},
+			onConfiguringStatus: { (core, status, message) in
+				if (status == .Successful) {
+					core.config?.cleanEntry(section: "video", key: "displaytype")
+				}
+			}
+		)
 		
 		requestMirophonePermission()
 		
