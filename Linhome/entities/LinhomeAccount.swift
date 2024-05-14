@@ -58,9 +58,9 @@ class LinhomeAccount {
 		pushReady.value = true
 	}
 	
-	func disconnect() {
+	func disconnect(deletePushAccount:Bool = false) {
 		Core.get().accountList.forEach { it in
-			if (it.params?.idkey == Config.PUSH_GW_ID_KEY) {
+			if (!deletePushAccount && it.params?.idkey == Config.PUSH_GW_ID_KEY) {
 				disablePushAccount(pushAccount: it)
 			} else {
 				it.params?.clone().map { clonedParams in

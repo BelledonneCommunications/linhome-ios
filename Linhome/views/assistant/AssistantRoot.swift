@@ -62,7 +62,7 @@ class AssistantRoot: MainViewContentWithScrollableForm {
 	private func navigateToComponent(childClass: ViewWithModel.Type) {
 		if (LinhomeAccount.it.configured()) {
 			DialogUtil.confirm(titleTextKey: "assistant_using_will_disconnect_title", messageTextKey: "assistant_using_will_disconnect_message", confirmAction: {
-				LinhomeAccount.it.disconnect()
+				LinhomeAccount.it.disconnect(deletePushAccount: childClass == RemoteRoot.self)
 				NavigationManager.it.navigateTo(childClass: childClass)
 			})
 		} else {
