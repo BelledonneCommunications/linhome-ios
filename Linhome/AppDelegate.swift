@@ -41,6 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
 	var historyNotifTapped = false
 	
+	var preventEnterinBackground = false
+	
 	func displayWaitIndicatorIfFromPush() -> Bool {
 		var fromPush = false
 		if let userDefaults = UserDefaults(suiteName: Config.appGroupName) {
@@ -241,6 +243,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	}
 	
 	func applicationWillResignActive(_ application: UIApplication) {
+		if (preventEnterinBackground) {
+			return
+		}
 		if let userDefaults = UserDefaults(suiteName: Config.appGroupName) {
 			userDefaults.set(false, forKey: "appactive")
 		}
@@ -300,6 +305,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	}
 	
 	func enterBackground() {
+		if (preventEnterinBackground) {
+			return
+		}
 		DeviceStore.it.enteringBackground = true
 		Core.get().enterBackground()
 		if (Core.get().callsNb == 0) {

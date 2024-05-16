@@ -58,7 +58,7 @@ class  FlexiApiPushAccountCreationViewModel : CreatorAssistantViewModel {
 			onSendToken: { (creator:AccountCreator, status:AccountCreator.Status, response:String) -> Void in
 				Log.info("[Assistant] [Push Account Creation] get push token \(status) \(response)")
 				if (status == AccountCreator.Status.RequestTooManyRequests) {
-					self.pushReady.value = false
+					//self.pushReady.value = false
 				}
 			}
 		)

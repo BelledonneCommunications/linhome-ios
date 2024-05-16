@@ -75,12 +75,12 @@ class RemoteRoot: MainViewContentWithScrollableForm {
 		}
 		
 		qrCode.onClick {
+			(UIApplication.shared.delegate as! AppDelegate).preventEnterinBackground = true
 			AVCaptureDevice.requestAccess(for: AVMediaType.video) { granted in
 				DispatchQueue.main.async {
+					(UIApplication.shared.delegate as! AppDelegate).preventEnterinBackground = false
 					if granted {
-						DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-							NavigationManager.it.navigateTo(childClass: RemoteQr.self)
-						}
+						NavigationManager.it.navigateTo(childClass: RemoteQr.self)
 					} else {
 						DialogUtil.error("camera_permission_denied")
 					}

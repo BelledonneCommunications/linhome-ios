@@ -52,23 +52,32 @@ class RemoteAnyViewModel: FlexiApiPushAccountCreationViewModel {
 						return
 					}
 					if (status == ConfiguringState.Successful) {
-						if (LinhomeAccount.it.pushAccount() != nil) {
-							LinhomeAccount.it.linkProxiesWithPushAccount(pushReady: self.pushReady)
-						} else {
-							self.createPushAccount()
+						DispatchQueue.main.async {
+							if (LinhomeAccount.it.get()?.params?.domain != CorePreferences.them.loginDomain) {
+								if (LinhomeAccount.it.pushAccount() != nil) {
+									LinhomeAccount.it.linkProxiesWithPushAccount(pushReady: self.pushReady)
+								} else {
+									self.createPushAccount()
+								}
+							} else {
+								self.pushReady.value = true
+								Log.info("Remote provisioning - no need to create/link push gateway, as domain \(CorePreferences.them.loginDomain) is managed by flexisip already.")
+							}
 						}
 					}
 					self.configurationResult.value = status
 			},
 				onQrcodeFound: { (core, qr) in
 					DispatchQueue.main.async {
+						if (self.qrCodeFound.value == true) {
+							return
+						}
 						self.qrCodeFound.value = true
 						Core.get().qrcodeVideoPreviewEnabled = false
 						Core.get().videoPreviewEnabled = false
 						self.url.first.value = qr
 						self.startRemoteProvisionning()
 					}
-					
 			})
 		}
 		delegate.map{Core.get().addDelegate(delegate:$0)}
