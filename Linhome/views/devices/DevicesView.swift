@@ -128,7 +128,7 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 			return
 		}
 		
-		if let remoteFlName = Core.get().config?.getString(section: "misc", key: "contacts-vcard-list", defaultString: nil),  let serverFriendList = Core.get().getFriendListByName(name:remoteFlName) {
+		if let serverFriendList = DeviceStore.it.serverFriendList {
 			serverFriendList.addDelegate(delegate: friendListDelegate!)
 			serverFriendList.synchronizeFriendsFromServer()
 		}
@@ -160,8 +160,10 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 			}
 			self.devices.reloadData()
 			self.noDevices.isHidden = DeviceStore.it.devices.count > 0
-			if (Core.get().config?.getString(section: "misc", key: "contacts-vcard-list", defaultString: nil) != nil) {
+			if (DeviceStore.it.serverFriendList != nil) {
 				self.setRefresher()
+			} else {
+				self.devices.refreshControl = nil
 			}
 			self.devices.refreshControl?.endRefreshing()
 		}
@@ -183,7 +185,7 @@ class DevicesView: MainViewContent, UITableViewDataSource, UITableViewDelegate  
 		
 		NavigationManager.it.mainView?.toolbarViewModel.rightButtonVisible.value = false
 		
-		if (Core.get().config?.getString(section: "misc", key: "contacts-vcard-list", defaultString: nil) != nil) {
+		if (DeviceStore.it.serverFriendList != nil) {
 			setRefresher()
 		}
 	}

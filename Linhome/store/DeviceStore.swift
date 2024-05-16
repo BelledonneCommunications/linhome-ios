@@ -37,14 +37,16 @@ class DeviceStore {
 	var storageMigrated = false
 	
 	var coreDelegate:CoreDelegateStub? = nil
-	
+	var serverFriendListDelegate: FriendListDelegateStub? = nil
+	var serverFriendList: FriendList? = nil
+
 	var enteringBackground = false
 	
 	init () {
 		coreDelegate = CoreDelegateStub(
 			onGlobalStateChanged: { (core: linphonesw.Core, state: linphonesw.GlobalState, message: String) -> Void in
 				Log.info("Core state changed to \(state)")
-				if (!self.enteringBackground && core.globalState == .On) {
+				if (!self.enteringBackground && state == .On) {
 					Core.get().friendsDatabasePath = FileUtil.sharedContainerUrl().path + "/devices.db"
 					if (Core.get().getFriendListByName(name:self.local_devices_fl_name) == nil) {
 						let localDevicesFriendList = try?Core.get().createFriendList()
@@ -67,11 +69,28 @@ class DeviceStore {
 			},
 			onFriendListCreated : { (core, list) in
 				Log.info("[DeviceStore] friend list created. \(list.displayName)")
+				if let remoteFlName = Config.vcardListUrl, remoteFlName == list.displayName {
+					self.serverFriendList = list
+					list.addDelegate(delegate: self.serverFriendListDelegate!)
+				}
 				if (core.globalState == .On) {
+					self.readDevicesFromFriends()
+				}
+			},
+			onFriendListRemoved : { (core, list) in
+				Log.info("[DeviceStore] friend list removed. \(list.displayName)")
+				if let remoteFlName = Config.vcardListUrl, remoteFlName == list.displayName {
+					self.serverFriendList = nil
 					self.readDevicesFromFriends()
 				}
 			}
 		)
+		serverFriendListDelegate = FriendListDelegateStub ( onSyncStatusChanged:  { list, status, message in
+			Log.info("[DeviceStore] remote list onSyncStatusChanged \(list.displayName) \(status) \(message)")
+			if (status == .Successful) {
+				self.readDevicesFromFriends()
+			}
+		})
 		Core.get().addDelegate(delegate: self.coreDelegate!)
 	}
 	
@@ -117,7 +136,7 @@ class DeviceStore {
 			Log.info("[DeviceStore] found local device : \(device)")
 			self.devices.append(device)
 		}
-		if let remoteFlName = Core.get().config?.getString(section: "misc", key: "contacts-vcard-list", defaultString: nil),  let serverFriendList = Core.get().getFriendListByName(name:remoteFlName) {
+		if let serverFriendList = serverFriendList {
 			serverFriendList.friends.forEach { friend in
 				guard let card: Vcard = friend.vcard, card.isValid() else {
 					Log.error("[DeviceStore] received invalid or malformed vCard from remote : \(friend.vcard?.asVcard4String() ?? "nil")")
@@ -227,13 +246,10 @@ class DeviceStore {
 	}
 	
 	func clearRemoteProvisionnedDevicesUponLogout() {
-		let url = Config.get().getString(section: "misc",key: "contacts-vcard-list",defaultString: "")
-		if (!url.isEmpty) {
-			Log.info("[DeviceStore] Found contacts-vcard-list url : \(url) ")
-			Core.get().getFriendListByName(name: url).map { serverFriendList in
-				Core.get().removeFriendList(list: serverFriendList)
-				readDevicesFromFriends()
-			}
+		if (serverFriendList != nil) {
+			Log.info("[DeviceStore] removing server friend list (remotely provisionning devices)")
+			Core.get().removeFriendList(list: serverFriendList! )
+			readDevicesFromFriends()
 		}
 	}
 }
