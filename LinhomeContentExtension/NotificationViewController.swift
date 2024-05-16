@@ -131,7 +131,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
 		
 		if (response.actionIdentifier == "accept") {
 			Log.info("accept call button pressed for call Id : \(callId)")
-			userDefaults.set(true, forKey: "accepted_calls_via_notif_\(callId)")
+			userDefaults.set(true, forKey: "accepted_calls_via_notif_"+callId)
 			self.end()
 			completion(.dismissAndForwardAction)
 			return
@@ -140,8 +140,9 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
 			self.declined = true
 			startIt(request: response.notification.request)
 			Log.info("decline call button pressed for call Id : \(callId)")
-			userDefaults.set(true, forKey: "declined_calls_via_notif_\(callId)")
+			userDefaults.set(true, forKey: "declined_calls_via_notif_"+callId)
 			var i = 0
+			try?call?.decline(reason: .Declined)
 			while (self.call == nil && i < 10*50) {
 				Log.info("Waiting for the call \(callId) (max 10seconds) to decline it. time elapsed in ms \(i*50)")
 				self.core?.iterate()

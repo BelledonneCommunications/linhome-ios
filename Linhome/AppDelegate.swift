@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	
 	var coreState = MutableLiveData(linphonesw.GlobalState.Off)
 	var flexiApiTokenReceived = MutableLiveData(false)
-
+	
 	var historyNotifTapped = false
 	
 	var preventEnterinBackground = false
@@ -84,80 +84,81 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		coreDelegate = CoreDelegateStub(
 			onGlobalStateChanged: { (core: linphonesw.Core, state: linphonesw.GlobalState, message: String) -> Void in
 				self.coreState.value = state
-		},
+			},
 			onCallStateChanged : { (lc: linphonesw.Core, call: linphonesw.Call, cstate: linphonesw.Call.State, message: String) -> Void in
-			
-			
-			if let callId = call.callLog?.callId {
-				Call.requestOwnerShip(callId) // Will release the extension handling
-			}
+				
+				Log.error("onCallStateChanged \(cstate)")
+				
+				if let callId = call.callLog?.callId {
+					Call.requestOwnerShip(callId) // Will release the extension handling
+				}
 				
 				if (cstate == linphonesw.Call.State.Released) {
 					SVProgressHUD.dismiss()
 					let openFiles = FileUtil.openFilePaths()
 					Log.debug("Open file descriptors: limit = \(FileUtil.getNofFileLimit()) count=\(openFiles.count) FDs : \n \(openFiles)")
-			}
+				}
 				
-			if (cstate == linphonesw.Call.State.Released && UIApplication.shared.applicationState == .background) { // A call is terminated in background
-				DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-					//self.applicationWillResignActive(UIApplication.shared)
-				}
-			}
-
-			if (cstate == linphonesw.Call.State.Released && call.callLog?.dir == .Incoming) {
-				if (self.appOpenedTime.timeIntervalSince1970 > Double((call.callLog?.startDate ?? 0))) {
-					//UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
-				}
-			}
-			
-			if (cstate == linphonesw.Call.State.Error && call.callLog?.dir == Call.Dir.Outgoing) {
-				DispatchQueue.main.async {
-					DialogUtil.error("unable_to_call_device")
-				}
-			}
-			
-			if (call.state == Call.State.IncomingReceived && lc.callsNb > 1) {
-				try?call.decline(reason: .Busy)
-				return
-			}
-			
-			if ([Call.State.IncomingReceived].contains(call.state)) {
-				if let log = call.callLog, let userDefaults = UserDefaults(suiteName: Config.appGroupName), userDefaults.bool(forKey: "accepted_calls_via_notif_\(log.callId)") {
-					Log.info("Accepting call Id in app (accept button pressed on notif) : \(log.callId)")
-					if (GSMActivityHelper.it.ongoingGSMCall.value == true) {
-						NavigationManager.it.navigateTo(childClass: CallIncomingView.self, asRoot:false, argument:Pair(call, [Call.State.IncomingReceived, Call.State.IncomingEarlyMedia]))
-						DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-							DialogUtil.toast(textKey: "unable_to_accept_call_gsm_call_in_progress")
-						}
-					} else {
-						call.extendedAccept(core : Core.get())
+				if (cstate == linphonesw.Call.State.Released && UIApplication.shared.applicationState == .background) { // A call is terminated in background
+					DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+						//self.applicationWillResignActive(UIApplication.shared)
 					}
+				}
+				
+				if (cstate == linphonesw.Call.State.Released && call.callLog?.dir == .Incoming) {
+					if (self.appOpenedTime.timeIntervalSince1970 > Double((call.callLog?.startDate ?? 0))) {
+						//UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+					}
+				}
+				
+				if (cstate == linphonesw.Call.State.Error && call.callLog?.dir == Call.Dir.Outgoing) {
+					DispatchQueue.main.async {
+						DialogUtil.error("unable_to_call_device")
+					}
+				}
+				
+				if (call.state == Call.State.IncomingReceived && lc.callsNb > 1) {
+					try?call.decline(reason: .Busy)
 					return
 				}
-				if let log = call.callLog, let userDefaults = UserDefaults(suiteName: Config.appGroupName), userDefaults.bool(forKey: "declined_calls_via_notif_\(log.callId)") {
-					Log.info("Declining call Id in app (accept button pressed on notif) : \(log.callId)")
-					try?call.decline(reason: .Declined)
-					return
+				
+				if ([Call.State.IncomingReceived, Call.State.IncomingEarlyMedia].contains(call.state)) {
+					if let callId = call.callLog?.callId, let userDefaults = UserDefaults(suiteName: Config.appGroupName), userDefaults.bool(forKey: "accepted_calls_via_notif_"+callId) {
+						Log.info("Accepting call Id in app (accept button pressed on notif) : \(callId)")
+						if (GSMActivityHelper.it.ongoingGSMCall.value == true) {
+							NavigationManager.it.navigateTo(childClass: CallIncomingView.self, asRoot:false, argument:Pair(call, [Call.State.IncomingReceived, Call.State.IncomingEarlyMedia]))
+							DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+								DialogUtil.toast(textKey: "unable_to_accept_call_gsm_call_in_progress")
+							}
+						} else {
+							call.extendedAccept(core : Core.get())
+						}
+						return
+					}
+					if let log = call.callLog, let userDefaults = UserDefaults(suiteName: Config.appGroupName), userDefaults.bool(forKey: "declined_calls_via_notif_\(log.callId)") {
+						Log.info("Declining call Id in app (accept button pressed on notif) : \(log.callId)")
+						try?call.decline(reason: .Declined)
+						return
+					}
 				}
-			}
-			
-			if (cstate == linphonesw.Call.State.IncomingReceived && !self.hasBeenConnected.contains(call.callLog?.callId ?? nil)) {
-				DispatchQueue.main.async {
-					NavigationManager.it.navigateTo(childClass: CallIncomingView.self, asRoot:false, argument:Pair(call, [Call.State.IncomingReceived, Call.State.IncomingEarlyMedia]))
+				
+				if (cstate == linphonesw.Call.State.IncomingReceived && !self.hasBeenConnected.contains(call.callLog?.callId ?? nil)) {
+					DispatchQueue.main.async {
+						NavigationManager.it.navigateTo(childClass: CallIncomingView.self, asRoot:false, argument:Pair(call, [Call.State.IncomingReceived, Call.State.IncomingEarlyMedia]))
+					}
 				}
-			}
-			if (cstate == linphonesw.Call.State.Connected) {
-				call.callLog.map{self.hasBeenConnected.append($0.callId)}
-				DispatchQueue.main.async {
-					NavigationManager.it.navigateTo(childClass: CallInProgressView.self, asRoot:false, argument:Pair(call, [Call.State.Connected, Call.State.StreamsRunning, Call.State.Updating, Call.State.UpdatedByRemote]))
+				if (cstate == linphonesw.Call.State.Connected) {
+					call.callLog.map{self.hasBeenConnected.append($0.callId)}
+					DispatchQueue.main.async {
+						NavigationManager.it.navigateTo(childClass: CallInProgressView.self, asRoot:false, argument:Pair(call, [Call.State.Connected, Call.State.StreamsRunning, Call.State.Updating, Call.State.UpdatedByRemote]))
+					}
 				}
-			}
-			if (cstate == linphonesw.Call.State.OutgoingInit) {
-				DispatchQueue.main.async {
-					NavigationManager.it.navigateTo(childClass: CallOutgoingView.self, asRoot:false, argument:Pair(call, [Call.State.OutgoingRinging, Call.State.OutgoingProgress, Call.State.OutgoingInit, Call.State.OutgoingEarlyMedia]))
+				if (cstate == linphonesw.Call.State.OutgoingInit) {
+					DispatchQueue.main.async {
+						NavigationManager.it.navigateTo(childClass: CallOutgoingView.self, asRoot:false, argument:Pair(call, [Call.State.OutgoingRinging, Call.State.OutgoingProgress, Call.State.OutgoingInit, Call.State.OutgoingEarlyMedia]))
+					}
 				}
-			}
-		},
+			},
 			onConfiguringStatus: { (core, status, message) in
 				if (status == .Successful) {
 					core.config?.cleanEntry(section: "video", key: "displaytype")
@@ -207,7 +208,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 			}
 		}
 	}
-		
+	
 	func applicationWillTerminate(_ application: UIApplication) {
 		Core.get().stop()
 	}
@@ -265,8 +266,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 				//SVProgressHUD.show()
 			}
 		}
-
-
+		
+		
 		if #available(iOS 14.0, *) {
 			let appActive = UserDefaults(suiteName: Config.appGroupName)?.bool(forKey: "appactive") == true
 			let isMissedInForeGround = notification.request.content.title == Texts.get("notif_missed_call_title") && appActive
@@ -279,7 +280,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	
 	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
 		Log.info("didReceiveRemoteNotification - remote notification \(userInfo)")
-
+		
 		if let payload = userInfo["customPayload"] as? [String: Any], let token = payload["token"] as? String {
 			Config.flexiApiToken = token
 			flexiApiTokenReceived.value = true
@@ -339,11 +340,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 				SVProgressHUD.dismiss()
 			}
 			Log.info("Accept call button pressed for call Id : \(callId)")
-			userDefaults.set(true, forKey: "accepted_calls_via_notif_\(callId)")
+			userDefaults.set(true, forKey: "accepted_calls_via_notif_"+callId)
 		}
 		if response.actionIdentifier == "decline"{
 			Log.info("Decline call button pressed for call Id : \(callId)")
-			userDefaults.set(true, forKey: "declined_calls_via_notif_\(callId)")
+			userDefaults.set(true, forKey: "declined_calls_via_notif_"+callId)
 		}
 		completionHandler()
 	}
