@@ -52,18 +52,7 @@ class RemoteAnyViewModel: FlexiApiPushAccountCreationViewModel {
 						return
 					}
 					if (status == ConfiguringState.Successful) {
-						DispatchQueue.main.async {
-							if (LinhomeAccount.it.get()?.params?.domain != CorePreferences.them.loginDomain) {
-								if (LinhomeAccount.it.pushAccount() != nil) {
-									LinhomeAccount.it.linkProxiesWithPushAccount(pushReady: self.pushReady)
-								} else {
-									self.createPushAccount()
-								}
-							} else {
-								self.pushReady.value = true
-								Log.info("Remote provisioning - no need to create/link push gateway, as domain \(CorePreferences.them.loginDomain) is managed by flexisip already.")
-							}
-						}
+						self.handlePushAccount()
 					}
 					self.configurationResult.value = status
 			},

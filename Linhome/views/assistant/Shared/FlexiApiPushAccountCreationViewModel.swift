@@ -91,4 +91,19 @@ class  FlexiApiPushAccountCreationViewModel : CreatorAssistantViewModel {
 		pushReady.value = false
 	}
 	
+	func handlePushAccount() {
+		DispatchQueue.main.async {
+			if (LinhomeAccount.it.get()?.params?.domain != CorePreferences.them.loginDomain) {
+				if (LinhomeAccount.it.pushAccount() != nil) {
+					LinhomeAccount.it.linkProxiesWithPushAccount(pushReady: self.pushReady)
+				} else {
+					self.createPushAccount()
+				}
+			} else {
+				self.pushReady.value = true
+				Log.info("[Assistant] - no need to create/link push gateway, as domain \(CorePreferences.them.loginDomain) is managed by flexisip already.")
+			}
+		}
+	}
+	
 }

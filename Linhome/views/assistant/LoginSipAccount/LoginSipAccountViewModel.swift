@@ -79,11 +79,7 @@ class LoginSipAccountViewModel : FlexiApiPushAccountCreationViewModel {
 				if (state == .Ok) {
 					core.removeDelegate(delegate: self.coreDelegate!)
 					sipRegistered.value = true
-					if (LinhomeAccount.it.pushAccount() != nil) {
-						LinhomeAccount.it.linkProxiesWithPushAccount(pushReady: self.pushReady)
-					} else {
-						self.createPushAccount()
-					}
+					self.handlePushAccount()
 					DispatchQueue.main.async {
 						DeviceStore.it.fetchVCards()
 					}
