@@ -136,17 +136,15 @@ class DeviceStore {
 			Log.info("[DeviceStore] found local device : \(device)")
 			self.devices.append(device)
 		}
-		if let serverFriendList = serverFriendList {
-			serverFriendList.friends.forEach { friend in
-				guard let card: Vcard = friend.vcard, card.isValid() else {
-					Log.error("[DeviceStore] received invalid or malformed vCard from remote : \(friend.vcard?.asVcard4String() ?? "nil")")
-					return
-				}
-				let device = Device(card: card, isRemotelyProvisionned: true)
-				if (self.devices.filter { $0.address == device.address}.count == 0) {
-					Log.info("[DeviceStore] found remotely provisionned device : \(device)")
-					self.devices.append(device)
-				}
+		serverFriendList?.friends.forEach { friend in
+			guard let card: Vcard = friend.vcard, card.isValid() else {
+				Log.error("[DeviceStore] received invalid or malformed vCard from remote : \(friend.vcard?.asVcard4String() ?? "nil")")
+				return
+			}
+			let device = Device(card: card, isRemotelyProvisionned: true)
+			if (self.devices.filter { $0.address == device.address}.count == 0) {
+				Log.info("[DeviceStore] found remotely provisionned device : \(device)")
+				self.devices.append(device)
 			}
 		}
 		self.devices.forEach {
