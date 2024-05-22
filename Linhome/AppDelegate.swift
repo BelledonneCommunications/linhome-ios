@@ -236,6 +236,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		try?Config.get().sync()
 		registerForPushNotifications()
 		DispatchQueue.main.async {
+			UserDefaults(suiteName: Config.appGroupName)?.setValue(0, forKey: "ACTIVE_SHARED_CORE")
 			try?Core.get().start()
 			Core.get().enterForeground()
 			NavigationManager.it.mainView?.tabbarViewModel.updateUnreadCount()
@@ -291,6 +292,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		}
 		
 		if (Core.get().globalState != .On) {
+			UserDefaults(suiteName: Config.appGroupName)?.setValue(0, forKey: "ACTIVE_SHARED_CORE")
 			try?Core.get().start()
 			Core.get().enterForeground()
 		}
@@ -312,7 +314,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		DeviceStore.it.enteringBackground = true
 		Core.get().enterBackground()
 		if (Core.get().callsNb == 0) {
-			Core.get().stopAsync()
+			Core.get().stop()
 		}
 	}
 	

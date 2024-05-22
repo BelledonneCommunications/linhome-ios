@@ -168,7 +168,7 @@ class NotificationService: UNNotificationServiceExtension {
 		}
 		guard let bestAttemptContent = self.bestAttemptContent else {
 			Log.info("Best attempt comptent is null - stopping")
-			core.stopAsync()
+			core.stop()
 			Call.releaseOwnerShip(notifCallId)
 			return
 		}
@@ -178,7 +178,7 @@ class NotificationService: UNNotificationServiceExtension {
 			Call.releaseOwnerShip(notifCallId)
 			userDefaults.set(Date(), forKey: "notification_time_"+notifCallId)
 			contentHandler(bestAttemptContent)
-			core.stopAsync()
+			core.stop()
 			return
 		}
 		
@@ -242,7 +242,7 @@ class NotificationService: UNNotificationServiceExtension {
 				Call.releaseOwnerShip(callId)
 			}
 		}
-		core.stopAsync()
+		core.stop()
 		
 	}
 	
