@@ -65,6 +65,7 @@ echocancellation=0
 eq_gains=50:2:50 100:2:50
 eq_location=mic
 ringer_dev_id=AU Speaker: Speaker
+playback_gain_db=0
 
 [proxy_default_values]
 reg_expires=31536000
