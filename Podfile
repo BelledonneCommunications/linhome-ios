@@ -6,7 +6,7 @@ source "https://github.com/CocoaPods/Specs.git"
 
 def linphone_sdk_pod
 	if ENV['PODFILE_PATH'].nil?
-                pod 'linphone-sdk', '5.2.65-pre.2+5688d2a'
+                pod 'linphone-sdk', '5.3.105-pre.2+0acac761'
 	else
 		pod 'linphone-sdk', :path => ENV['PODFILE_PATH']  # loacl sdk : PODFILE_PATH=<Path to>/linphone-sdk.podspec  pod install
 	end
