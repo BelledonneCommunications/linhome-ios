@@ -29,7 +29,7 @@ extension Call {
 			let earlyMediaCallParams: CallParams = try core.createCallParams(call: self)
 			earlyMediaCallParams.recordFile = callLog!.getHistoryEvent().mediaFileName!
 			cameraEnabled = false
-			core.muteAudioPLayBack()
+			muteAudioPLayBack()
 			try acceptEarlyMediaWithParams(params: earlyMediaCallParams)
 			startRecording()
 		} catch {
@@ -42,7 +42,7 @@ extension Call {
 			let inCallParams: CallParams = try!core.createCallParams(call: self)
 			inCallParams.recordFile = callLog!.getHistoryEvent().mediaFileName!
 			cameraEnabled = false
-			core.unMuteAudioPLayBack()
+			unMuteAudioPLayBack()
 			if let device = DeviceStore.it.findDeviceByAddress(address: remoteAddress!) {
 				Core.get().useRfc2833ForDtmf = device.actionsMethodType == "method_dtmf_rfc_4733"
 				Core.get().useInfoForDtmf = device.actionsMethodType == "method_dtmf_sip_info"
@@ -118,5 +118,13 @@ extension Call {
 		Call.requestAndWaitForOwnerShip(callId)
 	}
 	
+	// Early media phase - work around to avoid playing audio back to user, but still have the stream
+	public func muteAudioPLayBack() {
+		speakerVolumeGain = -1000.0
+	}
+
+	public func unMuteAudioPLayBack() {
+		speakerVolumeGain = 0.0
+	}
 	
 }
