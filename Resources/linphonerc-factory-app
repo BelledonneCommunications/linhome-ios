@@ -49,7 +49,7 @@ freesip_url=https://subscribe.linhome.org/login
 
 [misc]
 version_check_url_root=https://www.linphone.org/releases
-log_collection_upload_server_url=https://www.linphone.org:444/lft.php
+log_collection_upload_server_url=https://files.linphone.org/http-file-transfer-server/hft.php
 max_calls=5
 history_max_size=100
 store_friends=1
