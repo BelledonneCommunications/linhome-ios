@@ -57,7 +57,7 @@ class HistoryEventViewModel : ViewModel {
 		
 		let date = Date(timeIntervalSince1970: TimeInterval(callLog.startDate))
 		let dateFormatter = DateFormatter()
-		dateFormatter.dateFormat = "HH:mm::ss"
+		dateFormatter.dateFormat = "HH:mm:ss"
 		let callTime = dateFormatter.string(from: date)
 		
 		var typeText : String? = nil
