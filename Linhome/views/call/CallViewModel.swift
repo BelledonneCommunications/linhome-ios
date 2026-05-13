@@ -172,22 +172,37 @@ class CallViewModel : ViewModel {
 		return AVAudioSession.sharedInstance().currentRoute.outputs.count > 0 && AVAudioSession.sharedInstance().currentRoute.outputs[0].portType == .builtInSpeaker
 	}
 	
+	func isHeadPhoneAvailable() -> Bool {
+		guard let availableInputs = AVAudioSession.sharedInstance().availableInputs else {return false}
+		for inputDevice in availableInputs {
+			if inputDevice.portType == .headsetMic  || inputDevice.portType == .headphones {
+				return true
+			}
+		}
+		return false
+	}
 	
 	func toggleSpeaker() {
-		do {
-			if (speakerOn()) {
+		if (speakerOn()) {
+			do {
 				try AVAudioSession.sharedInstance().overrideOutputAudioPort(.none)
-				let buildinPort = AudioHelper.builtinAudioDevice()
-				try AVAudioSession.sharedInstance().setPreferredInput(buildinPort)
-				UIDevice.current.isProximityMonitoringEnabled = true
+				if isHeadPhoneAvailable() {
+					try AVAudioSession.sharedInstance().setPreferredInput(
+						AVAudioSession.sharedInstance().availableInputs?.filter({ $0.portType.rawValue.contains("Receiver") }).first)
+				} else {
+					try AVAudioSession.sharedInstance().setPreferredInput(AVAudioSession.sharedInstance().availableInputs?.first)
+				}
 				speakerDisabled.value = true
-			} else if (AudioHelper.speakerAllowed()){
-				try AVAudioSession.sharedInstance().overrideOutputAudioPort(.speaker)
-				UIDevice.current.isProximityMonitoringEnabled = false
-				speakerDisabled.value = false
+			} catch _ {
+				
 			}
-		} catch {
-			Log.error("Failed changing audio route: err \(error)")
+		} else if (AudioHelper.speakerAllowed()) {
+			do {
+				try AVAudioSession.sharedInstance().overrideOutputAudioPort(.speaker)
+				speakerDisabled.value = false
+			} catch _ {
+
+			}
 		}
 	}
 	
