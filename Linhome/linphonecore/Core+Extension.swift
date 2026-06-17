@@ -51,9 +51,9 @@ extension Core {
 		return _instance!
 	}
 	
-	public static func getNewOne(autoIterate:Bool = true) -> Core? { // Singleton initiatlisation
+	public static func getNewOne(autoIterate:Bool = true, reuseConfig: Bool = true) -> Core? { // Singleton initiatlisation
 		do {
-			let config = Config.get()
+			let config = Config.get(reuse: reuseConfig)
 			config.setString(section: "sound", key: "local_ring", value: nil)
 			config.setString(section:"storage", key: "call_logs_db_uri",value: FileUtil.sharedContainerUrl().path + "/call_logs.db")
 			let core = try Factory.Instance.createSharedCoreWithConfig(config: config, systemContext: nil, appGroupId: Config.appGroupName, mainCore: !runsInsideExtension() ) // Shared core makes use of the shared space in AppGroup.

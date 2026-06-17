@@ -36,8 +36,8 @@ extension Config {
 		return Double(stringValue) ?? defaultValue
 	}
 
-	public static func get() -> Config {
-		if (_instance == nil) {
+	public static func get(reuse: Bool = true) -> Config {
+		if (!reuse || _instance == nil) {
 			let factoryPath = FileUtil.bundleFilePath(Core.runsInsideExtension() ? "linphonerc-factory-appex" : "linphonerc-factory-app")!
 			_instance =  Config.newForSharedCore(appGroupId: Config.appGroupName, configFilename: "linphonerc", factoryConfigFilename: factoryPath)!
 		}

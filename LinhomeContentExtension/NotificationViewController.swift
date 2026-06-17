@@ -106,7 +106,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
 				}
 			}
 		})
-		core = Core.getNewOne()
+		core = Core.getNewOne(reuseConfig: false)
 		core?.addDelegate(delegate: coreDelegateStub!)
 		try?core?.start()
 	}

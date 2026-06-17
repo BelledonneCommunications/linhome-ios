@@ -143,7 +143,7 @@ class NotificationService: UNNotificationServiceExtension {
 		
 		Call.takeOwnerShip(notifCallId)
 		
-		guard let core = Core.getNewOne(autoIterate: false) else {
+		guard let core = Core.getNewOne(autoIterate: false, reuseConfig: false) else {
 			Log.error("unable to create a executor core.")
 			Call.releaseOwnerShip(notifCallId)
 			userDefaults.set(Date(), forKey: "notification_time_"+notifCallId)
