@@ -164,9 +164,10 @@ extension Core {
 	}
 		
 	public func configurePushNotifications(_ deviceToken:Data) { // Should be called by the app when a push token is made abvailable. It adds it to the default proxy config.
-		Core.pushToken = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-		Log.info("Push token received from device:"+Core.pushToken!)
-		didRegisterForRemotePushWithStringifiedToken(deviceTokenStr: Core.pushToken)
+		let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+		Core.pushToken = token
+		Log.info("Push token received from device:"+token)
+		didRegisterForRemotePushWithStringifiedToken(deviceTokenStr: token + ":remote")
 		Core.get().accountList.forEach { account in
 			account.configurePushNotificationParameters()
 		}
