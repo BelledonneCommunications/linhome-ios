@@ -99,6 +99,7 @@ class DeviceStore {
 		storageMigrated = true
 		if (!FileManager.default.fileExists(atPath: devicesXml)) {
 			Log.info("[DeviceStore] no xml migration storage to perform")
+			readDevicesFromFriends()
 			return
 		}
 		self.devicesConfig = try!Factory.Instance.createConfig(path: "")
