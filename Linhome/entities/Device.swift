@@ -52,7 +52,7 @@ class Device  {
 				friend.vcard?.addSipAddress(sipAddress: address)
 				friend.vcard?.addExtendedProperty(name: Device.vcard_action_method_type_header,value: Device.deviceActionMethodsTovCardActionMethods()[actionsMethodType!]!)
 				actions?.forEach { it in
-					friend.vcard?.addExtendedProperty(name: Device.vcard_actions_list_header,value:it.type! + ";" + it.code!)
+					friend.vcard?.addExtendedProperty(name: Device.vcard_actions_list_header,value:it.type! + "~" + it.code!)
 				}
 				try friend.setSubscribesenabled(newValue: false)
 				Log.info("[Device] created vCard for device: \(name) \(address) \(friend.vcard?.asVcard4String()  ?? "nil") \(friend.vcard?.sipAddresses.first?.asString()  ?? "nil")")
@@ -93,7 +93,7 @@ class Device  {
 		self.actionsMethodType = Device.vCardActionMethodsToDeviceMethods[card.getExtendedPropertiesValuesByName(name: Device.vcard_action_method_type_header).first!]
 		var actions = [Action]()
 		card.getExtendedPropertiesValuesByName(name: Device.vcard_actions_list_header).forEach { action in
-			let components = action.components(separatedBy: ";")
+			let components = action.replacingOccurrences(of: "\\;", with: "~").replacingOccurrences(of: ";", with: "~").components(separatedBy: "~")
 			guard components.count == 2 else {
 				Log.error("Unable to create action from VCard \(action)")
 				return

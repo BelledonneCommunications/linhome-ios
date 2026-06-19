@@ -47,7 +47,7 @@ extension Vcard {
 		}
 		var validActions = true
 		getExtendedPropertiesValuesByName(name: Device.vcard_actions_list_header).forEach { action in
-			let components = action.components(separatedBy: ";")
+			let components = action.replacingOccurrences(of: "\\;", with: "~").replacingOccurrences(of: ";", with: "~").components(separatedBy: "~")
 			if (components.count == 2) {
 				validActions = validActions && ActionTypes.it.isValid(typeKey: components.first!)
 			} else {
