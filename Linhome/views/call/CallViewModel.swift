@@ -40,6 +40,7 @@ class CallViewModel : ViewModel {
 	
 	private var historyEvent : HistoryEvent
 	private var callDelegate :  CallDelegateStub?
+	private var speakerAutoEnabled = false
 	
 	init (call:Call)  {
 		self.call = call
@@ -117,6 +118,16 @@ class CallViewModel : ViewModel {
 				call.startRecording()
 			} catch {
 				Log.error("Failed to start recording :\(error)")
+			}
+		}
+		if (cstate == Call.State.StreamsRunning && call.callLog?.dir == Call.Dir.Outgoing && !speakerAutoEnabled) {
+			speakerAutoEnabled = true
+			if (!speakerOn() && AudioHelper.speakerAllowed()) {
+				do {
+					try AVAudioSession.sharedInstance().overrideOutputAudioPort(.speaker)
+					speakerDisabled.value = false
+				} catch _ {
+				}
 			}
 		}
 	}
