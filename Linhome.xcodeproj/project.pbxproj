@@ -10,6 +10,7 @@
 		4EA74523A4B30D10DC296211 /* Pods_Linhome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D597EBD8FCCD8D619A462FCA /* Pods_Linhome.framework */; };
 		C6022E8B2B3C25A000988793 /* FlexiApiPushAccountCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6022E8A2B3C25A000988793 /* FlexiApiPushAccountCreationViewModel.swift */; };
 		C6022E8D2B3C34AD00988793 /* DefaultStringInterpolation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6022E8C2B3C34AD00988793 /* DefaultStringInterpolation+Extension.swift */; };
+		C612F3BD2FE2CC9D00998E42 /* linphonesw in Frameworks */ = {isa = PBXBuildFile; productRef = C612F3BC2FE2CC9D00998E42 /* linphonesw */; };
 		C616A7562E86DB0700595F80 /* linphonesw in Frameworks */ = {isa = PBXBuildFile; productRef = C616A7552E86DB0700595F80 /* linphonesw */; };
 		C616A7582E86DB1100595F80 /* linphonesw in Frameworks */ = {isa = PBXBuildFile; productRef = C616A7572E86DB1100595F80 /* linphonesw */; };
 		C616A75A2E86DB1F00595F80 /* linphonesw in Frameworks */ = {isa = PBXBuildFile; productRef = C616A7592E86DB1F00595F80 /* linphonesw */; };
@@ -202,6 +203,10 @@
 		C6C2BD7F2523D0EE0035857B /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C2BD7E2523D0EE0035857B /* AccountView.swift */; };
 		C6C2BD872523D2400035857B /* HistoryEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C2BD862523D2400035857B /* HistoryEventsViewModel.swift */; };
 		C6C2BD8F2523DA7B0035857B /* HistoryEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C2BD8E2523DA7B0035857B /* HistoryEventViewModel.swift */; };
+		C6CC60A42F363E0A0031E817 /* linphonesw in Frameworks */ = {isa = PBXBuildFile; productRef = C6CC60A32F363E0A0031E817 /* linphonesw */; };
+		C6CC60A72F363F3C0031E817 /* linphonesw in Frameworks */ = {isa = PBXBuildFile; productRef = C6CC60A62F363F3C0031E817 /* linphonesw */; };
+		C6CC60AA2F3640DF0031E817 /* linphonesw in Frameworks */ = {isa = PBXBuildFile; productRef = C6CC60A92F3640DF0031E817 /* linphonesw */; };
+		C6CC60AD2F36486E0031E817 /* linphonesw in Frameworks */ = {isa = PBXBuildFile; productRef = C6CC60AC2F36486E0031E817 /* linphonesw */; };
 		C6DA26A2240FA94400CDF3D7 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA26A1240FA94400CDF3D7 /* NotificationService.swift */; };
 		C6DA26A6240FA94400CDF3D7 /* LinhomeServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C6DA269F240FA94400CDF3D7 /* LinhomeServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C6DBA148250FB81A00C2CFBD /* RegistrationState+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBA147250FB81A00C2CFBD /* RegistrationState+Extension.swift */; };
@@ -529,9 +534,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C616A7582E86DB1100595F80 /* linphonesw in Frameworks */,
+				C6CC60AA2F3640DF0031E817 /* linphonesw in Frameworks */,
 				C642276A2E8D7E580094FEDC /* DeviceKit in Frameworks */,
+				C6CC60AD2F36486E0031E817 /* linphonesw in Frameworks */,
 				C616A75D2E86E1D900595F80 /* linphonesw in Frameworks */,
+				C612F3BD2FE2CC9D00998E42 /* linphonesw in Frameworks */,
+				C6CC60A42F363E0A0031E817 /* linphonesw in Frameworks */,
 				C616A7562E86DB0700595F80 /* linphonesw in Frameworks */,
+				C6CC60A72F363F3C0031E817 /* linphonesw in Frameworks */,
 				4EA74523A4B30D10DC296211 /* Pods_Linhome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1180,8 +1190,6 @@
 					};
 					C6DA269E240FA94400CDF3D7 = {
 						CreatedOnToolsVersion = 10.3;
-						DevelopmentTeam = Z2V957B3D6;
-						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1195,8 +1203,8 @@
 			);
 			mainGroup = C676AD6B24040F6C0048C504;
 			packageReferences = (
-				C616A75B2E86E1D900595F80 /* XCRemoteSwiftPackageReference "linphone-sdk-swift-ios" */,
 				C64227682E8D7E580094FEDC /* XCRemoteSwiftPackageReference "DeviceKit" */,
+				C612F3BB2FE2CC9D00998E42 /* XCRemoteSwiftPackageReference "linphone-sdk-swift-ios" */,
 			);
 			productRefGroup = C676AD7524040F6C0048C504 /* Products */;
 			projectDirPath = "";
@@ -1856,7 +1864,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Linhome/Linhome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Linhome/app-Info.plist";
@@ -1865,7 +1873,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.linhome;
 				PRODUCT_NAME = Linhome;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
@@ -1883,7 +1891,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Linhome/Linhome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Linhome/app-Info.plist";
@@ -1892,7 +1900,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.linhome;
 				PRODUCT_NAME = Linhome;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
@@ -1907,6 +1915,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeServiceExtension/LinhomeServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
@@ -1920,6 +1929,7 @@
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.service-extension";
 				PRODUCT_NAME = LinhomeServiceExtension;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1932,6 +1942,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = LinhomeServiceExtension/LinhomeServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = Z2V957B3D6;
@@ -1945,6 +1956,7 @@
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.linhome.service-extension";
 				PRODUCT_NAME = LinhomeServiceExtension;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1993,6 +2005,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C612F3BB2FE2CC9D00998E42 /* XCRemoteSwiftPackageReference "linphone-sdk-swift-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://gitlab.linphone.org/BC/public/linphone-sdk-swift-ios.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.4.120;
+			};
+		};
 		C616A7542E86DB0700595F80 /* XCRemoteSwiftPackageReference "linphone-sdk-swift-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://gitlab.linphone.org/BC/public/linphone-sdk-swift-ios.git";
@@ -2005,8 +2025,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://gitlab.linphone.org/BC/public/linphone-sdk-swift-ios.git";
 			requirement = {
-				branch = stable;
-				kind = branch;
+				kind = revision;
+				revision = 25e70e6e13bcf3680bcafdaf6ee9e8c97d3aeea5;
 			};
 		};
 		C64227682E8D7E580094FEDC /* XCRemoteSwiftPackageReference "DeviceKit" */ = {
@@ -2017,9 +2037,46 @@
 				minimumVersion = 5.7.0;
 			};
 		};
+		C6CC60A22F363E0A0031E817 /* XCRemoteSwiftPackageReference "linphone-sdk-swift-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://gitlab.linphone.org/BC/public/linphone-sdk-swift-ios";
+			requirement = {
+				kind = revision;
+				revision = 25e70e6e13bcf3680bcafdaf6ee9e8c97d3aeea5;
+			};
+		};
+		C6CC60A52F363F3C0031E817 /* XCRemoteSwiftPackageReference "linphone-sdk-swift-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://gitlab.linphone.org/BC/public/linphone-sdk-swift-ios";
+			requirement = {
+				kind = revision;
+				revision = bed1bd41224a1add7a733195b93948abd2ced1f3;
+			};
+		};
+		C6CC60A82F3640DF0031E817 /* XCRemoteSwiftPackageReference "linphone-sdk-swift-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://gitlab.linphone.org/BC/public/linphone-sdk-swift-ios";
+			requirement = {
+				kind = revision;
+				revision = 527e0191756acfdd397c0896640565484e9e8e6c;
+			};
+		};
+		C6CC60AB2F36486E0031E817 /* XCRemoteSwiftPackageReference "linphone-sdk-swift-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://gitlab.linphone.org/BC/public/linphone-sdk-swift-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.120;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C612F3BC2FE2CC9D00998E42 /* linphonesw */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C612F3BB2FE2CC9D00998E42 /* XCRemoteSwiftPackageReference "linphone-sdk-swift-ios" */;
+			productName = linphonesw;
+		};
 		C616A7552E86DB0700595F80 /* linphonesw */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C616A7542E86DB0700595F80 /* XCRemoteSwiftPackageReference "linphone-sdk-swift-ios" */;
@@ -2058,6 +2115,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C64227682E8D7E580094FEDC /* XCRemoteSwiftPackageReference "DeviceKit" */;
 			productName = DeviceKit;
+		};
+		C6CC60A32F363E0A0031E817 /* linphonesw */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C6CC60A22F363E0A0031E817 /* XCRemoteSwiftPackageReference "linphone-sdk-swift-ios" */;
+			productName = linphonesw;
+		};
+		C6CC60A62F363F3C0031E817 /* linphonesw */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C6CC60A52F363F3C0031E817 /* XCRemoteSwiftPackageReference "linphone-sdk-swift-ios" */;
+			productName = linphonesw;
+		};
+		C6CC60A92F3640DF0031E817 /* linphonesw */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C6CC60A82F3640DF0031E817 /* XCRemoteSwiftPackageReference "linphone-sdk-swift-ios" */;
+			productName = linphonesw;
+		};
+		C6CC60AC2F36486E0031E817 /* linphonesw */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C6CC60AB2F36486E0031E817 /* XCRemoteSwiftPackageReference "linphone-sdk-swift-ios" */;
+			productName = linphonesw;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
