@@ -31,7 +31,8 @@ App Store deployment and any changes to Belledonne's production push service rem
 - An arm64 iPhone build against the official 5.4.123 SDK passed in a separate Personal Team test variant. That variant rebuilds the Swift wrapper locally and omits push capabilities, app groups and notification extensions; those build adaptations are not part of the contribution.
 - A foreground call to a physical iPhone passed: the user confirmed the native iOS incoming-call screen, answering and audible test tones over SRTP; the SIP server confirmed an established call. The Personal Team variant must retain the `voip` background-mode declaration for CallKit even though APNs registration is disabled.
 - A second foreground call presented a configured door-entry device identity as the caller. After answering through CallKit, the user confirmed Linhome recognized that device and displayed its action buttons. The actions were not executed, and this audio-only test does not validate video.
-- Real PushKit delivery and the full SIP/media matrix remain unverified. Keep this contribution in draft until those checks pass.
+- A live call connected the physical door-entry camera and the iPhone through the existing SIP service. Video decoding was confirmed in the app log; the user confirmed visible live video and successful physical gate opening after pressing the configured action button. The server confirmed that the user-triggered command was relayed to the door-entry device.
+- Real PushKit delivery and the remaining SIP/media matrix remain unverified. Keep this contribution in draft until those checks pass.
 
 ## Required integration checks before merge
 
