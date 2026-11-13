@@ -72,7 +72,14 @@ extension Core {
 			}
 			core.setUserAgent()
 			core.pushNotificationEnabled = true
-			core.callkitEnabled = false
+			core.callkitEnabled = !runsInsideExtension() && CorePreferences.nativeIncomingCallsEnabledForThisLaunch
+			if !runsInsideExtension() {
+				// Apply the selected account transport before start, including when opting back out.
+				core.accountList.forEach { $0.configurePushNotificationParameters() }
+				if CorePreferences.nativeIncomingCallsEnabledForThisLaunch {
+					core.pushIncomingCallTimeout = 30
+				}
+			}
 			return core
 		} catch  {
 			Log.error("Unable to create core \(error)")

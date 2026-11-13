@@ -274,6 +274,7 @@
 		C6FE4BC1257949B500F31F38 /* iPhone5-SE-About.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6FE4BC0257949B500F31F38 /* iPhone5-SE-About.xib */; };
 		DF4CF12A5CFF44F908955339 /* Pods_LinhomeServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CEC6ED8507E9D99F365922 /* Pods_LinhomeServiceExtension.framework */; };
 		FEB0F45576E191754F237C52 /* Pods_LinhomeContentExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4899D62FB5E7C660750C6F /* Pods_LinhomeContentExtension.framework */; };
+		A10100000000000000000001 /* NativeIncomingCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10100000000000000000002 /* NativeIncomingCallManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -514,6 +515,7 @@
 		CDDF367083DD67FD03268176 /* Pods-LinhomeContentExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinhomeContentExtension.release.xcconfig"; path = "Target Support Files/Pods-LinhomeContentExtension/Pods-LinhomeContentExtension.release.xcconfig"; sourceTree = "<group>"; };
 		D597EBD8FCCD8D619A462FCA /* Pods_Linhome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Linhome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0F5A42472E7CA640945BF3F /* Pods-Linhome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linhome.debug.xcconfig"; path = "Target Support Files/Pods-Linhome/Pods-Linhome.debug.xcconfig"; sourceTree = "<group>"; };
+		A10100000000000000000002 /* NativeIncomingCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeIncomingCallManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -880,6 +882,7 @@
 		C64A4FD12413576400149217 /* linphonecore */ = {
 			isa = PBXGroup;
 			children = (
+				A10100000000000000000002 /* NativeIncomingCallManager.swift */,
 				C62709C224B49267000E43D2 /* Call+Extension.swift */,
 				C64E8AB827F56A83002539D7 /* Vcard+Extension.swift */,
 				C64A4FB72413574000149217 /* Core+Extension.swift */,
@@ -1557,6 +1560,7 @@
 				C648FA2E24A2282300D9B92D /* NonEmptyStringMatcherValidator.swift in Sources */,
 				C646852A24A5FE6D0045AA4D /* StringUtil.swift in Sources */,
 				C641ECC6249C937100672832 /* UIButton+extension.swift in Sources */,
+				A10100000000000000000001 /* NativeIncomingCallManager.swift in Sources */,
 				C648FA3A24A2328E00D9B92D /* CorePreferences.swift in Sources */,
 				C648FA3024A2282300D9B92D /* NonEmptyWithRegExpFormatValidator.swift in Sources */,
 				C641ECA0249B713800672832 /* LEditText.swift in Sources */,

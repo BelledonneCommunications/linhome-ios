@@ -29,6 +29,7 @@ class SettingsViewModel : ViewModel {
 	var audioCodecs : [CodecDescriptor]? = nil
 	var videCodecs : [CodecDescriptor]? = nil
 
+	let nativeIncomingCalls = MutableLiveData(CorePreferences.them.nativeIncomingCalls)
 	let enableIpv6 = MutableLiveData(Core.get().ipv6Enabled)
 	let latestSnapshotShown = MutableLiveData(CorePreferences.them.showLatestSnapshot)
 
@@ -50,6 +51,9 @@ class SettingsViewModel : ViewModel {
 	
 	override init() {
 		super.init()
+		nativeIncomingCalls.observe { enabled in
+			CorePreferences.them.nativeIncomingCalls = enabled ?? false
+		}
 		enableIpv6.observe { (enable) in
 			Core.get().ipv6Enabled = enable!
 		}

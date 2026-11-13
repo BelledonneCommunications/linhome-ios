@@ -37,9 +37,10 @@ extension Call {
 		}
 	}
 	
-	func extendedAccept(core:Core) {
+	@discardableResult
+	func extendedAccept(core:Core) -> Bool {
 		do {
-			let inCallParams: CallParams = try!core.createCallParams(call: self)
+			let inCallParams: CallParams = try core.createCallParams(call: self)
 			inCallParams.recordFile = callLog!.getHistoryEvent().mediaFileName!
 			cameraEnabled = false
 			unMuteAudioPLayBack()
@@ -49,8 +50,10 @@ extension Call {
 			}
 			try acceptWithParams(params: inCallParams)
 			startRecording()
+			return true
 		} catch {
 			Log.error("[extendedAccept] exception \(error) ")
+			return false
 		}
 	}
 	
