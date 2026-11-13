@@ -26,6 +26,14 @@ import CommonCrypto
 
 
 class CorePreferences {
+	// Keep the running process on one push transport; changes apply on next launch.
+	static let nativeIncomingCallsEnabledForThisLaunch = UserDefaults(suiteName: Config.appGroupName)?.bool(forKey: "native_incoming_calls") ?? false
+
+	var nativeIncomingCalls: Bool {
+		get { UserDefaults(suiteName: Config.appGroupName)?.bool(forKey: "native_incoming_calls") ?? false }
+		set { UserDefaults(suiteName: Config.appGroupName)?.set(newValue, forKey: "native_incoming_calls") }
+	}
+
 	
 	static let them = CorePreferences()
 	static let availableAudioCodecs = ["pcmu","pcma","opus","g729"]

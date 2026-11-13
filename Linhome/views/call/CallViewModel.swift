@@ -110,7 +110,7 @@ class CallViewModel : ViewModel {
 	}
 	
 	private func fireActionsOnCallStateChanged(cstate: Call.State) {
-		if (cstate == Call.State.IncomingReceived) {
+		if (cstate == Call.State.IncomingReceived && !CorePreferences.nativeIncomingCallsEnabledForThisLaunch) {
 			call.extendedAcceptEarlyMedia(core: Core.get())
 		}
 		if (cstate == Call.State.StreamsRunning && call.callLog?.dir == Call.Dir.Outgoing && call.params?.isRecording != true) {

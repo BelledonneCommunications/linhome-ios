@@ -27,9 +27,12 @@ extension Account {
 		params?.clone().map {newParams in
 			newParams.pushNotificationConfig?.provider = Config.pushProvider
 			newParams.pushNotificationConfig?.remotePushInterval = "\(Config.pushNotificationsInterval)"
-			newParams.pushNotificationAllowed = false // Disable PushKit (CallKit notifications)
-			newParams.remotePushNotificationAllowed = true // Enable Remote notifications
-			newParams.pushNotificationConfig?.voipToken = nil // Forces removal of voip notification service in SDK.
+			let nativeCalls = CorePreferences.nativeIncomingCallsEnabledForThisLaunch
+			newParams.pushNotificationAllowed = nativeCalls
+			newParams.remotePushNotificationAllowed = !nativeCalls
+			if !nativeCalls {
+				newParams.pushNotificationConfig?.voipToken = nil // Retain the legacy remote-notification workflow.
+			}
 			params = newParams
 		}
 		refreshRegister()

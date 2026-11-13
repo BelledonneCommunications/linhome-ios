@@ -66,6 +66,10 @@ class SettingsView: MainViewContent, MFMailComposeViewControllerDelegate {
 		let _ = SettingSwitch.addOne(titleText: Texts.get("enable_ipv6"), subtitleText: nil, targetVC: self, liveValue: model.enableIpv6, form: form, liveCollapsed: nil)
 		
 		let _ = SettingSpinner.addOne(titleKey: Texts.get("media_encryption"), targetVC: self, liveIndex: model.encryptionIndex, options:model.encryptionLabels, form: form)
+
+		let _ = SettingSwitch.addOne(titleText: Texts.get("settings_native_incoming_calls"),
+			subtitleText: Texts.get("settings_native_incoming_calls_description"),
+			targetVC: self, liveValue: model.nativeIncomingCalls, form: form)
 		
 		let _ = SettingSwitch.addOne(titleText: Texts.get("enable_debuglogs"), subtitleText: nil, targetVC: self, liveValue: model.enableDebugLogs, form: form)
 		

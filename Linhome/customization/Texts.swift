@@ -21,6 +21,15 @@ import UIKit
 import linphonesw
 
 class Texts {
+	private static let nativeIncomingCallFallbacks: [String: [String: String]] = [
+		"settings_native_incoming_calls": [
+			"default": "Native iOS incoming calls", "fr": "Appels entrants natifs iOS",
+			"de": "Native eingehende iOS-Anrufe", "pl": "Natywne połączenia przychodzące iOS"],
+		"settings_native_incoming_calls_description": [
+			"default": "Restart to apply", "fr": "Redémarrer pour appliquer",
+			"de": "Neustart zum Übernehmen", "pl": "Uruchom ponownie, aby zastosować"]
+	]
+
 	
 	static let appName = pureGet(key: "appname")
 	
@@ -49,6 +58,9 @@ class Texts {
 		}
 		if let def = Customisation.it.textsConfig.getString(section: key, key: "default") {
 			return def
+		}
+		if let values = nativeIncomingCallFallbacks[key] {
+			return values[getPreferredLocale().languageCode ?? "default"] ?? values["default"] ?? key
 		}
 		return key
 	}

@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	
 	var window: UIWindow?
 	
+	private var nativeIncomingCalls: NativeIncomingCallManager?
 	var coreDelegate : CoreDelegateStub?
 	var notificationAction : String?
 	var hasBeenConnected : [String?] = []
@@ -72,13 +73,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		
 		UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
 		
+		_ = CorePreferences.nativeIncomingCallsEnabledForThisLaunch
 		_ = Customisation.it
 		_ = GSMActivityHelper.it
 		_ = DeviceStore.it
+		if CorePreferences.nativeIncomingCallsEnabledForThisLaunch {
+			nativeIncomingCalls = NativeIncomingCallManager()
+		}
 		
 		
 		self.window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = displayWaitIndicatorIfFromPush() ? MainView() : Splash()
+		window?.rootViewController = (displayWaitIndicatorIfFromPush() || nativeIncomingCalls != nil) ? MainView() : Splash()
 		window?.makeKeyAndVisible()
 		
 		coreDelegate = CoreDelegateStub(
@@ -87,6 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 			},
 			onCallStateChanged : { (lc: Core, call: Call, cstate: Call.State, message: String) -> Void in
 				
+				self.nativeIncomingCalls?.onCallStateChanged(core: lc, call: call, state: cstate)
 				Log.error("onCallStateChanged \(cstate)")
 				
 				if let callId = call.callLog?.callId {
@@ -142,7 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 					}
 				}
 				
-				if (cstate == Call.State.IncomingReceived && !self.hasBeenConnected.contains(call.callLog?.callId ?? nil)) {
+				if (self.nativeIncomingCalls == nil && cstate == Call.State.IncomingReceived && !self.hasBeenConnected.contains(call.callLog?.callId ?? nil)) {
 					DispatchQueue.main.async {
 						NavigationManager.it.navigateTo(childClass: CallIncomingView.self, asRoot:false, argument:Pair(call, [Call.State.IncomingReceived, Call.State.IncomingEarlyMedia]))
 					}
@@ -169,6 +175,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		requestMirophonePermission()
 		
 		Core.get().addDelegate(delegate: self.coreDelegate!)
+		if nativeIncomingCalls != nil {
+			// PushKit can launch the app without applicationDidBecomeActive being called.
+			try? Core.get().start()
+		}
 		
 		return true
 	}
@@ -313,7 +323,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		}
 		DeviceStore.it.enteringBackground = true
 		Core.get().enterBackground()
-		if (Core.get().callsNb == 0) {
+		if (Core.get().callsNb == 0 && nativeIncomingCalls == nil) {
 			Core.get().stop()
 		}
 	}
